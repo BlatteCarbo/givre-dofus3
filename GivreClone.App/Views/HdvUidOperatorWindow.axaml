@@ -1,0 +1,42 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:GivreClone.App.ViewModels"
+        x:Class="GivreClone.App.Views.HdvUidOperatorWindow"
+        x:DataType="vm:HdvViewModel" Title="HDV · Diagnostic UID local"
+        Width="1000" Height="580" MinWidth="660" MinHeight="360">
+    <Grid RowDefinitions="Auto,Auto,*,Auto,Auto" Margin="18" RowSpacing="12">
+        <TextBlock Text="UID sac → lot → résultat du moteur" FontSize="20" FontWeight="SemiBold" />
+        <TextBlock Grid.Row="1" TextWrapping="Wrap"
+                   Text="Observations reçues pendant l'ouverture de cette fenêtre, pour le PID sélectionné. ? = inconnu. Injection OK et candidat ne prouvent aucun ACK. Le reprix reste non corrélé. Aucun historique disque n'est lu." />
+        <ScrollViewer Grid.Row="2">
+            <ItemsControl ItemsSource="{Binding UidDiagnostics}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:HdvUidOperatorRow">
+                        <Border BorderBrush="Gray" BorderThickness="0,0,0,1" Padding="8">
+                            <StackPanel Spacing="4">
+                                <StackPanel Orientation="Horizontal" Spacing="14">
+                                    <TextBlock Text="{Binding Stage}" FontWeight="SemiBold" />
+                                    <TextBlock Text="{Binding Disposition}" />
+                                    <TextBlock Text="PID" /><TextBlock Text="{Binding Pid}" />
+                                    <TextBlock Text="Sac" /><TextBlock Text="{Binding BagUid}" />
+                                    <TextBlock Text="Lot" /><TextBlock Text="{Binding ListingUid}" />
+                                </StackPanel>
+                                <TextBlock Text="{Binding Evidence}" TextWrapping="Wrap" />
+                                <SelectableTextBlock Text="{Binding Diagnostic}" TextWrapping="Wrap" FontSize="11" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="12">
+            <Button Content="Effacer les observations" Command="{Binding ClearUidDiagnosticsCommand}" />
+            <TextBlock VerticalAlignment="Center" Text="150 lignes maximum · absence de ligne = absence de preuve" />
+        </StackPanel>
+        <StackPanel Grid.Row="4" Spacing="6">
+            <TextBlock Text="Scanner recettes · dofus.sqlite local en lecture seule (vide = base courante). Les moyennes proviennent de la session, pas du dataset statique." TextWrapping="Wrap" />
+            <TextBox Text="{Binding ScanDatasetPath, Mode=TwoWay}" PlaceholderText="Chemin local du dataset ledouxm 3.7.11.11" />
+            <TextBlock Text="{Binding ScanStatusText}" TextWrapping="Wrap" />
+        </StackPanel>
+    </Grid>
+</Window>

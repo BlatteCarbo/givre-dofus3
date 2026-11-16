@@ -1,0 +1,285 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             x:Class="GivreClone.App.Views.PlanningEditor"
+             x:DataType="vm:PlanningViewModel"
+             FontSize="13.5">
+    <!-- Éditeur du planning d'UN perso (DataContext = PlanningViewModel). Utilisé par l'onglet Planning du bot sélectionné
+         ET par la modale « planning d'un perso hors ligne » (instance distincte) : aucune liaison vers BotsViewModel ici. -->
+    <UserControl.Styles>
+        <!-- Pastille de jour : petit toggle carré, surligné quand actif (Accent = thème interchangeable -> DynamicResource) -->
+        <Style Selector="ToggleButton.daychip">
+            <Setter Property="MinWidth" Value="34" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="CornerRadius" Value="7" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style Selector="ToggleButton.daychip:checked">
+            <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+    </UserControl.Styles>
+    <StackPanel Spacing="14">
+        <!-- En-tete : activer + horloge live + statut -->
+        <Grid ColumnDefinitions="*,Auto,Auto">
+            <WrapPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,8,0">
+                <StackPanel Orientation="Horizontal" Spacing="9" Margin="0,0,20,0" VerticalAlignment="Center">
+                    <ToggleSwitch IsChecked="{Binding Enabled}" OnContent="" OffContent="" IsEnabled="{Binding !EnableLocked}" />
+                    <TextBlock Text="{DynamicResource L.Bots.Planning.Enable}" VerticalAlignment="Center"
+                               Foreground="{StaticResource TextPrimaryBrush}" FontWeight="SemiBold" />
+                </StackPanel>
+                <!-- « Vrai planning » : connexion au début de plage, déconnexion à la fin -->
+                <StackPanel Orientation="Horizontal" Spacing="9" VerticalAlignment="Center"
+                            ToolTip.Tip="{DynamicResource L.Bots.Planning.AutoConnectTip}">
+                    <ToggleSwitch IsChecked="{Binding AutoConnect}" OnContent="" OffContent="" IsEnabled="{Binding Enabled}" />
+                    <TextBlock Text="{DynamicResource L.Bots.Planning.AutoConnect}" VerticalAlignment="Center"
+                               Foreground="{StaticResource TextPrimaryBrush}" FontWeight="SemiBold" />
+                </StackPanel>
+            </WrapPanel>
+            <Border Grid.Column="1" Background="{StaticResource Surface2Brush}" CornerRadius="8" Padding="10,6" Margin="0,0,8,0"
+                    BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="7" VerticalAlignment="Center">
+                    <PathIcon Data="{StaticResource IconClock}" Width="13" Height="13" Foreground="{StaticResource TextSecondaryBrush}" />
+                    <TextBlock Text="{Binding ClockText}" Foreground="{StaticResource TextPrimaryBrush}" FontWeight="SemiBold" VerticalAlignment="Center" />
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="2" Background="{StaticResource Surface2Brush}" CornerRadius="8" Padding="10,6"
+                    BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="7" VerticalAlignment="Center">
+                    <Ellipse Width="8" Height="8" Fill="#63D3A6" IsVisible="{Binding IsActive}" />
+                    <Ellipse Width="8" Height="8" Fill="#79828F" IsVisible="{Binding !IsActive}" />
+                    <TextBlock Text="{Binding StatusText}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="12" VerticalAlignment="Center" />
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <TextBlock Text="{DynamicResource L.Bots.Planning.Hint}" Classes="caption" TextWrapping="Wrap" />
+        <TextBlock Text="{DynamicResource L.Bots.Planning.AutoConnectHint}" Classes="caption" TextWrapping="Wrap"
+                   IsVisible="{Binding AutoConnect}" />
+
+        <!-- Grille "semaine type" : aperçu visuel des plages (7 jours × 24 h, vert = actif) -->
+        <Border Background="{StaticResource Surface1Brush}" CornerRadius="10" Padding="12,10"
+                BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1">
+            <Grid ColumnDefinitions="24,*">
+                <Grid Grid.Column="0" Height="264" Margin="0,23,5,7" RowDefinitions="*,*,*,*">
+                    <TextBlock Grid.Row="0" Text="00" FontSize="9" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                    <TextBlock Grid.Row="1" Text="06" FontSize="9" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                    <TextBlock Grid.Row="2" Text="12" FontSize="9" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                    <TextBlock Grid.Row="3" Text="18" FontSize="9" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                </Grid>
+                <ItemsControl Grid.Column="1" ItemsSource="{Binding WeekDays}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate><UniformGrid Rows="1" /></ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:PlanningDayColumn">
+                            <StackPanel Margin="3,0">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="5" Margin="0,0,0,6">
+                                    <TextBlock Text="{Binding Label}" FontSize="11" FontWeight="SemiBold"
+                                               Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
+                                    <Border Background="{StaticResource Surface2Brush}" CornerRadius="7" Padding="5,0" Height="15"
+                                            IsVisible="{Binding HasBlocks}" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding CountText}" FontSize="9" VerticalAlignment="Center"
+                                                   Foreground="{StaticResource TextSecondaryBrush}" />
+                                    </Border>
+                                </StackPanel>
+                                <Panel Height="264">
+                                    <!-- fond « réglé » : 24 lignes horaires faibles -->
+                                    <ItemsControl ItemsSource="{Binding Hours}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Panel Height="9" Margin="0,1">
+                                                    <Border CornerRadius="2" Background="{StaticResource Surface2Brush}" />
+                                                </Panel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                    <!-- blocs des plages, positionnés par minute -->
+                                    <ItemsControl ItemsSource="{Binding Blocks}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate><Panel /></ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:PlanningBlock">
+                                                <Border VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                                        Margin="{Binding Margin}" Height="{Binding Height}"
+                                                        Background="{Binding Fill}" BorderBrush="{Binding Stroke}" BorderThickness="1"
+                                                        CornerRadius="4" Padding="4,2" ClipToBounds="True"
+                                                        ToolTip.Tip="{Binding Tip}">
+                                                    <StackPanel Spacing="1">
+                                                        <TextBlock Text="{Binding Name}" FontSize="9.5" FontWeight="SemiBold"
+                                                                   Foreground="White" TextTrimming="CharacterEllipsis" />
+                                                        <TextBlock Text="{Binding TimeText}" FontSize="8.5" Foreground="#E6FFFFFF"
+                                                                   IsVisible="{Binding ShowTime}" TextTrimming="CharacterEllipsis" />
+                                                        <TextBlock Text="{Binding ScriptText}" FontSize="8.5" Foreground="#CCFFFFFF"
+                                                                   IsVisible="{Binding ShowScript}" TextTrimming="CharacterEllipsis" />
+                                                    </StackPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Panel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </Border>
+
+        <!-- Humanisation (jitter) + script figé -->
+        <Grid ColumnDefinitions="Auto,Auto,*,Auto" ColumnSpacing="10">
+            <TextBlock Grid.Column="0" Text="{DynamicResource L.Bots.Planning.Jitter}" Classes="caption" VerticalAlignment="Center" />
+            <TextBox Grid.Column="1" Text="{Binding JitterMin, UpdateSourceTrigger=LostFocus}" Width="64" Height="30" VerticalContentAlignment="Center" />
+            <Button Grid.Column="3" Classes="ghost" Height="30" MinWidth="0" Padding="12,0" Command="{Binding CaptureScriptCommand}" IsVisible="{Binding ShowEditorActions}"
+                    ToolTip.Tip="{DynamicResource L.Bots.Planning.CaptureHint}">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <PathIcon Data="{StaticResource IconScript}" Width="12" Height="12" />
+                    <TextBlock Text="{DynamicResource L.Bots.Planning.CaptureScript}" FontSize="12" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <Border Height="1" Background="{StaticResource StrokeSoftBrush}" />
+
+        <!-- Bibliotheque de scripts : le scheduler en tire un par plage/jour (variete/humanisation) -->
+        <StackPanel Spacing="8">
+            <TextBlock Text="{DynamicResource L.Bots.Planning.Library}" Classes="caption" />
+            <TextBlock Text="{DynamicResource L.Bots.Planning.LibraryHint}" Classes="caption" TextWrapping="Wrap"
+                       Foreground="{StaticResource TextSecondaryBrush}" />
+            <ItemsControl ItemsSource="{Binding Scripts}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:PlanningScriptRow">
+                        <Border Background="{StaticResource Surface2Brush}" CornerRadius="8" Padding="10,6" Margin="0,0,0,6"
+                                BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1">
+                            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+                                <!-- saisie dans Draft ; renommage VALIDÉ à Entrée / perte du focus / rechargement de l'éditeur
+                                     (code-behind : classe scriptname) — pas à chaque frappe : pas de nom vide / doublon transitoire -->
+                                <TextBox Grid.Column="0" Classes="scriptname" Text="{Binding Draft}" Height="30" VerticalContentAlignment="Center"
+                                         Watermark="{DynamicResource L.Bots.Planning.ScriptName}"
+                                         ToolTip.Tip="{DynamicResource L.Bots.Planning.ScriptRenameTip}" />
+                                <TextBlock Grid.Column="1" Text="{Binding Info}" Classes="caption" VerticalAlignment="Center"
+                                           Foreground="{StaticResource TextSecondaryBrush}" />
+                                <Button Grid.Column="2" Classes="ghost" Height="30" MinWidth="0" Padding="10,0"
+                                        Command="{Binding $parent[UserControl].((vm:PlanningViewModel)DataContext).RemoveScriptCommand}"
+                                        CommandParameter="{Binding}">
+                                    <PathIcon Data="{StaticResource IconTrash}" Width="12" Height="12" Foreground="#FF6B7A" />
+                                </Button>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+                <TextBox Grid.Column="0" Text="{Binding NewScriptName}" Height="30" VerticalContentAlignment="Center" IsVisible="{Binding ShowEditorActions}"
+                         Watermark="{DynamicResource L.Bots.Planning.ScriptName}" />
+                <Button Grid.Column="1" Classes="ghost" Height="30" MinWidth="0" Padding="12,0" Click="OnPlanningLoadScript"
+                        ToolTip.Tip="{DynamicResource L.Bots.Planning.LoadFileHint}">
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <PathIcon Data="{StaticResource IconFolder}" Width="12" Height="12" />
+                        <TextBlock Text="{DynamicResource L.Bots.Planning.LoadFile}" FontSize="12" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+                <Button Grid.Column="2" Classes="ghost" Height="30" MinWidth="0" Padding="12,0"
+                        Command="{Binding AddScriptCommand}" IsVisible="{Binding ShowEditorActions}"
+                        ToolTip.Tip="{DynamicResource L.Bots.Planning.AddScriptHint}">
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <PathIcon Data="{StaticResource IconScript}" Width="12" Height="12" />
+                        <TextBlock Text="{DynamicResource L.Bots.Planning.AddScript}" FontSize="12" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </StackPanel>
+
+        <Border Height="1" Background="{StaticResource StrokeSoftBrush}" />
+
+        <!-- Liste des plages -->
+        <TextBlock Text="{DynamicResource L.Bots.Planning.NoSlots}" Classes="caption"
+                   IsVisible="{Binding !HasSlots}" />
+        <ItemsControl ItemsSource="{Binding Slots}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="vm:PlanningSlotRow">
+                    <Border Background="{StaticResource Surface2Brush}" CornerRadius="10" Padding="12,10" Margin="0,0,0,8"
+                            BorderBrush="{Binding Accent}" BorderThickness="3,1,1,1">
+                        <StackPanel Spacing="10">
+                            <!-- avertissement de CHEVAUCHEMENT (deux plages simultanées) -->
+                            <Border IsVisible="{Binding Conflict}" Background="#33C74A6B" BorderBrush="#C74A6B" BorderThickness="1"
+                                    CornerRadius="6" Padding="9,5">
+                                <StackPanel Orientation="Horizontal" Spacing="7" VerticalAlignment="Center">
+                                    <Ellipse Width="7" Height="7" Fill="#FF6B7A" VerticalAlignment="Center" />
+                                    <TextBlock Text="{DynamicResource L.Bots.Planning.Conflict}" FontSize="11.5" Foreground="#FF9AA8"
+                                               VerticalAlignment="Center" TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Border>
+                            <!-- script assigné INTROUVABLE (supprimé de la bibliothèque) : signalé, l'assignation n'est jamais vidée en silence -->
+                            <Border IsVisible="{Binding IsMissing}" Background="#33C9873E" BorderBrush="#C9873E" BorderThickness="1"
+                                    CornerRadius="6" Padding="9,5" ToolTip.Tip="{DynamicResource L.Bots.Planning.ScriptMissingTip}">
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                                    <WrapPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                                        <Ellipse Width="7" Height="7" Fill="#E0A458" VerticalAlignment="Center" Margin="0,0,7,0" />
+                                        <TextBlock Text="{DynamicResource L.Bots.Planning.ScriptMissing}" FontSize="11.5" Foreground="#F0C48A"
+                                                   VerticalAlignment="Center" Margin="0,0,5,0" />
+                                        <TextBlock Text="{Binding MissingName}" FontSize="11.5" FontWeight="SemiBold" Foreground="#F0C48A"
+                                                   VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                    </WrapPanel>
+                                    <!-- « Retirer » : désassigne la plage (repli figé) au lieu de la laisser sans rien lancer -->
+                                    <Button Grid.Column="1" Classes="ghost" Height="24" MinWidth="0" Padding="9,0" VerticalAlignment="Center"
+                                            Command="{Binding $parent[UserControl].((vm:PlanningViewModel)DataContext).ClearSlotScriptCommand}"
+                                            CommandParameter="{Binding}" ToolTip.Tip="{DynamicResource L.Bots.Planning.ClearScriptTip}">
+                                        <TextBlock Text="{DynamicResource L.Bots.Planning.ClearScript}" FontSize="11.5" Foreground="#F0C48A"
+                                                   VerticalAlignment="Center" />
+                                    </Button>
+                                </Grid>
+                            </Border>
+                            <!-- nom de la plage (ex « Pêcheur ») + script assigné (+ « Retirer ») -->
+                            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+                                <TextBox Grid.Column="0" Text="{Binding Name}" Height="30" VerticalContentAlignment="Center"
+                                         Watermark="{DynamicResource L.Bots.Planning.SlotName}" />
+                                <ComboBox Grid.Column="1" Width="210" Height="30" ItemsSource="{Binding Choices}"
+                                          SelectedItem="{Binding Script}" PlaceholderText="{DynamicResource L.Bots.Planning.SlotScript}"
+                                          ToolTip.Tip="{DynamicResource L.Bots.Planning.SlotScriptHint}" />
+                                <Button Grid.Column="2" Classes="ghost" Width="30" Height="30" MinWidth="0" Padding="0"
+                                        IsVisible="{Binding HasAssignment}"
+                                        Command="{Binding $parent[UserControl].((vm:PlanningViewModel)DataContext).ClearSlotScriptCommand}"
+                                        CommandParameter="{Binding}" ToolTip.Tip="{DynamicResource L.Bots.Planning.ClearScriptTip}">
+                                    <PathIcon Data="{StaticResource IconClose}" Width="10" Height="10" Foreground="{StaticResource TextSecondaryBrush}" />
+                                </Button>
+                            </Grid>
+                            <!-- jours -->
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <ToggleButton Classes="daychip" Content="{DynamicResource L.Day.D0}" IsChecked="{Binding Mon}" />
+                                <ToggleButton Classes="daychip" Content="{DynamicResource L.Day.D1}" IsChecked="{Binding Tue}" />
+                                <ToggleButton Classes="daychip" Content="{DynamicResource L.Day.D2}" IsChecked="{Binding Wed}" />
+                                <ToggleButton Classes="daychip" Content="{DynamicResource L.Day.D3}" IsChecked="{Binding Thu}" />
+                                <ToggleButton Classes="daychip" Content="{DynamicResource L.Day.D4}" IsChecked="{Binding Fri}" />
+                                <ToggleButton Classes="daychip" Content="{DynamicResource L.Day.D5}" IsChecked="{Binding Sat}" />
+                                <ToggleButton Classes="daychip" Content="{DynamicResource L.Day.D6}" IsChecked="{Binding Sun}" />
+                            </StackPanel>
+                            <!-- heures + suppression -->
+                            <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                <TextBox Text="{Binding StartText, UpdateSourceTrigger=LostFocus}" Width="72" Height="30" VerticalContentAlignment="Center" />
+                                <TextBlock Text="→" VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" />
+                                <TextBox Text="{Binding EndText, UpdateSourceTrigger=LostFocus}" Width="72" Height="30" VerticalContentAlignment="Center" />
+                                <Button Classes="ghost" Height="30" MinWidth="0" Padding="10,0" HorizontalAlignment="Right"
+                                        Command="{Binding $parent[UserControl].((vm:PlanningViewModel)DataContext).RemoveSlotCommand}"
+                                        CommandParameter="{Binding}">
+                                    <PathIcon Data="{StaticResource IconTrash}" Width="12" Height="12" Foreground="#FF6B7A" />
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Button Classes="ghost" Height="32" MinWidth="0" Padding="14,0" HorizontalAlignment="Left"
+                Command="{Binding AddSlotCommand}">
+            <StackPanel Orientation="Horizontal" Spacing="6">
+                <PathIcon Data="{StaticResource IconPlus}" Width="12" Height="12" />
+                <TextBlock Text="{DynamicResource L.Bots.Planning.AddSlot}" FontSize="12" VerticalAlignment="Center" />
+            </StackPanel>
+        </Button>
+    </StackPanel>
+</UserControl>

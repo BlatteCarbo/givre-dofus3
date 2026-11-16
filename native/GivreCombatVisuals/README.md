@@ -1,0 +1,21 @@
+# Options visuelles de combat
+
+Module x64 compilé et raccordé à l’application : `bin/GivreCombatVisuals.dll`, ABI 8, identifiant `givre.dofus3.combat-visuals`, version 1.0.0. SHA-256 : `05e919ee949a573127f31c47579bea63b86138d50897dd9ddd1f8902842676f4`.
+
+Sources sélectionnées de [dofus-enhanced](https://github.com/Altansar69/dofus-enhanced/tree/7bec4ce032d8847940e18f9474ca00c1e094f14b), commit `7bec4ce032d8847940e18f9474ca00c1e094f14b`, plus les sources d’apparence de la balise `v1.20.2` (commit `a92d9039b60d59f1dcd32707a29dbdc3dae5d513`). Licence Unlicense conservée dans `vendor/dofus-enhanced/LICENSE` : le texte de `v1.20.2` est le même, les fichiers copiés n’ajoutent pas d’en-tête, et cette tranche n’embarque ni MinHook, ni nlohmann/json, ni WebView2, ni `resource-map-generated.hpp`. Le pont `bridge.cpp` et les en-têtes d’adaptation sont propres à Givre. Aucun installateur ou mécanisme de mise à jour du dépôt n’est embarqué.
+
+`mode-policy.hpp` était déjà le texte de `v1.20.2` (une ligne vide finale en plus) : une seule copie est gardée. `Features::Restore` est défini une fois dans `bridge.cpp` et vide à la fois l’état d’apparence et les attentes d’animation. `animations.cpp` ne nettoie pas `sizes.pending` ; `Features::Tick` en reste le propriétaire. `Install` pose les quatre détours d’apparence puis appelle `InstallAnimation` une seule fois.
+
+## Options et cycle de vie
+
+Le masque par PID (`visual-options.ini`) reste sur six bits : 1 sans effets des sorts, 2 lancers courts, 4 sans animations d’attaque/sort, 8 sans animations de mort, 16 mouvements instantanés, 32 sans attentes visuelles. Les lignes suivantes ne l’élargissent pas : `combat-mode=` et `roleplay-mode=` valent 0 normale, 1 créatures ou 2 miniatures (une ligne absente ou illisible force 0, pas le défaut 2 de la structure) ; `combat-miniatures=` a six caractères `0`/`1` et `roleplay-miniatures=` cinq. Les catégories par défaut sont `111111` et `11110` (PNJ décoché) et ne chargent le module que si un mode vaut 1 ou 2. `visual-options.status` indique la découverte du personnage, le masque, les deux modes et l’état de combat. Les deux premières options d’animation sont cochées par défaut ; les quatre autres sont expérimentales. Les morts restent animées si les mouvements instantanés ou la suppression des attentes sont actifs, comme dans la source d’origine. Un déchargement réécrit le masque et les deux modes à 0, puis rend le réglage créature du compte lu avant le premier forçage.
+
+Les profils conservent les six choix ; Clone et persistance JSON sont testés sur les 64 combinaisons. Le chargement exige les empreintes locales, le droit no-anim, les mods activés, un client graphique appartenant à cette instance et la même identité de processus. Aucun chargement en Socket. Le skipper existant est retiré avant le chargement de ce module ; la transition inverse retire ce module avant de rétablir le skipper. Un ancien GivreMods déjà chargé impose de relancer le client.
+
+Le runtime conserve un snapshot du masque dans sa génération de requête. Un adaptateur `CallerMemberName` reconnaît le point d’entrée `SetCombatProfile` pour lire le profil effectif sans modifier le fichier moteur réservé. Les demandes de nettoyage ne relisent jamais les options cochées par défaut. Ce contrat est testé ; une future refactorisation de ce point d’entrée doit le mettre à jour ou passer le masque explicitement.
+
+## Construction et validation
+
+`build.cmd` utilise MSVC 14.44 x64 et Windows SDK 10.0.26100.0. Construction réussie ; chargement de la DLL dans un processus de test, manifest ABI 8 et rejet d’un hôte nul vérifiés, sans injection dans le jeu. Les empreintes du client sont contrôlées avant les hooks : GameAssembly `70b3861ded2ffa4a963bb6eaac8ff3c470c2f062e641601628c95f60411e8663`, métadonnées `ba1efbad5a8ecca48775fc20293f17e9dece72cc6134c4e7ecdd8071e7c67db6`. Chaque adresse native doit aussi correspondre aux signatures attendues.
+
+Validation visuelle dans le jeu encore nécessaire : activer une option à la fois, contrôler `READY ... in_combat=1`, vérifier les fins de séquence, changer de carte, terminer le combat, puis revenir aux animations normales. Ne pas déduire l’effet visuel du seul succès de chargement.

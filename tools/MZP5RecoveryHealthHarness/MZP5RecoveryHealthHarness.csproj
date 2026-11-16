@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="../../GivreClone.Engine/Recovery/MZP0RecoveryModels.cs" Link="Engine/MZP0RecoveryModels.cs" />
+    <Compile Include="../../GivreClone.Engine/Recovery/MZP0RecoveryJournal.cs" Link="Engine/MZP0RecoveryJournal.cs" />
+    <Compile Include="../../GivreClone.Engine/Recovery/MZP5RecoveryHealthProjection.cs" Link="Engine/MZP5RecoveryHealthProjection.cs" />
+  </ItemGroup>
+</Project>

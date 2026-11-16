@@ -1,0 +1,4589 @@
+{
+  "schema_version": 1,
+  "source_catalogue": "docs/codex/agent-program-20261026/LOTS.json",
+  "source_reference_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/fix-f01-f16-final-20261024",
+  "source_reference_head": "ce2a9bbd956b3022a53d7dabd759227cbfb7827a",
+  "verified_snapshot_commit": "125e318a0e96f0a45278d849ee02a177199107ec",
+  "integrated_worktree_readonly": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+  "integrated_head_observed": "46f1ddeba4f1b8195e27bcec2d4bb18fc8f263e0",
+  "source_reference_dirty": true,
+  "agents_caller_status": "PRIME 46f1dde clean, B01/R05 diagnostic code integrated but full lots blocked; full Release serial 4105 PASS 0 FAIL 2 SKIP. Worker4 S05-W113 active independently, no other active workers.",
+  "cross_conversation_workers": "unknown, do not infer stopped",
+  "snapshots": [
+    "docs/agents/20261026/S01/s01-prime/REPORT.md",
+    "docs/agents/20261026/S02/s02-ownership/REPORT.md",
+    "docs/agents/20261026/S03/s03-build/REPORT.md"
+  ],
+  "last_reconciliation": "2026-10-28",
+  "total_lots": 161,
+  "lots": [
+    {
+      "id": "S01",
+      "title": "Photographie complète de la source actuelle",
+      "status": "code_verifie",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Revalider les preuves de la fiche sur l integration actuelle",
+      "commits": [
+        "e4b61242dc8b7f1f9bd9539d7ef53d26c72466f6"
+      ],
+      "patches": [],
+      "commands": [],
+      "evidence": [
+        "docs/agents/20261026/S01/"
+      ],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "S02",
+      "title": "Registre des propriétaires et graphe de dépendances",
+      "status": "code_verifie",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "S02/S10 code verified offline on b4a2479; 18 ownership differences Unknown_NoWrite, no T3/physical approval, preflight RejectedUnknown; continue independent lots",
+      "commits": [
+        "e4b61242dc8b7f1f9bd9539d7ef53d26c72466f6",
+        "b4a2479dbbebb39e2ed524f3bddf5c2a74f22a0b"
+      ],
+      "patches": [],
+      "commands": [
+        "S02/S10 Release App EXIT0 219 warnings zero errors",
+        "S02/S10/RequiredMapping targeted 25 PASS 0 FAIL",
+        "S02/S10 full Release serial 4041 PASS 0 FAIL 2 SKIP 4043 total EXIT0"
+      ],
+      "evidence": [
+        "docs/agents/20261026/S02/",
+        "docs/agents/20261028/COORDINATION/w110-s10-w111-s02-prime-integrated/REPORT.md"
+      ],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": "18 historical owner/state disagreements not authenticated in physical registry; no write lease, S10 MayIntegrate=false",
+      "unblock_condition": null
+    },
+    {
+      "id": "S03",
+      "title": "Reproduction du build sans chemins personnels",
+      "status": "code_verifie",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Revalider les preuves de la fiche sur l integration actuelle",
+      "commits": [
+        "e4b61242dc8b7f1f9bd9539d7ef53d26c72466f6"
+      ],
+      "patches": [],
+      "commands": [],
+      "evidence": [
+        "docs/agents/20261026/S03/"
+      ],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "S04",
+      "title": "Inventaire des fonctionnalités réellement branchées",
+      "status": "code_verifie",
+      "worker": "worker-5",
+      "task_id": "S04-W110",
+      "branch": "cos/worktrees/c0a6a550448843b1a09405aa5b3022be/worker-5",
+      "worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-5/tree",
+      "source_ref": "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+      "dependencies": [
+        "S01"
+      ],
+      "reserved_files": [
+        "GivreClone.App/Services/CapabilityInventory/S04LoopW110*.cs",
+        "GivreClone.Tests/S04LoopW110*Tests.cs",
+        "docs/agents/20261028/S04/loop-w110/**"
+      ],
+      "last_activity": "2026-10-28",
+      "next_action": "W110 code int?gr? et v?rifi? offline sur 87b89cb; certification jeu/ABI/ACK toujours inconnue; poursuivre lot selon crit?res.",
+      "commits": [
+        "87b89cbfddd3726a7c631e9f25f2db7b2cce53a2"
+      ],
+      "patches": [],
+      "commands": [
+        "W110 App Release build EXIT0, 213 warnings 0 errors",
+        "W110 S04+R01 targeted 23 PASS EXIT0",
+        "W110 full parallel 3954 PASS 3 FAIL 2 SKIP; three cases isolated 3 PASS",
+        "W110 full serial 3957 PASS 0 FAIL 2 SKIP 3959 total EXIT0"
+      ],
+      "evidence": [
+        "docs/agents/20261028/S04/loop-w110/REPORT.md",
+        "docs/agents/20261028/COORDINATION/w110-prime-integrated/REPORT.md"
+      ],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle",
+        "W110 worker queued/waking, aucun livrable encore re?u; PRIME build/tests et int?gration manquants",
+        "W110 full integrated Release/commit or runtime authority not yet verified",
+        "Aucune validation en session r?elle; ?viter de d?duire succ?s serveur des tests"
+      ],
+      "blocker": "44 routes trac?es source, leurs r?sultats m?tier serveur restent partiels/Unknown",
+      "unblock_condition": null
+    },
+    {
+      "id": "S05",
+      "title": "Contrat unique d'état des commandes",
+      "status": "bloque",
+      "worker": "worker-6",
+      "task_id": "S05-W110",
+      "branch": "cos/worktrees/c0a6a550448843b1a09405aa5b3022be/worker-6",
+      "worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-6/tree",
+      "source_ref": "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+      "dependencies": [
+        "S04"
+      ],
+      "reserved_files": [
+        "GivreClone.App/Services/CommandState/S05LoopW110*.cs",
+        "GivreClone.Tests/S05LoopW110*Tests.cs",
+        "docs/agents/20261028/S05/loop-w110/**"
+      ],
+      "last_activity": "2026-10-28",
+      "next_action": "Pr?-int?gration W110 disponible; impl?menter une vraie preuve m?tier pour acquitter commande puis tester sur PRIME, S05 pas code_verifie",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [
+        "docs/agents/20261028/S05/loop-w110/REPORT.md"
+      ],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle",
+        "W110 worker queued/waking, aucun livrable encore re?u; PRIME build/tests et int?gration manquants",
+        "W110 full integrated Release/commit or runtime authority not yet verified"
+      ],
+      "blocker": "S04 code offline v?rifi?, mais aucun adaptateur ingress/transaction ne prouve re?u m?tier command-unique",
+      "unblock_condition": "Int?grer et v?rifier contrat S04 avant int?gration finale S05"
+    },
+    {
+      "id": "S06",
+      "title": "Génération de session et identité de compte",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "S07",
+      "title": "Événements métiers et projection UI",
+      "status": "code_verifie",
+      "worker": "worker-6",
+      "task_id": "S07-W109",
+      "branch": "cos/worktrees/c0a6a550448843b1a09405aa5b3022be/worker-6",
+      "worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-6/tree",
+      "source_ref": "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+      "dependencies": [
+        "S05",
+        "S06"
+      ],
+      "reserved_files": [
+        "GivreClone.Tests/S07LoopW109*Tests.cs",
+        "docs/agents/20261028/S07/loop-w109/**"
+      ],
+      "last_activity": "2026-10-28",
+      "next_action": "W109 int?gr? et tests verts sur bf98473; traiter blocage ci-dessous; aucune validation serveur. W110 attribuer nouveaux lots.",
+      "commits": [
+        "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+        "bf98473cc79a70998eb96141f8ceb4c3ce8b2376"
+      ],
+      "patches": [
+        "docs/agents/20261028/S07/loop-w109/INTEGRATION.diff"
+      ],
+      "commands": [
+        "dotnet build GivreClone.App -c Release --no-restore -> 0 warnings, 0 errors",
+        "dotnet test GivreClone.Tests -c Release --no-restore -> 3905 passed, 0 failed, 2 skipped (second full run)",
+        "W109 dotnet build GivreClone.App -c Release --no-restore => EXIT0, 213 warnings, 0 errors",
+        "W109 xUnit cibl?s 29/29 PASS; W107/W108 98/98 PASS",
+        "W109 dotnet test GivreClone.Tests -c Release --no-restore --no-build => 3934 passed, 0 failed, 2 skipped, total 3936, EXIT0"
+      ],
+      "evidence": [
+        "docs/agents/20261028/S07/loop-w107/",
+        "docs/agents/20261028/S07/loop-w108/",
+        "docs/agents/20261028/S07/loop-w108/REPORT.md",
+        "docs/agents/20261028/COORDINATION/w108-prime-integrated/REPORT.md",
+        "docs/agents/20261028/S07/loop-w109/REPORT.md",
+        "docs/agents/20261028/S07/loop-w109/RESULT.json",
+        "docs/agents/20261028/COORDINATION/w109-prime-integrated/REPORT.md"
+      ],
+      "missing_validation": [
+        "Validation en session serveur non réalisée",
+        "Corrélation métier complète propre au lot à confirmer",
+        "Validation en session serveur non r?alis?e; cl?ture lot complet non acquise"
+      ],
+      "blocker": "RED dupli craft e308 puis GREEN conservateur; corr?lation m?tier/physique per-command absente.",
+      "unblock_condition": "Vérifier provenance S07 physique et réductions sur traces serveur sans prédiction"
+    },
+    {
+      "id": "S08",
+      "title": "Transactions mutuellement exclusives",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S05",
+        "S06"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "S09",
+      "title": "État de santé et progression réelle",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S05",
+        "S07"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "S10",
+      "title": "Intégration centrale et manifeste protocole",
+      "status": "code_verifie",
+      "worker": "worker-4",
+      "task_id": "S10-W110",
+      "branch": "cos/worktrees/c0a6a550448843b1a09405aa5b3022be/worker-4",
+      "worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-4/tree",
+      "source_ref": "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+      "dependencies": [
+        "S01",
+        "S02",
+        "S03"
+      ],
+      "reserved_files": [
+        "GivreClone.App/Services/IntegrationManifest/S10LoopW110*.cs",
+        "GivreClone.Tests/S10LoopW110*Tests.cs",
+        "docs/agents/20261028/S10/loop-w110/**"
+      ],
+      "last_activity": "2026-10-28",
+      "next_action": "S02/S10 code verified offline on b4a2479; 18 ownership differences Unknown_NoWrite, no T3/physical approval, preflight RejectedUnknown; continue independent lots",
+      "commits": [
+        "b4a2479dbbebb39e2ed524f3bddf5c2a74f22a0b"
+      ],
+      "patches": [],
+      "commands": [
+        "S02/S10 Release App EXIT0 219 warnings zero errors",
+        "S02/S10/RequiredMapping targeted 25 PASS 0 FAIL",
+        "S02/S10 full Release serial 4041 PASS 0 FAIL 2 SKIP 4043 total EXIT0"
+      ],
+      "evidence": [
+        "docs/agents/20261028/S10/loop-w110/REPORT.md",
+        "docs/agents/20261028/COORDINATION/w110-s10-w111-s02-prime-integrated/REPORT.md"
+      ],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle",
+        "W110 worker queued/waking, aucun livrable encore re?u; PRIME build/tests et int?gration manquants",
+        "W110 full integrated Release/commit or runtime authority not yet verified"
+      ],
+      "blocker": "18 historical owner/state disagreements not authenticated in physical registry; no write lease, S10 MayIntegrate=false",
+      "unblock_condition": null
+    },
+    {
+      "id": "C01",
+      "title": "PV, soins, vol de vie et érosion",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S01",
+        "S05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "C02",
+      "title": "Vie et mort des combattants",
+      "status": "code_verifie",
+      "worker": "worker-1",
+      "task_id": "C02-W109",
+      "branch": "cos/worktrees/c0a6a550448843b1a09405aa5b3022be/worker-1",
+      "worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-1/tree",
+      "source_ref": "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+      "dependencies": [
+        "C01",
+        "S07"
+      ],
+      "reserved_files": [
+        "GivreClone.Tests/C02LoopW109*Tests.cs",
+        "docs/agents/20261028/C02/loop-w109/**"
+      ],
+      "last_activity": "2026-10-28",
+      "next_action": "C02 W111 bounded Lua revive owners integrated offline abcfccf; real death/revive/reconnect and physical Socket ACK for Shadowbot/Minerbot not validated",
+      "commits": [
+        "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+        "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+        "abcfccf2e52fe9d4f34541b151bc4d396afe6f92"
+      ],
+      "patches": [
+        "docs/agents/20261028/C02/loop-w109/INTEGRATION.diff"
+      ],
+      "commands": [
+        "dotnet build GivreClone.App -c Release --no-restore -> 0 warnings, 0 errors",
+        "dotnet test GivreClone.Tests -c Release --no-restore -> 3905 passed, 0 failed, 2 skipped (second full run)",
+        "W109 dotnet build GivreClone.App -c Release --no-restore => EXIT0, 213 warnings, 0 errors",
+        "W109 xUnit cibl?s 29/29 PASS; W107/W108 98/98 PASS",
+        "W109 dotnet test GivreClone.Tests -c Release --no-restore --no-build => 3934 passed, 0 failed, 2 skipped, total 3936, EXIT0",
+        "W111 C02 App Release build 0 errors 215 warnings",
+        "W111 C02 targeted 22 PASS",
+        "W111 C02 serial full 4017 PASS 0 FAIL 2 SKIP 4019 total EXIT0"
+      ],
+      "evidence": [
+        "docs/agents/20261028/C02/loop-w107/",
+        "docs/agents/20261028/C02/loop-w108/",
+        "docs/agents/20261028/C02/loop-w108/REPORT.md",
+        "docs/agents/20261028/COORDINATION/w108-prime-integrated/REPORT.md",
+        "docs/agents/20261028/C02/loop-w109/REPORT.md",
+        "docs/agents/20261028/C02/loop-w109/RESULT.json",
+        "docs/agents/20261028/COORDINATION/w109-prime-integrated/REPORT.md",
+        "docs/agents/20261028/COORDINATION/w111-c02-prime-integrated/REPORT.md"
+      ],
+      "missing_validation": [
+        "Validation en session serveur non réalisée",
+        "Corrélation métier complète propre au lot à confirmer",
+        "Validation en session serveur non r?alis?e; cl?ture lot complet non acquise"
+      ],
+      "blocker": "No actual game session death/revive/server ACK observed; Socket gameplay/full proof may refuse; terminal combat Unknown remains",
+      "unblock_condition": "Prouver restart et retour combat sur une nouvelle session Socket réelle avant valide_en_session"
+    },
+    {
+      "id": "C03",
+      "title": "Dégâts conditionnels et masques de cible",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S01",
+        "C02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "C04",
+      "title": "Portée, ligne de vue et refus de lancement",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "C02",
+        "C03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "C05",
+      "title": "Budget PA/PM autoritaire",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S05",
+        "C02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "C06",
+      "title": "Rôle des sorts sur soi et sur alliés",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "C01",
+        "C02",
+        "C03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "C07",
+      "title": "Planification d'un tour sous incertitude",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "C03",
+        "C04",
+        "C05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "C08",
+      "title": "Tacle, fuite et déplacement de combat",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "C02",
+        "C05",
+        "N02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "C09",
+      "title": "Matrice de classes et configurations réelles",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "C01",
+        "C03",
+        "C06"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "C10",
+      "title": "Replay déterministe du moteur combat",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "C01",
+        "C02",
+        "C05",
+        "S07"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "T01",
+      "title": "Accusés Turbo et identifiants réutilisés",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S05",
+        "S06"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "T02",
+      "title": "Barrières Turbo Socket et MITM",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "T01",
+        "C05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "T03",
+      "title": "Mesure des temps de combat",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "T01",
+        "C10"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "T04",
+      "title": "Validation des six options d'animation",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S06",
+        "R01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "T05",
+      "title": "Tactique compatible avec le client courant",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "R01",
+        "R02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "T06",
+      "title": "Tueur à vue et cible de début de tour",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "C02",
+        "C07"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "T07",
+      "title": "Nomade et coups de grâce de zone",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "C03",
+        "C05",
+        "T06"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "T08",
+      "title": "Défis incompatibles et abandon explicable",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "T06",
+        "T07",
+        "C07"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "T09",
+      "title": "Tour bloqué, AFK et fin de tour",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S09",
+        "C04",
+        "T02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "T10",
+      "title": "Benchmark Turbo comparable",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "T02",
+        "T03",
+        "T04",
+        "Q04"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "N01",
+      "title": "Sorties de mine et chemins réellement praticables",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S01",
+        "N02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "N02",
+      "title": "Cellule autoritaire et accusés de déplacement",
+      "status": "code_verifie",
+      "worker": "worker-2",
+      "task_id": "N02-W109",
+      "branch": "cos/worktrees/c0a6a550448843b1a09405aa5b3022be/worker-2",
+      "worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-2/tree",
+      "source_ref": "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+      "dependencies": [
+        "S05",
+        "S06"
+      ],
+      "reserved_files": [
+        "GivreClone.Tests/N02LoopW109*Tests.cs",
+        "docs/agents/20261028/N02/loop-w109/**"
+      ],
+      "last_activity": "2026-10-28",
+      "next_action": "N02 W111 actual delayed socket fallback under S07 gate code verified offline cdea366, no arrival/harvest success without physical S07 ingress proof; do not retry unknown",
+      "commits": [
+        "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+        "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+        "cdea366ec31b5fa5982cf519b9a22599033c3364"
+      ],
+      "patches": [
+        "docs/agents/20261028/N02/loop-w109/INTEGRATION.diff"
+      ],
+      "commands": [
+        "dotnet build GivreClone.App -c Release --no-restore -> 0 warnings, 0 errors",
+        "dotnet test GivreClone.Tests -c Release --no-restore -> 3905 passed, 0 failed, 2 skipped (second full run)",
+        "W109 dotnet build GivreClone.App -c Release --no-restore => EXIT0, 213 warnings, 0 errors",
+        "W109 xUnit cibl?s 29/29 PASS; W107/W108 98/98 PASS",
+        "W109 dotnet test GivreClone.Tests -c Release --no-restore --no-build => 3934 passed, 0 failed, 2 skipped, total 3936, EXIT0",
+        "W111 N02 App Release EXIT0 215 warnings",
+        "W111 N02 main targeted 33 PASS",
+        "W111 N02 isolated producer 31 PASS",
+        "W111 N02 serial full 4008 PASS 0 FAIL 2 SKIP, total 4010 EXIT0"
+      ],
+      "evidence": [
+        "docs/agents/20261028/N02/loop-w107/",
+        "docs/agents/20261028/N02/loop-w108/",
+        "docs/agents/20261028/N02/loop-w108/REPORT.md",
+        "docs/agents/20261028/COORDINATION/w108-prime-integrated/REPORT.md",
+        "docs/agents/20261028/N02/loop-w109/REPORT.md",
+        "docs/agents/20261028/N02/loop-w109/RESULT.json",
+        "docs/agents/20261028/COORDINATION/w109-prime-integrated/REPORT.md",
+        "docs/agents/20261028/COORDINATION/w111-n02-prime-integrated/REPORT.md"
+      ],
+      "missing_validation": [
+        "Validation en session serveur non réalisée",
+        "Corrélation métier complète propre au lot à confirmer",
+        "Validation en session serveur non r?alis?e; cl?ture lot complet non acquise"
+      ],
+      "blocker": "IS07IngressProofSource has no real self-cell/arrival ingress producer; no server confirmation",
+      "unblock_condition": "Raccorder S07 vrai producteur actor/map/cell et reçu unique arrivée avant reprise trajet/récolte"
+    },
+    {
+      "id": "N03",
+      "title": "Coût des trajets et raccourcis",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "N01",
+        "N02",
+        "E02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "N04",
+      "title": "Obstacles temporaires et cooldown des arêtes",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "N01",
+        "N02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "N05",
+      "title": "Annulation et remplacement de trajet",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S05",
+        "S06",
+        "N02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "N06",
+      "title": "État de navigation expliqué dans l'UI",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "N02",
+        "N04",
+        "U03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "N07",
+      "title": "Récoltes injoignables et carte intérieure",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "N02",
+        "F01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "N08",
+      "title": "Enregistreur et relecture de parcours",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "N02",
+        "L03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "N09",
+      "title": "Navigation multi-compte sans mélange d'état",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S06",
+        "N02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "N10",
+      "title": "Simulateur de graphe de voyage",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "N01",
+        "N03",
+        "N04",
+        "Q02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "L01",
+      "title": "Contrat de survie des scripts après combat",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "C01",
+        "S05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "L02",
+      "title": "Stratégie commune de reprise temporaire",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "L01",
+        "S09",
+        "N04"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "L03",
+      "title": "Audit complet du catalogue Lua",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S04"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "L04",
+      "title": "Hooks et événements à identité stable",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S06",
+        "L01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "L05",
+      "title": "Éditeur Lua utile pour les scripts longs",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "L03",
+        "U03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "L06",
+      "title": "Tests de contrat sur le vrai host",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "L03",
+        "L04",
+        "S03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "L07",
+      "title": "Journal structuré par run de script",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S05",
+        "L04"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "L08",
+      "title": "Contrats de scripts partageables",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "L03",
+        "L05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "L09",
+      "title": "Inspecteur d'étape et débogage sans action",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "L04",
+        "L07",
+        "C10"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "L10",
+      "title": "Qualification des scripts pêche/mine/farm",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "L01",
+        "L02",
+        "N07",
+        "Q02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "H01",
+      "title": "Ouverture HDV Socket visible immédiatement",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S05",
+        "S06",
+        "U03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "H02",
+      "title": "Toutes les offres et leurs jets",
+      "status": "code_verifie",
+      "worker": "worker-3",
+      "task_id": "H02-W109",
+      "branch": "cos/worktrees/c0a6a550448843b1a09405aa5b3022be/worker-3",
+      "worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-3/tree",
+      "source_ref": "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+      "dependencies": [
+        "S05",
+        "H01"
+      ],
+      "reserved_files": [
+        "GivreClone.Tests/H02LoopW109*Tests.cs",
+        "docs/agents/20261028/H02/loop-w109/**"
+      ],
+      "last_activity": "2026-10-28",
+      "next_action": "H02 W111 code integrated verified offline on ab1b642; missing command-unique financial and seller receipt and live session, do not retry Unknown",
+      "commits": [
+        "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+        "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+        "ab1b642902a41f4ce81b8dfb25967c56b0b2755d"
+      ],
+      "patches": [
+        "docs/agents/20261028/H02/loop-w109/INTEGRATION.diff"
+      ],
+      "commands": [
+        "dotnet build GivreClone.App -c Release --no-restore -> 0 warnings, 0 errors",
+        "dotnet test GivreClone.Tests -c Release --no-restore -> 3905 passed, 0 failed, 2 skipped (second full run)",
+        "W109 dotnet build GivreClone.App -c Release --no-restore => EXIT0, 213 warnings, 0 errors",
+        "W109 xUnit cibl?s 29/29 PASS; W107/W108 98/98 PASS",
+        "W109 dotnet test GivreClone.Tests -c Release --no-restore --no-build => 3934 passed, 0 failed, 2 skipped, total 3936, EXIT0",
+        "W111 H02 App Release BUILD EXIT0 (215 warnings, 0 errors)",
+        "W111 H02 targeted xUnit 14 PASS and H02+H09 25 PASS",
+        "W111 H02 full serial Release 3971 PASS 0 FAIL 2 SKIP (3973 total) EXIT0"
+      ],
+      "evidence": [
+        "docs/agents/20261028/H02/loop-w107/",
+        "docs/agents/20261028/H02/loop-w108/",
+        "docs/agents/20261028/H02/loop-w108/REPORT.md",
+        "docs/agents/20261028/COORDINATION/w108-prime-integrated/REPORT.md",
+        "docs/agents/20261028/H02/loop-w109/REPORT.md",
+        "docs/agents/20261028/H02/loop-w109/RESULT.json",
+        "docs/agents/20261028/COORDINATION/w109-prime-integrated/REPORT.md",
+        "docs/agents/20261028/H02/loop-w111/REPORT.md",
+        "docs/agents/20261028/COORDINATION/w111-h02-prime-integrated/REPORT.md"
+      ],
+      "missing_validation": [
+        "Validation en session serveur non réalisée",
+        "Corrélation métier complète propre au lot à confirmer",
+        "Validation en session serveur non r?alis?e; cl?ture lot complet non acquise",
+        "W111 PRIME full serial regression, commit and live command-unique seller proof outstanding",
+        "Server session with authenticated unique business receipt has not been performed"
+      ],
+      "blocker": "No server-issued command-unique financial receipt; seller listing is local observation, not transaction ACK",
+      "unblock_condition": "Construire preuve stock/kamas/commande et ledger transaction financier ; garder Unknown sans répétition"
+    },
+    {
+      "id": "H03",
+      "title": "Achat de l'offre réellement choisie",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "H02",
+        "S06",
+        "S08"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "H04",
+      "title": "Scanner acheteur fiable et annulable",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "H02",
+        "N05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "H05",
+      "title": "Vente et corrélation d'annonce",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S05",
+        "S08",
+        "H02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "H06",
+      "title": "Remise en vente sans duplication",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "H05",
+        "S08"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "H07",
+      "title": "UI de comparaison des jets",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "H02",
+        "U02",
+        "U05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "H08",
+      "title": "Vue vente synchronisée avec le dialogue",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "H01",
+        "H05",
+        "S08"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "H09",
+      "title": "API MCP du marché pour agents",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "H02",
+        "H03",
+        "S05",
+        "B03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "H10",
+      "title": "Validation complète HDV Socket et MITM",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "H03",
+        "H05",
+        "H06",
+        "H08",
+        "Q04"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "E01",
+      "title": "Prix de lot, prix unitaire et prix moyen",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "H02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "E02",
+      "title": "Coût complet d'une activité",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "E01",
+        "S07"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "E03",
+      "title": "Liquidité et ventes réalisées",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "H05",
+        "E01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "E04",
+      "title": "Classement des farms par preuves",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "C03",
+        "E01",
+        "E02",
+        "E03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "E05",
+      "title": "Séries temporelles et anomalies de marché",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "H02",
+        "E01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "E06",
+      "title": "Optimiseur d'équipement sous budget",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "H03",
+        "H07",
+        "C03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "E07",
+      "title": "Provenance et fraîcheur des données économiques",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "E01",
+        "E05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "E08",
+      "title": "Collecte passive de marché et dofus-prospection",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "E07",
+        "R03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "E09",
+      "title": "Taux d'ogrines et coût d'abonnement",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "E07",
+        "R05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "E10",
+      "title": "Tableau économique compréhensible",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "E02",
+        "E03",
+        "E07",
+        "U03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "P01",
+      "title": "Recette actuelle de clé du donjon Bouftou",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S01",
+        "F03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "P02",
+      "title": "Plan d'approvisionnement pour cent clés",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "P01",
+        "E07",
+        "F02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "P03",
+      "title": "Chaîne récursive craft ou achat",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "P01",
+        "E01",
+        "E07"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "P04",
+      "title": "Réservations de stock pour la production",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S08",
+        "P02",
+        "F02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "P05",
+      "title": "Exécution du craft par lots vérifiés",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "P01",
+        "P04",
+        "F03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "P06",
+      "title": "Entrée donjon, clés et trousseau",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "P01",
+        "N02",
+        "F07"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "P07",
+      "title": "Parcours complet du donjon Bouftou",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "P06",
+        "C09",
+        "N02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "P08",
+      "title": "Boucle donjon avec réapprovisionnement",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "P02",
+        "P05",
+        "P07",
+        "S05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "P09",
+      "title": "Économie du cycle farm-clés-donjons",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "P03",
+        "P07",
+        "E02",
+        "E03",
+        "E04"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "P10",
+      "title": "Pilotage utilisateur et MCP de la production",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "P04",
+        "P08",
+        "P09",
+        "H09"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "U01",
+      "title": "Trois directions visuelles sans gris dominant",
+      "status": "code_verifie",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S04"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "W112 U01 integrated verified offline 53bb9bc; capture actual Avalonia UI screenshots at 1280x800 and 1920x1080 (not static SVG) before rendered UI acceptance; test theme persistence",
+      "commits": [
+        "53bb9bc51e3f7b12308bd542cec7b064d3bb60a6"
+      ],
+      "patches": [],
+      "commands": [
+        "U01 W112 App Release EXIT0 219 warnings",
+        "U01 W112 targeted 16 PASS",
+        "U01 W112 full serial Release 4052 PASS 0 FAIL 2 SKIP 4054 total EXIT0",
+        "U01 FR/EN/ES XML key parity 2715 each, 0 duplicates"
+      ],
+      "evidence": [
+        "docs/agents/20261028/COORDINATION/w112-u01-prime-integrated/REPORT.md"
+      ],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": "Rendered UI/screenshots and interactive theme switching not observed in this invocation; no game outcome",
+      "unblock_condition": null
+    },
+    {
+      "id": "U02",
+      "title": "Tokens de thème et hiérarchie visuelle",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "U01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "U03",
+      "title": "Navigation et densité par tâche",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S04",
+        "U01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "U04",
+      "title": "Tableau de bord des bots centré sur l'action",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S09",
+        "U02",
+        "U03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "U05",
+      "title": "Composants de listes riches réutilisables",
+      "status": "code_verifie",
+      "worker": "worker-5",
+      "task_id": "U05-W109",
+      "branch": "cos/worktrees/c0a6a550448843b1a09405aa5b3022be/worker-5",
+      "worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-5/tree",
+      "source_ref": "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+      "dependencies": [
+        "U02",
+        "H07",
+        "Q05"
+      ],
+      "reserved_files": [
+        "GivreClone.Tests/U05LoopW109*Tests.cs",
+        "docs/agents/20261028/U05/loop-w109/**"
+      ],
+      "last_activity": "2026-10-28",
+      "next_action": "W109 int?gr? et tests verts sur bf98473; traiter blocage ci-dessous; aucune validation serveur. W110 attribuer nouveaux lots.",
+      "commits": [
+        "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+        "bf98473cc79a70998eb96141f8ceb4c3ce8b2376"
+      ],
+      "patches": [
+        "docs/agents/20261028/U05/loop-w109/INTEGRATION.diff"
+      ],
+      "commands": [
+        "dotnet build GivreClone.App -c Release --no-restore -> 0 warnings, 0 errors",
+        "dotnet test GivreClone.Tests -c Release --no-restore -> 3905 passed, 0 failed, 2 skipped (second full run)",
+        "W109 dotnet build GivreClone.App -c Release --no-restore => EXIT0, 213 warnings, 0 errors",
+        "W109 xUnit cibl?s 29/29 PASS; W107/W108 98/98 PASS",
+        "W109 dotnet test GivreClone.Tests -c Release --no-restore --no-build => 3934 passed, 0 failed, 2 skipped, total 3936, EXIT0"
+      ],
+      "evidence": [
+        "docs/agents/20261028/U05/loop-w107/",
+        "docs/agents/20261028/U05/loop-w108/",
+        "docs/agents/20261028/U05/loop-w108/REPORT.md",
+        "docs/agents/20261028/COORDINATION/w108-prime-integrated/REPORT.md",
+        "docs/agents/20261028/U05/loop-w109/REPORT.md",
+        "docs/agents/20261028/U05/loop-w109/RESULT.json",
+        "docs/agents/20261028/COORDINATION/w109-prime-integrated/REPORT.md"
+      ],
+      "missing_validation": [
+        "Validation en session serveur non réalisée",
+        "Corrélation métier complète propre au lot à confirmer",
+        "Validation en session serveur non r?alis?e; cl?ture lot complet non acquise"
+      ],
+      "blocker": "D?codage diagnostic readonly; Query/H07 s?mantiques et transaction non authentifi?es.",
+      "unblock_condition": "Raccorder deux observations H02/H07 d une même preuve physique à la VM ; tester UI sur session réelle"
+    },
+    {
+      "id": "U06",
+      "title": "Commandes, raccourcis et palette d'actions",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S06",
+        "U03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "U07",
+      "title": "États vides, chargement et erreurs utiles",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S05",
+        "U02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "U08",
+      "title": "Accessibilité et traduction des nouveaux écrans",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "U02",
+        "U03",
+        "U05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "U09",
+      "title": "Migration de thème et préférences sans perte",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "U02",
+        "U03",
+        "S06"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "U10",
+      "title": "Revue UI indépendante sur vrais parcours",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "U04",
+        "U05",
+        "U06",
+        "U07",
+        "M03",
+        "H01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "M01",
+      "title": "Carte épurée par défaut",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "U01",
+        "U03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "M02",
+      "title": "Pipeline de rendu carte et invalidation",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "M01",
+        "Q05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "M03",
+      "title": "Carte de combat vraiment lisible",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "C02",
+        "C05",
+        "M01",
+        "U02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "M04",
+      "title": "Portées et zones interactives fiables",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "C03",
+        "C04",
+        "M03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "M05",
+      "title": "Sélection et inspecteur d'entités",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "M01",
+        "M03",
+        "S06"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "M06",
+      "title": "Sprites et looks Socket depuis données locales",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "R04",
+        "M02",
+        "U01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "M07",
+      "title": "Carte du monde, recherche et itinéraires",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "N03",
+        "M01",
+        "U03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "M08",
+      "title": "Timeline et replay visuel de combat",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "C10",
+        "M03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "M09",
+      "title": "Éditeur de trajets et couches de ressources",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "N07",
+        "N08",
+        "M01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "M10",
+      "title": "Rendu multi-échelle et budgets graphiques",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "M02",
+        "M05",
+        "Q05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "F01",
+      "title": "Récolte confirmée et compteur exact",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S05",
+        "N02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "F02",
+      "title": "Inventaire et banque à fraîcheur explicite",
+      "status": "code_verifie",
+      "worker": "worker-4",
+      "task_id": "F02-W109",
+      "branch": "cos/worktrees/c0a6a550448843b1a09405aa5b3022be/worker-4",
+      "worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-4/tree",
+      "source_ref": "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+      "dependencies": [
+        "S05",
+        "S06"
+      ],
+      "reserved_files": [
+        "GivreClone.Tests/F02LoopW109*Tests.cs",
+        "docs/agents/20261028/F02/loop-w109/**"
+      ],
+      "last_activity": "2026-10-28",
+      "next_action": "W111 F02 terminal ledger integrated verified offline commit 7e39d95; real server nonce absent, second READY/rune same generation refused before Inject; await unique business receipt before re-enabling",
+      "commits": [
+        "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+        "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+        "7e39d953d9e37d9b8c0d51ba699e1fa7f25b6fbb"
+      ],
+      "patches": [
+        "docs/agents/20261028/F02/loop-w109/INTEGRATION.diff"
+      ],
+      "commands": [
+        "dotnet build GivreClone.App -c Release --no-restore -> 0 warnings, 0 errors",
+        "dotnet test GivreClone.Tests -c Release --no-restore -> 3905 passed, 0 failed, 2 skipped (second full run)",
+        "W109 dotnet build GivreClone.App -c Release --no-restore => EXIT0, 213 warnings, 0 errors",
+        "W109 xUnit cibl?s 29/29 PASS; W107/W108 98/98 PASS",
+        "W109 dotnet test GivreClone.Tests -c Release --no-restore --no-build => 3934 passed, 0 failed, 2 skipped, total 3936, EXIT0",
+        "W111 F02 App Release 0 errors 215 warnings",
+        "W111 F02 targeted 35 PASS",
+        "W111 F02 full serial 3982 PASS 0 FAIL 2 SKIP 3984 total EXIT0"
+      ],
+      "evidence": [
+        "docs/agents/20261028/F02/loop-w107/",
+        "docs/agents/20261028/F02/loop-w108/",
+        "docs/agents/20261028/F02/loop-w108/REPORT.md",
+        "docs/agents/20261028/COORDINATION/w108-prime-integrated/REPORT.md",
+        "docs/agents/20261028/F02/loop-w109/REPORT.md",
+        "docs/agents/20261028/F02/loop-w109/RESULT.json",
+        "docs/agents/20261028/COORDINATION/w109-prime-integrated/REPORT.md",
+        "docs/agents/20261028/COORDINATION/w111-f02-prime-integrated/REPORT.md"
+      ],
+      "missing_validation": [
+        "Validation en session serveur non réalisée",
+        "Corrélation métier complète propre au lot à confirmer",
+        "Validation en session serveur non r?alis?e; cl?ture lot complet non acquise"
+      ],
+      "blocker": "No server command nonce to separate late READY A from READY B; multi-terminal same-lease unavailable; no session proof",
+      "unblock_condition": "Corréler au serveur chaque étape forge/craft et tester refus/annulation réels"
+    },
+    {
+      "id": "F03",
+      "title": "Craft multi-piles et nombre réellement exécuté",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S08",
+        "F02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "F04",
+      "title": "Forgemagie et puits observés",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S08",
+        "F02",
+        "F03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "F05",
+      "title": "Budget et annulation de forge",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "F04",
+        "E02",
+        "S08"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "F06",
+      "title": "Métiers et plans de progression réels",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "F01",
+        "F02",
+        "N07"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "F07",
+      "title": "Dialogue PNJ et choix de réponse",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S05",
+        "N02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "F08",
+      "title": "Chasse au trésor de bout en bout",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "F07",
+        "N02",
+        "C09"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "F09",
+      "title": "Capture d'âmes et synchronisation Metamob",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "F02",
+        "R06",
+        "H09"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "F10",
+      "title": "Ateliers et banques dans les scripts",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "F02",
+        "F03",
+        "F07",
+        "L03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "A01",
+      "title": "Connexion et choix de personnage précis",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S05",
+        "S06"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "A02",
+      "title": "Reconnexion complète après cellule perdue",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "A01",
+        "S06",
+        "N02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "A03",
+      "title": "Équipes, chef et suiveurs",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S05",
+        "S06",
+        "C05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "A04",
+      "title": "Planning et horaires fiables",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S05",
+        "S06",
+        "L07"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "A05",
+      "title": "Sélection de bot et commandes contextuelles",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S06",
+        "U03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "A06",
+      "title": "Isolation des données entre comptes",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S06",
+        "S07"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "A07",
+      "title": "Notifications utiles et déduplication",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S09",
+        "U07"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "A08",
+      "title": "Supervision durable à trois bots",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "A04",
+        "L07",
+        "S09"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "A09",
+      "title": "Reprise d'instance et récupération de préférences",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S05",
+        "S06",
+        "U09"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "A10",
+      "title": "Vue flotte et actions groupées contrôlées",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "A05",
+        "A06",
+        "U04"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "R01",
+      "title": "Inventaire des artefacts et versions natives",
+      "status": "code_verifie",
+      "worker": "worker-1",
+      "task_id": "R01-W110",
+      "branch": "cos/worktrees/c0a6a550448843b1a09405aa5b3022be/worker-1",
+      "worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-1/tree",
+      "source_ref": "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+      "dependencies": [
+        "S01"
+      ],
+      "reserved_files": [
+        "GivreClone.App/Services/NativeEvidence/R01LoopW110*.cs",
+        "GivreClone.Tests/R01LoopW110*Tests.cs",
+        "docs/agents/20261028/R01/loop-w110/**"
+      ],
+      "last_activity": "2026-10-28",
+      "next_action": "W110 code int?gr? et v?rifi? offline sur 87b89cb; certification jeu/ABI/ACK toujours inconnue; poursuivre lot selon crit?res.",
+      "commits": [
+        "87b89cbfddd3726a7c631e9f25f2db7b2cce53a2"
+      ],
+      "patches": [],
+      "commands": [
+        "W110 App Release build EXIT0, 213 warnings 0 errors",
+        "W110 S04+R01 targeted 23 PASS EXIT0",
+        "W110 full parallel 3954 PASS 3 FAIL 2 SKIP; three cases isolated 3 PASS",
+        "W110 full serial 3957 PASS 0 FAIL 2 SKIP 3959 total EXIT0"
+      ],
+      "evidence": [
+        "docs/agents/20261028/R01/loop-w110/REPORT.md",
+        "docs/agents/20261028/COORDINATION/w110-prime-integrated/REPORT.md"
+      ],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle",
+        "W110 worker queued/waking, aucun livrable encore re?u; PRIME build/tests et int?gration manquants",
+        "W110 full integrated Release/commit or runtime authority not yet verified",
+        "Aucune validation en session r?elle; ?viter de d?duire succ?s serveur des tests"
+      ],
+      "blocker": "Validation jeu/serveur non effectu?e; preuves source statiques seulement",
+      "unblock_condition": null
+    },
+    {
+      "id": "R02",
+      "title": "Résolution structurelle du tactique",
+      "status": "code_verifie",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "R01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "R02 tactical fail-closed preflight code verified offline 94786ba; build physical Unity client snapshot, native Rust structural mapping and verified rollback before enabling tactical",
+      "commits": [
+        "94786ba134fb977ead93410112ee397c6f56756f"
+      ],
+      "patches": [],
+      "commands": [
+        "W112 R02 App Release EXIT0 no error",
+        "W112 R02 targeted R01+R02+Mapping 29 PASS",
+        "W112 R02 full serial Release 4067 PASS 0 FAIL 2 SKIP 4069 total EXIT0"
+      ],
+      "evidence": [
+        "docs/agents/20261028/COORDINATION/w112-r02-prime-integrated/REPORT.md"
+      ],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": "No authenticated current Unity client SHA+native ABI or rollback; MayStageOrLoad=false; no tactical effects observed",
+      "unblock_condition": null
+    },
+    {
+      "id": "R03",
+      "title": "Comparaison des décodeurs et schémas",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S01",
+        "R01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "R04",
+      "title": "Rendu de looks SuperDofus",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "R01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "R05",
+      "title": "Atlas des neuf dépôts de référence",
+      "status": "bloque",
+      "worker": "worker-2",
+      "task_id": "R05-W110",
+      "branch": "cos/worktrees/c0a6a550448843b1a09405aa5b3022be/worker-2",
+      "worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-2/tree",
+      "source_ref": "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+      "dependencies": [
+        "S01"
+      ],
+      "reserved_files": [
+        "GivreClone.App/Services/ReferenceAtlas/R05LoopW110*.cs",
+        "GivreClone.Tests/R05LoopW110*Tests.cs",
+        "docs/agents/20261028/R05/loop-w110/**"
+      ],
+      "last_activity": "2026-10-28",
+      "next_action": "R05 query_reference_atlas local pipe reports 9 pinned metadata claims UNKNOWN, committed 46f1dde; acquire exact Git trees/LICENCE + review before source reuse",
+      "commits": [
+        "46f1ddeba4f1b8195e27bcec2d4bb18fc8f263e0"
+      ],
+      "patches": [],
+      "commands": [
+        "W113 B01/R05 App Release EXIT0 219 warnings 0 errors",
+        "W113 B01/R05 focused xUnit 38 PASS 0 FAIL",
+        "W113 full Release serial 4105 PASS 0 FAIL 2 SKIP 4107 total EXIT0"
+      ],
+      "evidence": [
+        "docs/agents/20261028/R05/loop-w110/REPORT.md",
+        "docs/agents/20261028/COORDINATION/w113-b01-r05-prime-integrated/REPORT.md"
+      ],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle",
+        "W110 worker queued/waking, aucun livrable encore re?u; PRIME build/tests et int?gration manquants",
+        "W110 full integrated Release/commit or runtime authority not yet verified"
+      ],
+      "blocker": "Nine external Git objects and same-commit LICENSE blobs unavailable/unapproved; metadata-only atlas cannot authorize code reuse",
+      "unblock_condition": null
+    },
+    {
+      "id": "R06",
+      "title": "Client Metamob typé et collections",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "R05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "R07",
+      "title": "Étude comparative UI stakk et BillBot",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "R05",
+        "U01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "R08",
+      "title": "Évolution des modules dofus-enhanced",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "R01",
+        "R05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "R09",
+      "title": "Corpus de paquets expurgés et minimisés",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S06",
+        "R03",
+        "Q02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "R10",
+      "title": "Laboratoire local compatible avec JondoEmu",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "R03",
+        "R05",
+        "Q02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "B01",
+      "title": "Audit des capacités réelles T3 et CoS",
+      "status": "bloque",
+      "worker": "worker-3",
+      "task_id": "B01-W110",
+      "branch": "cos/worktrees/c0a6a550448843b1a09405aa5b3022be/worker-3",
+      "worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-3/tree",
+      "source_ref": "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+      "dependencies": [
+        "S01"
+      ],
+      "reserved_files": [
+        "GivreClone.App/Services/BridgeAudit/B01LoopW110*.cs",
+        "GivreClone.Tests/B01LoopW110*Tests.cs",
+        "docs/agents/20261028/B01/loop-w110/**"
+      ],
+      "last_activity": "2026-10-28",
+      "next_action": "B01 code route bridge_capabilities safely reports UNKNOWN, committed 46f1dde; host-mediated auth, tool registration and owner-scoped readback needed before any remote dispatch; NO claimed T3 access",
+      "commits": [
+        "46f1ddeba4f1b8195e27bcec2d4bb18fc8f263e0"
+      ],
+      "patches": [],
+      "commands": [
+        "W113 B01/R05 App Release EXIT0 219 warnings 0 errors",
+        "W113 B01/R05 focused xUnit 38 PASS 0 FAIL",
+        "W113 full Release serial 4105 PASS 0 FAIL 2 SKIP 4107 total EXIT0"
+      ],
+      "evidence": [
+        "docs/agents/20261028/B01/loop-w110/REPORT.md",
+        "docs/agents/20261028/COORDINATION/w113-b01-r05-prime-integrated/REPORT.md"
+      ],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle",
+        "W110 worker queued/waking, aucun livrable encore re?u; PRIME build/tests et int?gration manquants",
+        "W110 full integrated Release/commit or runtime authority not yet verified"
+      ],
+      "blocker": "No physically authenticated CoS/T3 bridge, installed host, exact owner/target attestor or readback; local diagnostic only",
+      "unblock_condition": null
+    },
+    {
+      "id": "B02",
+      "title": "Adressage d'un worker et propriété de conversation",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "B01",
+        "S06"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "B03",
+      "title": "Contrat durable des jobs multi-agents",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "B01",
+        "S05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "B04",
+      "title": "Broker local de tâches et baux",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "B02",
+        "B03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "B05",
+      "title": "Passerelle CoS à identité prouvée",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "B02",
+        "B04"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "B06",
+      "title": "Adaptateur T3 et notifications de fin",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "B01",
+        "B03",
+        "B04"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "B07",
+      "title": "Contexte utile et artefacts sans fuite",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "B03",
+        "R09"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "B08",
+      "title": "Tableau de pilotage des agents",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "B03",
+        "B04",
+        "U03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "B09",
+      "title": "Revue en boucle et désaccords conservés",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "B03",
+        "B07",
+        "Q07"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "B10",
+      "title": "Robustesse du pont multi-orchestrateurs",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "B04",
+        "B05",
+        "B06",
+        "B09"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "Q01",
+      "title": "Critères de réception communs aux lots",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S02",
+        "S04"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "Q02",
+      "title": "Injection de fautes sur services réels",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S03",
+        "S05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "Q03",
+      "title": "Vérification des traductions et ressources",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S03",
+        "U08"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "Q04",
+      "title": "Protocole d'essai en session isolée",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S02",
+        "S03",
+        "Q01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "Q05",
+      "title": "Budgets de performance reproductibles",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S03",
+        "S09"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "Q06",
+      "title": "Packaging et dépendances reproductibles",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S03",
+        "R01",
+        "Q03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "Q07",
+      "title": "Revue contradictoire indépendante",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "Q01",
+        "Q02"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "Q08",
+      "title": "Compatibilité des schémas et migrations",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S05",
+        "A09"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "Q09",
+      "title": "Rapports de régression navigables",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "Q01",
+        "Q07",
+        "B03"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "Q10",
+      "title": "Livraison finale et audit de non-régression",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S10",
+        "Q03",
+        "Q04",
+        "Q06",
+        "Q07",
+        "Q08"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "X01",
+      "title": "Centre d'intentions et prochaine action",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S09",
+        "U04",
+        "B08"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "X02",
+      "title": "Laboratoire de stratégie sans dépenses",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "C10",
+        "E04",
+        "E06",
+        "M08"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "X03",
+      "title": "Planificateur d'objectifs métier et donjon",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "P02",
+        "P08",
+        "P10",
+        "F06"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "X04",
+      "title": "Bibliothèque de recettes d'automatisation",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "L03",
+        "L08",
+        "S05"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "X05",
+      "title": "Optimisation coopérative des comptes",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "A03",
+        "F02",
+        "F06",
+        "P04"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "X06",
+      "title": "Catalogue de données avec preuves de compatibilité",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "R03",
+        "Q08",
+        "U07"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "X07",
+      "title": "Assistant d'analyse d'incident pour MCP",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S09",
+        "L07",
+        "B03",
+        "R09"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "X08",
+      "title": "Architecture de plugins de confort",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "R05",
+        "R07",
+        "S07"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "X09",
+      "title": "Expériences visuelles orientées utilisateur",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "U01",
+        "U03",
+        "M03",
+        "H01",
+        "A10"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "X10",
+      "title": "Roadmap vérifiée après les premiers retours",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "Q01",
+        "Q09",
+        "B09"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    },
+    {
+      "id": "A11",
+      "title": "Nouveau personnage Kourial — player.four666+1",
+      "status": "a_revoir",
+      "worker": null,
+      "task_id": null,
+      "branch": null,
+      "worktree": null,
+      "source_ref": "125e318a0e96f0a45278d849ee02a177199107ec",
+      "dependencies": [
+        "S02",
+        "A01",
+        "L01"
+      ],
+      "reserved_files": [],
+      "last_activity": "2026-10-28",
+      "next_action": "Lire les preuves existantes et les criteres de la fiche avant attribution",
+      "commits": [],
+      "patches": [],
+      "commands": [],
+      "evidence": [],
+      "missing_validation": [
+        "Validation finale selon les criteres de fiche non constatee dans cette boucle"
+      ],
+      "blocker": null,
+      "unblock_condition": null
+    }
+  ]
+}

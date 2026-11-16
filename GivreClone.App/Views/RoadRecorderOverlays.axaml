@@ -1,0 +1,76 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             x:Class="GivreClone.App.Views.RoadRecorderOverlays"
+             x:DataType="vm:BotsViewModel">
+    <!-- Overlay au niveau fenetre : modale « recolter / combattre » posee a chaque nouvelle carte pendant
+         l'enregistrement d'un trajet (Road Creator). -->
+    <Grid>
+        <Grid Classes.modalOpen="{Binding MapPlanVisible}" IsHitTestVisible="{Binding MapPlanVisible}"
+              IsEnabled="{Binding MapPlanVisible}">
+            <Border Classes="modalScrim" />
+            <Border Classes="modalCard" Width="400" Padding="28,26" CornerRadius="16"
+                    Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Spacing="16">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <PathIcon Data="{StaticResource IconMap}" Width="22" Height="22"
+                                  Foreground="{DynamicResource AccentBrightBrush}" VerticalAlignment="Center" />
+                        <TextBlock Text="{DynamicResource L.Bots.Road.ModalTitle}" FontSize="17" FontWeight="SemiBold"
+                                   VerticalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding MapPlanTitle}" FontWeight="SemiBold" Foreground="{DynamicResource AccentBrightBrush}" />
+                    <TextBlock Text="{DynamicResource L.Bots.Road.ModalBody}" TextWrapping="Wrap" FontSize="13" LineHeight="19"
+                               Foreground="{StaticResource TextSecondaryBrush}" />
+                    <StackPanel Spacing="10">
+                        <CheckBox IsChecked="{Binding MapPlanGather}" Content="{DynamicResource L.Bots.Road.Gather}" />
+                        <CheckBox IsChecked="{Binding MapPlanFight}" Content="{DynamicResource L.Bots.Road.Fight}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                        <Button Classes="ghost" Height="40" MinWidth="110" Command="{Binding SkipMapPlanCommand}">
+                            <TextBlock Text="{DynamicResource L.Bots.Road.Skip}" VerticalAlignment="Center" />
+                        </Button>
+                        <Button Classes="primary" Height="40" MinWidth="130" Command="{Binding ConfirmMapPlanCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <PathIcon Data="{StaticResource IconCheck}" Width="14" Height="14" />
+                                <TextBlock Text="{DynamicResource L.Common.Confirm}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Question d'un script (askInput : texte ; askQuestion : oui / non). Le script attend la réponse (5 min max). -->
+        <Grid Classes.modalOpen="{Binding AskVisible}" IsHitTestVisible="{Binding AskVisible}"
+              IsEnabled="{Binding AskVisible}">
+            <Border Classes="modalScrim" />
+            <Border Classes="modalCard" Width="440" Padding="26,24" CornerRadius="16"
+                    Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Spacing="14">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <PathIcon Data="{StaticResource IconScript}" Width="20" Height="20" Foreground="{DynamicResource AccentBrightBrush}" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding AskTitle}" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding AskPrompt}" TextWrapping="Wrap" FontSize="13" Foreground="{StaticResource TextSecondaryBrush}" />
+                    <TextBox Text="{Binding AskAnswer}" IsVisible="{Binding AskIsInput}" Height="34" VerticalContentAlignment="Center" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                        <Button Classes="ghost" Height="38" MinWidth="100" Command="{Binding AskCancelCommand}">
+                            <Panel>
+                                <TextBlock Text="{DynamicResource L.Common.Cancel}" IsVisible="{Binding AskIsInput}" VerticalAlignment="Center" />
+                                <TextBlock Text="{DynamicResource L.Lua.AskNo}" IsVisible="{Binding AskIsQuestion}" VerticalAlignment="Center" />
+                            </Panel>
+                        </Button>
+                        <Button Classes="primary" Height="38" MinWidth="120" Command="{Binding AskConfirmCommand}" IsDefault="True">
+                            <Panel>
+                                <TextBlock Text="{DynamicResource L.Common.Confirm}" IsVisible="{Binding AskIsInput}" VerticalAlignment="Center" />
+                                <TextBlock Text="{DynamicResource L.Lua.AskYes}" IsVisible="{Binding AskIsQuestion}" VerticalAlignment="Center" />
+                            </Panel>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

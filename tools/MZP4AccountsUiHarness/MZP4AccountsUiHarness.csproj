@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <AssemblyName>MZP4AccountsUiHarness</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.1.1" />
+    <PackageReference Include="Avalonia.Headless" Version="12.1.1" />
+    <Compile Include="Program.cs" />
+    <Compile Include="MZP18OfflineBrowserStub.cs" />
+    <Compile Include="../../GivreClone.App/Views/MZP4TestAccountsPanel.cs" Link="Views/MZP4TestAccountsPanel.cs" />
+    <Compile Include="../../GivreClone.App/Services/MZP3TestAccountService.cs" Link="Services/MZP3TestAccountService.cs" />
+    <Compile Include="../../GivreClone.App/Services/MZP4LauncherPreflight.cs" Link="Services/MZP4LauncherPreflight.cs" />
+    <Compile Include="../../GivreClone.App/Services/MZP5TestRecoveryPreparation.cs" Link="Services/MZP5TestRecoveryPreparation.cs" />
+    <Compile Include="../../GivreClone.App/Services/MZP5OfflineJournalHealth.cs" Link="Services/MZP5OfflineJournalHealth.cs" />
+    <Compile Include="../../GivreClone.Engine/Recovery/MZP0RecoveryModels.cs" Link="Engine/MZP0RecoveryModels.cs" />
+    <Compile Include="../../GivreClone.Engine/Recovery/MZP0RecoveryJournal.cs" Link="Engine/MZP0RecoveryJournal.cs" />
+    <Compile Include="../../GivreClone.Engine/Recovery/MZP5RecoveryHealthProjection.cs" Link="Engine/MZP5RecoveryHealthProjection.cs" />
+    <None Include="../../GivreClone.App/Views/AccountsView.axaml" Link="Views/AccountsView.axaml" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

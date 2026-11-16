@@ -1,0 +1,565 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             xmlns:rec="using:GivreClone.Engine.Recovery"
+             x:Class="GivreClone.App.Views.SmithMagicView"
+             x:DataType="vm:SmithMagicViewModel"
+             SizeChanged="OnWorkshopSizeChanged">
+ <UserControl.Resources>
+  <!-- Local density tokens; colors and radii belong to the shared theme. -->
+  <x:Double x:Key="FmSpaceSmall">4</x:Double>
+  <x:Double x:Key="FmSpace">8</x:Double>
+  <x:Double x:Key="FmSpaceLarge">12</x:Double>
+  <x:Double x:Key="FmCaptionSize">11.5</x:Double>
+  <x:Double x:Key="FmBodySize">12</x:Double>
+  <x:Double x:Key="FmHeadingSize">13</x:Double>
+  <x:Double x:Key="FmTitleSize">18</x:Double>
+  <x:Double x:Key="FmControlHeight">32</x:Double>
+  <x:Double x:Key="FmHistoryLimit">480</x:Double>
+  <x:Double x:Key="FmTableLimit">520</x:Double>
+  <x:Double x:Key="FmListLimit">320</x:Double>
+  <x:Double x:Key="FmDetailLimit">192</x:Double>
+  <Thickness x:Key="FmInset">12</Thickness>
+  <Thickness x:Key="FmSmallInset">8</Thickness>
+  <Thickness x:Key="FmRowInset">8,4</Thickness>
+  <Thickness x:Key="FmRowGap">0,0,0,4</Thickness>
+  <Thickness x:Key="FmActionGap">0,0,8,4</Thickness>
+ </UserControl.Resources>
+ <UserControl.Styles>
+  <Style Selector="Border.fmCard">
+   <Setter Property="Background" Value="{StaticResource Surface1Brush}" />
+   <Setter Property="BorderBrush" Value="{StaticResource StrokeSoftBrush}" />
+   <Setter Property="BorderThickness" Value="1" />
+   <Setter Property="CornerRadius" Value="{StaticResource PanelCornerRadius}" />
+   <Setter Property="Padding" Value="{StaticResource FmInset}" />
+  </Style>
+  <Style Selector="Border.fmRow">
+   <Setter Property="Background" Value="{StaticResource Surface2Brush}" />
+   <Setter Property="CornerRadius" Value="{StaticResource ControlCornerRadius}" />
+   <Setter Property="Padding" Value="{StaticResource FmRowInset}" />
+   <Setter Property="Margin" Value="{StaticResource FmRowGap}" />
+  </Style>
+  <Style Selector="TextBlock">
+   <Setter Property="FontSize" Value="{StaticResource FmBodySize}" />
+   <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+  </Style>
+  <Style Selector="TextBlock.fmTitle">
+   <Setter Property="FontSize" Value="{StaticResource FmHeadingSize}" />
+   <Setter Property="FontWeight" Value="SemiBold" />
+  </Style>
+  <Style Selector="TextBlock.fmHead">
+   <Setter Property="FontSize" Value="{StaticResource FmCaptionSize}" />
+   <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}" />
+  </Style>
+  <Style Selector="TextBlock.fmNote">
+   <Setter Property="FontSize" Value="{StaticResource FmCaptionSize}" />
+   <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}" />
+   <Setter Property="TextWrapping" Value="Wrap" />
+  </Style>
+  <Style Selector="TextBlock.fmSuccess"><Setter Property="Foreground" Value="{StaticResource SuccessBrush}" /></Style>
+  <Style Selector="TextBlock.fmNeutral"><Setter Property="Foreground" Value="{StaticResource AmberBrush}" /></Style>
+  <Style Selector="TextBlock.fmFailure"><Setter Property="Foreground" Value="{StaticResource DangerBrush}" /></Style>
+  <Style Selector="Button">
+   <Setter Property="FontSize" Value="{StaticResource FmBodySize}" />
+   <Setter Property="Height" Value="{StaticResource FmControlHeight}" />
+   <Setter Property="MinHeight" Value="{StaticResource FmControlHeight}" />
+   <Setter Property="MinWidth" Value="0" />
+   <Setter Property="Padding" Value="{StaticResource FmRowInset}" />
+  </Style>
+  <Style Selector="Button.fmPrimary">
+   <Setter Property="Height" Value="{StaticResource FmControlHeight}" />
+   <Setter Property="MinWidth" Value="0" />
+   <Setter Property="Padding" Value="{StaticResource FmRowInset}" />
+   <Setter Property="Background" Value="{StaticResource WorkshopAccentBrush}" />
+   <Setter Property="Foreground" Value="{StaticResource WorkshopAccentTextBrush}" />
+   <Setter Property="FontWeight" Value="SemiBold" />
+   <Setter Property="CornerRadius" Value="{StaticResource ControlCornerRadius}" />
+  </Style>
+  <Style Selector="NumericUpDown">
+   <Setter Property="Background" Value="{StaticResource Surface2Brush}" />
+   <Setter Property="FontSize" Value="{StaticResource FmBodySize}" />
+   <Setter Property="MinHeight" Value="{StaticResource FmControlHeight}" />
+   <Setter Property="MinWidth" Value="0" />
+   <Setter Property="ShowButtonSpinner" Value="False" />
+   <Setter Property="Padding" Value="{StaticResource FmRowInset}" />
+  </Style>
+  <Style Selector="TextBox">
+   <Setter Property="FontSize" Value="{StaticResource FmBodySize}" />
+   <Setter Property="MinHeight" Value="{StaticResource FmControlHeight}" />
+   <Setter Property="MinWidth" Value="0" />
+  </Style>
+  <Style Selector="ComboBox">
+   <Setter Property="FontSize" Value="{StaticResource FmBodySize}" />
+   <Setter Property="MinHeight" Value="{StaticResource FmControlHeight}" />
+   <Setter Property="MinWidth" Value="0" />
+   <Setter Property="HorizontalAlignment" Value="Stretch" />
+   <Setter Property="MaxDropDownHeight" Value="{StaticResource FmListLimit}" />
+  </Style>
+  <Style Selector="CheckBox"><Setter Property="FontSize" Value="{StaticResource FmBodySize}" /></Style>
+  <Style Selector="TabItem">
+   <Setter Property="FontSize" Value="{StaticResource FmCaptionSize}" />
+   <Setter Property="Padding" Value="{StaticResource FmRowInset}" />
+   <Setter Property="MinWidth" Value="0" />
+  </Style>
+  <Style Selector="ScrollViewer"><Setter Property="HorizontalScrollBarVisibility" Value="Disabled" /></Style>
+ </UserControl.Styles>
+
+ <Grid RowDefinitions="Auto,*" RowSpacing="{StaticResource FmSpaceLarge}" Margin="{StaticResource FmInset}">
+  <!-- Always outside all scrolling content: the object, session and stop action. -->
+  <Border Classes="fmCard">
+   <StackPanel Spacing="{StaticResource FmSpace}">
+    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="{StaticResource FmSpaceLarge}">
+     <StackPanel Spacing="{StaticResource FmSpaceSmall}">
+      <TextBlock Classes="fmHead" Text="ATELIER · FORGEMAGIE" />
+      <TextBlock Text="{Binding LoadedItemName}" IsVisible="{Binding HasLoadedItem}"
+                 FontSize="{StaticResource FmTitleSize}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+      <TextBlock Text="Choisir un objet, puis définir ses objectifs" IsVisible="{Binding !HasLoadedItem}"
+                 FontSize="{StaticResource FmHeadingSize}" TextWrapping="Wrap" />
+     </StackPanel>
+     <Border Grid.Column="1" Classes="fmRow" Margin="0" VerticalAlignment="Top">
+      <StackPanel>
+       <TextBlock Classes="fmHead" Text="RELIQUAT" HorizontalAlignment="Center" />
+       <TextBlock Text="{Binding PoolText}" FontSize="{StaticResource FmTitleSize}" FontWeight="SemiBold"
+                  Foreground="{StaticResource WorkshopAccentBrush}" HorizontalAlignment="Center" />
+      </StackPanel>
+     </Border>
+    </Grid>
+    <TextBlock Classes="fmNote" Text="{Binding Status}" MaxLines="2" TextTrimming="CharacterEllipsis" ToolTip.Tip="{Binding Status}" />
+    <WrapPanel>
+     <Button Margin="{StaticResource FmActionGap}" Content="Conseil"
+             AutomationProperties.Name="Mode conseil" Classes.fmPrimary="{Binding IsAdviceMode}"
+             IsEnabled="{Binding !Busy}" Command="{Binding SelectAdviceModeCommand}" />
+     <Button Margin="{StaticResource FmActionGap}" Content="Automatique"
+             AutomationProperties.Name="Mode automatique" Classes.fmPrimary="{Binding IsAutomaticMode}"
+             IsEnabled="{Binding !Busy}" Command="{Binding SelectAutomaticModeCommand}" />
+     <Button Classes="primary fmPrimary" Margin="{StaticResource FmActionGap}" Content="Démarrer"
+             AutomationProperties.Name="Lancer la forgemagie" IsEnabled="{Binding CanStart}" Command="{Binding StartCommand}" />
+     <Button Margin="{StaticResource FmActionGap}" Content="Passer 1 rune" IsVisible="{Binding !IsAdviceMode}"
+             AutomationProperties.Name="Passer la rune conseillée" IsEnabled="{Binding CanApply}" Command="{Binding ApplyOneCommand}" />
+     <Button Margin="{StaticResource FmActionGap}" Content="Arrêter"
+              AutomationProperties.Name="Arrêter la forgemagie" IsEnabled="{Binding CanStop}" Command="{Binding StopCommand}" />
+    </WrapPanel>
+    <StackPanel Spacing="{StaticResource FmSpaceSmall}" IsVisible="{Binding IsAdviceMode}">
+     <TextBlock Classes="fmHead" Text="Conseil arrêté" IsVisible="{Binding !AdviceActive}" />
+     <TextBlock Text="{Binding AdviceText}" TextWrapping="Wrap" IsVisible="{Binding AdviceActive}"
+                AutomationProperties.Name="Conseil de forgemagie" />
+     <WrapPanel>
+      <Button Name="ForgeOverlayCalibrateButton" Margin="{StaticResource FmActionGap}" Content="Calibrer l'affichage en jeu"
+              AutomationProperties.Name="Calibrer l'overlay FM en jeu" Click="OnForgeOverlayCalibrateClick" />
+      <ToggleButton Name="ForgeOverlayToggle" Margin="{StaticResource FmActionGap}" Content="Afficher en jeu (MITM)"
+              AutomationProperties.Name="Afficher le conseil en jeu" Click="OnForgeOverlayToggleClick" />
+     </WrapPanel>
+    </StackPanel>
+    <TextBlock Classes="fmHead" Text="{Binding SessionText}" TextWrapping="Wrap" />
+   </StackPanel>
+  </Border>
+
+  <Grid x:Name="WorkshopColumns" Grid.Row="1" ColumnDefinitions="176,*,264" ColumnSpacing="{StaticResource FmSpaceLarge}" IsEnabled="{Binding !Starting}">
+   <!-- Recent passages are a bounded viewport, never a page-sized event feed. -->
+   <Border Classes="fmCard" Padding="{StaticResource FmSmallInset}">
+    <Grid RowDefinitions="Auto,Auto,*" RowSpacing="{StaticResource FmSpace}">
+     <TextBlock Classes="fmTitle" Text="Activité de l'atelier" />
+     <WrapPanel Grid.Row="1">
+      <TextBlock Classes="fmHead fmSuccess" Margin="{StaticResource FmActionGap}"><Run Text="OK " /><Run Text="{Binding SuccessCount}" /></TextBlock>
+      <TextBlock Classes="fmHead fmNeutral" Margin="{StaticResource FmActionGap}"><Run Text="Neutre " /><Run Text="{Binding NeutralCount}" /></TextBlock>
+      <TextBlock Classes="fmHead fmFailure"><Run Text="Échec " /><Run Text="{Binding FailCount}" /></TextBlock>
+     </WrapPanel>
+     <TabControl Grid.Row="2">
+      <TabItem Header="Récent">
+       <Grid RowDefinitions="*,Auto" RowSpacing="{StaticResource FmSpace}">
+        <ScrollViewer MaxHeight="{StaticResource FmHistoryLimit}" VerticalScrollBarVisibility="Auto">
+         <StackPanel>
+          <TextBlock Classes="fmNote" Text="Aucun passage pour l'instant." IsVisible="{Binding !HasHistory}" />
+          <ItemsControl x:Name="WorkshopRecentRows" ItemsSource="{Binding History}">
+           <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="vm:SmithLogRow">
+             <Border Padding="{StaticResource FmRowInset}" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="0,0,0,1">
+              <StackPanel Spacing="{StaticResource FmSpaceSmall}">
+               <TextBlock Classes="fmHead" Text="{Binding Time}" />
+               <TextBlock Text="{Binding Rune}" TextWrapping="Wrap" />
+               <TextBlock Text="{Binding Result}" TextWrapping="Wrap" FontWeight="SemiBold"
+                          Classes.fmSuccess="{Binding IsSuccess}" Classes.fmNeutral="{Binding IsNeutral}" Classes.fmFailure="{Binding IsFail}" />
+              </StackPanel>
+             </Border>
+            </DataTemplate>
+           </ItemsControl.ItemTemplate>
+          </ItemsControl>
+         </StackPanel>
+        </ScrollViewer>
+        <Button Grid.Row="1" Content="Vider l'historique" Command="{Binding ClearHistoryCommand}" HorizontalAlignment="Stretch" />
+       </Grid>
+      </TabItem>
+      <TabItem Header="Log">
+       <ScrollViewer MaxHeight="{StaticResource FmHistoryLimit}" VerticalScrollBarVisibility="Auto">
+        <ItemsControl ItemsSource="{Binding SmithConsole}">
+         <ItemsControl.ItemTemplate>
+          <DataTemplate x:DataType="x:String">
+           <TextBlock Classes="fmNote" Text="{Binding}" FontFamily="Consolas,monospace" Margin="{StaticResource FmRowGap}" />
+          </DataTemplate>
+         </ItemsControl.ItemTemplate>
+        </ItemsControl>
+       </ScrollViewer>
+      </TabItem>
+     </TabControl>
+    </Grid>
+   </Border>
+
+   <Border Grid.Column="1" Classes="fmCard" Padding="{StaticResource FmSmallInset}">
+    <TabControl x:Name="WorkshopTabs">
+     <TabItem Header="Objet">
+      <Grid RowDefinitions="Auto,Auto,*,Auto" RowSpacing="{StaticResource FmSpace}">
+       <Grid ColumnDefinitions="*,36,40,64,64,28" ColumnSpacing="{StaticResource FmSpaceSmall}">
+        <TextBlock Classes="fmHead" Text="Effet" />
+        <TextBlock Grid.Column="1" Classes="fmHead" Text="Max" HorizontalAlignment="Center" />
+        <TextBlock Grid.Column="2" Classes="fmHead" Text="Actuel" HorizontalAlignment="Center" />
+        <TextBlock Grid.Column="3" Classes="fmHead" Text="Objectif" />
+        <TextBlock Grid.Column="4" Classes="fmHead" Text="Plafond" />
+       </Grid>
+       <TextBlock Grid.Row="1" Classes="fmNote" Text="Depuis la file, clique sur « Objectifs » pour charger un objet."
+                  IsVisible="{Binding !HasItem}" />
+       <ScrollViewer Grid.Row="2" MaxHeight="{StaticResource FmTableLimit}" VerticalScrollBarVisibility="Auto">
+        <ItemsControl ItemsSource="{Binding Lines}">
+         <ItemsControl.ItemTemplate>
+          <DataTemplate x:DataType="vm:SmithLineRow">
+           <Border Classes="fmRow" Padding="0">
+            <StackPanel Spacing="{StaticResource FmSpaceSmall}">
+             <Grid ColumnDefinitions="*,36,40,64,64,28" ColumnSpacing="{StaticResource FmSpaceSmall}">
+              <StackPanel Margin="{StaticResource FmRowInset}" VerticalAlignment="Center">
+               <TextBlock Text="{Binding Name}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" ToolTip.Tip="{Binding Name}" />
+               <StackPanel Orientation="Horizontal" Spacing="{StaticResource FmSpaceSmall}">
+                <TextBlock Classes="fmHead" Text="EXO" IsVisible="{Binding IsExo}" Foreground="{StaticResource WorkshopAccentBrush}" />
+                <TextBlock Classes="fmHead fmSuccess" Text="OVER" IsVisible="{Binding IsOver}" />
+               </StackPanel>
+              </StackPanel>
+              <TextBlock Grid.Column="1" Text="{Binding NaturalMaximum}" Classes="fmHead" HorizontalAlignment="Center" VerticalAlignment="Center" />
+              <TextBlock Grid.Column="2" Text="{Binding Current}" FontWeight="SemiBold"
+                         Classes.fmSuccess="{Binding Reached}" Classes.fmNeutral="{Binding !Reached}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+              <NumericUpDown Grid.Column="3" Value="{Binding Min}" Minimum="0" Maximum="100000" FormatString="0" AutomationProperties.Name="Objectif de la ligne" />
+              <NumericUpDown Grid.Column="4" Value="{Binding Max}" Minimum="0" Maximum="100000" FormatString="0" AutomationProperties.Name="Plafond de la ligne" />
+              <Button Grid.Column="5" Content="×" ToolTip.Tip="Retirer cette ligne" AutomationProperties.Name="Retirer cette ligne"
+                      Command="{Binding $parent[UserControl].((vm:SmithMagicViewModel)DataContext).RemoveLineCommand}" CommandParameter="{Binding}" />
+             </Grid>
+             <ProgressBar Value="{Binding Progress}" Minimum="0" Maximum="100" Height="{StaticResource FmSpaceSmall}" MinHeight="{StaticResource FmSpaceSmall}"
+                          Foreground="{StaticResource WorkshopAccentBrush}" />
+            </StackPanel>
+           </Border>
+          </DataTemplate>
+         </ItemsControl.ItemTemplate>
+        </ItemsControl>
+       </ScrollViewer>
+       <StackPanel Grid.Row="3" Spacing="{StaticResource FmSpace}">
+        <Button Content="Viser le jet parfait" Command="{Binding PerfectRollCommand}" HorizontalAlignment="Left" />
+        <Expander Header="Ajouter une ligne ou un exo">
+         <ScrollViewer MaxHeight="{StaticResource FmDetailLimit}" VerticalScrollBarVisibility="Auto">
+          <StackPanel Spacing="{StaticResource FmSpace}">
+           <TextBox Watermark="Effet : PA, PM, Portée…" Text="{Binding TargetName}" AutomationProperties.Name="Effet à ajouter" />
+           <Grid ColumnDefinitions="*,*,*" ColumnSpacing="{StaticResource FmSpace}">
+            <StackPanel><TextBlock Classes="fmHead" Text="Actuel" /><NumericUpDown Value="{Binding TargetCurrent}" Minimum="-100000" Maximum="100000" FormatString="0" /></StackPanel>
+            <StackPanel Grid.Column="1"><TextBlock Classes="fmHead" Text="Objectif" /><NumericUpDown Value="{Binding TargetMinimum}" Minimum="0" Maximum="100000" FormatString="0" /></StackPanel>
+            <StackPanel Grid.Column="2"><TextBlock Classes="fmHead" Text="Max naturel" /><NumericUpDown Value="{Binding TargetNaturalMaximum}" Minimum="0" Maximum="100000" FormatString="0" ToolTip.Tip="0 = exo" /></StackPanel>
+           </Grid>
+           <Button Content="Ajouter la ligne" Command="{Binding AddTargetCommand}" HorizontalAlignment="Left" />
+          </StackPanel>
+         </ScrollViewer>
+        </Expander>
+        <TextBlock Classes="fmTitle" Text="Étapes conditions" />
+        <TextBlock Classes="fmNote" MaxLines="3" TextTrimming="CharacterEllipsis"
+                   Text="Sans étape, Démarrer suit les objectifs. Avec des étapes, le mode Automatique les teste dans l'ordre, puis pose une rune, saute l'étape ou termine. Une caractéristique ou un puits absent arrête la session."
+                   ToolTip.Tip="Sans étape, Démarrer suit les objectifs. Avec des étapes, le mode Automatique les teste dans l'ordre, puis pose une rune, saute l'étape ou termine. Une caractéristique ou un puits absent arrête la session." />
+        <TextBlock Classes="fmNote" Text="Aucune étape condition : les objectifs restent utilisés." IsVisible="{Binding !HasConditionSteps}" />
+        <ScrollViewer MaxHeight="{StaticResource FmDetailLimit}" VerticalScrollBarVisibility="Auto" IsVisible="{Binding HasConditionSteps}">
+         <ItemsControl ItemsSource="{Binding ConditionSteps}">
+          <ItemsControl.ItemTemplate>
+           <DataTemplate x:DataType="vm:SmithConditionRow">
+            <Border Classes="fmRow">
+             <StackPanel Spacing="{StaticResource FmSpaceSmall}">
+              <TextBlock Text="{Binding Text}" TextWrapping="Wrap" />
+              <WrapPanel>
+               <Button Margin="{StaticResource FmActionGap}" Content="Monter" AutomationProperties.Name="Monter l'étape"
+                       Command="{Binding $parent[UserControl].((vm:SmithMagicViewModel)DataContext).MoveConditionStepUpCommand}" CommandParameter="{Binding}" />
+               <Button Margin="{StaticResource FmActionGap}" Content="Descendre" AutomationProperties.Name="Descendre l'étape"
+                       Command="{Binding $parent[UserControl].((vm:SmithMagicViewModel)DataContext).MoveConditionStepDownCommand}" CommandParameter="{Binding}" />
+               <Button Content="Retirer" AutomationProperties.Name="Retirer l'étape"
+                       Command="{Binding $parent[UserControl].((vm:SmithMagicViewModel)DataContext).RemoveConditionStepCommand}" CommandParameter="{Binding}" />
+              </WrapPanel>
+             </StackPanel>
+            </Border>
+           </DataTemplate>
+          </ItemsControl.ItemTemplate>
+         </ItemsControl>
+        </ScrollViewer>
+        <Expander Header="Ajouter une étape condition">
+         <ScrollViewer MaxHeight="{StaticResource FmDetailLimit}" VerticalScrollBarVisibility="Auto">
+          <StackPanel Spacing="{StaticResource FmSpace}">
+           <TextBlock Classes="fmHead" Text="Caractéristique" />
+           <ComboBox ItemsSource="{Binding ConditionStatChoices}" SelectedItem="{Binding ConditionStat}" AutomationProperties.Name="Caractéristique de l'étape">
+            <ComboBox.ItemTemplate><DataTemplate x:DataType="vm:SmithConditionChoice"><TextBlock Text="{Binding Label}" /></DataTemplate></ComboBox.ItemTemplate>
+           </ComboBox>
+           <Grid ColumnDefinitions="*,*" ColumnSpacing="{StaticResource FmSpace}" IsEnabled="{Binding ConditionUseStat}">
+            <StackPanel><TextBlock Classes="fmHead" Text="Min" /><NumericUpDown Value="{Binding ConditionMin}" Minimum="-100000" Maximum="100000" FormatString="0" AutomationProperties.Name="Minimum de la caractéristique" /></StackPanel>
+            <StackPanel Grid.Column="1"><TextBlock Classes="fmHead" Text="Max" /><NumericUpDown Value="{Binding ConditionMax}" Minimum="-100000" Maximum="100000" FormatString="0" AutomationProperties.Name="Maximum de la caractéristique" /></StackPanel>
+           </Grid>
+           <CheckBox IsChecked="{Binding ConditionUsePit}" Content="Vérifier le puits" AutomationProperties.Name="Vérifier le puits" />
+           <Grid ColumnDefinitions="*,*" ColumnSpacing="{StaticResource FmSpace}" IsEnabled="{Binding ConditionUsePit}">
+            <StackPanel><TextBlock Classes="fmHead" Text="Puits min" /><NumericUpDown Value="{Binding ConditionPitMin}" Minimum="-100000" Maximum="100000" FormatString="0" AutomationProperties.Name="Minimum du puits" /></StackPanel>
+            <StackPanel Grid.Column="1"><TextBlock Classes="fmHead" Text="Puits max" /><NumericUpDown Value="{Binding ConditionPitMax}" Minimum="-100000" Maximum="100000" FormatString="0" AutomationProperties.Name="Maximum du puits" /></StackPanel>
+           </Grid>
+           <TextBlock Classes="fmHead" Text="Lien" IsVisible="{Binding ConditionLinkApplies}" />
+           <ComboBox ItemsSource="{Binding ConditionLinkChoices}" SelectedItem="{Binding ConditionLink}" IsVisible="{Binding ConditionLinkApplies}" AutomationProperties.Name="Lien entre les conditions">
+            <ComboBox.ItemTemplate><DataTemplate x:DataType="vm:SmithConditionChoice"><TextBlock Text="{Binding Label}" /></DataTemplate></ComboBox.ItemTemplate>
+           </ComboBox>
+           <TextBlock Classes="fmHead" Text="Action" />
+           <ComboBox ItemsSource="{Binding ConditionActionChoices}" SelectedItem="{Binding ConditionAction}" AutomationProperties.Name="Action de l'étape">
+            <ComboBox.ItemTemplate><DataTemplate x:DataType="vm:SmithConditionChoice"><TextBlock Text="{Binding Label}" /></DataTemplate></ComboBox.ItemTemplate>
+           </ComboBox>
+           <ComboBox ItemsSource="{Binding ConditionRuneChoices}" SelectedItem="{Binding ConditionRuneFamily}" IsVisible="{Binding IsConditionRuneAction}" AutomationProperties.Name="Rune de l'étape">
+            <ComboBox.ItemTemplate><DataTemplate x:DataType="vm:SmithConditionChoice"><TextBlock Text="{Binding Label}" /></DataTemplate></ComboBox.ItemTemplate>
+           </ComboBox>
+           <ComboBox ItemsSource="{Binding ConditionTierChoices}" SelectedItem="{Binding ConditionRuneTier}" IsVisible="{Binding IsConditionRuneAction}" AutomationProperties.Name="Palier de la rune">
+            <ComboBox.ItemTemplate><DataTemplate x:DataType="vm:SmithConditionChoice"><TextBlock Text="{Binding Label}" /></DataTemplate></ComboBox.ItemTemplate>
+           </ComboBox>
+           <Button Content="Ajouter l'étape" Command="{Binding AddConditionStepCommand}" HorizontalAlignment="Left" AutomationProperties.Name="Ajouter l'étape condition" />
+          </StackPanel>
+         </ScrollViewer>
+        </Expander>
+       </StackPanel>
+      </Grid>
+     </TabItem>
+     <!-- The cumulative budget and session recap need prose width, so they live in the wide column. -->
+     <TabItem x:Name="WorkshopBilanTab" Header="Bilan">
+      <Grid RowDefinitions="Auto,Auto,*" RowSpacing="{StaticResource FmSpace}">
+       <StackPanel Orientation="Horizontal" Spacing="{StaticResource FmSpaceSmall}">
+        <Button x:Name="WorkshopBilanRefresh" Content="Actualiser" Command="{Binding RefreshForgeHistoryCommand}" />
+        <Button x:Name="WorkshopBilanCopy" Content="Copier l'historique" Command="{Binding CopyForgeHistoryCommand}" AutomationProperties.Name="Copier l'historique de forgemagie" />
+       </StackPanel>
+       <TextBlock Grid.Row="1" Classes="fmNote" Text="{Binding ForgeHistoryNote}" MaxLines="3" TextTrimming="CharacterEllipsis" ToolTip.Tip="{Binding ForgeHistoryNote}" />
+       <ScrollViewer Grid.Row="2" MaxHeight="{StaticResource FmTableLimit}" VerticalScrollBarVisibility="Auto">
+        <ItemsControl x:Name="WorkshopBilanRows" ItemsSource="{Binding SessionHistory}">
+         <ItemsControl.ItemTemplate>
+          <DataTemplate x:DataType="vm:SmithSessionHistoryRow">
+           <Border Classes="fmRow">
+            <StackPanel Spacing="{StaticResource FmSpaceSmall}">
+             <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextWrapping="Wrap" />
+             <TextBlock Classes="fmNote" Text="{Binding Detail}" />
+            </StackPanel>
+           </Border>
+          </DataTemplate>
+         </ItemsControl.ItemTemplate>
+        </ItemsControl>
+       </ScrollViewer>
+      </Grid>
+     </TabItem>
+     <TabItem x:Name="CompactInventoryTab" Header="Inventaire" IsVisible="False">
+      <ContentControl x:Name="CompactInventoryHost" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+     </TabItem>
+     <TabItem x:Name="WorkshopModeTab" Header="Mode">
+      <ScrollViewer MaxHeight="{StaticResource FmTableLimit}" VerticalScrollBarVisibility="Auto">
+       <StackPanel Spacing="{StaticResource FmSpaceLarge}">
+        <TextBlock Classes="fmTitle" Text="{Binding ModeText}" />
+        <WrapPanel>
+         <Button Margin="{StaticResource FmActionGap}" AutomationProperties.Name="Mode objectifs" Content="Objectifs" Command="{Binding UseObjectivesCommand}" />
+         <Button Margin="{StaticResource FmActionGap}" AutomationProperties.Name="Mode montée de métier" Content="Montée de métier" Command="{Binding UseLevelingModeCommand}" />
+        </WrapPanel>
+        <TextBlock Classes="fmNote" Text="Le bot rejoint un atelier compatible et utilise les runes du sac selon les objectifs, exos compris. Surveille les premiers passages." />
+        <StackPanel Spacing="{StaticResource FmSpace}" IsVisible="{Binding Leveling}">
+         <CheckBox Content="Planificateur adaptatif" IsChecked="{Binding AdaptiveLeveling}" />
+         <TextBlock Classes="fmNote" Text="Sans présélection, supports et runes sont choisis automatiquement. Le plafond cash reste le minimum des budgets de session et d'achat." IsVisible="{Binding AdaptiveLeveling}" />
+         <TextBlock Classes="fmNote" Text="{Binding LevelingHint}" />
+         <TextBlock Classes="fmHead" Text="Métier à monter" />
+         <ComboBox AutomationProperties.Name="Métier à monter" ItemsSource="{Binding JobChoices}" SelectedItem="{Binding SelectedJob}">
+          <ComboBox.ItemTemplate><DataTemplate x:DataType="vm:SmithJobChoice"><TextBlock Text="{Binding Name}" /></DataTemplate></ComboBox.ItemTemplate>
+         </ComboBox>
+         <TextBlock Classes="fmHead" Text="Niveau cible" />
+         <NumericUpDown AutomationProperties.Name="Niveau cible du métier" Value="{Binding TargetJobLevel}" Minimum="1" Maximum="200" FormatString="0" />
+         <Expander x:Name="AdaptiveSelectionPicker" Header="Présélection : supports et runes" IsVisible="{Binding AdaptiveLeveling}">
+          <StackPanel Spacing="{StaticResource FmSpace}" IsEnabled="{Binding !Busy}">
+          <TextBlock Classes="fmNote" Text="Supports : coche les objets compatibles dans Sac → Vers la file, sans les ajouter à la file. Aucun support coché = choix automatique. Des supports cochés interdisent l'achat automatique d'un autre support." />
+          <Button x:Name="ChooseAdaptiveSupports" Content="Choisir les supports" Click="OnChooseAdaptiveSupports"
+                  HorizontalAlignment="Left" AutomationProperties.Name="Présélectionner les supports de montée" />
+          <CheckBox x:Name="ManualAdaptiveSupports" Content="Limiter les supports à acheter" IsCheckedChanged="OnAdaptiveFilterChanged"
+                    AutomationProperties.Name="Restreindre les supports à acheter" />
+          <TextBox x:Name="AllowedSupportGidsBox" MaxLength="512" PlaceholderText="GID des supports, séparés par des virgules"
+                   TextChanged="OnAdaptiveFilterChanged" AutomationProperties.Name="GID des supports à acheter" />
+          <TextBlock x:Name="AdaptiveSupportSelectionNote" Classes="fmNote" />
+          <ScrollViewer MaxHeight="{StaticResource FmDetailLimit}" VerticalScrollBarVisibility="Auto">
+           <TextBlock x:Name="AdaptiveSupportPreview" Classes="fmNote" />
+          </ScrollViewer>
+          <CheckBox x:Name="ManualAdaptiveRunes" Content="Limiter les runes (stock et achats)" IsCheckedChanged="OnAdaptiveFilterChanged"
+                    AutomationProperties.Name="Restreindre les runes de montée" />
+          <TextBox x:Name="AllowedRuneGidsBox" MaxLength="512" PlaceholderText="GID des runes, même absentes du sac"
+                   TextChanged="OnAdaptiveFilterChanged" AutomationProperties.Name="GID des runes autorisées" />
+          <TextBlock x:Name="AdaptiveRuneSelectionNote" Classes="fmNote" />
+          <ScrollViewer MaxHeight="{StaticResource FmDetailLimit}" VerticalScrollBarVisibility="Auto">
+           <TextBlock x:Name="AdaptiveRunePreview" Classes="fmNote" />
+          </ScrollViewer>
+          <TextBlock Classes="fmNote" Text="32 GID maximum par liste. Les noms sont affichés quand les données locales sont disponibles. Les sélections sont figées au démarrage ; la compatibilité métier et les budgets restent obligatoires." />
+         </StackPanel>
+         </Expander>
+         <ComboBox AutomationProperties.Name="Rune de montée" ItemsSource="{Binding Runes}" SelectedItem="{Binding LevelingRune}" IsVisible="{Binding !AdaptiveLeveling}" PlaceholderText="Rune à passer">
+          <ComboBox.ItemTemplate><DataTemplate x:DataType="rec:SmithRune"><TextBlock><Run Text="{Binding EffectId}" /><Run Text="  ×" /><Run Text="{Binding StockText}" /></TextBlock></DataTemplate></ComboBox.ItemTemplate>
+         </ComboBox>
+         <TextBlock Classes="fmNote" Text="{Binding BankRuneNote}" />
+        </StackPanel>
+       </StackPanel>
+      </ScrollViewer>
+     </TabItem>
+     <TabItem Header="Options">
+      <ScrollViewer MaxHeight="{StaticResource FmTableLimit}" VerticalScrollBarVisibility="Auto">
+       <StackPanel Spacing="{StaticResource FmSpaceLarge}">
+        <TextBlock Classes="fmTitle" Text="Limites de session" />
+        <Grid ColumnDefinitions="*,*" ColumnSpacing="{StaticResource FmSpace}">
+         <StackPanel><TextBlock Classes="fmHead" Text="Runes max · total" /><NumericUpDown Value="{Binding MaxRunes}" Minimum="1" Maximum="10000" FormatString="0" /></StackPanel>
+         <StackPanel Grid.Column="1"><TextBlock Classes="fmHead" Text="Runes max · ligne" /><NumericUpDown Value="{Binding MaxRunesPerLine}" Minimum="1" Maximum="1000" FormatString="0" /></StackPanel>
+        </Grid>
+        <StackPanel><TextBlock Classes="fmHead" Text="Plafond de session · kamas" /><NumericUpDown Value="{Binding MaxKamas}" Minimum="0" Maximum="9223372036854775807" Increment="10000" FormatString="0" /></StackPanel>
+        <CheckBox IsChecked="{Binding AllowSmallerRune}"><TextBlock Text="Rune plus petite si la bonne manque" TextWrapping="Wrap" /></CheckBox>
+        <Expander Header="Achats de runes" IsExpanded="True">
+         <StackPanel Spacing="{StaticResource FmSpace}">
+          <CheckBox IsChecked="{Binding AutoBuyRunes}"><TextBlock Text="Acheter les runes manquantes à l'HDV le plus proche (droit HDV)" TextWrapping="Wrap" /></CheckBox>
+          <TextBlock Classes="fmHead" Text="Plafond par lot · % du prix moyen" />
+          <NumericUpDown Value="{Binding BuyMaxPercent}" Minimum="10" Maximum="1000" FormatString="0" />
+          <TextBlock Classes="fmHead" Text="Budget total · kamas" />
+          <NumericUpDown Value="{Binding BuyMaxKamas}" Minimum="0" Maximum="1000000000" Increment="10000" FormatString="0" />
+         </StackPanel>
+        </Expander>
+        <Expander Header="Comparer achat direct et fusion">
+         <StackPanel Spacing="{StaticResource FmSpace}">
+          <TextBlock Classes="fmNote" Text="Conseil sur les offres observées du serveur. Ouvre l'HDV des runes pour actualiser les prix. Aucun achat automatique ici." />
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="{StaticResource FmSpace}">
+           <StackPanel><TextBlock Classes="fmHead" Text="GID rune cible" /><NumericUpDown Value="{Binding CompareRuneGid}" Minimum="1" Maximum="2147483647" FormatString="0" /></StackPanel>
+           <StackPanel Grid.Column="1"><TextBlock Classes="fmHead" Text="Quantité" /><NumericUpDown Value="{Binding CompareRuneQuantity}" Minimum="1" Maximum="10000" FormatString="0" /></StackPanel>
+          </Grid>
+          <TextBlock Classes="fmHead" Text="Trajet fusion · kamas (-1 = inconnu)" />
+          <NumericUpDown Value="{Binding FusionTravelCost}" Minimum="-1" Maximum="1000000000" FormatString="0" />
+          <Button Content="Comparer les coûts" Command="{Binding CompareRuneCostsCommand}" HorizontalAlignment="Left" />
+          <TextBlock Classes="fmNote" Text="{Binding RuneComparisonText}" />
+         </StackPanel>
+        </Expander>
+       </StackPanel>
+      </ScrollViewer>
+     </TabItem>
+    </TabControl>
+   </Border>
+
+   <!-- The same inventory control moves into the center tab below the compact breakpoint. -->
+   <ContentControl x:Name="WideInventoryHost" Grid.Column="2" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+    <Border Classes="fmCard" Padding="{StaticResource FmSmallInset}">
+     <TabControl x:Name="WorkshopInventoryTabs" IsEnabled="{Binding !Starting}">
+      <TabItem Header="Sac">
+       <Grid RowDefinitions="Auto,Auto,Auto,Auto,*" RowSpacing="{StaticResource FmSpace}">
+        <TextBlock Classes="fmTitle" Text="Choisir un support" />
+        <TextBox Grid.Row="1" Text="{Binding BagSearch}" PlaceholderText="Nom, niveau ou type" AutomationProperties.Name="Recherche du sac" KeyDown="OnBagSearchKeyDown" />
+        <WrapPanel Grid.Row="2">
+         <Button Margin="{StaticResource FmActionGap}" Content="Vers la file" Command="{Binding PickForgeCommand}" />
+         <Button Margin="{StaticResource FmActionGap}" Content="Vers le brisage" Command="{Binding PickCrushCommand}" />
+         <Button Margin="{StaticResource FmActionGap}" Content="Tout cocher" Command="{Binding SelectVisiblePicksCommand}" />
+         <Button Margin="{StaticResource FmActionGap}" Content="Ajouter à la file" Command="{Binding AddCheckedToForgeCommand}" />
+         <Button Margin="{StaticResource FmActionGap}" Content="Ajouter au brisage" Command="{Binding AddCheckedToCrushCommand}" IsVisible="{Binding PickerForCrush}" />
+        </WrapPanel>
+        <StackPanel Grid.Row="3" Spacing="{StaticResource FmSpaceSmall}" IsVisible="{Binding PickerForCrush}">
+         <CheckBox IsChecked="{Binding IncludeOtherCrushItems}" AutomationProperties.Name="Inclure les autres équipements du sac">
+          <TextBlock Text="Choisir aussi d'autres équipements du sac" TextWrapping="Wrap" />
+         </CheckBox>
+         <TextBlock Classes="fmNote" Text="{Binding CrushProvenanceNote}" />
+        </StackPanel>
+        <ScrollViewer Grid.Row="4" MaxHeight="{StaticResource FmListLimit}" VerticalScrollBarVisibility="Auto">
+         <ItemsControl ItemsSource="{Binding FilteredPicks}">
+          <ItemsControl.ItemTemplate>
+           <DataTemplate x:DataType="vm:BagPickRow">
+            <Border Classes="fmRow" PointerPressed="OnPickPressed">
+             <Grid ColumnDefinitions="Auto,*" ColumnSpacing="{StaticResource FmSpace}">
+              <CheckBox IsChecked="{Binding IsChecked}" IsEnabled="{Binding Allowed}" VerticalAlignment="Center" AutomationProperties.Name="{Binding Name}" />
+              <StackPanel Grid.Column="1" Spacing="{StaticResource FmSpaceSmall}">
+               <TextBlock Text="{Binding Name}" FontWeight="SemiBold" TextWrapping="Wrap" />
+               <TextBlock Classes="fmNote" Text="{Binding Detail}" />
+               <TextBlock Classes="fmHead" Text="{Binding BlockText}" TextWrapping="Wrap" />
+               <StackPanel Spacing="{StaticResource FmSpaceSmall}" IsVisible="{Binding ShowCrushQuantity}">
+                <TextBlock Classes="fmNote" Text="{Binding CrushProvenanceText}" />
+                <TextBlock Classes="fmHead" Text="Quantité à briser (0 = aucune)" />
+                <NumericUpDown Value="{Binding CrushQuantity}" Minimum="0" Maximum="{Binding CrushMaximum}" FormatString="0"
+                 IsEnabled="{Binding Allowed}" AutomationProperties.Name="Quantité à briser" />
+               </StackPanel>
+              </StackPanel>
+             </Grid>
+            </Border>
+           </DataTemplate>
+          </ItemsControl.ItemTemplate>
+         </ItemsControl>
+        </ScrollViewer>
+       </Grid>
+      </TabItem>
+      <TabItem Header="File">
+       <Grid RowDefinitions="Auto,Auto,Auto,*" RowSpacing="{StaticResource FmSpace}">
+        <ComboBox AutomationProperties.Name="Objets forgemageables du sac" ItemsSource="{Binding BagChoices}" SelectedIndex="{Binding BagIndex, Mode=TwoWay}">
+         <ComboBox.ItemTemplate><DataTemplate x:DataType="vm:SmithQueueRow"><TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" /></DataTemplate></ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button Grid.Row="1" AutomationProperties.Name="Ajouter à la file" Content="Ajouter à la file" Command="{Binding AddToQueueCommand}" HorizontalAlignment="Stretch" />
+        <TextBlock Grid.Row="2" Classes="fmNote" Text="{Binding BagHint}" />
+        <ScrollViewer Grid.Row="3" MaxHeight="{StaticResource FmListLimit}" VerticalScrollBarVisibility="Auto">
+         <ItemsControl ItemsSource="{Binding Queue}">
+          <ItemsControl.ItemTemplate>
+           <DataTemplate x:DataType="vm:SmithQueueRow">
+            <Border Classes="fmRow">
+             <StackPanel Spacing="{StaticResource FmSpaceSmall}">
+              <TextBlock Text="{Binding Name}" FontWeight="SemiBold" TextWrapping="Wrap" />
+              <TextBlock Classes="fmNote" Text="{Binding Info}" />
+              <WrapPanel>
+               <Button Margin="{StaticResource FmActionGap}" Content="Objectifs" Command="{Binding $parent[UserControl].((vm:SmithMagicViewModel)DataContext).LoadItemCommand}" CommandParameter="{Binding}" />
+               <Button Content="Retirer" Command="{Binding $parent[UserControl].((vm:SmithMagicViewModel)DataContext).RemoveFromQueueCommand}" CommandParameter="{Binding}" />
+              </WrapPanel>
+             </StackPanel>
+            </Border>
+           </DataTemplate>
+          </ItemsControl.ItemTemplate>
+         </ItemsControl>
+        </ScrollViewer>
+       </Grid>
+      </TabItem>
+      <TabItem Header="Brisage">
+       <Grid RowDefinitions="Auto,*,Auto,Auto,Auto" RowSpacing="{StaticResource FmSpace}">
+        <TextBlock Classes="fmNote" Text="Aperçu des quantités sélectionnées uniquement. Le premier lancement brise un exemplaire du premier objet ; le reste exige une confirmation séparée. Choisis les objets et leurs quantités dans Sac → Vers le brisage. Vider la liste ne casse rien." />
+        <ScrollViewer Grid.Row="1" MaxHeight="{StaticResource FmListLimit}" VerticalScrollBarVisibility="Auto">
+         <ItemsControl ItemsSource="{Binding CrushQueue}">
+          <ItemsControl.ItemTemplate>
+           <DataTemplate x:DataType="vm:SmithQueueRow">
+            <Border Classes="fmRow">
+             <StackPanel Spacing="{StaticResource FmSpaceSmall}">
+              <TextBlock Text="{Binding Name}" FontWeight="SemiBold" TextWrapping="Wrap" />
+              <TextBlock Classes="fmNote" Text="{Binding Info}" />
+              <Button Content="Retirer" HorizontalAlignment="Left" Command="{Binding $parent[UserControl].((vm:SmithMagicViewModel)DataContext).RemoveCrushItemCommand}" CommandParameter="{Binding}" />
+             </StackPanel>
+            </Border>
+           </DataTemplate>
+          </ItemsControl.ItemTemplate>
+         </ItemsControl>
+        </ScrollViewer>
+        <WrapPanel Grid.Row="2">
+         <Button Classes="fmPrimary" Margin="{StaticResource FmActionGap}" AutomationProperties.Name="Lancer le brisage" IsEnabled="{Binding CanCrush}" Command="{Binding StartCrushCommand}" Content="Lancer le brisage" />
+         <Button Content="Vider" Command="{Binding ClearCrushListCommand}" />
+        </WrapPanel>
+        <TextBlock Grid.Row="3" Classes="fmNote" Text="{Binding CrushTrialText}" />
+        <Button Grid.Row="4" Content="Continuer après l'essai" IsEnabled="{Binding CanContinueCrushTrial}" Command="{Binding ContinueCrushTrialCommand}" HorizontalAlignment="Stretch" />
+       </Grid>
+      </TabItem>
+      <TabItem Header="Runes">
+       <Grid RowDefinitions="Auto,*" RowSpacing="{StaticResource FmSpace}">
+        <Button Content="Actualiser les runes" Command="{Binding RefreshRunesCommand}" HorizontalAlignment="Stretch" />
+        <ScrollViewer Grid.Row="1" MaxHeight="{StaticResource FmListLimit}" VerticalScrollBarVisibility="Auto">
+         <ItemsControl ItemsSource="{Binding Runes}">
+          <ItemsControl.ItemTemplate>
+           <DataTemplate x:DataType="rec:SmithRune">
+            <Border Classes="fmRow">
+             <TextBlock><Run Text="{Binding Tier}" FontWeight="SemiBold" /><Run Text=" · effet " /><Run Text="{Binding EffectId}" /><Run Text="  ×" /><Run Text="{Binding StockText}" FontWeight="SemiBold" /></TextBlock>
+            </Border>
+           </DataTemplate>
+          </ItemsControl.ItemTemplate>
+         </ItemsControl>
+        </ScrollViewer>
+       </Grid>
+      </TabItem>
+     </TabControl>
+    </Border>
+   </ContentControl>
+  </Grid>
+ </Grid>
+</UserControl>

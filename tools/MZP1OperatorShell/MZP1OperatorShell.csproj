@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <AssemblyName>MZP1OperatorShell</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.1.1" />
+    <PackageReference Include="Avalonia.Desktop" Version="12.1.1" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.1" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.1" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="ShellApp.cs" />
+    <Compile Include="PanelXamlLoader.cs" />
+    <Compile Include="../../GivreClone.App/ViewModels/ViewModelBase.cs" Link="ViewModels/ViewModelBase.cs" />
+    <Compile Include="../../GivreClone.App/ViewModels/MZP0OperatorContracts.cs" Link="ViewModels/MZP0OperatorContracts.cs" />
+    <Compile Include="../../GivreClone.App/ViewModels/MZP0OperatorViewModel.cs" Link="ViewModels/MZP0OperatorViewModel.cs" />
+    <Compile Include="../../GivreClone.App/Controls/MZP0OperatorPanel.axaml.cs" Link="Controls/MZP0OperatorPanel.axaml.cs" />
+    <AvaloniaResource Include="../../GivreClone.App/Controls/MZP0OperatorPanel.axaml" Link="Controls/MZP0OperatorPanel.axaml" />
+  </ItemGroup>
+</Project>

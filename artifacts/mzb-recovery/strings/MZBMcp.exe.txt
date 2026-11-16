@@ -1,0 +1,32 @@
+MizanMcp
+MizanMcp.dll,System.Private.CoreLib
+Version
+mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089$IAsyncStateMachine
+Types with embedded references are not supported in this version of your compiler.
+System.Runtime, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&IsReadOnlyAttributeg
+System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+.GenericMethodDescriptor,MethodNameAndSignature&OrderedDictionary`2[
+2PrivilegeNotHeldException2GenericSecurityDescriptor*RawSecurityDescriptor0CommonSecurityDescriptor
+System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;
+6GenericMethodDescriptorInfo
+*<>c__DisplayClass74_0"<get_Claims>d__914AllowedBmpCodePointsBitmap2OptimizedInboxTextEncoder0DefaultJavaScriptEncoder
+"JavaScriptEncoder
+version
+RtlGetVersion
+System.ComponentModel.TypeDescriptor.IsComObjectDescriptorSupported
+version
+runtime_version
+SetThreadDescription
+major_version_number
+minor_version_number
+ Type Descriptor'
+ Base Class Descriptor at (
+ Class Hierarchy Descriptor'
+MizanMcp.exe
+GetSecurityDescriptorLength
+VerifyVersionInfoW
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+  <assemblyIdentity version="1.0.0.0" name="MyApplication.app"/>

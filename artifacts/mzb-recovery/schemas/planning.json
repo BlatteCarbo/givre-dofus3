@@ -1,0 +1,106 @@
+{
+  "source_file": "planning.json",
+  "values_removed": true,
+  "fields": [
+    {
+      "path": "$.Plannings",
+      "type": "dict"
+    },
+    {
+      "path": "$.Plannings.?",
+      "type": "dict"
+    },
+    {
+      "path": "$.Plannings.?.Enabled",
+      "type": "bool"
+    },
+    {
+      "path": "$.Plannings.?.Script",
+      "type": "str"
+    },
+    {
+      "path": "$.Plannings.?.ScriptName",
+      "type": "str"
+    },
+    {
+      "path": "$.Plannings.?.JitterMin",
+      "type": "int"
+    },
+    {
+      "path": "$.Plannings.?.Slots",
+      "type": "list"
+    },
+    {
+      "path": "$.Plannings.?.Scripts",
+      "type": "list"
+    },
+    {
+      "path": "$.Plannings.?.AutoConnect",
+      "type": "bool"
+    },
+    {
+      "path": "$.Plannings.?.AccountId",
+      "type": "str"
+    },
+    {
+      "path": "$.Plannings.?.BreedIndex",
+      "type": "NoneType"
+    },
+    {
+      "path": "$.Plannings.?.GenderIndex",
+      "type": "NoneType"
+    },
+    {
+      "path": "$.Plannings.?.Level",
+      "type": "NoneType"
+    },
+    {
+      "path": "$.Plannings.Rey-mashinthe",
+      "type": "dict"
+    },
+    {
+      "path": "$.Plannings.Rey-mashinthe.Enabled",
+      "type": "bool"
+    },
+    {
+      "path": "$.Plannings.Rey-mashinthe.Script",
+      "type": "str"
+    },
+    {
+      "path": "$.Plannings.Rey-mashinthe.ScriptName",
+      "type": "str"
+    },
+    {
+      "path": "$.Plannings.Rey-mashinthe.JitterMin",
+      "type": "int"
+    },
+    {
+      "path": "$.Plannings.Rey-mashinthe.Slots",
+      "type": "list"
+    },
+    {
+      "path": "$.Plannings.Rey-mashinthe.Scripts",
+      "type": "list"
+    },
+    {
+      "path": "$.Plannings.Rey-mashinthe.AutoConnect",
+      "type": "bool"
+    },
+    {
+      "path": "$.Plannings.Rey-mashinthe.AccountId",
+      "type": "str"
+    },
+    {
+      "path": "$.Plannings.Rey-mashinthe.BreedIndex",
+      "type": "NoneType"
+    },
+    {
+      "path": "$.Plannings.Rey-mashinthe.GenderIndex",
+      "type": "NoneType"
+    },
+    {
+      "path": "$.Plannings.Rey-mashinthe.Level",
+      "type": "NoneType"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "binary_files_indexed": 0,
+  "classification": "offline_readonly_bounded_inventory",
+  "coverage_complete_within_limits": true,
+  "directories_scanned": 8,
+  "entries_inspected": 45,
+  "files": [],
+  "installation_or_process_inspected": false,
+  "limits": {
+    "binary_records": 3000,
+    "depth": 10,
+    "directories": 25000,
+    "entries": 250000,
+    "named_candidates_hashed": 64
+  },
+  "givrebot_candidates": [],
+  "givrebot_exe_found": false,
+  "named_candidates": [],
+  "schema_version": 1,
+  "scope": "GivreAI",
+  "skipped": {
+    "depth": 0,
+    "limit": 0,
+    "nonbinary": 38,
+    "prohibited": 0,
+    "reparse": 0,
+    "unreadable": 0
+  }
+}

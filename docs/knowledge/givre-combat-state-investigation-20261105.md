@@ -1,0 +1,7 @@
+# Combat-state decoding investigation — 2026-11-05
+
+The investigation connected several layers without establishing a trustworthy production packet decoder. REA inspection of the protocol-game assembly was constrained by its 64 MiB metadata budget; the aliases `jth` and `jun` could be examined locally, but their fields were not semantically attributable to wire-level state, actor, or duration. The native `EntityStateInfo(stateId, duration, status, isStateIcon)` constructor and callers were confirmed, including callers that use a hidden structured return buffer in RCX; register-only inference of an argument is unsafe.
+
+A native buff-effect comparison obtains an integer through interface dispatch (`hq.nfk`), not a directly identified protobuf field. Separately, the client DataCenter model exposes immunity properties `invulnerable`, `invulnerableMelee`, `invulnerableRange`, and `cantDealDamage`, as well as movement/position restrictions. These names do not establish the runtime state IDs, packet mapping, or whether a particular fighter currently has an immunity.
+
+No production decoder, protocol mapping, or combat behavior was changed based on these incomplete links. Continue by tracing the value producer and corroborating state IDs and active-fighter observations before changing attack planning. The earlier Ishigro Pake zero-damage loop remains unexplained; do not infer its cause or any suspension reason from this evidence.

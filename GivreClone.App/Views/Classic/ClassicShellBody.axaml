@@ -1,0 +1,311 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:vm="using:GivreClone.App.ViewModels"
+ xmlns:views="using:GivreClone.App.Views"
+ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="720"
+ x:Class="GivreClone.App.Views.Classic.ClassicShellBody"
+ x:DataType="vm:MainViewModel">
+
+ <!-- Corps « »: barre de menu (pages) en haut, arbre chef/mules à gauche (groupes d'équipe
+ REPLIABLES via chevron), page courante au centre, barre de statut en bas. Gris un bot tiers
+ fixes; l'ACCENT (sélection, actif, badge Chef) vient des brushes swappables Accent* (DynamicResource). -->
+ <UserControl.Resources>
+ <!-- Ligne d'un bot EN JEU (réutilisée: membre d'équipe ET bot solo). Clic -> sélectionne le bot. -->
+ <DataTemplate x:Key="BotRowTemplate" x:DataType="vm:BotRowViewModel">
+ <Button Classes="botrow" Classes.sel="{Binding Selected}"
+ AutomationProperties.Name="{Binding Row.Character}"
+ Command="{Binding $parent[UserControl].((vm:MainViewModel)DataContext).PickBotCommand}"
+ CommandParameter="{Binding}">
+ <Grid ColumnDefinitions="Auto,Auto,*,Auto">
+ <Border Grid.Column="0" Width="3" CornerRadius="2" Margin="0,1,8,1"
+ Background="{Binding TeamColorBrush}" IsVisible="{Binding InTeam}" />
+ <!-- tête de classe (avatar): présente dès que la classe est identifiée -->
+ <Image Grid.Column="1" Source="{Binding Row.ClassIcon}" Width="26" Height="26" Margin="0,0,8,0" VerticalAlignment="Center" />
+ <StackPanel Grid.Column="2" Spacing="2" VerticalAlignment="Center">
+ <TextBlock Text="{Binding Row.Character}" Classes="pii" FontSize="12.5"
+ Foreground="#E6E6E6" TextTrimming="CharacterEllipsis" />
+ <!-- Activité de HAUT NIVEAU (Combat / Récolte / Déplacement / Jeu) plutôt que le compteur de
+ paquets: pastille + libellé colorés par l'état (couleur sémantique). Pas de PII ici.
+ + mini-pastille du MODE de la session (bleu = Socket, gris = MITM) calée à droite de la ligne
+ (PAS en colonne 3: c'est celle du badge Chef); le libellé d'activité se rogne « … » avant elle. -->
+ <DockPanel>
+ <!-- pastille ronde (état normal) OU flèche (en déplacement), même couleur sémantique -->
+ <Panel DockPanel.Dock="Left" Margin="0,0,6,0" VerticalAlignment="Center">
+ <Ellipse Width="8" Height="8" VerticalAlignment="Center" Fill="{Binding Row.ActivityBrush}"
+ IsVisible="{Binding Row.ActivityIsDot}" />
+ <Path Data="M0,4 L7,4 M4,1 L7,4 L4,7" Width="9" Height="9" VerticalAlignment="Center"
+ Stroke="{Binding Row.ActivityBrush}" StrokeThickness="1.6"
+ StrokeLineCap="Round" StrokeJoin="Round" IsVisible="{Binding Row.ActivityIsMoving}" />
+ </Panel>
+ <Panel DockPanel.Dock="Right" Margin="6,0,0,0" VerticalAlignment="Center">
+ <Border Classes="badge" Background="#1F6FEB" Padding="4,0"
+ IsVisible="{Binding Row.ModeIsSocket}" ToolTip.Tip="{DynamicResource L.Bots.ModeSocketTip}">
+ <TextBlock Text="{DynamicResource L.Accounts.ModeSocket}" FontSize="9.5" FontWeight="SemiBold"
+ Foreground="White" VerticalAlignment="Center" />
+ </Border>
+ <!-- fond en StaticResource: un DynamicResource de DataTemplate (priorité Template) perdrait contre
+ le style Border.badge (fond AccentSoft); la palette un bot tiers est posée avant la fenêtre. -->
+ <Border Classes="badge" Background="{StaticResource Surface2Brush}" Padding="4,0"
+ IsVisible="{Binding !Row.ModeIsSocket}" ToolTip.Tip="{DynamicResource L.Bots.ModeMitmTip}">
+ <TextBlock Text="{DynamicResource L.Accounts.ModeMitm}" FontSize="9.5" FontWeight="SemiBold"
+ Foreground="{DynamicResource TextSecondaryBrush}" VerticalAlignment="Center" />
+ </Border>
+ </Panel>
+ <TextBlock Text="{Binding Row.ActivityText}" FontSize="11" VerticalAlignment="Center"
+ Foreground="{Binding Row.ActivityBrush}" TextTrimming="CharacterEllipsis" />
+ </DockPanel>
+ </StackPanel>
+ <Border Grid.Column="3" IsVisible="{Binding ShowLeaderBadge}" VerticalAlignment="Center"
+ Background="{DynamicResource AccentSoftBrush}" CornerRadius="5" Padding="7,2" Margin="6,0,0,0">
+ <TextBlock Text="{Binding TeamRoleText}" FontSize="10" Foreground="{DynamicResource AccentBrightBrush}" />
+ </Border>
+ </Grid>
+ </Button>
+ </DataTemplate>
+
+ <!-- Membre d'équipe HORS LIGNE: grisé, non cliquable -->
+ <DataTemplate x:Key="OfflineRowTemplate" x:DataType="vm:OfflineMemberViewModel">
+ <Border Padding="8,6" Margin="6,1" Opacity="0.45">
+ <StackPanel Orientation="Horizontal" Spacing="6">
+ <Image Source="{Binding ClassIcon}" Width="22" Height="22" VerticalAlignment="Center" />
+ <Ellipse Width="8" Height="8" Fill="#6B7280" VerticalAlignment="Center" />
+ <TextBlock Text="{Binding Name}" Classes="pii" FontSize="12" Foreground="#9A9A9A" VerticalAlignment="Center" />
+ </StackPanel>
+ </Border>
+ </DataTemplate>
+ </UserControl.Resources>
+
+ <UserControl.Styles>
+ <!-- boutons de la barre de menu (navigation entre pages) -->
+ <Style Selector="Button.snowmenu">
+ <Setter Property="Background" Value="Transparent" />
+ <Setter Property="BorderThickness" Value="0" />
+ <Setter Property="CornerRadius" Value="6" />
+ <Setter Property="Padding" Value="13,6" />
+ <Setter Property="FontSize" Value="12.5" />
+ <Setter Property="Foreground" Value="#C0C0C0" />
+ <Setter Property="Cursor" Value="Hand" />
+ <Setter Property="VerticalAlignment" Value="Center" />
+ </Style>
+ <Style Selector="Button.snowmenu:pointerover">
+ <Setter Property="Background" Value="#363636" />
+ <Setter Property="Foreground" Value="#E6E6E6" />
+ </Style>
+ <Style Selector="Button.snowmenu.active">
+ <Setter Property="Background" Value="{DynamicResource AccentSoftBrush}" />
+ <Setter Property="Foreground" Value="{DynamicResource AccentBrightBrush}" />
+ </Style>
+ <Style Selector="Button.snowmenu:focus-visible">
+ <Setter Property="BorderBrush" Value="{DynamicResource AccentBrightBrush}" />
+ <Setter Property="BorderThickness" Value="2" />
+ </Style>
+
+ <!-- lignes de l'arbre des bots -->
+ <Style Selector="Button.botrow">
+ <Setter Property="Background" Value="Transparent" />
+ <Setter Property="BorderThickness" Value="0" />
+ <Setter Property="CornerRadius" Value="6" />
+ <Setter Property="Padding" Value="8,7" />
+ <Setter Property="Margin" Value="6,1" />
+ <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+ <Setter Property="HorizontalAlignment" Value="Stretch" />
+ <Setter Property="Cursor" Value="Hand" />
+ </Style>
+ <Style Selector="Button.botrow:pointerover"><Setter Property="Background" Value="#323232" /></Style>
+ <Style Selector="Button.botrow.sel"><Setter Property="Background" Value="{DynamicResource AccentSoftBrush}" /></Style>
+ <Style Selector="Button.botrow:focus-visible">
+ <Setter Property="Background" Value="{DynamicResource AccentSoftBrush}" />
+ <Setter Property="BorderBrush" Value="{DynamicResource AccentBrightBrush}" />
+ <Setter Property="BorderThickness" Value="2" />
+ </Style>
+
+ <!-- pastilles d'état (couleurs sémantiques fixes) -->
+ <Style Selector="Ellipse.dot"><Setter Property="Fill" Value="#6B7280" /></Style>
+ <Style Selector="Ellipse.dot.on"><Setter Property="Fill" Value="#4B9619" /></Style>
+
+ <!-- chevron de repli d'un groupe d'équipe (pivote à l'ouverture) -->
+ <Style Selector="ToggleButton.treechev">
+ <Setter Property="Width" Value="20" />
+ <Setter Property="Height" Value="20" />
+ <Setter Property="Padding" Value="0" />
+ <Setter Property="Cursor" Value="Hand" />
+ <Setter Property="Template">
+ <ControlTemplate>
+ <Border Background="Transparent">
+ <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+ </Border>
+ </ControlTemplate>
+ </Setter>
+ </Style>
+ <Style Selector="ToggleButton.treechev PathIcon.chev">
+ <Setter Property="Foreground" Value="#A5A5A5" />
+ <Setter Property="RenderTransformOrigin" Value="50%,50%" />
+ <Setter Property="Transitions">
+ <Transitions><TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.15" Easing="CubicEaseOut" /></Transitions>
+ </Setter>
+ </Style>
+ <Style Selector="ToggleButton.treechev:checked PathIcon.chev">
+ <Setter Property="RenderTransform" Value="rotate(90deg)" />
+ </Style>
+
+ <!-- en-tête de groupe d'équipe -->
+ <Style Selector="Button.teamhdr">
+ <Setter Property="Background" Value="Transparent" />
+ <Setter Property="BorderThickness" Value="0" />
+ <Setter Property="CornerRadius" Value="6" />
+ <Setter Property="Padding" Value="4,4" />
+ <Setter Property="Margin" Value="4,2,6,0" />
+ <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+ <Setter Property="HorizontalAlignment" Value="Stretch" />
+ <Setter Property="Cursor" Value="Hand" />
+ </Style>
+ <Style Selector="Button.teamhdr:pointerover"><Setter Property="Background" Value="#2E2E2E" /></Style>
+ <Style Selector="Button.teamhdr:focus-visible">
+ <Setter Property="Background" Value="#2E2E2E" />
+ <Setter Property="BorderBrush" Value="{DynamicResource AccentBrightBrush}" />
+ <Setter Property="BorderThickness" Value="2" />
+ </Style>
+ </UserControl.Styles>
+
+ <Grid RowDefinitions="34,*,24">
+
+ <!-- ===================== Barre de menu (navigation) ===================== -->
+ <Border Grid.Row="0" Background="#2E2E2E" BorderBrush="#1C1C1C" BorderThickness="0,0,0,1">
+ <Grid ColumnDefinitions="*,Auto" Margin="10,0">
+ <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+ <StackPanel Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
+ <TextBlock Text="GivreClone" FontSize="12.5" FontWeight="Bold" Foreground="#DADADA"
+ VerticalAlignment="Center" Margin="4,0,10,0" />
+ <Button Classes="snowmenu" Classes.active="{Binding IsDashboardActive}"
+ Command="{Binding ShowDashboardCommand}" Content="Vue d'ensemble"
+ AutomationProperties.Name="Vue d'ensemble" />
+ <Button Classes="snowmenu" Classes.active="{Binding IsAccountsActive}"
+ Command="{Binding ShowAccountsCommand}" Content="{DynamicResource L.Nav.Accounts}"
+ AutomationProperties.Name="{DynamicResource L.Nav.Accounts}" />
+ <Button Classes="snowmenu" Classes.active="{Binding IsBotsActive}"
+ Command="{Binding ShowBotsCommand}" Content="{DynamicResource L.Nav.Bots}"
+ AutomationProperties.Name="{DynamicResource L.Nav.Bots}" />
+ <Button Classes="snowmenu" Classes.active="{Binding IsTeamsActive}"
+ Command="{Binding ShowTeamsCommand}" Content="{DynamicResource L.Nav.Team}"
+ AutomationProperties.Name="{DynamicResource L.Nav.Team}" />
+ <Button Classes="snowmenu" Classes.active="{Binding IsProxysActive}"
+ Command="{Binding ShowProxysCommand}" Content="{DynamicResource L.Nav.Proxys}"
+ AutomationProperties.Name="{DynamicResource L.Nav.Proxys}" />
+ <Button Classes="snowmenu" Classes.active="{Binding IsAdaptersActive}"
+ Command="{Binding ShowAdaptersCommand}" Content="{DynamicResource L.Nav.Adapters}"
+ AutomationProperties.Name="{DynamicResource L.Nav.Adapters}" />
+ </StackPanel>
+ </ScrollViewer>
+ <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
+ <Button Classes="snowmenu" Classes.active="{Binding IsMyAccountActive}"
+ Command="{Binding ShowMyAccountCommand}" Content="{DynamicResource L.Nav.MyAccount}"
+ AutomationProperties.Name="{DynamicResource L.Nav.MyAccount}" />
+ <Button Classes="snowmenu" Classes.active="{Binding IsSettingsActive}"
+ Command="{Binding ShowSettingsCommand}" Content="{DynamicResource L.Nav.Settings}"
+ AutomationProperties.Name="{DynamicResource L.Nav.Settings}" />
+ </StackPanel>
+ </Grid>
+ </Border>
+
+ <!-- ===================== Corps: arbre à gauche + page au centre ===================== -->
+ <Grid Grid.Row="1" ColumnDefinitions="232,*">
+
+ <!-- arbre chef -> mules: groupes d'équipe REPLIABLES (chevron) + bots solo -->
+ <Border Grid.Column="0" Background="#282828" BorderBrush="#1C1C1C" BorderThickness="0,0,1,0">
+ <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Padding="0,6">
+ <StackPanel Spacing="1">
+
+ <!-- groupes d'équipe -->
+ <ItemsControl ItemsSource="{Binding BotsVM.Teams}">
+ <ItemsControl.ItemTemplate>
+ <DataTemplate x:DataType="vm:Team">
+ <!-- Groupe visible seulement si l'équipe est LANCÉE en mode équipe (Active). Sinon ses membres
+ en jeu s'affichent comme des bots SOLO (SoloBots), pas sous un groupe non formé. -->
+ <StackPanel IsVisible="{Binding Active}">
+ <!-- en-tête: chevron + barre couleur + nom + compteur. Clic sur l'en-tête = plie/déplie -->
+ <Button Classes="teamhdr" Command="{Binding ToggleExpandedCommand}" AutomationProperties.Name="{Binding Name}">
+ <Grid ColumnDefinitions="Auto,Auto,*,Auto">
+ <ToggleButton Grid.Column="0" Classes="treechev" IsChecked="{Binding IsExpanded, Mode=TwoWay}" IsHitTestVisible="False" Focusable="False">
+ <PathIcon Classes="chev" Data="{DynamicResource IconChevronRight}" Width="10" Height="10" />
+ </ToggleButton>
+ <Border Grid.Column="1" Width="3" CornerRadius="2" Margin="2,3,8,3" Background="{Binding ColorBrush}" />
+ <TextBlock Grid.Column="2" Text="{Binding Name}" VerticalAlignment="Center" FontSize="12"
+ FontWeight="SemiBold" Foreground="#DADADA" TextTrimming="CharacterEllipsis" />
+ <Border Grid.Column="3" Background="#333333" CornerRadius="8" Padding="7,1" VerticalAlignment="Center" Margin="4,0,4,0">
+ <TextBlock Text="{Binding Members.Count}" FontSize="10.5" Foreground="#9A9A9A" />
+ </Border>
+ </Grid>
+ </Button>
+ <!-- membres (repliés quand !IsExpanded) -->
+ <ItemsControl ItemsSource="{Binding DisplayMembers}" IsVisible="{Binding IsExpanded}" Margin="14,0,0,4">
+ <ItemsControl.DataTemplates>
+ <DataTemplate DataType="vm:BotRowViewModel">
+ <ContentControl Content="{Binding}" ContentTemplate="{StaticResource BotRowTemplate}" />
+ </DataTemplate>
+ <DataTemplate DataType="vm:OfflineMemberViewModel">
+ <ContentControl Content="{Binding}" ContentTemplate="{StaticResource OfflineRowTemplate}" />
+ </DataTemplate>
+ </ItemsControl.DataTemplates>
+ </ItemsControl>
+ </StackPanel>
+ </DataTemplate>
+ </ItemsControl.ItemTemplate>
+ </ItemsControl>
+
+ <!-- bots SOLO (hors équipe active): inclut un membre d'équipe non formée lancé seul -->
+ <ItemsControl ItemsSource="{Binding BotsVM.SoloBots}" ItemTemplate="{StaticResource BotRowTemplate}" Margin="0,2,0,0" />
+
+ <!-- persos en « connexion auto » dont le compte n'est pas en jeu: grisés; clic -> modale planning -->
+ <StackPanel IsVisible="{Binding BotsVM.HasPlannedOffline}" Margin="0,6,0,0">
+ <TextBlock Text="{DynamicResource L.Planning.Offline.Header}" FontSize="11" FontWeight="SemiBold"
+ Foreground="#8A8A8A" Margin="14,4,8,4" />
+ <ItemsControl ItemsSource="{Binding BotsVM.PlannedOffline}">
+ <ItemsControl.ItemTemplate>
+ <DataTemplate x:DataType="vm:PlannedOfflineRow">
+ <Button Classes="botrow" Opacity="0.85" ToolTip.Tip="{Binding TipText}"
+ Command="{Binding $parent[UserControl].((vm:MainViewModel)DataContext).BotsVM.OpenPlannedCommand}"
+ CommandParameter="{Binding}">
+ <views:PlannedOfflineCard />
+ </Button>
+ </DataTemplate>
+ </ItemsControl.ItemTemplate>
+ </ItemsControl>
+ </StackPanel>
+
+ <!-- ÉTAT VIDE: aucun compte en jeu (ni perso planifié) -> expliquer comment en faire apparaître ici -->
+ <StackPanel IsVisible="{Binding BotsVM.ShowNoBotsHint}" Spacing="9" Margin="18,44,18,0" HorizontalAlignment="Center">
+ <PathIcon Data="{DynamicResource IconRobot}" Width="30" Height="30" Foreground="#565656" HorizontalAlignment="Center" />
+ <TextBlock Text="{DynamicResource L.Snow.NoBotsTitle}" FontSize="12.5" FontWeight="SemiBold" Foreground="#9A9A9A"
+ HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" />
+ <TextBlock Text="{DynamicResource L.Snow.NoBotsHint}" FontSize="11" Foreground="#6E6E6E"
+ HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" LineHeight="16" />
+ <Button Classes="snowmenu" HorizontalAlignment="Center" Margin="0,4,0,0"
+ Command="{Binding ShowAccountsCommand}" Content="{DynamicResource L.Snow.NoBotsGo}" />
+ </StackPanel>
+
+ </StackPanel>
+ </ScrollViewer>
+ </Border>
+
+ <!-- page courante (mêmes vues que la skin par défaut, résolues via le ViewLocator) -->
+ <Border Grid.Column="1" Background="#3F3F3F">
+ <TransitioningContentControl Content="{Binding SnowPage}">
+ <TransitioningContentControl.PageTransition>
+ <CrossFade Duration="0:0:0.20" />
+ </TransitioningContentControl.PageTransition>
+ </TransitioningContentControl>
+ </Border>
+ </Grid>
+
+ <!-- ===================== Barre de statut ===================== -->
+ <Border Grid.Row="2" Background="#262626" BorderBrush="#1C1C1C" BorderThickness="0,1,0,0">
+ <Grid ColumnDefinitions="*,Auto" Margin="12,0">
+ <TextBlock Grid.Column="0" VerticalAlignment="Center" FontSize="11" Foreground="#9A9A9A"
+ Text="{Binding BotsVM.Bots.Count, StringFormat='{}{0} bots'}" />
+ <TextBlock Grid.Column="1" VerticalAlignment="Center" FontSize="11" Foreground="#8A8A8A" Text="{Binding SubscriptionText}" />
+ </Grid>
+ </Border>
+ </Grid>
+</UserControl>

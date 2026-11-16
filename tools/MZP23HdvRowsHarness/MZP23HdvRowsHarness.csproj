@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.1.1" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <Compile Include="Program.cs" />
+    <Compile Include="../../GivreClone.App/ViewModels/HdvRows.cs" Link="HdvRows.cs" />
+    <Compile Include="../../GivreClone.App/ViewModels/HdvRowLogic.cs" Link="HdvRowLogic.cs" />
+    <Compile Include="../../GivreClone.App/ViewModels/HdvTradeLogic.cs" Link="HdvTradeLogic.cs" />
+    <Compile Include="../../GivreClone.App/Services/HdvProfile.cs" Link="HdvProfile.cs" />
+    <Compile Include="../../GivreClone.App/Services/HdvTradeSettings.cs" Link="HdvTradeSettings.cs" />
+  </ItemGroup>
+</Project>

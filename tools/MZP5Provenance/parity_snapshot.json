@@ -1,0 +1,337 @@
+{
+  "schema": 1,
+  "method": "targeted_source_lexical_sha256_only_not_decompiled",
+  "target_version": "3.7.10.10",
+  "reference_exe_v131_sha256_not_reverified": "21C9DE5BA4D15763E9DAF029FD7432E3574EA113C9D1F44175FA9E0590290758",
+  "provider_projects_present": {
+    "GivreCore": true,
+    "GivreLauncher.Core": true
+  },
+  "capabilities": [
+    {
+      "capability": "accounts_offline",
+      "source_classification": "isolated_test_io",
+      "all_symbols_present": true,
+      "evidence": [
+        {
+          "file": "GivreClone.App/Services/MZP3TestAccountService.cs",
+          "symbol": "CreateProfile(",
+          "line": 131,
+          "found": true,
+          "sha256": "4f5d5db63e6f4a87fc18eef0d133fb9f58da1fcc04fbcaa1730f45a8511bb909"
+        },
+        {
+          "file": "GivreClone.App/Views/MZP4TestAccountsPanel.cs",
+          "symbol": "PrepareRecovery(",
+          "line": 115,
+          "found": true,
+          "sha256": "5be73cc3baf6917d509ffa93a6c936212cf1fcea988d32aae22994897f0af64f"
+        }
+      ],
+      "runtime_gameplay_certified": false,
+      "server_ack_certified": false
+    },
+    {
+      "capability": "accounts_original",
+      "source_classification": "blocked_provider",
+      "all_symbols_present": true,
+      "evidence": [
+        {
+          "file": "GivreClone.App/ViewModels/AccountsViewModel.cs",
+          "symbol": "class AccountsViewModel",
+          "line": 256,
+          "found": true,
+          "sha256": "42792a098b62bdb4d04bdb7a9c85956c93754e56d9a49681acd46a14f6444cfb"
+        },
+        {
+          "file": "GivreClone.App/Views/AccountsView.axaml",
+          "symbol": "<UserControl",
+          "line": 1,
+          "found": true,
+          "sha256": "0466b38c85a6add99b538c7f89afb1a0f4b1be86c5fd51913e8b52de2dd48a55"
+        }
+      ],
+      "runtime_gameplay_certified": false,
+      "server_ack_certified": false
+    },
+    {
+      "capability": "server_character",
+      "source_classification": "blocked_provider",
+      "all_symbols_present": true,
+      "evidence": [
+        {
+          "file": "GivreClone.App/ViewModels/AccountsViewModel.ServerPick.cs",
+          "symbol": "Server",
+          "line": 28,
+          "found": true,
+          "sha256": "82c2baf0676a49a3240cc18ae5dbfcad7c7ddf5692d7ebaf0d4a94b8a831d1d7"
+        },
+        {
+          "file": "GivreClone.App/Services/LaunchService.Character.cs",
+          "symbol": "Character",
+          "line": 27,
+          "found": true,
+          "sha256": "083006e406ff5d5cbac557ca3941f071c58a29d0a2509114b7c30ab09c225f2d"
+        }
+      ],
+      "runtime_gameplay_certified": false,
+      "server_ack_certified": false
+    },
+    {
+      "capability": "launcher_auth",
+      "source_classification": "blocked_provider",
+      "all_symbols_present": true,
+      "evidence": [
+        {
+          "file": "GivreClone.App/Services/LaunchService.cs",
+          "symbol": "GameLauncher",
+          "line": 39,
+          "found": true,
+          "sha256": "5c3cdc7564dd47ae7ac35ba8acd31153b927d19fc6b6a81e07068e9de5f41057"
+        },
+        {
+          "file": "GivreClone.App/Services/MZP4LauncherPreflight.cs",
+          "symbol": "IsConfigurationCandidate",
+          "line": 61,
+          "found": true,
+          "sha256": "745d37d9cd747c5e18d6cabbe5e6e66dc2c50f70a31d31a9b0594f666847997b"
+        }
+      ],
+      "runtime_gameplay_certified": false,
+      "server_ack_certified": false
+    },
+    {
+      "capability": "mitm_transport",
+      "source_classification": "blocked_provider",
+      "all_symbols_present": true,
+      "evidence": [
+        {
+          "file": "GivreClone.App/Services/Transport/MitmTransport.cs",
+          "symbol": "OnData",
+          "line": 20,
+          "found": true,
+          "sha256": "d863e7150d69833c16ce305a967e933206801182a5d99630aa0267886b89600d"
+        },
+        {
+          "file": "GivreClone.Engine/BotHost.cs",
+          "symbol": "TcpProxyServer",
+          "line": 15,
+          "found": true,
+          "sha256": "ac2a83c947838a3615c2253afda4b4c552e82a85d08c6bc898d29b59c96c1523"
+        }
+      ],
+      "runtime_gameplay_certified": false,
+      "server_ack_certified": false
+    },
+    {
+      "capability": "protobuf_offline",
+      "source_classification": "offline_codec",
+      "all_symbols_present": true,
+      "evidence": [
+        {
+          "file": "GivreClone.Protocol/MZP3RawProtobuf.cs",
+          "symbol": "TryParse(",
+          "line": 86,
+          "found": true,
+          "sha256": "457b03302ee3496f9399e2f4f81c8460a9a0f0e70444cebff39cd1fe84f459ef"
+        },
+        {
+          "file": "GivreClone.Protocol/MZP4ProtocolAdapter.cs",
+          "symbol": "TryReadClientRequest(",
+          "line": 165,
+          "found": true,
+          "sha256": "c79a02e9c93362921737e52ec5fcad9117c9c5b742cc9389cf3acc49501f13cc"
+        }
+      ],
+      "runtime_gameplay_certified": false,
+      "server_ack_certified": false
+    },
+    {
+      "capability": "combat",
+      "source_classification": "blocked_provider",
+      "all_symbols_present": true,
+      "evidence": [
+        {
+          "file": "GivreClone.App/Services/LaunchService.Combat.cs",
+          "symbol": "combat",
+          "line": 21,
+          "found": true,
+          "sha256": "c3cd55f23d9ac121e18dd60a45f64c30555d1ddc6b6252da9c477ac5a74f0127"
+        },
+        {
+          "file": "GivreClone.App/ViewModels/BotsViewModel.Combat.cs",
+          "symbol": "combat",
+          "line": 25,
+          "found": true,
+          "sha256": "39f9a3b29087bcc2c5060ea613bc931eb3913806693512c797bc94c961e094ba"
+        }
+      ],
+      "runtime_gameplay_certified": false,
+      "server_ack_certified": false
+    },
+    {
+      "capability": "maps_movement",
+      "source_classification": "blocked_provider",
+      "all_symbols_present": true,
+      "evidence": [
+        {
+          "file": "GivreClone.Protocol/MapPathfinder.cs",
+          "symbol": "class MapPathfinder",
+          "line": 12,
+          "found": true,
+          "sha256": "4dacc1fc8690284ef9ef2c5ed6eadec52353d7ac7b05d5fd8da403fa2a387744"
+        },
+        {
+          "file": "GivreClone.App/Services/LaunchService.GameLink.cs",
+          "symbol": "map",
+          "line": 79,
+          "found": true,
+          "sha256": "a9ddf5fcb9a8cb388890417dae5ead1fec908debdd3201da78b268b1bd370024"
+        }
+      ],
+      "runtime_gameplay_certified": false,
+      "server_ack_certified": false
+    },
+    {
+      "capability": "lua",
+      "source_classification": "blocked_provider",
+      "all_symbols_present": true,
+      "evidence": [
+        {
+          "file": "GivreClone.App/ViewModels/BotsViewModel.Lua.cs",
+          "symbol": "Lua",
+          "line": 18,
+          "found": true,
+          "sha256": "dcea4449466f895ddcac416c07d3e28c13b9b68ab5fb3c4ff5a7d7af80f4084b"
+        },
+        {
+          "file": "GivreClone.App/Services/GivreLuaHost.Bindings.cs",
+          "symbol": "Lua",
+          "line": 6,
+          "found": true,
+          "sha256": "f1caedbdf8d1cd6506b7617b7c1e569bb3e8fcbc0efd561f80326c9f1b63b843"
+        }
+      ],
+      "runtime_gameplay_certified": false,
+      "server_ack_certified": false
+    },
+    {
+      "capability": "inventory",
+      "source_classification": "blocked_provider",
+      "all_symbols_present": true,
+      "evidence": [
+        {
+          "file": "GivreClone.App/Services/InventoryStore.cs",
+          "symbol": "Inventory",
+          "line": 8,
+          "found": true,
+          "sha256": "05d74da3f668efd5700edd5cfdee44e7244f74d733a00edd9645af2a46f00576"
+        },
+        {
+          "file": "GivreClone.Protocol/InventoryReader.cs",
+          "symbol": "Inventory",
+          "line": 9,
+          "found": true,
+          "sha256": "b9ea86833959a2341383ca50e4949fa91a0d4ab0bcb4575bd06c0ac64a2cb2c5"
+        }
+      ],
+      "runtime_gameplay_certified": false,
+      "server_ack_certified": false
+    },
+    {
+      "capability": "bank",
+      "source_classification": "blocked_provider",
+      "all_symbols_present": true,
+      "evidence": [
+        {
+          "file": "GivreClone.App/Services/LaunchService.Bank.cs",
+          "symbol": "Bank",
+          "line": 26,
+          "found": true,
+          "sha256": "7079d237f625532d354c6e1454b51ba8ad97d2930c91116ad1ca6f3f36b70de1"
+        },
+        {
+          "file": "GivreClone.App/ViewModels/BotsViewModel.cs",
+          "symbol": "Bank",
+          "line": 89,
+          "found": true,
+          "sha256": "529e8bf266faf51bab6bbcd8ccf3867f961ba6a08c05b3f3280a13dab33ea174"
+        }
+      ],
+      "runtime_gameplay_certified": false,
+      "server_ack_certified": false
+    },
+    {
+      "capability": "hdv_commerce",
+      "source_classification": "blocked_provider",
+      "all_symbols_present": true,
+      "evidence": [
+        {
+          "file": "GivreClone.App/Services/LaunchService.Hdv.cs",
+          "symbol": "Hdv",
+          "line": 25,
+          "found": true,
+          "sha256": "1376d829ae0d44962783d05f4df69110f1fd1961c2ee4a3131b6b29e8046ec88"
+        },
+        {
+          "file": "GivreClone.App/ViewModels/HdvViewModel.cs",
+          "symbol": "Hdv",
+          "line": 18,
+          "found": true,
+          "sha256": "2a59fea8b0b64d7177d316f73a63e5884cb6abc49748edf70e3cccd3c19e767f"
+        }
+      ],
+      "runtime_gameplay_certified": false,
+      "server_ack_certified": false
+    },
+    {
+      "capability": "planning",
+      "source_classification": "blocked_provider",
+      "all_symbols_present": true,
+      "evidence": [
+        {
+          "file": "GivreClone.App/Views/PlanningEditor.axaml",
+          "symbol": "<UserControl",
+          "line": 1,
+          "found": true,
+          "sha256": "7514786bc133d86410a208245a281fb9b22cd7b188586bb782dd6a45563f9861"
+        },
+        {
+          "file": "GivreClone.App/ViewModels/BotsViewModel.Planning.cs",
+          "symbol": "Planning",
+          "line": 24,
+          "found": true,
+          "sha256": "8642e61bfe3b97eab5575f247b822c226b9e09b0536dfe0e3a4d9050417522fd"
+        }
+      ],
+      "runtime_gameplay_certified": false,
+      "server_ack_certified": false
+    },
+    {
+      "capability": "recovery",
+      "source_classification": "offline_journal",
+      "all_symbols_present": true,
+      "evidence": [
+        {
+          "file": "GivreClone.Engine/Recovery/MZP0RecoveryJournal.cs",
+          "symbol": "OpenDispatchWindow(",
+          "line": 165,
+          "found": true,
+          "sha256": "30bbe501204ca5ddac8e6e442d0050f02142316b9aea10890941525a798dd1aa"
+        },
+        {
+          "file": "GivreClone.Engine/Recovery/MZP5RecoveryHealthProjection.cs",
+          "symbol": "Read(",
+          "line": 49,
+          "found": true,
+          "sha256": "fa1b0039c0fcfc3417d93d5b1756c2f03213ff7051a0d668d008d39b3f7ed5f8"
+        }
+      ],
+      "runtime_gameplay_certified": false,
+      "server_ack_certified": false
+    }
+  ],
+  "decompiled_original_exe": false,
+  "original_process_accessed": false,
+  "live_network_or_gameplay_tested": false
+}

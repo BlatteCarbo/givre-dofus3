@@ -1,0 +1,21 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="GivreClone.App.Views.ForgeOverlayWindow"
+        Title="Givre - Conseil FM"
+        SystemDecorations="None"
+        ShowInTaskbar="False"
+        CanResize="False"
+        Topmost="True"
+        Background="Transparent"
+        TransparencyLevelHint="Transparent"
+        WindowStartupLocation="Manual">
+    <Canvas Name="OverlayCanvas" Background="Transparent" PointerPressed="OnCalibrationClick">
+        <Rectangle Name="AdviceFrame" Stroke="#30D158" StrokeThickness="3" IsVisible="False" IsHitTestVisible="False" />
+        <Border Name="AdviceLabel" Background="#CC000000" CornerRadius="4" Padding="6,3" IsVisible="False" IsHitTestVisible="False">
+            <TextBlock Name="AdviceText" Foreground="#30D158" FontWeight="Bold" FontSize="13" />
+        </Border>
+        <Border Name="CalibrationPrompt" Background="#DD000000" CornerRadius="6" Padding="12,8" IsVisible="False" IsHitTestVisible="False">
+            <TextBlock Name="CalibrationPromptText" Foreground="White" FontSize="14" />
+        </Border>
+    </Canvas>
+</Window>

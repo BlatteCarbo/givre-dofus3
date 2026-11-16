@@ -1,0 +1,3640 @@
+{
+  "binary_files_indexed": 705,
+  "classification": "offline_readonly_bounded_inventory",
+  "coverage_complete_within_limits": true,
+  "directories_scanned": 209,
+  "entries_inspected": 1483,
+  "files": [
+    {
+      "bytes": 2344448,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Avalonia.Base.dll"
+    },
+    {
+      "bytes": 1341952,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Avalonia.Controls.dll"
+    },
+    {
+      "bytes": 214528,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Avalonia.DesignerSupport.dll"
+    },
+    {
+      "bytes": 242688,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Avalonia.Dialogs.dll"
+    },
+    {
+      "bytes": 4096,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Avalonia.dll"
+    },
+    {
+      "bytes": 45568,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Avalonia.Markup.dll"
+    },
+    {
+      "bytes": 74752,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Avalonia.Markup.Xaml.dll"
+    },
+    {
+      "bytes": 15360,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Avalonia.Metal.dll"
+    },
+    {
+      "bytes": 15360,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Avalonia.MicroCom.dll"
+    },
+    {
+      "bytes": 128512,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Avalonia.OpenGL.dll"
+    },
+    {
+      "bytes": 75776,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Avalonia.Remote.Protocol.dll"
+    },
+    {
+      "bytes": 190976,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Avalonia.Vulkan.dll"
+    },
+    {
+      "bytes": 146760,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/CommunityToolkit.Mvvm.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16944,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/cs/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20552,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/cs/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23592,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/cs/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/de/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/de/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/de/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/de/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/de/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16952,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/es/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/es/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/es/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/es/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/es/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/fr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/fr/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/fr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/fr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/fr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16944,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/it/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/it/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/it/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/it/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/it/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/ja/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/ja/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 22072,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/ja/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21576,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/ja/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24616,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/ja/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/ko/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/ko/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21536,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/ko/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/ko/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/ko/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 15360,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/MicroCom.Runtime.dll"
+    },
+    {
+      "bytes": 137264,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Microsoft.TestPlatform.CommunicationUtilities.dll"
+    },
+    {
+      "bytes": 97824,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Microsoft.TestPlatform.CoreUtilities.dll"
+    },
+    {
+      "bytes": 315416,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Microsoft.TestPlatform.CrossPlatEngine.dll"
+    },
+    {
+      "bytes": 53280,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Microsoft.TestPlatform.PlatformAbstractions.dll"
+    },
+    {
+      "bytes": 67104,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Microsoft.TestPlatform.Utilities.dll"
+    },
+    {
+      "bytes": 17328,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll"
+    },
+    {
+      "bytes": 247856,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Microsoft.VisualStudio.TestPlatform.Common.dll"
+    },
+    {
+      "bytes": 334888,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll"
+    },
+    {
+      "bytes": 91136,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/MZP0OperatorHarness.dll"
+    },
+    {
+      "bytes": 695336,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/Newtonsoft.Json.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/pl/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/pl/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21536,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/pl/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21056,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/pl/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/pl/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16424,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/ru/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/ru/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 23080,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/ru/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 23080,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/ru/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 26152,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/ru/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 48672,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/testhost.dll"
+    },
+    {
+      "bytes": 169528,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/testhost.exe"
+    },
+    {
+      "bytes": 16920,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/tr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/tr/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21040,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/tr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20520,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/tr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23584,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/tr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 21928,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/xunit.abstractions.dll"
+    },
+    {
+      "bytes": 185552,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/xunit.assert.dll"
+    },
+    {
+      "bytes": 70352,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/xunit.core.dll"
+    },
+    {
+      "bytes": 279760,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/xunit.execution.dotnet.dll"
+    },
+    {
+      "bytes": 84176,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/xunit.runner.reporters.netcoreapp10.dll"
+    },
+    {
+      "bytes": 255184,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/xunit.runner.utility.netcoreapp10.dll"
+    },
+    {
+      "bytes": 180944,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/xunit.runner.visualstudio.testadapter.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 20008,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20000,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23112,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16920,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 20520,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20000,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23072,
+      "family": "other",
+      "relative_path": "GivreClone.App/bin/MZP0OperatorHarness/Debug/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 50688,
+      "family": "givre_named",
+      "relative_path": "GivreRelayAgent/bin/Debug/net10.0/GivreRelay.dll"
+    },
+    {
+      "bytes": 162304,
+      "family": "givre_named",
+      "relative_path": "GivreRelayAgent/bin/Debug/net10.0/GivreRelay.exe"
+    },
+    {
+      "bytes": 38664,
+      "family": "other",
+      "relative_path": "GivreRelayAgent/bin/Debug/net10.0/System.Security.Cryptography.ProtectedData.dll"
+    },
+    {
+      "bytes": 46592,
+      "family": "givre_named",
+      "relative_path": "GivreRelayAgent/bin/Release/net10.0/GivreRelay.dll"
+    },
+    {
+      "bytes": 162304,
+      "family": "givre_named",
+      "relative_path": "GivreRelayAgent/bin/Release/net10.0/GivreRelay.exe"
+    },
+    {
+      "bytes": 38664,
+      "family": "other",
+      "relative_path": "GivreRelayAgent/bin/Release/net10.0/System.Security.Cryptography.ProtectedData.dll"
+    },
+    {
+      "bytes": 286208,
+      "family": "other",
+      "relative_path": "native/GivreTurboRuntime/v0.4.0-skipper1.0.5-speedhack1.0.3/DofusCombatAnimationSkipper.dll"
+    },
+    {
+      "bytes": 310272,
+      "family": "other",
+      "relative_path": "native/GivreTurboRuntime/v0.4.0-skipper1.0.5-speedhack1.0.3/DofusCombatSpeedHack.dll"
+    },
+    {
+      "bytes": 211968,
+      "family": "other",
+      "relative_path": "native/GivreTurboRuntime/v0.4.0-skipper1.0.5-speedhack1.0.3/DofusNativeBootstrap.dll"
+    },
+    {
+      "bytes": 2627584,
+      "family": "other",
+      "relative_path": "native/GivreTurboRuntime/v0.4.0-skipper1.0.5-speedhack1.0.3/DofusNativeHost.dll"
+    },
+    {
+      "bytes": 11868672,
+      "family": "givre_named",
+      "relative_path": "tools/GivreTurboLiveHarness/bin/Release/net10.0/GivreKama.dll"
+    },
+    {
+      "bytes": 57344,
+      "family": "givre_named",
+      "relative_path": "tools/GivreTurboLiveHarness/bin/Release/net10.0/GivreTurboLiveHarness.dll"
+    },
+    {
+      "bytes": 162304,
+      "family": "givre_named",
+      "relative_path": "tools/GivreTurboLiveHarness/bin/Release/net10.0/GivreTurboLiveHarness.exe"
+    },
+    {
+      "bytes": 286208,
+      "family": "other",
+      "relative_path": "tools/GivreTurboLiveHarness/bin/Release/net10.0/NativeTurboRuntime/DofusCombatAnimationSkipper.dll"
+    },
+    {
+      "bytes": 310272,
+      "family": "other",
+      "relative_path": "tools/GivreTurboLiveHarness/bin/Release/net10.0/NativeTurboRuntime/DofusCombatSpeedHack.dll"
+    },
+    {
+      "bytes": 211968,
+      "family": "other",
+      "relative_path": "tools/GivreTurboLiveHarness/bin/Release/net10.0/NativeTurboRuntime/DofusNativeBootstrap.dll"
+    },
+    {
+      "bytes": 2627584,
+      "family": "other",
+      "relative_path": "tools/GivreTurboLiveHarness/bin/Release/net10.0/NativeTurboRuntime/DofusNativeHost.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16944,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20552,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/cs/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23592,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/cs/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/de/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/de/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/de/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/de/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/de/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16952,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/es/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/es/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/es/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/es/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/es/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/fr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/fr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16944,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/it/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/it/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/it/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/it/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/it/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 22072,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21576,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/ja/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24616,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/ja/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21536,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/ko/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/ko/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 137264,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/Microsoft.TestPlatform.CommunicationUtilities.dll"
+    },
+    {
+      "bytes": 97824,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/Microsoft.TestPlatform.CoreUtilities.dll"
+    },
+    {
+      "bytes": 315416,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/Microsoft.TestPlatform.CrossPlatEngine.dll"
+    },
+    {
+      "bytes": 53280,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/Microsoft.TestPlatform.PlatformAbstractions.dll"
+    },
+    {
+      "bytes": 67104,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/Microsoft.TestPlatform.Utilities.dll"
+    },
+    {
+      "bytes": 17328,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll"
+    },
+    {
+      "bytes": 247856,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/Microsoft.VisualStudio.TestPlatform.Common.dll"
+    },
+    {
+      "bytes": 334888,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll"
+    },
+    {
+      "bytes": 45568,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/MZP0PacketBusHarness.dll"
+    },
+    {
+      "bytes": 695336,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/Newtonsoft.Json.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21536,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21056,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/pl/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/pl/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16424,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 23080,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 23080,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/ru/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 26152,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/ru/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 48672,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/testhost.dll"
+    },
+    {
+      "bytes": 169528,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/testhost.exe"
+    },
+    {
+      "bytes": 16920,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21040,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20520,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/tr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23584,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/tr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 21928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/xunit.abstractions.dll"
+    },
+    {
+      "bytes": 185552,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/xunit.assert.dll"
+    },
+    {
+      "bytes": 70352,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/xunit.core.dll"
+    },
+    {
+      "bytes": 279760,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/xunit.execution.dotnet.dll"
+    },
+    {
+      "bytes": 84176,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/xunit.runner.reporters.netcoreapp10.dll"
+    },
+    {
+      "bytes": 255184,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/xunit.runner.utility.netcoreapp10.dll"
+    },
+    {
+      "bytes": 180944,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/xunit.runner.visualstudio.testadapter.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 20008,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20000,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23112,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16920,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 20520,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20000,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23072,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Debug/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16944,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/cs/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20552,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/cs/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23592,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/cs/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/de/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/de/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/de/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/de/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/de/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16952,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/es/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/es/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/es/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/es/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/es/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/fr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/fr/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/fr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/fr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/fr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16944,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/it/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/it/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/it/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/it/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/it/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/ja/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/ja/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 22072,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/ja/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21576,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/ja/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24616,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/ja/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/ko/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/ko/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21536,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/ko/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/ko/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/ko/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 137264,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/Microsoft.TestPlatform.CommunicationUtilities.dll"
+    },
+    {
+      "bytes": 97824,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/Microsoft.TestPlatform.CoreUtilities.dll"
+    },
+    {
+      "bytes": 315416,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/Microsoft.TestPlatform.CrossPlatEngine.dll"
+    },
+    {
+      "bytes": 53280,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/Microsoft.TestPlatform.PlatformAbstractions.dll"
+    },
+    {
+      "bytes": 67104,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/Microsoft.TestPlatform.Utilities.dll"
+    },
+    {
+      "bytes": 17328,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll"
+    },
+    {
+      "bytes": 247856,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/Microsoft.VisualStudio.TestPlatform.Common.dll"
+    },
+    {
+      "bytes": 334888,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll"
+    },
+    {
+      "bytes": 42496,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/MZP0PacketBusHarness.dll"
+    },
+    {
+      "bytes": 695336,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/Newtonsoft.Json.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/pl/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/pl/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21536,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/pl/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21056,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/pl/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/pl/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16424,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/pt-BR/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/pt-BR/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/pt-BR/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/ru/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/ru/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 23080,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/ru/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 23080,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/ru/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 26152,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/ru/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 48672,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/testhost.dll"
+    },
+    {
+      "bytes": 169528,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/testhost.exe"
+    },
+    {
+      "bytes": 16920,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/tr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/tr/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21040,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/tr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20520,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/tr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23584,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/tr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 21928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/xunit.abstractions.dll"
+    },
+    {
+      "bytes": 185552,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/xunit.assert.dll"
+    },
+    {
+      "bytes": 70352,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/xunit.core.dll"
+    },
+    {
+      "bytes": 279760,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/xunit.execution.dotnet.dll"
+    },
+    {
+      "bytes": 84176,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/xunit.runner.reporters.netcoreapp10.dll"
+    },
+    {
+      "bytes": 255184,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/xunit.runner.utility.netcoreapp10.dll"
+    },
+    {
+      "bytes": 180944,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/xunit.runner.visualstudio.testadapter.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/zh-Hans/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/zh-Hans/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 20008,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/zh-Hans/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20000,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23112,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16920,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 20520,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20000,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23072,
+      "family": "other",
+      "relative_path": "tools/MZP0PacketBusHarness/bin/Release/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16944,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20552,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/cs/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23592,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/cs/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/de/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/de/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/de/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/de/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/de/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16952,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/es/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/es/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/es/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/es/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/es/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/fr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/fr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16944,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/it/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/it/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/it/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/it/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/it/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 22072,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21576,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/ja/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24616,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/ja/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21536,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/ko/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/ko/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 137264,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/Microsoft.TestPlatform.CommunicationUtilities.dll"
+    },
+    {
+      "bytes": 97824,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/Microsoft.TestPlatform.CoreUtilities.dll"
+    },
+    {
+      "bytes": 315416,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/Microsoft.TestPlatform.CrossPlatEngine.dll"
+    },
+    {
+      "bytes": 53280,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/Microsoft.TestPlatform.PlatformAbstractions.dll"
+    },
+    {
+      "bytes": 67104,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/Microsoft.TestPlatform.Utilities.dll"
+    },
+    {
+      "bytes": 17328,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll"
+    },
+    {
+      "bytes": 247856,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/Microsoft.VisualStudio.TestPlatform.Common.dll"
+    },
+    {
+      "bytes": 334888,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll"
+    },
+    {
+      "bytes": 23552,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/MZP0ProtocolAdmissionHarness.dll"
+    },
+    {
+      "bytes": 695336,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/Newtonsoft.Json.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21536,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21056,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/pl/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/pl/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16424,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 23080,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 23080,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/ru/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 26152,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/ru/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 48672,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/testhost.dll"
+    },
+    {
+      "bytes": 169528,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/testhost.exe"
+    },
+    {
+      "bytes": 16920,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21040,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20520,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/tr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23584,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/tr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 21928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/xunit.abstractions.dll"
+    },
+    {
+      "bytes": 185552,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/xunit.assert.dll"
+    },
+    {
+      "bytes": 70352,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/xunit.core.dll"
+    },
+    {
+      "bytes": 279760,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/xunit.execution.dotnet.dll"
+    },
+    {
+      "bytes": 84176,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/xunit.runner.reporters.netcoreapp10.dll"
+    },
+    {
+      "bytes": 255184,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/xunit.runner.utility.netcoreapp10.dll"
+    },
+    {
+      "bytes": 180944,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/xunit.runner.visualstudio.testadapter.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 20008,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20000,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23112,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16920,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 20520,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20000,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23072,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Debug/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16944,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/cs/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20552,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/cs/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23592,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/cs/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/de/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/de/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/de/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/de/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/de/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16952,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/es/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/es/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/es/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/es/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/es/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/fr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/fr/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/fr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/fr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/fr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16944,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/it/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/it/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/it/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/it/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/it/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/ja/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/ja/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 22072,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/ja/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21576,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/ja/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24616,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/ja/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/ko/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/ko/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21536,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/ko/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/ko/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/ko/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 137264,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/Microsoft.TestPlatform.CommunicationUtilities.dll"
+    },
+    {
+      "bytes": 97824,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/Microsoft.TestPlatform.CoreUtilities.dll"
+    },
+    {
+      "bytes": 315416,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/Microsoft.TestPlatform.CrossPlatEngine.dll"
+    },
+    {
+      "bytes": 53280,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/Microsoft.TestPlatform.PlatformAbstractions.dll"
+    },
+    {
+      "bytes": 67104,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/Microsoft.TestPlatform.Utilities.dll"
+    },
+    {
+      "bytes": 17328,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll"
+    },
+    {
+      "bytes": 247856,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/Microsoft.VisualStudio.TestPlatform.Common.dll"
+    },
+    {
+      "bytes": 334888,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll"
+    },
+    {
+      "bytes": 22528,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/MZP0ProtocolAdmissionHarness.dll"
+    },
+    {
+      "bytes": 695336,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/Newtonsoft.Json.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/pl/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/pl/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21536,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/pl/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21056,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/pl/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/pl/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16424,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/pt-BR/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/pt-BR/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/pt-BR/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/ru/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/ru/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 23080,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/ru/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 23080,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/ru/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 26152,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/ru/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 48672,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/testhost.dll"
+    },
+    {
+      "bytes": 169528,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/testhost.exe"
+    },
+    {
+      "bytes": 16920,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/tr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/tr/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21040,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/tr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20520,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/tr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23584,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/tr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 21928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/xunit.abstractions.dll"
+    },
+    {
+      "bytes": 185552,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/xunit.assert.dll"
+    },
+    {
+      "bytes": 70352,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/xunit.core.dll"
+    },
+    {
+      "bytes": 279760,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/xunit.execution.dotnet.dll"
+    },
+    {
+      "bytes": 84176,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/xunit.runner.reporters.netcoreapp10.dll"
+    },
+    {
+      "bytes": 255184,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/xunit.runner.utility.netcoreapp10.dll"
+    },
+    {
+      "bytes": 180944,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/xunit.runner.visualstudio.testadapter.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/zh-Hans/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/zh-Hans/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 20008,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/zh-Hans/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20000,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23112,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16920,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 20520,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20000,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23072,
+      "family": "other",
+      "relative_path": "tools/MZP0ProtocolAdmissionHarness/bin/Release/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16944,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20552,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/cs/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23592,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/cs/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/de/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/de/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/de/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/de/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/de/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16952,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/es/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/es/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/es/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/es/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/es/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/fr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/fr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16944,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/it/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/it/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/it/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/it/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/it/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 22072,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21576,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/ja/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24616,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/ja/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21536,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/ko/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/ko/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 137264,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/Microsoft.TestPlatform.CommunicationUtilities.dll"
+    },
+    {
+      "bytes": 97824,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/Microsoft.TestPlatform.CoreUtilities.dll"
+    },
+    {
+      "bytes": 315416,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/Microsoft.TestPlatform.CrossPlatEngine.dll"
+    },
+    {
+      "bytes": 53280,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/Microsoft.TestPlatform.PlatformAbstractions.dll"
+    },
+    {
+      "bytes": 67104,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/Microsoft.TestPlatform.Utilities.dll"
+    },
+    {
+      "bytes": 17328,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll"
+    },
+    {
+      "bytes": 247856,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/Microsoft.VisualStudio.TestPlatform.Common.dll"
+    },
+    {
+      "bytes": 334888,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll"
+    },
+    {
+      "bytes": 116736,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/MZP0RecoveryHarness.dll"
+    },
+    {
+      "bytes": 695336,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/Newtonsoft.Json.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21536,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21056,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/pl/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/pl/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16424,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 23080,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 23080,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/ru/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 26152,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/ru/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 48672,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/testhost.dll"
+    },
+    {
+      "bytes": 169528,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/testhost.exe"
+    },
+    {
+      "bytes": 16920,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21040,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20520,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/tr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23584,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/tr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 21928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/xunit.abstractions.dll"
+    },
+    {
+      "bytes": 185552,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/xunit.assert.dll"
+    },
+    {
+      "bytes": 70352,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/xunit.core.dll"
+    },
+    {
+      "bytes": 279760,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/xunit.execution.dotnet.dll"
+    },
+    {
+      "bytes": 84176,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/xunit.runner.reporters.netcoreapp10.dll"
+    },
+    {
+      "bytes": 255184,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/xunit.runner.utility.netcoreapp10.dll"
+    },
+    {
+      "bytes": 180944,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/xunit.runner.visualstudio.testadapter.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 20008,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20000,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23112,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16920,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 20520,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20000,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23072,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Debug/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16944,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/cs/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20552,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/cs/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23592,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/cs/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/de/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/de/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/de/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/de/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/de/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16952,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/es/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/es/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/es/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/es/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/es/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/fr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/fr/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/fr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/fr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/fr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16944,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/it/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/it/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/it/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/it/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/it/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/ja/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/ja/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 22072,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/ja/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21576,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/ja/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24616,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/ja/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/ko/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/ko/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21536,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/ko/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/ko/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/ko/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 137264,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/Microsoft.TestPlatform.CommunicationUtilities.dll"
+    },
+    {
+      "bytes": 97824,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/Microsoft.TestPlatform.CoreUtilities.dll"
+    },
+    {
+      "bytes": 315416,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/Microsoft.TestPlatform.CrossPlatEngine.dll"
+    },
+    {
+      "bytes": 53280,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/Microsoft.TestPlatform.PlatformAbstractions.dll"
+    },
+    {
+      "bytes": 67104,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/Microsoft.TestPlatform.Utilities.dll"
+    },
+    {
+      "bytes": 17328,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll"
+    },
+    {
+      "bytes": 247856,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/Microsoft.VisualStudio.TestPlatform.Common.dll"
+    },
+    {
+      "bytes": 334888,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll"
+    },
+    {
+      "bytes": 109568,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/MZP0RecoveryHarness.dll"
+    },
+    {
+      "bytes": 695336,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/Newtonsoft.Json.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/pl/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/pl/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21536,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/pl/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21056,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/pl/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/pl/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16424,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/pt-BR/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/pt-BR/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/pt-BR/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/ru/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/ru/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 23080,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/ru/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 23080,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/ru/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 26152,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/ru/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 48672,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/testhost.dll"
+    },
+    {
+      "bytes": 169528,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/testhost.exe"
+    },
+    {
+      "bytes": 16920,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/tr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/tr/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21040,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/tr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20520,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/tr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23584,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/tr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 21928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/xunit.abstractions.dll"
+    },
+    {
+      "bytes": 185552,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/xunit.assert.dll"
+    },
+    {
+      "bytes": 70352,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/xunit.core.dll"
+    },
+    {
+      "bytes": 279760,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/xunit.execution.dotnet.dll"
+    },
+    {
+      "bytes": 84176,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/xunit.runner.reporters.netcoreapp10.dll"
+    },
+    {
+      "bytes": 255184,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/xunit.runner.utility.netcoreapp10.dll"
+    },
+    {
+      "bytes": 180944,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/xunit.runner.visualstudio.testadapter.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/zh-Hans/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/zh-Hans/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 20008,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/zh-Hans/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20000,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23112,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16920,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 20520,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20000,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23072,
+      "family": "other",
+      "relative_path": "tools/MZP0RecoveryHarness/bin/Release/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16944,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/cs/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20552,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/cs/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23592,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/cs/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/de/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/de/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/de/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/de/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/de/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16952,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/es/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/es/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/es/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21032,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/es/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/es/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/fr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/fr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/fr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16944,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/it/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/it/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/it/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/it/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/it/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 22072,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/ja/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21576,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/ja/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24616,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/ja/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21536,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/ko/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/ko/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24096,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/ko/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 137264,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/Microsoft.TestPlatform.CommunicationUtilities.dll"
+    },
+    {
+      "bytes": 97824,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/Microsoft.TestPlatform.CoreUtilities.dll"
+    },
+    {
+      "bytes": 315416,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/Microsoft.TestPlatform.CrossPlatEngine.dll"
+    },
+    {
+      "bytes": 53280,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/Microsoft.TestPlatform.PlatformAbstractions.dll"
+    },
+    {
+      "bytes": 67104,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/Microsoft.TestPlatform.Utilities.dll"
+    },
+    {
+      "bytes": 17328,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/Microsoft.VisualStudio.CodeCoverage.Shim.dll"
+    },
+    {
+      "bytes": 247856,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/Microsoft.VisualStudio.TestPlatform.Common.dll"
+    },
+    {
+      "bytes": 334888,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll"
+    },
+    {
+      "bytes": 27648,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/MZP1MappingPublicationHarness.dll"
+    },
+    {
+      "bytes": 695336,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/Newtonsoft.Json.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21536,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/pl/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21056,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/pl/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/pl/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16424,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/pt-BR/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 21024,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 24136,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/pt-BR/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 17440,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 23080,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/ru/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 23080,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/ru/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 26152,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/ru/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 48672,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/testhost.dll"
+    },
+    {
+      "bytes": 169528,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/testhost.exe"
+    },
+    {
+      "bytes": 16920,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16936,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 21040,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/tr/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20520,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/tr/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23584,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/tr/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 21928,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/xunit.abstractions.dll"
+    },
+    {
+      "bytes": 185552,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/xunit.assert.dll"
+    },
+    {
+      "bytes": 70352,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/xunit.core.dll"
+    },
+    {
+      "bytes": 279760,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/xunit.execution.dotnet.dll"
+    },
+    {
+      "bytes": 84176,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/xunit.runner.reporters.netcoreapp10.dll"
+    },
+    {
+      "bytes": 255184,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/xunit.runner.utility.netcoreapp10.dll"
+    },
+    {
+      "bytes": 180944,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/xunit.runner.visualstudio.testadapter.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16928,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 20008,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/zh-Hans/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20000,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23112,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 16416,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll"
+    },
+    {
+      "bytes": 16920,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll"
+    },
+    {
+      "bytes": 20520,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll"
+    },
+    {
+      "bytes": 20000,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll"
+    },
+    {
+      "bytes": 23072,
+      "family": "other",
+      "relative_path": "tools/MZP1MappingPublicationHarness/bin/Debug/net10.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll"
+    },
+    {
+      "bytes": 29184,
+      "family": "other",
+      "relative_path": "tools/RoadRecorderQuestOffline/bin/Release/net10.0/RoadRecorderQuestOffline.dll"
+    },
+    {
+      "bytes": 162304,
+      "family": "other",
+      "relative_path": "tools/RoadRecorderQuestOffline/bin/Release/net10.0/RoadRecorderQuestOffline.exe"
+    }
+  ],
+  "installation_or_process_inspected": false,
+  "limits": {
+    "binary_records": 3000,
+    "depth": 10,
+    "directories": 25000,
+    "entries": 250000,
+    "named_candidates_hashed": 64
+  },
+  "givrebot_candidates": [],
+  "givrebot_exe_found": false,
+  "named_candidates": [
+    {
+      "bytes": 50688,
+      "family": "givre_named",
+      "pe": {
+        "architecture": "x86",
+        "clr_directory_present": true,
+        "section_count": 3,
+        "status": "pe"
+      },
+      "relative_path": "GivreRelayAgent/bin/Debug/net10.0/GivreRelay.dll",
+      "sha256": "34d78a62bf781f8a21017152b0f8e7ee98a5f870910b57b4a150796185ee5d70"
+    },
+    {
+      "bytes": 162304,
+      "family": "givre_named",
+      "pe": {
+        "architecture": "x64",
+        "clr_directory_present": false,
+        "section_count": 6,
+        "status": "pe"
+      },
+      "relative_path": "GivreRelayAgent/bin/Debug/net10.0/GivreRelay.exe",
+      "sha256": "041ed0e369acac230c8d6340923894bd8f16d8c20a0c22e4aac70387ca681847"
+    },
+    {
+      "bytes": 46592,
+      "family": "givre_named",
+      "pe": {
+        "architecture": "x86",
+        "clr_directory_present": true,
+        "section_count": 3,
+        "status": "pe"
+      },
+      "relative_path": "GivreRelayAgent/bin/Release/net10.0/GivreRelay.dll",
+      "sha256": "0224c4c6580e20796c8b5e85dcb71c337d8db9170410ea5a3af4a6535156917c"
+    },
+    {
+      "bytes": 162304,
+      "family": "givre_named",
+      "pe": {
+        "architecture": "x64",
+        "clr_directory_present": false,
+        "section_count": 6,
+        "status": "pe"
+      },
+      "relative_path": "GivreRelayAgent/bin/Release/net10.0/GivreRelay.exe",
+      "sha256": "041ed0e369acac230c8d6340923894bd8f16d8c20a0c22e4aac70387ca681847"
+    },
+    {
+      "bytes": 11868672,
+      "family": "givre_named",
+      "pe": {
+        "architecture": "x64",
+        "clr_directory_present": false,
+        "section_count": 12,
+        "status": "pe"
+      },
+      "relative_path": "tools/GivreTurboLiveHarness/bin/Release/net10.0/GivreKama.dll",
+      "sha256": "e827c635316edfe8736fd6933bb546a82947abbfbd4d6d9a6448392ba666d375"
+    },
+    {
+      "bytes": 57344,
+      "family": "givre_named",
+      "pe": {
+        "architecture": "x86",
+        "clr_directory_present": true,
+        "section_count": 3,
+        "status": "pe"
+      },
+      "relative_path": "tools/GivreTurboLiveHarness/bin/Release/net10.0/GivreTurboLiveHarness.dll",
+      "sha256": "a18d4c358a6b3fb7e4ad36f1813491b4f410eb162ebed6d529d0d9f27e1de4dd"
+    },
+    {
+      "bytes": 162304,
+      "family": "givre_named",
+      "pe": {
+        "architecture": "x64",
+        "clr_directory_present": false,
+        "section_count": 6,
+        "status": "pe"
+      },
+      "relative_path": "tools/GivreTurboLiveHarness/bin/Release/net10.0/GivreTurboLiveHarness.exe",
+      "sha256": "4c0f14d6df81414113b3d0b1d6dee8f59408a427282434c5b3f7943693482145"
+    }
+  ],
+  "schema_version": 1,
+  "scope": "GivreShareWork",
+  "skipped": {
+    "depth": 0,
+    "limit": 0,
+    "nonbinary": 552,
+    "prohibited": 18,
+    "reparse": 0,
+    "unreadable": 0
+  }
+}

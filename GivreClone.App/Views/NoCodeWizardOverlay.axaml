@@ -1,0 +1,152 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             xmlns:routines="using:GivreClone.App.Services.NoCodeLot2"
+             x:Class="GivreClone.App.Views.NoCodeWizardOverlay"
+             x:DataType="vm:BotsViewModel"
+             IsVisible="{Binding NoCodeWizardOpen}">
+  <Grid>
+    <Border Background="#DE0C1220"/>
+    <Border HorizontalAlignment="Center" VerticalAlignment="Center"
+            Width="730" MaxWidth="960" MaxHeight="770" Margin="16"
+            Background="{DynamicResource PanelBrush}" BorderBrush="#526781"
+            BorderThickness="1" CornerRadius="16" Padding="22">
+      <Grid RowDefinitions="Auto,*,Auto" RowSpacing="12">
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto">
+          <StackPanel Spacing="4">
+            <TextBlock Text="Assistant sans code" FontSize="19" FontWeight="Bold"
+                       Foreground="{DynamicResource TextPrimaryBrush}"/>
+            <TextBlock Text="Construisez un trajet et ses actions, puis examinez le Lua avant de l'importer."
+                       FontSize="12" TextWrapping="Wrap" Foreground="{DynamicResource TextSecondaryBrush}"/>
+          </StackPanel>
+          <Button Grid.Column="1" Classes="ghost" Content="Fermer" MinWidth="76"
+                  Command="{Binding NoCodeCloseCommand}"/>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+          <StackPanel Spacing="12" Margin="0,0,8,4">
+            <Border CornerRadius="10" Background="#202D43" BorderBrush="#3F577B" BorderThickness="1" Padding="12">
+              <StackPanel Spacing="9">
+                <TextBlock Text="Lot 2 · Bibliothèque de routines &amp; simulation" FontWeight="Bold" FontSize="14"/>
+                <TextBlock Text="Mineur/grottes, donjons, HDV, combat et banque. Modèles consultatifs : aucune action réelle."
+                           TextWrapping="Wrap" FontSize="11.5" Foreground="{DynamicResource TextSecondaryBrush}"/>
+                <ItemsControl ItemsSource="{Binding NoCodeLot2Templates}">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate><WrapPanel Orientation="Horizontal" ItemSpacing="6" LineSpacing="6"/></ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="routines:RoutineTemplate">
+                      <Button Classes="ghost" Content="{Binding Title}" Padding="10,5"
+                              AutomationProperties.Name="{Binding Title}"
+                              Command="{Binding $parent[ItemsControl].((vm:BotsViewModel)DataContext).NoCodeLot2ChooseTemplateCommand}"
+                              CommandParameter="{Binding Id}" />
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <TextBlock Text="{Binding NoCodeLot2SelectedTitle}" FontWeight="SemiBold" Foreground="#83DCD1"/>
+                <ItemsControl ItemsSource="{Binding NoCodeLot2Fields}">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:RoutineDraftField">
+                      <Grid ColumnDefinitions="200,*,Auto" ColumnSpacing="9" Margin="0,2">
+                        <TextBlock Grid.Column="0" Text="{Binding Caption}" VerticalAlignment="Center"/>
+                        <TextBox Grid.Column="1" Text="{Binding Value, Mode=TwoWay}" MaxLength="18"
+                                 Watermark="Identifiant vérifié" AutomationProperties.Name="{Binding Caption}"/>
+                        <TextBlock Grid.Column="2" Text="{Binding EvidenceExpected}" FontSize="10.5"
+                                   VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryBrush}"/>
+                      </Grid>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Button Classes="ghost" Content="Simuler cette routine (hors jeu)" HorizontalAlignment="Left"
+                        Command="{Binding NoCodeLot2SimulateCommand}"/>
+                <TextBox Text="{Binding NoCodeLot2PreviewText, Mode=OneWay}" IsReadOnly="True"
+                         AcceptsReturn="True" TextWrapping="Wrap" Height="145" FontFamily="Consolas" FontSize="11"
+                         AutomationProperties.Name="Rapport de simulation de routine" />
+              </StackPanel>
+            </Border>
+            <TextBlock Text="1 · Choisir un scénario" FontWeight="SemiBold"/>
+            <StackPanel Orientation="Horizontal" Spacing="7">
+              <Button Classes="ghost" Content="Trajet seul" Command="{Binding NoCodePresetRouteCommand}"/>
+              <Button Classes="ghost" Content="Récolte" Command="{Binding NoCodePresetGatherCommand}"/>
+              <Button Classes="ghost" Content="Combat" Command="{Binding NoCodePresetFightCommand}"/>
+            </StackPanel>
+
+            <TextBlock Text="2 · Cartes et sorties" FontWeight="SemiBold"/>
+            <TextBlock Text="Une étape par ligne, exemple : 4,-22:right (ou mapId:right). Sorties : top, bottom, left, right."
+                       TextWrapping="Wrap" FontSize="11.5"
+                       Foreground="{DynamicResource TextSecondaryBrush}"/>
+            <TextBlock Text="Parcours de quête : le bouton « Enregistrer trajet » de l'onglet Lua aide à relever les cartes manuellement. Cet assistant ne valide ni les étapes ni les objectifs de quête."
+                       TextWrapping="Wrap" FontSize="11"
+                       Foreground="{DynamicResource TextSecondaryBrush}"/>
+            <TextBox Text="{Binding NoCodeMaps, Mode=TwoWay}" AcceptsReturn="True"
+                     MinHeight="105" Height="120" TextWrapping="NoWrap"
+                     PlaceholderText="4,-22:right&#10;5,-22:bottom"/>
+
+            <TextBlock Text="3 · Actions sur chaque carte" FontWeight="SemiBold"/>
+            <StackPanel Orientation="Horizontal" Spacing="16">
+              <CheckBox Content="Récolter" IsChecked="{Binding NoCodeGather, Mode=TwoWay}"/>
+              <CheckBox Content="Combattre" IsChecked="{Binding NoCodeFight, Mode=TwoWay}"/>
+            </StackPanel>
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+              <StackPanel Grid.Column="0" Spacing="4">
+                <TextBlock Text="ElementTypeId (séparés par virgules)" FontSize="11"
+                           Foreground="{DynamicResource TextSecondaryBrush}"/>
+                <TextBox Text="{Binding NoCodeGatherIds, Mode=TwoWay}" PlaceholderText="38"
+                         IsEnabled="{Binding NoCodeGather}"/>
+              </StackPanel>
+              <StackPanel Grid.Column="1" Spacing="4">
+                <TextBlock Text="Pods maximum (%)" FontSize="11"
+                           Foreground="{DynamicResource TextSecondaryBrush}"/>
+                <TextBox Text="{Binding NoCodeMaxPods, Mode=TwoWay}"/>
+              </StackPanel>
+              <StackPanel Grid.Column="2" Spacing="4">
+                <TextBlock Text="Monstres min / max" FontSize="11"
+                           Foreground="{DynamicResource TextSecondaryBrush}"/>
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="5">
+                  <TextBox Grid.Column="0" Text="{Binding NoCodeMinMonsters, Mode=TwoWay}"
+                           IsEnabled="{Binding NoCodeFight}"/>
+                  <TextBox Grid.Column="1" Text="{Binding NoCodeMaxMonsters, Mode=TwoWay}"
+                           IsEnabled="{Binding NoCodeFight}"/>
+                </Grid>
+              </StackPanel>
+            </Grid>
+
+            <TextBlock Text="4 · Lua généré (lecture seule)" FontWeight="SemiBold"/>
+            <TextBlock Text="{Binding NoCodeMessage}" TextWrapping="Wrap"
+                       FontSize="11.5" Foreground="#E7BA72"/>
+            <TextBox Text="{Binding NoCodeGeneratedLua, Mode=OneWay}" IsReadOnly="True"
+                     AcceptsReturn="True" TextWrapping="NoWrap"
+                     FontFamily="Consolas" FontSize="11" Height="175"
+                     PlaceholderText="La prévisualisation apparaîtra ici après validation."/>
+            <TextBlock Text="Les identifiants et l'existence des cartes ne sont pas vérifiés auprès du jeu. Aucun lancement automatique."
+                       TextWrapping="Wrap" FontSize="11"
+                       Foreground="{DynamicResource TextSecondaryBrush}"/>
+          </StackPanel>
+        </ScrollViewer>
+
+        <Grid Grid.Row="2" ColumnDefinitions="*,Auto" ColumnSpacing="8">
+          <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8"
+                      IsVisible="{Binding !NoCodeReplaceConfirm}">
+            <Button Classes="ghost" Content="Prévisualiser" Command="{Binding NoCodePreviewCommand}"/>
+          </StackPanel>
+          <Button Grid.Column="1" Classes="primary" Content="Importer dans l'éditeur…"
+                  IsVisible="{Binding !NoCodeReplaceConfirm}"
+                  IsEnabled="{Binding NoCodePreviewReady}"
+                  Command="{Binding NoCodeRequestReplaceCommand}"/>
+
+          <StackPanel Grid.ColumnSpan="2" Orientation="Vertical" Spacing="9"
+                      IsVisible="{Binding NoCodeReplaceConfirm}">
+            <TextBlock Text="Confirmer le remplacement du script affiché ? Les modifications non enregistrées seront remplacées. Ctrl+Z permet d'annuler dans l'éditeur ; le fichier existant sera détaché."
+                       Foreground="#F7CA87" TextWrapping="Wrap" FontSize="12"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+              <Button Classes="ghost" Content="Annuler" Command="{Binding NoCodeCancelReplaceCommand}"/>
+              <Button Classes="primary" Content="Oui, remplacer le script"
+                      Command="{Binding NoCodeConfirmReplaceCommand}"/>
+            </StackPanel>
+          </StackPanel>
+        </Grid>
+      </Grid>
+    </Border>
+  </Grid>
+</UserControl>

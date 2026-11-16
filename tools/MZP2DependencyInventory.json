@@ -1,0 +1,6619 @@
+{
+  "candidateProviderDeclarations": [],
+  "dependencyProjectAvailability": {
+    "GivreCore": false,
+    "GivreLauncher.Core": false
+  },
+  "excludedGeneratedStubs": "tools/MZP0RecoveryHarness/MZP0GivreCoreStubs.cs",
+  "prodCompilationCertified": false,
+  "projectLinks": [
+    {
+      "include": "..\\..\\GivreLauncher\\GivreLauncher.Core\\GivreLauncher.Core.csproj",
+      "project": "GivreClone.App/GivreClone.App.csproj"
+    },
+    {
+      "include": "..\\GivreClone.Engine\\GivreClone.Engine.csproj",
+      "project": "GivreClone.App/GivreClone.App.csproj"
+    },
+    {
+      "include": "..\\GivreClone.Protocol\\GivreClone.Protocol.csproj",
+      "project": "GivreClone.App/GivreClone.App.csproj"
+    },
+    {
+      "include": "..\\..\\GivreProxy\\GivreCore\\GivreCore.csproj",
+      "project": "GivreClone.Engine/GivreClone.Engine.csproj"
+    },
+    {
+      "include": "..\\GivreClone.Protocol\\GivreClone.Protocol.csproj",
+      "project": "GivreClone.Engine/GivreClone.Engine.csproj"
+    },
+    {
+      "include": "..\\..\\GivreProxy\\GivreCore\\GivreCore.csproj",
+      "project": "GivreClone.Protocol/GivreClone.Protocol.csproj"
+    }
+  ],
+  "projects": {
+    "GivreClone.App/GivreClone.App.csproj": {
+      "sha256": "9f3623f9b9fd861e778279c8f9c238515c57a9720ded70e1e6b7049946e04788"
+    },
+    "GivreClone.Engine/GivreClone.Engine.csproj": {
+      "sha256": "0df55fddaabffab4bcb9f669bbb01820e8daa932eeafdb8db48108caa3a89020"
+    },
+    "GivreClone.Protocol/GivreClone.Protocol.csproj": {
+      "sha256": "b7fc01f7a6daf3ec5b297843c93308f9c4580fb303bc141dabead1d9be848312"
+    },
+    "GivreRelayAgent/GivreRelayAgent.csproj": {
+      "sha256": "03dcefe3975d01cfa6fe8bb4b8f7fc5dbe3377cc5abd0b6c18c2e97b7b6909e6"
+    }
+  },
+  "proofLevel": "SOURCE_LEXICAL_ONLY_NOT_COMPILED_NOT_RUNTIME",
+  "references": [
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.App/Services/BotHostService.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.App/Services/BotHostService.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "qualified",
+      "line": 4,
+      "path": "GivreClone.App/Services/CaptureDecoder.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 4,
+      "path": "GivreClone.App/Services/CaptureDecoder.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 46,
+      "path": "GivreClone.App/Services/CaptureDecoder.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 2,
+      "path": "GivreClone.App/Services/ConnectionJournal.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 2,
+      "path": "GivreClone.App/Services/ConnectionJournal.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.App/Services/ConnectionJournal.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.App/Services/ConnectionJournal.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 4,
+      "path": "GivreClone.App/Services/DofusPaths.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 4,
+      "path": "GivreClone.App/Services/DofusPaths.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 126,
+      "path": "GivreClone.App/Services/GameNameResolver.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 137,
+      "path": "GivreClone.App/Services/GameNameResolver.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 138,
+      "path": "GivreClone.App/Services/GameNameResolver.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 141,
+      "path": "GivreClone.App/Services/GameNameResolver.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 165,
+      "path": "GivreClone.App/Services/GameNameResolver.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 213,
+      "path": "GivreClone.App/Services/GameNameResolver.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 480,
+      "path": "GivreClone.App/Services/GameNameResolver.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 508,
+      "path": "GivreClone.App/Services/GameNameResolver.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 522,
+      "path": "GivreClone.App/Services/GameNameResolver.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Bank.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Bank.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Bank.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Bank.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Bank.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Bank.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Bank.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Bank.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Bank.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Bank.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Bank.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Bank.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Bank.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Bank.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Character.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Character.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Character.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Character.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Character.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Character.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Character.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Character.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Character.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Character.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Character.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Character.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Character.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Character.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Chat.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Chat.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Chat.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Chat.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Chat.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Chat.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Chat.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Chat.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Chat.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Chat.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Chat.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Chat.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Chat.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Chat.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 6,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Challenges.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 6,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Challenges.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Combat.PreFight.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Combat.PreFight.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Combat.PreFight.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Combat.PreFight.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Combat.PreFight.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Combat.PreFight.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Combat.PreFight.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Combat.PreFight.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Combat.PreFight.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Combat.PreFight.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Combat.PreFight.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Combat.PreFight.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Combat.PreFight.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Combat.PreFight.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Script.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Script.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Script.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Script.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Script.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Script.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Script.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Script.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Script.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Script.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Script.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Script.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Script.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Script.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Turn.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Turn.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Turn.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Turn.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Turn.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Turn.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Turn.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Turn.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Turn.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Turn.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Turn.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Turn.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Turn.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Combat.Turn.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Combat.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Combat.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Combat.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Combat.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Combat.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Combat.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Combat.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Combat.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Combat.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Combat.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Combat.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Combat.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Combat.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Combat.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Craft.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Craft.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Craft.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Craft.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Craft.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Craft.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Craft.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Craft.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Craft.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Craft.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Craft.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Craft.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Craft.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Craft.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Events.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Events.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Events.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Events.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Events.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Events.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Events.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Events.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Events.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Events.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Events.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Events.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Events.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Events.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 7,
+      "path": "GivreClone.App/Services/LaunchService.GameLink.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 7,
+      "path": "GivreClone.App/Services/LaunchService.GameLink.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Hdv.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Hdv.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Hdv.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Hdv.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Hdv.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Hdv.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Hdv.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Hdv.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Hdv.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Hdv.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Hdv.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Hdv.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Hdv.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Hdv.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 6,
+      "path": "GivreClone.App/Services/LaunchService.HdvTracker.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 6,
+      "path": "GivreClone.App/Services/LaunchService.HdvTracker.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Interactives.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Interactives.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Interactives.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Interactives.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Interactives.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Interactives.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Interactives.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Interactives.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Interactives.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Interactives.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Interactives.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Interactives.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Interactives.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Interactives.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Inventory.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Inventory.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Inventory.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Inventory.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Inventory.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Inventory.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Inventory.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Inventory.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Inventory.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Inventory.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Inventory.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Inventory.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Inventory.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Inventory.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.LevelUp.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.LevelUp.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.LevelUp.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.LevelUp.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.LevelUp.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.LevelUp.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.LevelUp.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.LevelUp.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.LevelUp.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.LevelUp.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.LevelUp.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.LevelUp.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.LevelUp.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.LevelUp.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 7,
+      "path": "GivreClone.App/Services/LaunchService.LotE.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 7,
+      "path": "GivreClone.App/Services/LaunchService.LotE.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 4,
+      "path": "GivreClone.App/Services/LaunchService.LotF.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 4,
+      "path": "GivreClone.App/Services/LaunchService.LotF.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 8,
+      "path": "GivreClone.App/Services/LaunchService.LotG.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 8,
+      "path": "GivreClone.App/Services/LaunchService.LotG.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 6,
+      "path": "GivreClone.App/Services/LaunchService.LotI.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 6,
+      "path": "GivreClone.App/Services/LaunchService.LotI.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 7,
+      "path": "GivreClone.App/Services/LaunchService.LotI.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 7,
+      "path": "GivreClone.App/Services/LaunchService.LotI.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 7,
+      "path": "GivreClone.App/Services/LaunchService.LotJ.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 7,
+      "path": "GivreClone.App/Services/LaunchService.LotJ.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 6,
+      "path": "GivreClone.App/Services/LaunchService.LotK.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 6,
+      "path": "GivreClone.App/Services/LaunchService.LotK.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 7,
+      "path": "GivreClone.App/Services/LaunchService.LotK.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 7,
+      "path": "GivreClone.App/Services/LaunchService.LotK.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Movement.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Movement.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Movement.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Movement.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Movement.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Movement.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Movement.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Movement.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Movement.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Movement.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Movement.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Movement.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Movement.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Movement.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Packets.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Packets.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Packets.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Packets.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Packets.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Packets.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Packets.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Packets.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Packets.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Packets.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Packets.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Packets.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Packets.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Packets.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 181,
+      "path": "GivreClone.App/Services/LaunchService.Packets.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Scope.Value"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Scripting.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Scripting.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Scripting.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Scripting.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Scripting.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Scripting.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Scripting.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Scripting.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Scripting.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Scripting.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Scripting.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Scripting.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Scripting.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Scripting.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 8,
+      "path": "GivreClone.App/Services/LaunchService.Snow.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 8,
+      "path": "GivreClone.App/Services/LaunchService.Snow.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 139,
+      "path": "GivreClone.App/Services/LaunchService.Snow.cs",
+      "symbol": "GivreCore.Protobuf.ProtoField"
+    },
+    {
+      "kind": "qualified",
+      "line": 178,
+      "path": "GivreClone.App/Services/LaunchService.Snow.cs",
+      "symbol": "GivreCore.Protobuf.WireType.Len"
+    },
+    {
+      "kind": "qualified",
+      "line": 276,
+      "path": "GivreClone.App/Services/LaunchService.Snow.cs",
+      "symbol": "GivreCore.Protobuf.ProtoField"
+    },
+    {
+      "kind": "qualified",
+      "line": 328,
+      "path": "GivreClone.App/Services/LaunchService.Snow.cs",
+      "symbol": "GivreCore.Protobuf.ProtoField"
+    },
+    {
+      "kind": "qualified",
+      "line": 346,
+      "path": "GivreClone.App/Services/LaunchService.Snow.cs",
+      "symbol": "GivreCore.Protobuf.WireType.I32"
+    },
+    {
+      "kind": "qualified",
+      "line": 352,
+      "path": "GivreClone.App/Services/LaunchService.Snow.cs",
+      "symbol": "GivreCore.Protobuf.ProtoField"
+    },
+    {
+      "kind": "qualified",
+      "line": 358,
+      "path": "GivreClone.App/Services/LaunchService.Snow.cs",
+      "symbol": "GivreCore.Protobuf.WireType.Varint"
+    },
+    {
+      "kind": "qualified",
+      "line": 5,
+      "path": "GivreClone.App/Services/LaunchService.SnowPlacement.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 5,
+      "path": "GivreClone.App/Services/LaunchService.SnowPlacement.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Team.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Team.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Team.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Team.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Team.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Team.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Team.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Team.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Team.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Team.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Team.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Team.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Team.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Team.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Trade.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.Trade.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Trade.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.Trade.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Trade.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.Trade.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Trade.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.Trade.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Trade.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.Trade.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Trade.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.Trade.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Trade.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.Trade.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 7,
+      "path": "GivreClone.App/Services/LaunchService.Treasure.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 7,
+      "path": "GivreClone.App/Services/LaunchService.Treasure.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 8,
+      "path": "GivreClone.App/Services/LaunchService.Treasure.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 8,
+      "path": "GivreClone.App/Services/LaunchService.Treasure.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/LaunchService.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/LaunchService.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "using",
+      "line": 13,
+      "path": "GivreClone.App/Services/LaunchService.cs",
+      "symbol": "GivreLauncher.Core.Launch"
+    },
+    {
+      "kind": "qualified",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 14,
+      "path": "GivreClone.App/Services/LaunchService.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/Services/LaunchService.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "using",
+      "line": 16,
+      "path": "GivreClone.App/Services/LaunchService.cs",
+      "symbol": "GivreLauncher.Core.Zaap"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/Services/LaunchService.cs",
+      "symbol": "GivreLauncher.Core.Accounts.Account"
+    },
+    {
+      "kind": "qualified",
+      "line": 625,
+      "path": "GivreClone.App/Services/LaunchService.cs",
+      "symbol": "GivreCore.Injection.DllInjector.Inject"
+    },
+    {
+      "kind": "qualified",
+      "line": 654,
+      "path": "GivreClone.App/Services/LaunchService.cs",
+      "symbol": "GivreCore.Injection.DllInjector.Inject"
+    },
+    {
+      "kind": "qualified",
+      "line": 1293,
+      "path": "GivreClone.App/Services/LicenseService.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 6,
+      "path": "GivreClone.App/Services/MZP2OwnedHostAdmission.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "using",
+      "line": 6,
+      "path": "GivreClone.App/Services/MZP2OwnedHostAdmission.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "qualified",
+      "line": 252,
+      "path": "GivreClone.App/Services/GivreLuaHost.Gather.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 25,
+      "path": "GivreClone.App/Services/GivreLuaHost.Logging.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 830,
+      "path": "GivreClone.App/Services/GivreLuaHost.Travel.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 226,
+      "path": "GivreClone.App/Services/GivreLuaHost.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Scope.Value"
+    },
+    {
+      "kind": "qualified",
+      "line": 244,
+      "path": "GivreClone.App/Services/GivreLuaHost.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Scope.Value"
+    },
+    {
+      "kind": "qualified",
+      "line": 332,
+      "path": "GivreClone.App/Services/GivreLuaHost.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Scope.Value"
+    },
+    {
+      "kind": "qualified",
+      "line": 10,
+      "path": "GivreClone.App/Services/NativeTurboRuntime.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 10,
+      "path": "GivreClone.App/Services/NativeTurboRuntime.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 93,
+      "path": "GivreClone.App/Services/NativeTurboRuntime.cs",
+      "symbol": "GivreCore.Injection.DllInjector.Inject"
+    },
+    {
+      "kind": "qualified",
+      "line": 7,
+      "path": "GivreClone.App/Services/PrivateMessageService.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 7,
+      "path": "GivreClone.App/Services/PrivateMessageService.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.App/Services/ProxyResolver.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.App/Services/ProxyResolver.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 10,
+      "path": "GivreClone.App/Services/ProxyTester.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 10,
+      "path": "GivreClone.App/Services/ProxyTester.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/ProxyTester.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/ProxyTester.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 5,
+      "path": "GivreClone.App/Services/Relay/GivreRelay.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 5,
+      "path": "GivreClone.App/Services/Relay/GivreRelay.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 107,
+      "path": "GivreClone.App/Services/Relay/GivreRelay.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/Relay/GivreRelayClient.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/Relay/GivreRelayClient.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/Relay/RelaySocksBridge.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/Relay/RelaySocksBridge.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 2,
+      "path": "GivreClone.App/Services/Transport/MitmTransport.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 2,
+      "path": "GivreClone.App/Services/Transport/MitmTransport.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 6,
+      "path": "GivreClone.App/Services/Transport/Socket/DeviceIdentifierObserver.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 6,
+      "path": "GivreClone.App/Services/Transport/Socket/DeviceIdentifierObserver.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 7,
+      "path": "GivreClone.App/Services/Transport/Socket/DeviceIdentifierObserver.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 7,
+      "path": "GivreClone.App/Services/Transport/Socket/DeviceIdentifierObserver.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 9,
+      "path": "GivreClone.App/Services/Transport/Socket/SocketConnectionClient.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 9,
+      "path": "GivreClone.App/Services/Transport/Socket/SocketConnectionClient.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 8,
+      "path": "GivreClone.App/Services/Transport/Socket/SocketDialer.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 8,
+      "path": "GivreClone.App/Services/Transport/Socket/SocketDialer.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 9,
+      "path": "GivreClone.App/Services/Transport/Socket/SocketDialer.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 9,
+      "path": "GivreClone.App/Services/Transport/Socket/SocketDialer.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/Transport/Socket/SocketGameClient.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/Transport/Socket/SocketGameClient.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 12,
+      "path": "GivreClone.App/Services/Transport/Socket/SocketGameClient.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 12,
+      "path": "GivreClone.App/Services/Transport/Socket/SocketGameClient.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 9,
+      "path": "GivreClone.App/Services/Transport/Socket/SocketProbe.cs",
+      "symbol": "GivreLauncher.Core.Accounts"
+    },
+    {
+      "kind": "using",
+      "line": 9,
+      "path": "GivreClone.App/Services/Transport/Socket/SocketProbe.cs",
+      "symbol": "GivreLauncher.Core.Accounts"
+    },
+    {
+      "kind": "qualified",
+      "line": 10,
+      "path": "GivreClone.App/Services/Transport/Socket/SocketProbe.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 10,
+      "path": "GivreClone.App/Services/Transport/Socket/SocketProbe.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 11,
+      "path": "GivreClone.App/Services/Transport/Socket/SocketProbe.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 11,
+      "path": "GivreClone.App/Services/Transport/Socket/SocketProbe.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 2,
+      "path": "GivreClone.App/Services/Transport/SocketLog.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 2,
+      "path": "GivreClone.App/Services/Transport/SocketLog.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 9,
+      "path": "GivreClone.App/Services/TransportDiag.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "using",
+      "line": 9,
+      "path": "GivreClone.App/Services/TransportDiag.cs",
+      "symbol": "GivreLauncher.Core.Transport"
+    },
+    {
+      "kind": "qualified",
+      "line": 6,
+      "path": "GivreClone.App/Services/WebAuthRunner.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "using",
+      "line": 6,
+      "path": "GivreClone.App/Services/WebAuthRunner.cs",
+      "symbol": "GivreLauncher.Core.Proxy"
+    },
+    {
+      "kind": "qualified",
+      "line": 102,
+      "path": "GivreClone.App/Services/WorldGraphExtractor.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 103,
+      "path": "GivreClone.App/Services/WorldGraphExtractor.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 31,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Launch.GameLauncher.ResolveDofusPath"
+    },
+    {
+      "kind": "qualified",
+      "line": 120,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Launch.GameLauncher.ResolveDofusPath"
+    },
+    {
+      "kind": "qualified",
+      "line": 246,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 257,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 259,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 272,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 281,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 305,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+    },
+    {
+      "kind": "qualified",
+      "line": 324,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+    },
+    {
+      "kind": "qualified",
+      "line": 340,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+    },
+    {
+      "kind": "qualified",
+      "line": 341,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+    },
+    {
+      "kind": "qualified",
+      "line": 355,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+    },
+    {
+      "kind": "qualified",
+      "line": 382,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+    },
+    {
+      "kind": "qualified",
+      "line": 564,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+    },
+    {
+      "kind": "qualified",
+      "line": 565,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+    },
+    {
+      "kind": "qualified",
+      "line": 575,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+    },
+    {
+      "kind": "qualified",
+      "line": 575,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+    },
+    {
+      "kind": "qualified",
+      "line": 586,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+    },
+    {
+      "kind": "qualified",
+      "line": 586,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+    },
+    {
+      "kind": "qualified",
+      "line": 588,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.ServerPick.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.ServerPick.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Socket.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Socket.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 382,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Socket.cs",
+      "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+    },
+    {
+      "kind": "qualified",
+      "line": 395,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Socket.cs",
+      "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Telemetry.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.Telemetry.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 17,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "using",
+      "line": 17,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.cs",
+      "symbol": "GivreLauncher.Core.Ankama"
+    },
+    {
+      "kind": "qualified",
+      "line": 452,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 658,
+      "path": "GivreClone.App/ViewModels/AccountsViewModel.cs",
+      "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+    },
+    {
+      "kind": "qualified",
+      "line": 15,
+      "path": "GivreClone.App/ViewModels/BotRowViewModel.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 15,
+      "path": "GivreClone.App/ViewModels/BotRowViewModel.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 552,
+      "path": "GivreClone.App/ViewModels/BotRowViewModel.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 577,
+      "path": "GivreClone.App/ViewModels/BotRowViewModel.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 720,
+      "path": "GivreClone.App/ViewModels/HdvViewModel.cs",
+      "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+    },
+    {
+      "kind": "qualified",
+      "line": 2,
+      "path": "GivreClone.Engine/ActionSender.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "using",
+      "line": 2,
+      "path": "GivreClone.Engine/ActionSender.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Engine/BotHost.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Engine/BotHost.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "qualified",
+      "line": 1,
+      "path": "GivreClone.Engine/BotMessage.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "using",
+      "line": 1,
+      "path": "GivreClone.Engine/BotMessage.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "qualified",
+      "line": 2,
+      "path": "GivreClone.Engine/BotMessage.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 2,
+      "path": "GivreClone.Engine/BotMessage.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Engine/BotOrchestrator.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Engine/BotOrchestrator.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "qualified",
+      "line": 2,
+      "path": "GivreClone.Engine/BotSession.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "using",
+      "line": 2,
+      "path": "GivreClone.Engine/BotSession.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "qualified",
+      "line": 2,
+      "path": "GivreClone.Engine/DofusCaptureHost.cs",
+      "symbol": "GivreCore.Injection"
+    },
+    {
+      "kind": "using",
+      "line": 2,
+      "path": "GivreClone.Engine/DofusCaptureHost.cs",
+      "symbol": "GivreCore.Injection"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Engine/DofusCaptureHost.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Engine/DofusCaptureHost.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "qualified",
+      "line": 1,
+      "path": "GivreClone.Engine/FrameSink.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "using",
+      "line": 1,
+      "path": "GivreClone.Engine/FrameSink.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "qualified",
+      "line": 2,
+      "path": "GivreClone.Engine/Recovery/MZP0GuardedActionSender.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "using",
+      "line": 2,
+      "path": "GivreClone.Engine/Recovery/MZP0GuardedActionSender.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Engine/Recovery/MZP0GuardedActionSender.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Engine/Recovery/MZP0GuardedActionSender.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 2,
+      "path": "GivreClone.Engine/Recovery/MZP1GuardedEngineWiring.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "using",
+      "line": 2,
+      "path": "GivreClone.Engine/Recovery/MZP1GuardedEngineWiring.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Engine/Recovery/MZP1GuardedEngineWiring.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Engine/Recovery/MZP1GuardedEngineWiring.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 1,
+      "path": "GivreClone.Engine/SessionBinder.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "using",
+      "line": 1,
+      "path": "GivreClone.Engine/SessionBinder.cs",
+      "symbol": "GivreCore.Mitm"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Protocol/CharacterInfoReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Protocol/CharacterInfoReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Protocol/CharacterSpellsReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Protocol/CharacterSpellsReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 2,
+      "path": "GivreClone.Protocol/EnvelopeBuilder.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 2,
+      "path": "GivreClone.Protocol/EnvelopeBuilder.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Protocol/FightPrepReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Protocol/FightPrepReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Protocol/FightResultReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Protocol/FightResultReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Protocol/FightStatsReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Protocol/FightStatsReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 4,
+      "path": "GivreClone.Protocol/GameCodec.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 4,
+      "path": "GivreClone.Protocol/GameCodec.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Protocol/HouseReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Protocol/HouseReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Protocol/InventoryReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Protocol/InventoryReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Protocol/LotEEventsReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Protocol/LotEEventsReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 4,
+      "path": "GivreClone.Protocol/MapActorsReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 4,
+      "path": "GivreClone.Protocol/MapActorsReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 4,
+      "path": "GivreClone.Protocol/MapFightReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 4,
+      "path": "GivreClone.Protocol/MapFightReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 4,
+      "path": "GivreClone.Protocol/MapInteractivesReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 4,
+      "path": "GivreClone.Protocol/MapInteractivesReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Protocol/MapMovementReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Protocol/MapMovementReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Protocol/MapMovementRefusedReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Protocol/MapMovementRefusedReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 4,
+      "path": "GivreClone.Protocol/MoveForge.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 4,
+      "path": "GivreClone.Protocol/MoveForge.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 2,
+      "path": "GivreClone.Protocol/PacketTree.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 2,
+      "path": "GivreClone.Protocol/PacketTree.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 1,
+      "path": "GivreClone.Protocol/PartyReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 1,
+      "path": "GivreClone.Protocol/PartyReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 2,
+      "path": "GivreClone.Protocol/PayloadBuilder.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 2,
+      "path": "GivreClone.Protocol/PayloadBuilder.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Protocol/QuestReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Protocol/QuestReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 4,
+      "path": "GivreClone.Protocol/TeleportReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 4,
+      "path": "GivreClone.Protocol/TeleportReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Protocol/WhoAmIForge.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Protocol/WhoAmIForge.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "qualified",
+      "line": 3,
+      "path": "GivreClone.Protocol/WhoIsReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    },
+    {
+      "kind": "using",
+      "line": 3,
+      "path": "GivreClone.Protocol/WhoIsReader.cs",
+      "symbol": "GivreCore.Protobuf"
+    }
+  ],
+  "referencingFiles": {
+    "GivreClone.App/Services/BotHostService.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Mitm"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Mitm"
+        }
+      ],
+      "sha256": "179d21e610d5538d322e5af6b210ce4b6cac77906dbd9a24c3899859c9fba046"
+    },
+    "GivreClone.App/Services/CaptureDecoder.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 4,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 4,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 46,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        }
+      ],
+      "sha256": "9fc804901efd46fe2d448d4b4015fc3e781458d6f7ccfc894c383bce02088c90"
+    },
+    "GivreClone.App/Services/ConnectionJournal.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 2,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 2,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "db9e72f6f5e07f1d1ec90b8e359da408f43c33574e3ee6fcba877f4b8466bdeb"
+    },
+    "GivreClone.App/Services/DofusPaths.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 4,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 4,
+          "symbol": "GivreLauncher.Core.Launch"
+        }
+      ],
+      "sha256": "1332c7db12b5d5b8eb04155447f95d946f70bc5a15159af2e1a723eab433052e"
+    },
+    "GivreClone.App/Services/GameNameResolver.cs": {
+      "references": [
+        {
+          "kind": "qualified",
+          "line": 126,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        },
+        {
+          "kind": "qualified",
+          "line": 137,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        },
+        {
+          "kind": "qualified",
+          "line": 138,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        },
+        {
+          "kind": "qualified",
+          "line": 141,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        },
+        {
+          "kind": "qualified",
+          "line": 165,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        },
+        {
+          "kind": "qualified",
+          "line": 213,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        },
+        {
+          "kind": "qualified",
+          "line": 480,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        },
+        {
+          "kind": "qualified",
+          "line": 508,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        },
+        {
+          "kind": "qualified",
+          "line": 522,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        }
+      ],
+      "sha256": "a9b3c0b53225cf060d9ac6d355aaa0bcb0674f6a6f890fef27a2779f1908864e"
+    },
+    "GivreClone.App/Services/LaunchService.Bank.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "7079d237f625532d354c6e1454b51ba8ad97d2930c91116ad1ca6f3f36b70de1"
+    },
+    "GivreClone.App/Services/LaunchService.Character.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "083006e406ff5d5cbac557ca3941f071c58a29d0a2509114b7c30ab09c225f2d"
+    },
+    "GivreClone.App/Services/LaunchService.Chat.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "1cc85c9c147107bbdc9e23e3eb3be568c34822fbe78ebaf7f2b532fd40ccae24"
+    },
+    "GivreClone.App/Services/LaunchService.Combat.Challenges.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 6,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 6,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "6ced2f77c02da2c521e7a347d1bb0eea3e8e1d051c4e27be8cdc2098e4c95e77"
+    },
+    "GivreClone.App/Services/LaunchService.Combat.Debug.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "ee1e7b5390a83281e05d358e16d8bf6a9ace3f3e15c62427ea2a50de63f26e85"
+    },
+    "GivreClone.App/Services/LaunchService.Combat.PreFight.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "d675852f307d5fb56574797e4862fae6b4ac75c58df6e22c2c921081bcbf97ea"
+    },
+    "GivreClone.App/Services/LaunchService.Combat.Script.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "e7836f43156fa523eabd5cda7d297672380ae1d663a49bb486296481481966b5"
+    },
+    "GivreClone.App/Services/LaunchService.Combat.Turn.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "4056d0642bf28dfdcfc88c418c1561b5c2823ca78f85137da810f4b949d9d616"
+    },
+    "GivreClone.App/Services/LaunchService.Combat.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "c3cd55f23d9ac121e18dd60a45f64c30555d1ddc6b6252da9c477ac5a74f0127"
+    },
+    "GivreClone.App/Services/LaunchService.Craft.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "9c47ac43abecb592ce8cf5f2bab3b5ca1cb22828a59b292cbd5596314a2324c9"
+    },
+    "GivreClone.App/Services/LaunchService.Events.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "0faab3cc689cdd10b8da716565e71b62344cef4498858525bb34da981899569f"
+    },
+    "GivreClone.App/Services/LaunchService.GameLink.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 7,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 7,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "a9ddf5fcb9a8cb388890417dae5ead1fec908debdd3201da78b268b1bd370024"
+    },
+    "GivreClone.App/Services/LaunchService.Hdv.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "1376d829ae0d44962783d05f4df69110f1fd1961c2ee4a3131b6b29e8046ec88"
+    },
+    "GivreClone.App/Services/LaunchService.HdvTracker.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 6,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 6,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "e4ac55f54759d2064a8565c7b82820b6d0520f01004138d21a7a5e45e79ef0e4"
+    },
+    "GivreClone.App/Services/LaunchService.Interactives.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "1eaaf13aee043277e8b640edc078282900dd7b5425bff04b874bb0391b3b1e4b"
+    },
+    "GivreClone.App/Services/LaunchService.Inventory.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "1ad8e9ac8951ddd1bdd27096b0a3a938031171e29724be95cdfa09eaf1349315"
+    },
+    "GivreClone.App/Services/LaunchService.LevelUp.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "62172e213e9e334c4aecac7765a536c010feca3600910e1bd791d9cd00d1f7dc"
+    },
+    "GivreClone.App/Services/LaunchService.LotE.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 7,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 7,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "7ab46d5011f151188f683b2e197c35467c78f76787570edd103402d3753bda9f"
+    },
+    "GivreClone.App/Services/LaunchService.LotF.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 4,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 4,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "55b51fe80b9b4803b47ff092a6d110f78bc17b9fed0edd31e1ffcf2210b361ce"
+    },
+    "GivreClone.App/Services/LaunchService.LotG.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 8,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 8,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "37cb6f25d3aa4180959b96e233e37ad69ad17b651833de76669964718c071701"
+    },
+    "GivreClone.App/Services/LaunchService.LotI.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 6,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 6,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 7,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 7,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "8f2797d9f0cc8437dfdd65bfff11f0b54c632e6aad35c82507014e7ae1125adf"
+    },
+    "GivreClone.App/Services/LaunchService.LotJ.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 7,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 7,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "d20721f7b77e77670f6d6e7d996df963071fb51ff4ee9e97853e5119e312e05b"
+    },
+    "GivreClone.App/Services/LaunchService.LotK.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 6,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 6,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 7,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 7,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "2d15597a46ca54676416d0fadb861fcd0f68714c83d398cba5299fdcc25255bf"
+    },
+    "GivreClone.App/Services/LaunchService.Movement.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "9549d8104154b250355e2b1c768238debcc933a2e4715cf348dfb8fc6237365e"
+    },
+    "GivreClone.App/Services/LaunchService.Packets.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 181,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Scope.Value"
+        }
+      ],
+      "sha256": "84bbb7ddb90070ef153d18f08b3263218502f5963b2d1ce413a90dc5fb848154"
+    },
+    "GivreClone.App/Services/LaunchService.Scripting.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "de1dc855539dc2f3ff033d5cdea1936a186e892bc0038c28f8fb2187fe0fe189"
+    },
+    "GivreClone.App/Services/LaunchService.Snow.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 8,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 8,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 139,
+          "symbol": "GivreCore.Protobuf.ProtoField"
+        },
+        {
+          "kind": "qualified",
+          "line": 178,
+          "symbol": "GivreCore.Protobuf.WireType.Len"
+        },
+        {
+          "kind": "qualified",
+          "line": 276,
+          "symbol": "GivreCore.Protobuf.ProtoField"
+        },
+        {
+          "kind": "qualified",
+          "line": 328,
+          "symbol": "GivreCore.Protobuf.ProtoField"
+        },
+        {
+          "kind": "qualified",
+          "line": 346,
+          "symbol": "GivreCore.Protobuf.WireType.I32"
+        },
+        {
+          "kind": "qualified",
+          "line": 352,
+          "symbol": "GivreCore.Protobuf.ProtoField"
+        },
+        {
+          "kind": "qualified",
+          "line": 358,
+          "symbol": "GivreCore.Protobuf.WireType.Varint"
+        }
+      ],
+      "sha256": "2e1cd49ed1c9e5c2427061dc685426502bf3a54c999cd08890052c3e429802cb"
+    },
+    "GivreClone.App/Services/LaunchService.SnowPlacement.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 5,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 5,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "046f180132c36ec2b1524611bb0ba0fbcbae934775031cdcaedcb9ac30924b71"
+    },
+    "GivreClone.App/Services/LaunchService.Team.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "876b2aafe85ac0c0d61f92346f371183a585b0004269861e9605232ac93110b3"
+    },
+    "GivreClone.App/Services/LaunchService.Trade.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        }
+      ],
+      "sha256": "32f1aab7d39c31e36b9d502924f094d68edcbf5096141befc6fab8854f99f31a"
+    },
+    "GivreClone.App/Services/LaunchService.Treasure.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 7,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 7,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 8,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 8,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "aae31538eac2b8d3be3ffd0cd336f136a30d46a41659b65399d05c18c2c6e7eb"
+    },
+    "GivreClone.App/Services/LaunchService.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "qualified",
+          "line": 13,
+          "symbol": "GivreLauncher.Core.Launch"
+        },
+        {
+          "kind": "using",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 14,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "using",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "qualified",
+          "line": 16,
+          "symbol": "GivreLauncher.Core.Zaap"
+        },
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Accounts.Account"
+        },
+        {
+          "kind": "qualified",
+          "line": 625,
+          "symbol": "GivreCore.Injection.DllInjector.Inject"
+        },
+        {
+          "kind": "qualified",
+          "line": 654,
+          "symbol": "GivreCore.Injection.DllInjector.Inject"
+        }
+      ],
+      "sha256": "5c3cdc7564dd47ae7ac35ba8acd31153b927d19fc6b6a81e07068e9de5f41057"
+    },
+    "GivreClone.App/Services/LicenseService.cs": {
+      "references": [
+        {
+          "kind": "qualified",
+          "line": 1293,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        }
+      ],
+      "sha256": "9bd12a81528994526a4849aec4b4d88db2629276ef3590447d633a2ce52452e5"
+    },
+    "GivreClone.App/Services/MZP2OwnedHostAdmission.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 6,
+          "symbol": "GivreCore.Mitm"
+        },
+        {
+          "kind": "qualified",
+          "line": 6,
+          "symbol": "GivreCore.Mitm"
+        }
+      ],
+      "sha256": "032a45b07ad5653fbc570e2ae2e35886227950ccf65ca4f6d6c3a13059ea0cab"
+    },
+    "GivreClone.App/Services/GivreLuaHost.Gather.cs": {
+      "references": [
+        {
+          "kind": "qualified",
+          "line": 252,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        }
+      ],
+      "sha256": "bd53cc3752e200f6452820828b647a6f1955af112de794ef171a95f27903404c"
+    },
+    "GivreClone.App/Services/GivreLuaHost.Logging.cs": {
+      "references": [
+        {
+          "kind": "qualified",
+          "line": 25,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        }
+      ],
+      "sha256": "c161022ea1565f365f1c527003f882330b924c5cf45bc163f7beb87628555daf"
+    },
+    "GivreClone.App/Services/GivreLuaHost.Travel.cs": {
+      "references": [
+        {
+          "kind": "qualified",
+          "line": 830,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        }
+      ],
+      "sha256": "cd98a599bf1381a47087591a634262e64e5390edf40b85205386f2026dea464e"
+    },
+    "GivreClone.App/Services/GivreLuaHost.cs": {
+      "references": [
+        {
+          "kind": "qualified",
+          "line": 226,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Scope.Value"
+        },
+        {
+          "kind": "qualified",
+          "line": 244,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Scope.Value"
+        },
+        {
+          "kind": "qualified",
+          "line": 332,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Scope.Value"
+        }
+      ],
+      "sha256": "bbdedf3cc8faad18b18c27388e206cdf2dbe2544be7de8452c1f17592a8f5072"
+    },
+    "GivreClone.App/Services/NativeTurboRuntime.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 10,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 10,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 93,
+          "symbol": "GivreCore.Injection.DllInjector.Inject"
+        }
+      ],
+      "sha256": "3afbcd3f5b8b96a69173c5cc8fadbeb43d4d276bad61397b36df778d47afd87c"
+    },
+    "GivreClone.App/Services/PrivateMessageService.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 7,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 7,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "75f1b69425479f3062bce7b90195a5d993ab90cc13e58134dc249721b302f8dc"
+    },
+    "GivreClone.App/Services/ProxyResolver.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreLauncher.Core.Proxy"
+        }
+      ],
+      "sha256": "8c97d039622b98014c6fb172736aa9df5a9f37a576ddb8ea275155836b2bb0da"
+    },
+    "GivreClone.App/Services/ProxyTester.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 10,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 10,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "d1ac5cd3161cf9a24e726607c5dc13256576a0d8259400782039e5842e1a3137"
+    },
+    "GivreClone.App/Services/Relay/GivreRelay.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 5,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 5,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 107,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        }
+      ],
+      "sha256": "6a80ee3608ef86eb322f305de775cda396bab3a8e9640b2e4c8941ae67f1bd91"
+    },
+    "GivreClone.App/Services/Relay/GivreRelayClient.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "a45661b409beda0b3283fd30142e59e25a9b18cbfaa617ece36a48f57c610351"
+    },
+    "GivreClone.App/Services/Relay/RelaySocksBridge.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "a98ef695ec431798f47ad1f2fe7ac93ba8ab4543e8ab5fc8502fabe20338db3b"
+    },
+    "GivreClone.App/Services/Transport/MitmTransport.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 2,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 2,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "d863e7150d69833c16ce305a967e933206801182a5d99630aa0267886b89600d"
+    },
+    "GivreClone.App/Services/Transport/Socket/DeviceIdentifierObserver.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 6,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 6,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 7,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 7,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "4a8806942f2e19bfa82899f8426b90668e5726f3dce7f24bf0f2cb3be231626f"
+    },
+    "GivreClone.App/Services/Transport/Socket/SocketConnectionClient.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 9,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 9,
+          "symbol": "GivreLauncher.Core.Proxy"
+        }
+      ],
+      "sha256": "6966143c6b233e539a1cada9a8e4da156430df4f32617b0caa4bc721bcee1206"
+    },
+    "GivreClone.App/Services/Transport/Socket/SocketDialer.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 8,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 8,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "using",
+          "line": 9,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 9,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "4f60797d413506287ea38cdebb228b162b529853bd73f8e753e714a68f40d75d"
+    },
+    "GivreClone.App/Services/Transport/Socket/SocketGameClient.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "using",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 12,
+          "symbol": "GivreLauncher.Core.Proxy"
+        }
+      ],
+      "sha256": "ba55d6592054943f418a877837794f7074dc109275ef75cbbabfe7735b5d7065"
+    },
+    "GivreClone.App/Services/Transport/Socket/SocketProbe.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 9,
+          "symbol": "GivreLauncher.Core.Accounts"
+        },
+        {
+          "kind": "qualified",
+          "line": 9,
+          "symbol": "GivreLauncher.Core.Accounts"
+        },
+        {
+          "kind": "using",
+          "line": 10,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 10,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "using",
+          "line": 11,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 11,
+          "symbol": "GivreLauncher.Core.Proxy"
+        }
+      ],
+      "sha256": "8153d3498dc1c34c4368962beeba8b84d83cf0d64acd86d32e982e511b2b1160"
+    },
+    "GivreClone.App/Services/Transport/SocketLog.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 2,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 2,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "171d5c66731b2ce61a39504908359fbf8c81a36e365ba3e003d1cc7b504bb3ee"
+    },
+    "GivreClone.App/Services/TransportDiag.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 9,
+          "symbol": "GivreLauncher.Core.Transport"
+        },
+        {
+          "kind": "qualified",
+          "line": 9,
+          "symbol": "GivreLauncher.Core.Transport"
+        }
+      ],
+      "sha256": "e6817da406fbbcc055ed6091c9d259709f90d43389c54518dd910e6044ca56cd"
+    },
+    "GivreClone.App/Services/WebAuthRunner.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 6,
+          "symbol": "GivreLauncher.Core.Proxy"
+        },
+        {
+          "kind": "qualified",
+          "line": 6,
+          "symbol": "GivreLauncher.Core.Proxy"
+        }
+      ],
+      "sha256": "fa15d5427421f3574ac7a93141c0c5d527dcc54c5e169ec44551ff5a3f54e8f2"
+    },
+    "GivreClone.App/Services/WorldGraphExtractor.cs": {
+      "references": [
+        {
+          "kind": "qualified",
+          "line": 102,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        },
+        {
+          "kind": "qualified",
+          "line": 103,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        }
+      ],
+      "sha256": "45a28a134fd04916747bd1dacde6821f8e8688709a89b723de590a5a21e40d43"
+    },
+    "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 31,
+          "symbol": "GivreLauncher.Core.Launch.GameLauncher.ResolveDofusPath"
+        },
+        {
+          "kind": "qualified",
+          "line": 120,
+          "symbol": "GivreLauncher.Core.Launch.GameLauncher.ResolveDofusPath"
+        },
+        {
+          "kind": "qualified",
+          "line": 246,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        },
+        {
+          "kind": "qualified",
+          "line": 257,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        },
+        {
+          "kind": "qualified",
+          "line": 259,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        },
+        {
+          "kind": "qualified",
+          "line": 272,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        },
+        {
+          "kind": "qualified",
+          "line": 281,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        },
+        {
+          "kind": "qualified",
+          "line": 305,
+          "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+        },
+        {
+          "kind": "qualified",
+          "line": 324,
+          "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+        },
+        {
+          "kind": "qualified",
+          "line": 340,
+          "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+        },
+        {
+          "kind": "qualified",
+          "line": 341,
+          "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+        },
+        {
+          "kind": "qualified",
+          "line": 355,
+          "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+        },
+        {
+          "kind": "qualified",
+          "line": 382,
+          "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+        },
+        {
+          "kind": "qualified",
+          "line": 564,
+          "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+        },
+        {
+          "kind": "qualified",
+          "line": 565,
+          "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+        },
+        {
+          "kind": "qualified",
+          "line": 575,
+          "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+        },
+        {
+          "kind": "qualified",
+          "line": 575,
+          "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+        },
+        {
+          "kind": "qualified",
+          "line": 586,
+          "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+        },
+        {
+          "kind": "qualified",
+          "line": 586,
+          "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+        },
+        {
+          "kind": "qualified",
+          "line": 588,
+          "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+        }
+      ],
+      "sha256": "42c95796af5e89d7502c879d9a098a06b424bb82e9105b68ab134b595dda18ac"
+    },
+    "GivreClone.App/ViewModels/AccountsViewModel.ServerPick.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Ankama"
+        }
+      ],
+      "sha256": "82c2baf0676a49a3240cc18ae5dbfcad7c7ddf5692d7ebaf0d4a94b8a831d1d7"
+    },
+    "GivreClone.App/ViewModels/AccountsViewModel.Socket.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 382,
+          "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+        },
+        {
+          "kind": "qualified",
+          "line": 395,
+          "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+        }
+      ],
+      "sha256": "6487f59bd34f95bde9bd9a16b7cf6cf5179349f8f3416c579c8f9c4f857d7efc"
+    },
+    "GivreClone.App/ViewModels/AccountsViewModel.Telemetry.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Ankama"
+        }
+      ],
+      "sha256": "d4ad875da1e9ae79d83417a98244e3af452d6e9fa9f6878700e806c0a965abe9"
+    },
+    "GivreClone.App/ViewModels/AccountsViewModel.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 17,
+          "symbol": "GivreLauncher.Core.Ankama"
+        },
+        {
+          "kind": "qualified",
+          "line": 452,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        },
+        {
+          "kind": "qualified",
+          "line": 658,
+          "symbol": "GivreLauncher.Core.Proxy.ProxySettings"
+        }
+      ],
+      "sha256": "42792a098b62bdb4d04bdb7a9c85956c93754e56d9a49681acd46a14f6444cfb"
+    },
+    "GivreClone.App/ViewModels/BotRowViewModel.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 15,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 15,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 552,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        },
+        {
+          "kind": "qualified",
+          "line": 577,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        }
+      ],
+      "sha256": "0969df4c60aaf7fbad7a72975907a1a2ba5d8f658cb57af7a15e027cab370ec6"
+    },
+    "GivreClone.App/ViewModels/HdvViewModel.cs": {
+      "references": [
+        {
+          "kind": "qualified",
+          "line": 720,
+          "symbol": "GivreLauncher.Core.Transport.TransportLog.Line"
+        }
+      ],
+      "sha256": "2a59fea8b0b64d7177d316f73a63e5884cb6abc49748edf70e3cccd3c19e767f"
+    },
+    "GivreClone.Engine/ActionSender.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 2,
+          "symbol": "GivreCore.Mitm"
+        },
+        {
+          "kind": "qualified",
+          "line": 2,
+          "symbol": "GivreCore.Mitm"
+        }
+      ],
+      "sha256": "cff2a51ef9a28ac3de7c0c7068ef7c42824259adb825e1adf304d8b71f29bf2f"
+    },
+    "GivreClone.Engine/BotHost.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Mitm"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Mitm"
+        }
+      ],
+      "sha256": "ac2a83c947838a3615c2253afda4b4c552e82a85d08c6bc898d29b59c96c1523"
+    },
+    "GivreClone.Engine/BotMessage.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 1,
+          "symbol": "GivreCore.Mitm"
+        },
+        {
+          "kind": "qualified",
+          "line": 1,
+          "symbol": "GivreCore.Mitm"
+        },
+        {
+          "kind": "using",
+          "line": 2,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 2,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "7c702a4bff1f1dd02a0aa13033bf4aa0547c600cbbd95b6c8b83e4d94e83c996"
+    },
+    "GivreClone.Engine/BotOrchestrator.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Mitm"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Mitm"
+        }
+      ],
+      "sha256": "2000c76976e0afab5798e167dd64d1a6d4580adbe7253055702b47b1237f1fa5"
+    },
+    "GivreClone.Engine/BotSession.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 2,
+          "symbol": "GivreCore.Mitm"
+        },
+        {
+          "kind": "qualified",
+          "line": 2,
+          "symbol": "GivreCore.Mitm"
+        }
+      ],
+      "sha256": "45fc6d6a215f449b6c3bb75cce26713c63be3d3f24013645e9b506f45c4c393f"
+    },
+    "GivreClone.Engine/DofusCaptureHost.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 2,
+          "symbol": "GivreCore.Injection"
+        },
+        {
+          "kind": "qualified",
+          "line": 2,
+          "symbol": "GivreCore.Injection"
+        },
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Mitm"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Mitm"
+        }
+      ],
+      "sha256": "1a20002d6df59e01ce5d892daf342e405e1de8d213f6446cdadb17610efc94bb"
+    },
+    "GivreClone.Engine/FrameSink.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 1,
+          "symbol": "GivreCore.Mitm"
+        },
+        {
+          "kind": "qualified",
+          "line": 1,
+          "symbol": "GivreCore.Mitm"
+        }
+      ],
+      "sha256": "d776011b8682a55d7a7c4a055c2fba4863b46ca08a53af5f06e41b9f34d1743d"
+    },
+    "GivreClone.Engine/Recovery/MZP0GuardedActionSender.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 2,
+          "symbol": "GivreCore.Mitm"
+        },
+        {
+          "kind": "qualified",
+          "line": 2,
+          "symbol": "GivreCore.Mitm"
+        },
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "5f1b31518a03a1f24885f8cdd534da0e9e0f7d45d5b8f424cdba5a91cecd1032"
+    },
+    "GivreClone.Engine/Recovery/MZP1GuardedEngineWiring.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 2,
+          "symbol": "GivreCore.Mitm"
+        },
+        {
+          "kind": "qualified",
+          "line": 2,
+          "symbol": "GivreCore.Mitm"
+        },
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "43de22780f9b78c6f9505f8886e522258381afa9f3ab0f9fe0be7f6e4ca4d13c"
+    },
+    "GivreClone.Engine/SessionBinder.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 1,
+          "symbol": "GivreCore.Mitm"
+        },
+        {
+          "kind": "qualified",
+          "line": 1,
+          "symbol": "GivreCore.Mitm"
+        }
+      ],
+      "sha256": "1b70cdf86d3473248e82009bb1d45bc3adcf370833e624fd8fc494427bebda26"
+    },
+    "GivreClone.Protocol/CharacterInfoReader.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "4f3a8e095b6348efc1d840164c3f7e546efc7c4ad1ff526c414173f898120827"
+    },
+    "GivreClone.Protocol/CharacterSpellsReader.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "234479d3b394b80f217b5067a13a0938d9a9bc3b086079bd920c752ef30e0665"
+    },
+    "GivreClone.Protocol/EnvelopeBuilder.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 2,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 2,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "30e0c318904c93cd0f958f0593ca77e7f38bca6643d5bbbb9d09f79563808050"
+    },
+    "GivreClone.Protocol/FightPrepReader.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "0ed486ac0957c6bb8ae848aece980f5c486f762a5c4372afba0a14c7ecadd02e"
+    },
+    "GivreClone.Protocol/FightResultReader.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "ec361a0a68f6af19b8af210fc5d86108213dcafdd78a757b6c58426a7c1275b0"
+    },
+    "GivreClone.Protocol/FightStatsReader.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "e3d99b148fd024985114fb305ea9a3e84753ae1eddc2ce8698cf55476043b631"
+    },
+    "GivreClone.Protocol/GameCodec.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 4,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 4,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "9bebb194de88933886b6881307ca3d4b0d177cae82cb4e35a11749b876010835"
+    },
+    "GivreClone.Protocol/HouseReader.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "a8432c3ec6ba96cefea5891bd0dfe11d88ffeefb6e96478c4044469b5805aff9"
+    },
+    "GivreClone.Protocol/InventoryReader.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "b9ea86833959a2341383ca50e4949fa91a0d4ab0bcb4575bd06c0ac64a2cb2c5"
+    },
+    "GivreClone.Protocol/LotEEventsReader.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "21868c12f3331bce043ecbf01a701429e97419b45137b44b19caaef09084cf5a"
+    },
+    "GivreClone.Protocol/MapActorsReader.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 4,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 4,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "781bb00458818e9f89944efaeac829cbf8d5a3d8fc36581b84add9443e77c91e"
+    },
+    "GivreClone.Protocol/MapFightReader.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 4,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 4,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "a2bf59f0b486675b1138aab25b741028b326e9cf6bb85c14eb62adce079c4dbc"
+    },
+    "GivreClone.Protocol/MapInteractivesReader.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 4,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 4,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "eb45d956cd16d3b3d2caf9e3274391df68bc0a07dce71b2a46da2bee9394c2fa"
+    },
+    "GivreClone.Protocol/MapMovementReader.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "c03790d56814c84f201ce4c88b0a645d83875d8490db121cb7b1b55f165124fa"
+    },
+    "GivreClone.Protocol/MapMovementRefusedReader.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "0ae51c077bab81261f00637e7a84608da4b234b176312ca3bcb0f96b9dcc79dc"
+    },
+    "GivreClone.Protocol/MoveForge.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 4,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 4,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "6e0c72ff2a189df47fc2d3f7b70b3d560bd9b10ea3b1be73ac6598b55923e1ed"
+    },
+    "GivreClone.Protocol/PacketTree.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 2,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 2,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "a11541e678800a2623fccc7076277c8762bf88216248f7d03ebfd1b13dc73783"
+    },
+    "GivreClone.Protocol/PartyReader.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 1,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 1,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "a40d1ad998c0c85bebe119337ced70f7c683b6536ae3da6d4c6719bd48c247b5"
+    },
+    "GivreClone.Protocol/PayloadBuilder.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 2,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 2,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "a1be6c3de3a78fda243ed607389da9872692c15658cafb46417aac3b8b301e84"
+    },
+    "GivreClone.Protocol/QuestReader.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "4fcf4ac0378167660124089e062fb774d43fa0fc2674127fa48b776852167a8c"
+    },
+    "GivreClone.Protocol/TeleportReader.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 4,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 4,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "288df37004c788aac5e1e9ce83f8ffca190d9ec41b90edbbc6cf0241966b8731"
+    },
+    "GivreClone.Protocol/WhoAmIForge.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "a3ca1284e0f95dcbea5c67e9eb7d1e3279fcaa6670866d1cafaecb91d535d71e"
+    },
+    "GivreClone.Protocol/WhoIsReader.cs": {
+      "references": [
+        {
+          "kind": "using",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        },
+        {
+          "kind": "qualified",
+          "line": 3,
+          "symbol": "GivreCore.Protobuf"
+        }
+      ],
+      "sha256": "6989e28e42e8da117866f939b375870a31f32c0a4cf5fe1297dbb4aeec7f2c77"
+    }
+  },
+  "relaySource": {
+    "assemblyName": "GivreRelay",
+    "files": [
+      {
+        "path": "GivreClone.App/Services/Relay/GivreRelay.cs",
+        "sha256": "6a80ee3608ef86eb322f305de775cda396bab3a8e9640b2e4c8941ae67f1bd91"
+      },
+      {
+        "path": "GivreClone.App/Services/Relay/GivreRelayClient.cs",
+        "sha256": "a45661b409beda0b3283fd30142e59e25a9b18cbfaa617ece36a48f57c610351"
+      },
+      {
+        "path": "GivreClone.App/Services/Relay/RelayChanges.cs",
+        "sha256": "ae9c44d25d3566774070b939c4aeaaaea0354574f233518708bdb6a524fa526a"
+      },
+      {
+        "path": "GivreClone.App/Services/Relay/RelaySocksBridge.cs",
+        "sha256": "a98ef695ec431798f47ad1f2fe7ac93ba8ab4543e8ab5fc8502fabe20338db3b"
+      },
+      {
+        "path": "GivreClone.App/Services/Relay/RelayStream.cs",
+        "sha256": "f13e5712865eeded7644c50447d9440466e744af24e1f7f4f8dddb80cd5d7356"
+      },
+      {
+        "path": "GivreClone.App/Services/Relay/TlsSni.cs",
+        "sha256": "79929751123bbfe8f1672ad647da9099ef01abd49718879eb00040a8300bbb38"
+      },
+      {
+        "path": "GivreRelayAgent/AgentLink.cs",
+        "sha256": "f3b5d312491b61ffa851ce6c3e30d445dca11b3a96fab53ba413935bfccd1baa"
+      },
+      {
+        "path": "GivreRelayAgent/HostPolicy.cs",
+        "sha256": "904169e09cb6cf5629539a16b4e80362b6f3b7eef59555c7a549f78bf00b1ffd"
+      },
+      {
+        "path": "GivreRelayAgent/Program.cs",
+        "sha256": "30541981336120833644fe38bdcac9301248d03dcbc831ddb6e0811d99dbf2c6"
+      }
+    ],
+    "isSubstituteForCoreOrLauncher": false,
+    "project": "GivreRelayAgent/GivreRelayAgent.csproj"
+  },
+  "root": "GivreShareWork",
+  "runtimeSessionOrAckCertified": false,
+  "schema": "MZP2_DEPENDENCY_CALLSITE_V1",
+  "searchScope": [
+    "GivreClone.App",
+    "GivreClone.Engine",
+    "GivreClone.Protocol",
+    "GivreRelayAgent"
+  ],
+  "sourceProviderVerified": false,
+  "topFive": {
+    "P1_PROTOBUF": {
+      "count": 422,
+      "examples": [
+        {
+          "line": 10,
+          "lineSha256": "db39d50dc298cd8855ffc46120cc9af0c01e67a04d797941bd440b1731497e15",
+          "path": "GivreClone.App/Services/CaptureDecoder.cs",
+          "symbol": "ProtoField"
+        },
+        {
+          "line": 41,
+          "lineSha256": "be5676fd6c01e4baf49e3343760b10e091ed007eea657d75914f694fcbdbfb36",
+          "path": "GivreClone.App/Services/CaptureDecoder.cs",
+          "symbol": "RawProtobuf"
+        },
+        {
+          "line": 52,
+          "lineSha256": "3dc5501e405db9eabad74ecfdc6606ce9825d676f07e5fecdfd46f89e91cc3c4",
+          "path": "GivreClone.App/Services/CaptureDecoder.cs",
+          "symbol": "RawProtobuf"
+        },
+        {
+          "line": 53,
+          "lineSha256": "661443408c534cb52082297ad3a387e75e9ac7bdcacc83519c014a03f3a01fde",
+          "path": "GivreClone.App/Services/CaptureDecoder.cs",
+          "symbol": "RawProtobuf"
+        },
+        {
+          "line": 56,
+          "lineSha256": "195b3d4b0790096ce6c13f34ecbac37b771c26124b66796d405a10b4f3024770",
+          "path": "GivreClone.App/Services/CaptureDecoder.cs",
+          "symbol": "ProtoField"
+        },
+        {
+          "line": 240,
+          "lineSha256": "8bd53d57cad7a12a275c31bff45f79874d06a911dad0565d87e087a22e15270f",
+          "path": "GivreClone.App/Services/LaunchService.Combat.cs",
+          "symbol": "ProtoField"
+        },
+        {
+          "line": 58,
+          "lineSha256": "378382725017f2f6146596720bd809784420c4cc199c9cf31a588ba296a77bca",
+          "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+          "symbol": "ProtoField"
+        },
+        {
+          "line": 65,
+          "lineSha256": "b80959e03ddb64904b0beaecef9928eeeaac6d80510e778d581258f0f6ca2ea2",
+          "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+          "symbol": "WireType"
+        },
+        {
+          "line": 71,
+          "lineSha256": "19f442b7a9a6c7db60a0626607b2c87521c302e892f590636ad3cc126bd46257",
+          "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+          "symbol": "WireType"
+        },
+        {
+          "line": 72,
+          "lineSha256": "775d9503b380c5323305ae66224626856f17e9c1b00da58c01e403719aac9eb7",
+          "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+          "symbol": "WireType"
+        },
+        {
+          "line": 73,
+          "lineSha256": "a077366bb0f243cb6b6db20b7df3d3cc30a5f53fe2614803f967236f4eb4d33d",
+          "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+          "symbol": "WireType"
+        },
+        {
+          "line": 74,
+          "lineSha256": "9a4faeb2ae4ea03c686b09625ebcf4b90e2771485038efc91a696bd583b74c7e",
+          "path": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+          "symbol": "WireType"
+        }
+      ],
+      "files": [
+        "GivreClone.App/Services/CaptureDecoder.cs",
+        "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+        "GivreClone.App/Services/LaunchService.Combat.PreFight.cs",
+        "GivreClone.App/Services/LaunchService.Combat.cs",
+        "GivreClone.App/Services/LaunchService.Events.cs",
+        "GivreClone.App/Services/LaunchService.LotI.cs",
+        "GivreClone.App/Services/LaunchService.LotK.cs",
+        "GivreClone.App/Services/LaunchService.Packets.cs",
+        "GivreClone.App/Services/LaunchService.Scripting.cs",
+        "GivreClone.App/Services/LaunchService.Snow.cs",
+        "GivreClone.App/Services/LaunchService.Treasure.cs",
+        "GivreClone.App/Services/LaunchService.cs",
+        "GivreClone.App/Services/Transport/Socket/DeviceIdentifierObserver.cs",
+        "GivreClone.App/Services/Transport/Socket/SocketGameClient.cs",
+        "GivreClone.App/ViewModels/BotRowViewModel.cs",
+        "GivreClone.Engine/BotMessage.cs",
+        "GivreClone.Engine/Recovery/MZP0GuardedActionSender.cs",
+        "GivreClone.Engine/Recovery/MZP1GuardedEngineWiring.cs",
+        "GivreClone.Protocol/CharacterInfoReader.cs",
+        "GivreClone.Protocol/CharacterSpellsReader.cs",
+        "GivreClone.Protocol/EnvelopeBuilder.cs",
+        "GivreClone.Protocol/FightPrepReader.cs",
+        "GivreClone.Protocol/FightResultReader.cs",
+        "GivreClone.Protocol/FightStatsReader.cs",
+        "GivreClone.Protocol/GameCodec.cs",
+        "GivreClone.Protocol/HouseReader.cs",
+        "GivreClone.Protocol/InventoryReader.cs",
+        "GivreClone.Protocol/LotEEventsReader.cs",
+        "GivreClone.Protocol/MapActorsReader.cs",
+        "GivreClone.Protocol/MapFightReader.cs",
+        "GivreClone.Protocol/MapInteractivesReader.cs",
+        "GivreClone.Protocol/MapMovementReader.cs",
+        "GivreClone.Protocol/MapMovementRefusedReader.cs",
+        "GivreClone.Protocol/MoveForge.cs",
+        "GivreClone.Protocol/PacketTree.cs",
+        "GivreClone.Protocol/PartyReader.cs",
+        "GivreClone.Protocol/PayloadBuilder.cs",
+        "GivreClone.Protocol/QuestReader.cs",
+        "GivreClone.Protocol/TeleportReader.cs",
+        "GivreClone.Protocol/WhoAmIForge.cs",
+        "GivreClone.Protocol/WhoIsReader.cs"
+      ],
+      "impact": "Parser/encoder/typed protobuf tree and frame length encoding",
+      "requiredNamespace": "GivreCore.Protobuf",
+      "symbols": [
+        "ProtoField",
+        "RawProtobuf",
+        "WireType"
+      ]
+    },
+    "P2_MITM_CAPTURE": {
+      "count": 38,
+      "examples": [
+        {
+          "line": 32,
+          "lineSha256": "9bb5d35f5ef56ed9a4a762b3a291ca70c4d436dab052c4e58944671b79831430",
+          "path": "GivreClone.App/Services/BotHostService.cs",
+          "symbol": "CapturedMessage"
+        },
+        {
+          "line": 44,
+          "lineSha256": "c7d2b03bc1b2a21b875ac822b2e444b7bfd98f420e70f0dad0dda45aa0f4f6b8",
+          "path": "GivreClone.App/Services/BotHostService.cs",
+          "symbol": "CapturedMessage"
+        },
+        {
+          "line": 50,
+          "lineSha256": "93baed064f31119459aedf8817f59fe4e4b2d251f5cfa4b01ebd5056c4171277",
+          "path": "GivreClone.App/Services/BotHostService.cs",
+          "symbol": "CapturedMessage"
+        },
+        {
+          "line": 51,
+          "lineSha256": "724b26dd2042209d46cd97afeea5929c267c3e4fcfc6ed3e77527644b31448a7",
+          "path": "GivreClone.App/Services/BotHostService.cs",
+          "symbol": "CapturedMessage"
+        },
+        {
+          "line": 26,
+          "lineSha256": "dcf84ba8a275c7eabc706b939afc943be729ee6a3133201848c467c9dbe869be",
+          "path": "GivreClone.App/Services/MZP2OwnedHostAdmission.cs",
+          "symbol": "CapturedMessage"
+        },
+        {
+          "line": 45,
+          "lineSha256": "dcf84ba8a275c7eabc706b939afc943be729ee6a3133201848c467c9dbe869be",
+          "path": "GivreClone.App/Services/MZP2OwnedHostAdmission.cs",
+          "symbol": "CapturedMessage"
+        },
+        {
+          "line": 80,
+          "lineSha256": "66ec0124ba2dc1f9505ef7991959b1e84a7f5f5ad0486f36309e568441e18eb7",
+          "path": "GivreClone.App/Services/MZP2OwnedHostAdmission.cs",
+          "symbol": "CapturedMessage"
+        },
+        {
+          "line": 363,
+          "lineSha256": "3f96611f86ac3fda5c448d34348a5e1526e7cf0c8f385283130509b34dea9b48",
+          "path": "GivreClone.App/Services/MZP2OwnedHostAdmission.cs",
+          "symbol": "CapturedMessage"
+        },
+        {
+          "line": 55,
+          "lineSha256": "6a4be1ed6b51282e118e55bae97b0c333c6f18fc3b700e426ade108bd4223011",
+          "path": "GivreClone.Engine/ActionSender.cs",
+          "symbol": "Direction"
+        },
+        {
+          "line": 15,
+          "lineSha256": "ae03d652561b746278bd9a0baef1a5a11374bbce83f6aec50c9b7c08bb256a6f",
+          "path": "GivreClone.Engine/BotHost.cs",
+          "symbol": "TcpProxyServer"
+        },
+        {
+          "line": 26,
+          "lineSha256": "b33158db9346c57596b985f82d09698127a5839ceb44f3be841a697c36408f05",
+          "path": "GivreClone.Engine/BotHost.cs",
+          "symbol": "CapturedMessage"
+        },
+        {
+          "line": 28,
+          "lineSha256": "536fe409d8b1b12fa7619cf6140ee32203581f145b7cc3950a6e8a61be8215e4",
+          "path": "GivreClone.Engine/BotHost.cs",
+          "symbol": "CapturedMessage"
+        }
+      ],
+      "files": [
+        "GivreClone.App/Services/BotHostService.cs",
+        "GivreClone.App/Services/MZP2OwnedHostAdmission.cs",
+        "GivreClone.Engine/ActionSender.cs",
+        "GivreClone.Engine/BotHost.cs",
+        "GivreClone.Engine/BotMessage.cs",
+        "GivreClone.Engine/BotOrchestrator.cs",
+        "GivreClone.Engine/BotSession.cs",
+        "GivreClone.Engine/DofusCaptureHost.cs",
+        "GivreClone.Engine/FrameSink.cs",
+        "GivreClone.Engine/Recovery/MZP0GuardedActionSender.cs",
+        "GivreClone.Engine/Recovery/MZP1GuardedEngineWiring.cs",
+        "GivreClone.Engine/SessionBinder.cs"
+      ],
+      "impact": "TcpProxyServer capture event, replay, connection identity and captured frames",
+      "requiredNamespace": "GivreCore.Mitm",
+      "symbols": [
+        "TcpProxyServer",
+        "CapturedMessage",
+        "Direction"
+      ]
+    },
+    "P3_HANDSHAKE_RELAY": {
+      "count": 3,
+      "examples": [
+        {
+          "line": 497,
+          "lineSha256": "9287a845ed1fc39078f84ebb3f8290fb29c4e9e20185115ad7551a4cdb618777",
+          "path": "GivreClone.App/Services/LaunchService.cs",
+          "symbol": "HandshakeRelay"
+        },
+        {
+          "line": 12,
+          "lineSha256": "5e4cf5e39329a2bb18d7f6addf320df9528ce6e48b9defb83f3d48d11f5b3b49",
+          "path": "GivreClone.App/Services/Transport/MitmTransport.cs",
+          "symbol": "HandshakeRelay"
+        },
+        {
+          "line": 14,
+          "lineSha256": "13bc75912e565fd21e864c7f6043d0ef652023f4d0e6d443b25d57e3db9701b2",
+          "path": "GivreClone.App/Services/Transport/MitmTransport.cs",
+          "symbol": "HandshakeRelay"
+        }
+      ],
+      "files": [
+        "GivreClone.App/Services/LaunchService.cs",
+        "GivreClone.App/Services/Transport/MitmTransport.cs"
+      ],
+      "impact": "PID-scoped network relay, game proxy and data/closed events",
+      "requiredNamespace": "GivreLauncher.Core.Transport",
+      "symbols": [
+        "HandshakeRelay"
+      ]
+    },
+    "P4_GAME_LAUNCH": {
+      "count": 5,
+      "examples": [
+        {
+          "line": 31,
+          "lineSha256": "eb2dee95d3fc8019977ab68d27fdfe834ae01e313bca16478e8938617041f753",
+          "path": "GivreClone.App/Services/DofusPaths.cs",
+          "symbol": "GameLauncher"
+        },
+        {
+          "line": 52,
+          "lineSha256": "0bcdfa08bd2c20ea2b74ec9e79880c9f146154b7dd02f4ceacd58669bdcde58d",
+          "path": "GivreClone.App/Services/LaunchService.cs",
+          "symbol": "GameLauncher"
+        },
+        {
+          "line": 533,
+          "lineSha256": "25194f59307abdaf8315aebb9010a38155142c6ebe1aaafa966679046628b4f1",
+          "path": "GivreClone.App/Services/LaunchService.cs",
+          "symbol": "GameLauncher"
+        },
+        {
+          "line": 31,
+          "lineSha256": "08b341a2ade73a06afabf62348631c2dfc8f462a40f8fc71cb5b82af35492255",
+          "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+          "symbol": "GameLauncher"
+        },
+        {
+          "line": 120,
+          "lineSha256": "83d5007a0d0afa694a4eb4a649675c3e846f71af7e02770b86303e7cc613d03b",
+          "path": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+          "symbol": "GameLauncher"
+        }
+      ],
+      "files": [
+        "GivreClone.App/Services/DofusPaths.cs",
+        "GivreClone.App/Services/LaunchService.cs",
+        "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs"
+      ],
+      "impact": "Game path resolution and owned-process launcher",
+      "requiredNamespace": "GivreLauncher.Core.Launch",
+      "symbols": [
+        "GameLauncher"
+      ]
+    },
+    "P5_PROXY_ROUTING": {
+      "count": 44,
+      "examples": [
+        {
+          "line": 30,
+          "lineSha256": "11e71788ec1988f5e219847556b34c2bc2921d460911c4fb3ad704750103305f",
+          "path": "GivreClone.App/Services/ConnectionJournal.cs",
+          "symbol": "ProxySettings"
+        },
+        {
+          "line": 24,
+          "lineSha256": "7f85222345f5170aaae74b67af3f326ffc5b916c10b6e7824f7d7ca042f013d3",
+          "path": "GivreClone.App/Services/LaunchService.cs",
+          "symbol": "ProxySettings"
+        },
+        {
+          "line": 32,
+          "lineSha256": "183e98d4f29b57c73950666d60f2f878c7ef0893611b5a6cfa7f0b995d440ee3",
+          "path": "GivreClone.App/Services/LaunchService.cs",
+          "symbol": "ProxySettings"
+        },
+        {
+          "line": 199,
+          "lineSha256": "83785cf20763e0d00a71d3f513f536097dc376f08bef1f766f364606266535c6",
+          "path": "GivreClone.App/Services/LaunchService.cs",
+          "symbol": "ProxySettings"
+        },
+        {
+          "line": 200,
+          "lineSha256": "0d7a055d7b8271205c4ebb3b5652bf6fb58db95a8c69745e6934778dc5f49207",
+          "path": "GivreClone.App/Services/LaunchService.cs",
+          "symbol": "ProxySettings"
+        },
+        {
+          "line": 11,
+          "lineSha256": "6441d0612195d840893fc0a808b10679605165864c96f5fc5de1af299e0ca96c",
+          "path": "GivreClone.App/Services/ProxyResolver.cs",
+          "symbol": "ProxySettings"
+        },
+        {
+          "line": 34,
+          "lineSha256": "19174f2375d80d3aeaa335d9b4c2e6c67f02735e0168e887fdfed317f20a063c",
+          "path": "GivreClone.App/Services/ProxyResolver.cs",
+          "symbol": "ProxySettings"
+        },
+        {
+          "line": 34,
+          "lineSha256": "19174f2375d80d3aeaa335d9b4c2e6c67f02735e0168e887fdfed317f20a063c",
+          "path": "GivreClone.App/Services/ProxyResolver.cs",
+          "symbol": "ProxyKind"
+        },
+        {
+          "line": 43,
+          "lineSha256": "2a33ca4b85474718ab10ec5e2c4cabfdec307d2d288a5188c9bc2b1a8aa28728",
+          "path": "GivreClone.App/Services/ProxyResolver.cs",
+          "symbol": "ProxyKind"
+        },
+        {
+          "line": 45,
+          "lineSha256": "c6cf18bc698c0dcbe259d2dcf3852c54028de8df6943c80189aaf0654004be24",
+          "path": "GivreClone.App/Services/ProxyResolver.cs",
+          "symbol": "ProxySettings"
+        },
+        {
+          "line": 26,
+          "lineSha256": "61bcd9a342266fee532effe698596dea32b70f9c9e0a1a5cceed3457187e9efd",
+          "path": "GivreClone.App/Services/ProxyTester.cs",
+          "symbol": "ProxySettings"
+        },
+        {
+          "line": 55,
+          "lineSha256": "a900503042bb1e9374b722ae4658eee2cb23757676fa408feefa7e9dc0934388",
+          "path": "GivreClone.App/Services/ProxyTester.cs",
+          "symbol": "ProxySettings"
+        }
+      ],
+      "files": [
+        "GivreClone.App/Services/ConnectionJournal.cs",
+        "GivreClone.App/Services/LaunchService.cs",
+        "GivreClone.App/Services/ProxyResolver.cs",
+        "GivreClone.App/Services/ProxyTester.cs",
+        "GivreClone.App/Services/Relay/GivreRelay.cs",
+        "GivreClone.App/Services/Transport/Socket/SocketConnectionClient.cs",
+        "GivreClone.App/Services/Transport/Socket/SocketDialer.cs",
+        "GivreClone.App/Services/Transport/Socket/SocketGameClient.cs",
+        "GivreClone.App/Services/Transport/Socket/SocketProbe.cs",
+        "GivreClone.App/Services/WebAuthRunner.cs",
+        "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+        "GivreClone.App/ViewModels/AccountsViewModel.Socket.cs",
+        "GivreClone.App/ViewModels/AccountsViewModel.cs"
+      ],
+      "impact": "Proxy policies, server/game routing and SOCKS/HTTP CONNECT",
+      "requiredNamespace": "GivreLauncher.Core.Proxy",
+      "symbols": [
+        "ProxySettings",
+        "ProxyKind"
+      ]
+    }
+  }
+}

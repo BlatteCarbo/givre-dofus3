@@ -1,0 +1,85 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             x:Class="GivreClone.App.Views.PlanningDisconnectOverlay"
+             x:DataType="vm:BotsViewModel">
+    <!-- Overlay niveau fenêtre (AU-DESSUS des autres modales de page, SOUS l'écran de licence) : DÉCONNEXION PLANIFIÉE à
+         compte à rebours. Un compte en jeu hors de sa plage (lancé à la main ou fin de plage) sera déconnecté à zéro ;
+         « Garder en ligne » l'exempte jusqu'à sa prochaine plage. Pas de fermeture par clic sur le fond : il faut choisir. -->
+    <Grid>
+        <Grid Classes.modalOpen="{Binding PendingDisconnectVisible}" IsHitTestVisible="{Binding PendingDisconnectVisible}">
+            <Border Classes="modalScrim" />
+            <!-- Carte bornée à la fenêtre (Margin + MaxHeight) : l'en-tête et « Tout garder en ligne » restent visibles, la
+                 liste défile quand plusieurs comptes arrivent ensemble (équipe qui finit sa plage en même temps). -->
+            <Border Classes="modalCard" Width="500" MaxHeight="680" Margin="24" Padding="26,24" CornerRadius="16"
+                    Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid RowDefinitions="Auto,Auto,*">
+                    <Grid Grid.Row="0" ColumnDefinitions="Auto,*" ColumnSpacing="14" Margin="0,0,0,16">
+                        <Border Grid.Column="0" Width="42" Height="42" CornerRadius="21" Background="#26E0A53F" VerticalAlignment="Top">
+                            <PathIcon Data="{StaticResource IconClock}" Width="20" Height="20" Foreground="{StaticResource AmberBrush}" />
+                        </Border>
+                        <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                            <TextBlock Text="{DynamicResource L.Planning.Pending.Title}" FontSize="17" FontWeight="SemiBold"
+                                       Foreground="{StaticResource TextPrimaryBrush}" />
+                            <TextBlock Text="{DynamicResource L.Planning.Pending.Body}" FontSize="12.5" LineHeight="18" TextWrapping="Wrap"
+                                       Foreground="{StaticResource TextSecondaryBrush}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Button Grid.Row="1" Classes="ghost" Height="38" Margin="0,0,0,14" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                            IsVisible="{Binding HasManyPending}" Command="{Binding CancelAllPlanDisconnectsCommand}">
+                        <TextBlock Text="{DynamicResource L.Planning.Pending.KeepAll}" VerticalAlignment="Center" />
+                    </Button>
+
+                    <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding PendingDisconnects}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:PendingPlanDisconnect">
+                                <Border Background="{StaticResource Surface2Brush}" CornerRadius="12" Padding="16,14" Margin="0,0,0,10"
+                                        BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1">
+                                    <StackPanel Spacing="10">
+                                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                                            <StackPanel Grid.Column="0" Spacing="2" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Character}" Classes="pii" FontSize="14.5" FontWeight="SemiBold"
+                                                           Foreground="{StaticResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis" />
+                                                <TextBlock Text="{Binding Login}" Classes="caption pii" TextTrimming="CharacterEllipsis" />
+                                                <TextBlock Text="{Binding Reason}" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap" />
+                                                <TextBlock Text="{Binding NextText}" FontSize="12" FontWeight="SemiBold"
+                                                           Foreground="{DynamicResource AccentBrightBrush}" TextWrapping="Wrap" />
+                                            </StackPanel>
+                                            <!-- décompte -->
+                                            <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Spacing="0">
+                                                <TextBlock Text="{Binding SecondsLeft}" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center"
+                                                           Foreground="{StaticResource AmberBrush}" />
+                                                <TextBlock Text="{DynamicResource L.Planning.Pending.Seconds}" Classes="caption" HorizontalAlignment="Center" />
+                                            </StackPanel>
+                                        </Grid>
+                                        <ProgressBar Minimum="0" Maximum="1" Value="{Binding Progress}" Height="4" MinHeight="4"
+                                                     Foreground="{StaticResource AmberBrush}" Background="{StaticResource Surface1Brush}" />
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+                                            <Button Classes="ghost" Height="36" MinWidth="0" Padding="14,0"
+                                                    Command="{Binding $parent[ItemsControl].((vm:BotsViewModel)DataContext).PlanDisconnectNowCommand}"
+                                                    CommandParameter="{Binding}">
+                                                <TextBlock Text="{DynamicResource L.Planning.Pending.Now}" VerticalAlignment="Center" />
+                                            </Button>
+                                            <Button Classes="primary" Height="36" MinWidth="0" Padding="16,0"
+                                                    Command="{Binding $parent[ItemsControl].((vm:BotsViewModel)DataContext).CancelPlanDisconnectCommand}"
+                                                    CommandParameter="{Binding}">
+                                                <StackPanel Orientation="Horizontal" Spacing="7">
+                                                    <PathIcon Data="{StaticResource IconCheck}" Width="13" Height="13" />
+                                                    <TextBlock Text="{DynamicResource L.Planning.Pending.Keep}" VerticalAlignment="Center" />
+                                                </StackPanel>
+                                            </Button>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

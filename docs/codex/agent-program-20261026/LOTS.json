@@ -1,0 +1,1868 @@
+{
+  "schemaVersion": 1,
+  "lots": [
+    {
+      "id": "S01",
+      "title": "Photographie complète de la source actuelle",
+      "task": "Inventorier modifications suivies, nouveaux fichiers utiles et dépendances locales. Produire une base reproductible incluant les correctifs non commités sans emporter userdata, logs ou exécutables de session.",
+      "accept": "Un agent neuf retrouve les mêmes sources et la même référence sans écraser le worktree actif. Manifeste de contenu et empreintes fournis.",
+      "checks": "Reconstruction dans un dossier vierge, comparaison des fichiers attendus, vérification qu'un simple checkout du vieux HEAD était incomplet.",
+      "dependencies": []
+    },
+    {
+      "id": "S02",
+      "title": "Registre des propriétaires et graphe de dépendances",
+      "task": "Attribuer les points chauds à un seul intégrateur et transformer les réservations historiques en registre explicite. Préparer les leases de lots et les demandes de modification partagée.",
+      "accept": "Deux agents ne peuvent posséder simultanément un même fichier exclusif. Les lots de recherche restent démarrables sans verrou d'écriture.",
+      "checks": "Simuler deux affectations concurrentes, départ d'un agent et transfert d'un lease avec modifications non livrées.",
+      "dependencies": [
+        "S01"
+      ]
+    },
+    {
+      "id": "S03",
+      "title": "Reproduction du build sans chemins personnels",
+      "task": "Tracer Directory.Build.targets et les références locales des projets pour documenter les vrais prérequis. Supprimer les dépendances implicites au poste uniquement dans une copie de développement.",
+      "accept": "Le build application et les tests adaptés fonctionnent dans un worktree préparé par une procédure écrite, avec les chemins et versions déclarés.",
+      "checks": "Nouvel environnement sans sorties binaires préexistantes, restauration froide puis build incrémental.",
+      "dependencies": [
+        "S01"
+      ]
+    },
+    {
+      "id": "S04",
+      "title": "Inventaire des fonctionnalités réellement branchées",
+      "task": "Parcourir les écrans et commandes MCP, puis suivre chaque action jusqu'au traitement et au retour visible. Classer intégré, partiel, indisponible explicite ou squelette.",
+      "accept": "Matrice traçable avec point d'entrée, service, forge/décodeur, état et preuve. Les modules visibles ne sont plus supposés opérationnels.",
+      "checks": "Échantillon d'au moins vingt actions couvrant Socket, MITM, économie et configuration, dont des refus.",
+      "dependencies": [
+        "S01"
+      ]
+    },
+    {
+      "id": "S05",
+      "title": "Contrat unique d'état des commandes",
+      "task": "Définir accepté, en cours, envoyé, confirmé, refusé, expiré et indéterminé. Étudier les divergences entre MCP, UI et journaux, sans remplacer tous les services d'un coup.",
+      "accept": "Une action ne devient jamais réussie à partir d'un simple accusé de prise en charge. Une même corrélation relie ses étapes.",
+      "checks": "Scénarios de retard, annulation, double accusé, mauvais PID et résultat serveur après timeout.",
+      "dependencies": [
+        "S04"
+      ]
+    },
+    {
+      "id": "S06",
+      "title": "Génération de session et identité de compte",
+      "task": "Auditer les caches indexés par PID ou nom et proposer une identité compte-session-génération commune aux commandes différées.",
+      "accept": "Un PID recyclé ou une reconnexion ne permet pas d'appliquer une action de l'ancienne session à la nouvelle.",
+      "checks": "Deux sessions successives partageant le même numéro de PID, changement de personnage et réponse ancienne retardée.",
+      "dependencies": [
+        "S05"
+      ]
+    },
+    {
+      "id": "S07",
+      "title": "Événements métiers et projection UI",
+      "task": "Cartographier les sources de vérité et les projections concurrentes dans LaunchService, WorldState et ViewModels. Définir des événements versionnés sur un périmètre pilote.",
+      "accept": "Une projection reconstruite depuis les événements donne le même état qu'une mise à jour directe. La version et la fraîcheur sont visibles en diagnostic.",
+      "checks": "Réordonnancement, doublons, snapshot partiel et reconstruction après reconnexion sur le pilote choisi.",
+      "dependencies": [
+        "S05",
+        "S06"
+      ]
+    },
+    {
+      "id": "S08",
+      "title": "Transactions mutuellement exclusives",
+      "task": "Étudier les collisions HDV, banque, échange, craft et forge. Proposer un bail d'activité par compte avec transitions explicites, puis intégrer un pilote borné.",
+      "accept": "Deux opérations incompatibles ne partagent jamais le même dialogue ou les mêmes accusés. Une opération annulée libère son bail.",
+      "checks": "Ouverture banque pendant HDV, changement d'échange pendant pose, arrêt de script et crash de tâche.",
+      "dependencies": [
+        "S05",
+        "S06"
+      ]
+    },
+    {
+      "id": "S09",
+      "title": "État de santé et progression réelle",
+      "task": "Définir la progression utile par activité plutôt qu'un simple heartbeat. Afficher depuis combien de temps un bot n'a ni avancé, ni récolté, ni terminé d'action.",
+      "accept": "Une boucle de messages identiques ne masque plus un blocage. Les attentes légitimes sont expliquées et bornées par type.",
+      "checks": "Groupe indisponible répété, ressource épuisée, attente banque et combat lent mais progressant.",
+      "dependencies": [
+        "S05",
+        "S07"
+      ]
+    },
+    {
+      "id": "S10",
+      "title": "Intégration centrale et manifeste protocole",
+      "task": "Prendre en charge les petits raccordements dans les fichiers partagés, le manifeste RequiredMapping et les projets. Maintenir une branche d'intégration sérialisée sans absorber de changements étrangers.",
+      "accept": "Chaque raccordement référence son lot, ses preuves et ses contrats. Build application, tests requis et clés FR/EN/ES contrôlés avant livraison.",
+      "checks": "Intégrer deux lots indépendants, détecter une collision et vérifier les manifests contre les sources réelles.",
+      "dependencies": [
+        "S01",
+        "S02",
+        "S03"
+      ]
+    },
+    {
+      "id": "C01",
+      "title": "PV, soins, vol de vie et érosion",
+      "task": "Reconstituer le défaut Minerbot avec une trace minimale. Vérifier la correction LifePointsGain, les resynchronisations de stats, les variations de vitalité et les réductions du plafond.",
+      "accept": "Les PV restent cohérents après dégâts et soins, un plafond érodé ne remonte pas sans événement approprié. La correction chargée est identifiée.",
+      "checks": "Séquence dégâts-soin-érosion, soin après PV locaux nuls, snapshot blessé et monstres qui se soignent.",
+      "dependencies": [
+        "S01",
+        "S05"
+      ]
+    },
+    {
+      "id": "C02",
+      "title": "Vie et mort des combattants",
+      "task": "Séparer valeur de PV dérivée, présence sur la carte, invisibilité, désinvocation et décès annoncé. Auditer les listes d'ennemis et les positions conservées dans plusieurs caches.",
+      "accept": "Un ennemi vivant ne disparaît pas simplement parce qu'une estimation locale atteint zéro. Un décès serveur retire les cibles de toutes les projections.",
+      "checks": "PV locaux nuls sans mort, mort confirmée, retour visible, invocation et déconnexion au milieu d'un tour.",
+      "dependencies": [
+        "C01",
+        "S07"
+      ]
+    },
+    {
+      "id": "C03",
+      "title": "Dégâts conditionnels et masques de cible",
+      "task": "Analyser les effets des sorts, leurs masques, conditions et zones, notamment les cas 12788 et 13528. Remplacer la somme aveugle par un modèle explicitant l'applicabilité.",
+      "accept": "Une même cible ne reçoit pas simultanément des branches incompatibles. L'incertitude empêche une estimation excessivement précise.",
+      "checks": "Effets allié/ennemi, lanceur/invocation, branches conditionnelles et cas documentés dans la base installée.",
+      "dependencies": [
+        "S01",
+        "C02"
+      ]
+    },
+    {
+      "id": "C04",
+      "title": "Portée, ligne de vue et refus de lancement",
+      "task": "Comparer géométrie locale, obstacles et causes de refus serveur. Recaler les règles sur les sorts appris et les modifications de portée en cours de combat.",
+      "accept": "Aucun enchaînement de lancers identiques sur une cible invalide. Le diagnostic distingue portée, obstacle, état et budget.",
+      "checks": "Cible déplacée, obstacle temporaire, bonus de PO, case occupée et échec confirmé suivi d'un autre sort.",
+      "dependencies": [
+        "C02",
+        "C03"
+      ]
+    },
+    {
+      "id": "C05",
+      "title": "Budget PA/PM autoritaire",
+      "task": "Suivre les variations serveur, les dépenses en attente et les resets de tour. Empêcher un snapshot de base de regonfler un budget courant connu.",
+      "accept": "Les actions planifiées ne dépassent pas les ressources réellement disponibles. Les budgets inconnus restent identifiés comme tels.",
+      "checks": "Retrait de PA au début du tour, remboursement, lancement refusé et retour de stats après une action.",
+      "dependencies": [
+        "S05",
+        "C02"
+      ]
+    },
+    {
+      "id": "C06",
+      "title": "Rôle des sorts sur soi et sur alliés",
+      "task": "Auditer OnMe, SelfBuff, TargetKind et les doublons de sorts dans les profils. Reconstituer pourquoi Minerbot lance certains sorts sur soi quand la liste d'ennemis se vide.",
+      "accept": "Les soins, buffs et attaques de zone ne sont pas confondus. La simulation et le moteur appliquent le même rôle et les mêmes conditions.",
+      "checks": "Sort offensif sans cible, sort mixte soin/dégâts, invocation présente et deux configurations du même sort.",
+      "dependencies": [
+        "C01",
+        "C02",
+        "C03"
+      ]
+    },
+    {
+      "id": "C07",
+      "title": "Planification d'un tour sous incertitude",
+      "task": "Concevoir un pilote de sélection qui pénalise l'incertitude, les actions déjà refusées et les cibles impossibles plutôt que maximiser seulement des dégâts estimés.",
+      "accept": "Le plan retourne une explication vérifiable et sait passer à une alternative. Les décisions utilisent les informations réellement connues.",
+      "checks": "Ennemi hors vue, résistant air, faible PV incertains et état empêchant le sort principal.",
+      "dependencies": [
+        "C03",
+        "C04",
+        "C05"
+      ]
+    },
+    {
+      "id": "C08",
+      "title": "Tacle, fuite et déplacement de combat",
+      "task": "Comparer chemin planifié, coût en PM, tacle et déplacement réellement confirmé. Gérer les déplacements tronqués ou refusés sans boucler sur la même cellule.",
+      "accept": "La position de départ de l'action suivante est la cellule serveur. Le moteur différencie mouvement complet et partiel.",
+      "checks": "Tacle imprévu, poussée, téléportation, chemin bloqué après planification et déplacement annulé.",
+      "dependencies": [
+        "C02",
+        "C05",
+        "N02"
+      ]
+    },
+    {
+      "id": "C09",
+      "title": "Matrice de classes et configurations réelles",
+      "task": "Construire des scénarios représentatifs pour Sadida, Sacrieur, Pandawa et Crâ avant d'étendre. Vérifier la rotation automatique et les réglages de profils par classe.",
+      "accept": "Chaque classe a des cas de succès et de refus reproductibles. Les limites des classes non testées sont déclarées.",
+      "checks": "Soin, invocation, portée, attaque de zone, placement et sortie de combat pour chaque classe retenue.",
+      "dependencies": [
+        "C01",
+        "C03",
+        "C06"
+      ]
+    },
+    {
+      "id": "C10",
+      "title": "Replay déterministe du moteur combat",
+      "task": "Créer un lecteur de traces expurgées qui rejoue les décisions sans transport réel. Séparer données reçues, état produit, décision et commande prévue.",
+      "accept": "La même trace et la même configuration produisent le même plan. Les divergences entre versions sont lisibles par tour.",
+      "checks": "Comparer avant/après correction Minerbot, réponse doublée et événement reçu tardivement.",
+      "dependencies": [
+        "C01",
+        "C02",
+        "C05",
+        "S07"
+      ]
+    },
+    {
+      "id": "T01",
+      "title": "Accusés Turbo et identifiants réutilisés",
+      "task": "Auditer les bornes de génération, les timestamps d'accusés et les fins de séquence. Conserver les régressions existantes et ajouter les collisions entre combats.",
+      "accept": "Un ancien accusé ne supprime pas l'accusé d'une nouvelle séquence. Un accusé client courant évite un doublon.",
+      "checks": "Même action ID réutilisé, changement de tour, nouveau combat et fin de séquence avant ouverture de l'attente.",
+      "dependencies": [
+        "S05",
+        "S06"
+      ]
+    },
+    {
+      "id": "T02",
+      "title": "Barrières Turbo Socket et MITM",
+      "task": "Comparer les chemins d'attente et de récupération après expiration. Définir une politique partagée là où les preuves le permettent, avec les différences de transport explicites.",
+      "accept": "Les timeouts sont expliqués sans enchaînement aveugle d'actions. La fin de tour indique si la barrière était fermée.",
+      "checks": "Socket rapide, MITM retardé, barrière tardive, annulation et accusé absent.",
+      "dependencies": [
+        "T01",
+        "C05"
+      ]
+    },
+    {
+      "id": "T03",
+      "title": "Mesure des temps de combat",
+      "task": "Instrumenter temps serveur, attente protocole, décision, rendu et déplacement. Corriger le double comptage des traces de lancement dans les statistiques de casts.",
+      "accept": "Le rapport distingue durée combat, temps d'action et pauses. Une trace textuelle répétée n'est pas comptée comme une seconde action.",
+      "checks": "Comparer journal, messages serveur et compteurs sur trois combats et un replay hors ligne.",
+      "dependencies": [
+        "T01",
+        "C10"
+      ]
+    },
+    {
+      "id": "T04",
+      "title": "Validation des six options d'animation",
+      "task": "Vérifier chaque bit du masque, sa disponibilité selon transport, son effet et sa restauration. Comparer les sources embarquées au commit externe étudié.",
+      "accept": "Chaque option a une preuve distincte activée/désactivée. Le statut actif ne repose pas seulement sur la case cochée.",
+      "checks": "Activer une option à la fois, changer de profil et décharger sans affecter un autre PID.",
+      "dependencies": [
+        "S06",
+        "R01"
+      ]
+    },
+    {
+      "id": "T05",
+      "title": "Tactique compatible avec le client courant",
+      "task": "Enquêter sur MapRenderer non résolu en partant du binaire/version et des recherches structurelles vérifiables. Ne pas masquer une résolution impossible par une case active.",
+      "accept": "Une classe et des points d'accroche prouvés, ou un refus propre documenté. La restauration est testée avant validation.",
+      "checks": "Carte extérieure, entrée combat, sortie combat, changement carte et bascule F8 sur le bon client.",
+      "dependencies": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "id": "T06",
+      "title": "Tueur à vue et cible de début de tour",
+      "task": "Tester la cible désignée serveur, le repli local, les égalités et le recalcul après une mort ou au tour suivant.",
+      "accept": "La cible du tour précédent n'est pas conservée par erreur. La priorité serveur reste visible et reproductible.",
+      "checks": "A proche au premier tour, B proche au second, cible désignée contradictoire et mort en milieu de tour.",
+      "dependencies": [
+        "C02",
+        "C07"
+      ]
+    },
+    {
+      "id": "T07",
+      "title": "Nomade et coups de grâce de zone",
+      "task": "Vérifier l'anticipation du déplacement obligatoire quand plusieurs ennemis peuvent mourir ensemble. Revoir la décision après chaque action qui change la létalité.",
+      "accept": "Le mouvement requis intervient avant le coup qui termine réellement le combat. Une estimation incertaine n'est pas présentée comme certaine.",
+      "checks": "Deux ennemis au-dessus de30%, sort de zone létal, budget PM réduit et adversaire hors zone.",
+      "dependencies": [
+        "C03",
+        "C05",
+        "T06"
+      ]
+    },
+    {
+      "id": "T08",
+      "title": "Défis incompatibles et abandon explicable",
+      "task": "Modéliser les conflits entre défis, style de combat et survie. Donner une raison claire lorsque le bot renonce au bonus plutôt que poursuivre une impasse.",
+      "accept": "Les décisions ne prétendent pas satisfaire un défi abandonné. L'utilisateur peut relire les contraintes et l'arbitrage.",
+      "checks": "Défi de mouvement bloqué, soin indispensable, allié invoqué et cible imposée inaccessible.",
+      "dependencies": [
+        "T06",
+        "T07",
+        "C07"
+      ]
+    },
+    {
+      "id": "T09",
+      "title": "Tour bloqué, AFK et fin de tour",
+      "task": "Détecter absence de progrès et refus répétés sans considérer les messages comme activité utile. Recaler les budgets de tour et la politique d'arrêt.",
+      "accept": "Un tour ne consomme pas des dizaines de tentatives identiques. La fin de tour conserve un motif exploitable.",
+      "checks": "Aucun sort castable, PA insuffisants, cible périmée, calcul trop long et annulation explicite.",
+      "dependencies": [
+        "S09",
+        "C04",
+        "T02"
+      ]
+    },
+    {
+      "id": "T10",
+      "title": "Benchmark Turbo comparable",
+      "task": "Préparer un protocole de comparaison Socket/MITM avec version, profil, monstres et fenêtres temporelles bornés. Rapporter médiane et dispersion sans confondre logs et combats.",
+      "accept": "Les conclusions sont limitées aux scénarios réellement mesurés. Aucun pourcentage de gain fondé sur des sessions incompatibles.",
+      "checks": "Répétitions contrôlées, outlier réseau, refus et essais avec options visuelles séparées.",
+      "dependencies": [
+        "T02",
+        "T03",
+        "T04",
+        "Q04"
+      ]
+    },
+    {
+      "id": "N01",
+      "title": "Sorties de mine et chemins réellement praticables",
+      "task": "Reproduire les refus autour de193331715/193331717/193200131 et les détours réussis. Comparer graphe de transitions, types de sortie et préconditions.",
+      "accept": "Une route ne sélectionne plus systématiquement une transition reconnue invalide. Le contournement est distingué du correctif du graphe.",
+      "checks": "Sortie bord, soleil, porte et itinéraire alternatif observé, avec même carte mais autre cellule de départ.",
+      "dependencies": [
+        "S01",
+        "N02"
+      ]
+    },
+    {
+      "id": "N02",
+      "title": "Cellule autoritaire et accusés de déplacement",
+      "task": "Auditer les changements de carte, cellules confirmées et mouvements encore en cours. Vérifier qu'une arrivée acceptée ne devient pas une position fictive.",
+      "accept": "La carte et la cellule confirmées viennent du serveur et de la bonne génération. Les mouvements en attente sont distingués.",
+      "checks": "Refus puis correction, réponse ancienne, cellule0 valide, changement de carte pendant déplacement.",
+      "dependencies": [
+        "S05",
+        "S06"
+      ]
+    },
+    {
+      "id": "N03",
+      "title": "Coût des trajets et raccourcis",
+      "task": "Évaluer les décisions marche/zaap/Havre-Sac selon accès, coût, délai et historique de refus. Éviter un choix de marche qui enferme le bot dans une mine.",
+      "accept": "L'itinéraire expose son coût estimé et ses préconditions. Les destinations impossibles n'entraînent pas de boucle de téléports.",
+      "checks": "PreferWalk vrai/faux, zaap inconnu, fonds insuffisants et sortie de bâtiment.",
+      "dependencies": [
+        "N01",
+        "N02",
+        "E02"
+      ]
+    },
+    {
+      "id": "N04",
+      "title": "Obstacles temporaires et cooldown des arêtes",
+      "task": "Différencier obstacle de cellule, transition invalide durable et refus temporaire. Définir une mémoire bornée des échecs avec expiration utile.",
+      "accept": "Un refus répété ne coûte pas la même séquence d'essais à chaque passage. Les chemins récupérés redeviennent utilisables.",
+      "checks": "Joueur occupant sortie, transition fausse, carte revisitée et disparition d'obstacle.",
+      "dependencies": [
+        "N01",
+        "N02"
+      ]
+    },
+    {
+      "id": "N05",
+      "title": "Annulation et remplacement de trajet",
+      "task": "Suivre une annulation de script jusqu'aux commandes différées et aux ACKs. Empêcher le trajet précédent de reprendre après lancement d'un autre script.",
+      "accept": "Aucun saut ni clic de l'ancien trajet n'est envoyé après son annulation confirmée. La nouvelle commande repart d'un état cohérent.",
+      "checks": "Remplacement pendant marche, pendant changement de carte, avant ACK et après reconnexion.",
+      "dependencies": [
+        "S05",
+        "S06",
+        "N02"
+      ]
+    },
+    {
+      "id": "N06",
+      "title": "État de navigation expliqué dans l'UI",
+      "task": "Afficher destination, prochaine étape, position confirmée, attente et raison de détour. Garder les détails bas niveau dans un panneau optionnel.",
+      "accept": "L'utilisateur sait ce que le bot attend sans lire les journaux. Les erreurs mentionnent l'étape réellement fautive.",
+      "checks": "Refus de porte, replanification par zaap, attente serveur et destination annulée.",
+      "dependencies": [
+        "N02",
+        "N04",
+        "U03"
+      ]
+    },
+    {
+      "id": "N07",
+      "title": "Récoltes injoignables et carte intérieure",
+      "task": "Étudier les ressources marquées présentes mais hors portée ainsi que les recherches de ressources depuis une banque intérieure.",
+      "accept": "Une ressource inaccessible ne bloque pas la ronde. Une recherche depuis l'intérieur peut proposer des destinations extérieures pertinentes.",
+      "checks": "Truites sans case atteignable, filon épuisé, atelier intérieur et frontière de monde.",
+      "dependencies": [
+        "N02",
+        "F01"
+      ]
+    },
+    {
+      "id": "N08",
+      "title": "Enregistreur et relecture de parcours",
+      "task": "Rendre les transitions enregistrées dépendantes des cartes observées, pas de positions déduites. Ajouter une validation hors ligne et une relecture arrêtant les étapes ambiguës.",
+      "accept": "Le parcours enregistré reste lisible et signale portes, directions et conditions. Les doublons de carte sont conservés quand ils sont intentionnels.",
+      "checks": "Circuit à répétitions, téléport, transition refusée et fichier partiellement sauvegardé.",
+      "dependencies": [
+        "N02",
+        "L03"
+      ]
+    },
+    {
+      "id": "N09",
+      "title": "Navigation multi-compte sans mélange d'état",
+      "task": "Rejouer des déplacements simultanés de comptes sur les mêmes cartes et sur des cartes différentes. Auditer les singletons et caches non indexés par session.",
+      "accept": "Aucun obstacle, cellule ou ACK d'un compte n'est attribué à un autre. Les reconnections restent isolées.",
+      "checks": "Deux comptes sur la même sortie, PID recyclé, monde intérieur commun et ordre inversé des réponses.",
+      "dependencies": [
+        "S06",
+        "N02"
+      ]
+    },
+    {
+      "id": "N10",
+      "title": "Simulateur de graphe de voyage",
+      "task": "Construire un laboratoire permettant de rejouer et visualiser les choix de route avec coût et refus injectés. Préparer des jeux d'essai de mines et banques.",
+      "accept": "Le laboratoire identifie l'arête responsable d'un détour et rejoue une correction sans compte de jeu.",
+      "checks": "Mine bloquée, zaap manquant, composante déconnectée et cycles de transitions.",
+      "dependencies": [
+        "N01",
+        "N03",
+        "N04",
+        "Q02"
+      ]
+    },
+    {
+      "id": "L01",
+      "title": "Contrat de survie des scripts après combat",
+      "task": "Auditer gatherAll, travelTo, callbacks et retour de move. Transformer l'interruption par combat en attente d'issue sans masquer les vraies défaites.",
+      "accept": "Une victoire reprise ne termine pas le script comme circuit inaccessible. Une défaite ou un résultat inconnu ne relance pas automatiquement une action.",
+      "checks": "Protecteur pendant récolte, callback tardif, banque déclenchée au retour et résultat inconnu.",
+      "dependencies": [
+        "C01",
+        "S05"
+      ]
+    },
+    {
+      "id": "L02",
+      "title": "Stratégie commune de reprise temporaire",
+      "task": "Extraire un contrat de pause, backoff, resynchronisation et progression utile pour les scripts pêche, mine et farm sans effacer leurs règles métier.",
+      "accept": "Les pauses légitimes ne provoquent pas l'anti-blocage et les boucles sans progrès restent détectables. La durée restante est visible.",
+      "checks": "Toutes cartes en cooldown, réseau lent, ressource épuisée et opération non confirmée.",
+      "dependencies": [
+        "L01",
+        "S09",
+        "N04"
+      ]
+    },
+    {
+      "id": "L03",
+      "title": "Audit complet du catalogue Lua",
+      "task": "Comparer chaque API annoncée à sa liaison réelle et à son comportement. Produire une table automatique de capacités, arguments, modes et erreurs.",
+      "accept": "Les stubs sont explicitement indisponibles, les signatures cohérentes et les exemples exécutables. Aucun faux succès pour API non branchée.",
+      "checks": "Méthodes avec self implicite, alias historiques, types incorrects et exemple minimal par module.",
+      "dependencies": [
+        "S04"
+      ]
+    },
+    {
+      "id": "L04",
+      "title": "Hooks et événements à identité stable",
+      "task": "Vérifier ordre, thread, durée et cardinalité de onFightEnd, onTurn, onPlacement et événements d'inventaire. Définir un contrat de livraison.",
+      "accept": "Un callback ne s'exécute pas deux fois sur la même issue et ne touche pas la session suivante. Le dépassement de durée est visible.",
+      "checks": "Double fin de combat, annulation dans un hook, reconnexion et callback interrompu.",
+      "dependencies": [
+        "S06",
+        "L01"
+      ]
+    },
+    {
+      "id": "L05",
+      "title": "Éditeur Lua utile pour les scripts longs",
+      "task": "Améliorer diagnostics, navigation, recherche, symboles et exemples adaptés au catalogue réel. Ajouter des liens du diagnostic vers l'appel concerné.",
+      "accept": "Une erreur pointe la bonne ligne et explique une action possible. Le gros script pêche reste navigable sans gel.",
+      "checks": "Fichier100ko, alias inconnu, appel à méthode indisponible et modification du catalogue.",
+      "dependencies": [
+        "L03",
+        "U03"
+      ]
+    },
+    {
+      "id": "L06",
+      "title": "Tests de contrat sur le vrai host",
+      "task": "Créer des harness ciblés exécutant les bindings de production plutôt que des doubles qui réimplémentent la logique.",
+      "accept": "Les tests échouent si un binding réel change de sémantique. Les données de catalogue viennent du même bundle que la production.",
+      "checks": "Colon vs point, valeurs nil, annulation et appel pendant combat sur plusieurs modules.",
+      "dependencies": [
+        "L03",
+        "L04",
+        "S03"
+      ]
+    },
+    {
+      "id": "L07",
+      "title": "Journal structuré par run de script",
+      "task": "Associer un run ID, étapes, actions et résultats pour rendre les reprises lisibles. Préparer un résumé de fin distinct du journal technique.",
+      "accept": "Une session de script remplaçante n'hérite pas des compteurs de l'ancienne. Le curseur est clairement lié au run et à l'instance.",
+      "checks": "Arrêt/reprise, redémarrage application, résultat tardif et pagination de console.",
+      "dependencies": [
+        "S05",
+        "L04"
+      ]
+    },
+    {
+      "id": "L08",
+      "title": "Contrats de scripts partageables",
+      "task": "Définir un paquet de script avec dépendances API, paramètres, version de catalogue, droits nécessaires et scénarios testés.",
+      "accept": "L'import vérifie les prérequis et explique les incompatibilités sans exécuter le script. Les réglages sont séparés du code.",
+      "checks": "Script ancien, carte retirée, module absent et migration de paramètres.",
+      "dependencies": [
+        "L03",
+        "L05"
+      ]
+    },
+    {
+      "id": "L09",
+      "title": "Inspecteur d'étape et débogage sans action",
+      "task": "Créer une vue de l'étape courante avec variables utiles autorisées, destination et décision attendue. Étudier un mode simulation sur fixtures.",
+      "accept": "L'inspecteur peut expliquer une attente sans modifier les globals ni envoyer une commande au serveur.",
+      "checks": "Pause de récolte, résultat combat en attente, banque et longue fonction de trajet.",
+      "dependencies": [
+        "L04",
+        "L07",
+        "C10"
+      ]
+    },
+    {
+      "id": "L10",
+      "title": "Qualification des scripts pêche/mine/farm",
+      "task": "Rejouer des cycles complets jusqu'au dépôt avec l'injection d'incidents ciblés. Corriger les incohérences restantes des trois scripts récents.",
+      "accept": "Chaque script a une preuve de collecte, déplacement, banque et reprise, et une liste courte des limites réelles.",
+      "checks": "Banque à85%, circuit vide, protecteur gagné, destination inaccessible et arrêt utilisateur.",
+      "dependencies": [
+        "L01",
+        "L02",
+        "N07",
+        "Q02"
+      ]
+    },
+    {
+      "id": "H01",
+      "title": "Ouverture HDV Socket visible immédiatement",
+      "task": "Relier les événements d'ouverture du marché au bon bot et à une surface UI réelle. Afficher automatiquement son état, sans dépendre d'une fenêtre du client Dofus.",
+      "accept": "Quand un bot Socket ouvre un HDV, l'application montre marché, mode et compte correspondants. Une fermeture ou reconnexion invalide cette vue.",
+      "checks": "Ouverture par script, par MCP et depuis UI, changement de bot sélectionné, fermeture serveur et mode vente/achat.",
+      "dependencies": [
+        "S05",
+        "S06",
+        "U03"
+      ]
+    },
+    {
+      "id": "H02",
+      "title": "Toutes les offres et leurs jets",
+      "task": "Vérifier la correction du cache BuyerOffers par UID, GID, effets et lots. Traiter les listes vides transitoires sans écraser une réponse plus récente.",
+      "accept": "Plusieurs Gelanos de jets différents restent distincts et consultables. Le prix moyen n'est jamais substitué à une offre achetable.",
+      "checks": "Gelano sans PA, PA/vitalité, PA/PM, plusieurs lots et unfollow/refollow avec liste vide intermédiaire.",
+      "dependencies": [
+        "S05",
+        "H01"
+      ]
+    },
+    {
+      "id": "H03",
+      "title": "Achat de l'offre réellement choisie",
+      "task": "Raccorder la sélection UI/MCP au contrat UID-prix-quantité-effets-génération. Vérifier le rechargement avant achat et l'inventaire reçu.",
+      "accept": "L'objet acheté correspond aux jets inspectés. Une offre modifiée est refusée sans recherche automatique d'une autre variante.",
+      "checks": "UID remplacé, prix changé, jets changés, budget dépassé et timeout après envoi.",
+      "dependencies": [
+        "H02",
+        "S06",
+        "S08"
+      ]
+    },
+    {
+      "id": "H04",
+      "title": "Scanner acheteur fiable et annulable",
+      "task": "Corriger les changements de catégories et les réponses tardives. Définir un scan borné sans afficher rupture de stock quand l'API n'a pas répondu.",
+      "accept": "Un scan fournit une couverture et une fraîcheur explicites. Arrêter le scan annule les recherches différées.",
+      "checks": "Catégorie répétée, changement rapide, jzn vide avant rempli et marché fermé pendant recherche.",
+      "dependencies": [
+        "H02",
+        "N05"
+      ]
+    },
+    {
+      "id": "H05",
+      "title": "Vente et corrélation d'annonce",
+      "task": "Vérifier pose objet, UID d'annonce, quantité, prix, taxe et disparition du sac. Éviter la confirmation sur un accusé non lié.",
+      "accept": "Une vente publiée est reliée à l'instance exacte et au débit correct. Une annonce incertaine est mise à rapprocher avant nouvel essai.",
+      "checks": "Même GID avec autres jets, quantité partielle, taxes et absence de réponse après injection.",
+      "dependencies": [
+        "S05",
+        "S08",
+        "H02"
+      ]
+    },
+    {
+      "id": "H06",
+      "title": "Remise en vente sans duplication",
+      "task": "Auditer reprice, retrait puis republication et états indéterminés. Afficher un dossier de rapprochement avec les preuves disponibles.",
+      "accept": "Aucune répétition automatique après résultat ambigu. L'opérateur peut rapprocher annonce courante et inventaire sans supposer un succès.",
+      "checks": "Retrait confirmé mais republication absente, nouvel UID, taxe prélevée et reconnexion.",
+      "dependencies": [
+        "H05",
+        "S08"
+      ]
+    },
+    {
+      "id": "H07",
+      "title": "UI de comparaison des jets",
+      "task": "Créer une comparaison lisible mettant en avant PA/PM/PO, vitalité, élément, dommages et puissance. Proposer filtres et compromis prix/jet.",
+      "accept": "Un Gelano sans PA est impossible à confondre avec un PA. La sélection reste stable pendant un rafraîchissement de prix.",
+      "checks": "Vingt variantes, attribut manquant, malus, overmage et tri pendant réponse réseau.",
+      "dependencies": [
+        "H02",
+        "U02",
+        "U05"
+      ]
+    },
+    {
+      "id": "H08",
+      "title": "Vue vente synchronisée avec le dialogue",
+      "task": "Afficher annonces, inventaire éligible, slots et taxes du marché réellement ouvert. Signaler les données de cache et les opérations en cours.",
+      "accept": "L'utilisateur n'a pas une fausse vue temps réel après fermeture. Une action ne s'applique pas à un ancien marché.",
+      "checks": "Fermeture, changement de compte, prix reçu tardivement et vente en parallèle d'un script.",
+      "dependencies": [
+        "H01",
+        "H05",
+        "S08"
+      ]
+    },
+    {
+      "id": "H09",
+      "title": "API MCP du marché pour agents",
+      "task": "Concevoir des outils bornés de liste, inspection, devis et achat exact. Les réponses donnent session, marché, offre et fraîcheur au lieu de demander du parsing de console.",
+      "accept": "Un agent peut préparer un choix d'équipement sans acheter. L'achat nécessite une référence vérifiable et retourne sa vraie confirmation.",
+      "checks": "Lecture seule, devis périmé, UID inconnu, résultat indéterminé et mauvais bot.",
+      "dependencies": [
+        "H02",
+        "H03",
+        "S05",
+        "B03"
+      ]
+    },
+    {
+      "id": "H10",
+      "title": "Validation complète HDV Socket et MITM",
+      "task": "Organiser une matrice d'essais représentatifs achat/vente/reprice/fermeture et comparer les deux transports sur les mêmes contrats.",
+      "accept": "Chaque statut revendiqué est soutenu par inventaire et événement serveur appropriés. Les tests n'effectuent pas de dépenses importantes pour produire une preuve.",
+      "checks": "Achat borné, vente d'une ressource autorisée, retrait, timeout simulé et sessions séparées.",
+      "dependencies": [
+        "H03",
+        "H05",
+        "H06",
+        "H08",
+        "Q04"
+      ]
+    },
+    {
+      "id": "E01",
+      "title": "Prix de lot, prix unitaire et prix moyen",
+      "task": "Auditer les conversions et les libellés, y compris prix fractionnaires. Préserver la distinction lot achetable, moyenne serveur et saisie utilisateur.",
+      "accept": "Aucune ligne n'annonce comme prix d'achat une moyenne ou un lot divisé avec un arrondi trompeur.",
+      "checks": "Lot10 moins cher que100, valeur absente, moyenne4,2M et petit prix fractionnaire.",
+      "dependencies": [
+        "H02"
+      ]
+    },
+    {
+      "id": "E02",
+      "title": "Coût complet d'une activité",
+      "task": "Modéliser trajet, banque, taxes, consommables, régénération, défaites et temps sans cible. Identifier les coûts réellement observables et ceux estimés.",
+      "accept": "Le coût complet expose ses hypothèses. Un retrait bancaire ou un achat de stuff n'est pas compté comme revenu de farm.",
+      "checks": "Les sessions récentes des trois bots et un jeu de données entièrement synthétique contrôlé.",
+      "dependencies": [
+        "E01",
+        "S07"
+      ]
+    },
+    {
+      "id": "E03",
+      "title": "Liquidité et ventes réalisées",
+      "task": "Séparer annonce, disparition d'annonce, vente confirmée et variation de prix. Préparer des indicateurs prudents de liquidité par serveur et fenêtre temporelle.",
+      "accept": "Le score ne prétend pas connaître un volume de transactions non observé. Les prix proposés et réalisés restent séparés.",
+      "checks": "Annonce annulée, vente partielle, reprice et absence prolongée de données.",
+      "dependencies": [
+        "H05",
+        "E01"
+      ]
+    },
+    {
+      "id": "E04",
+      "title": "Classement des farms par preuves",
+      "task": "Combiner drops catalogués, durée réelle de combat, déplacements et prix récents. Comparer Boufton Noir, Pious, larves et Prespics avec incertitude explicite.",
+      "accept": "Le classement montre le nombre d'observations et peut refuser de trancher faute de données. Le plus gros prix unitaire ne suffit pas.",
+      "checks": "Rareté élevée, drop fréquent peu cher, combats lents et échantillon de trois victoires seulement.",
+      "dependencies": [
+        "C03",
+        "E01",
+        "E02",
+        "E03"
+      ]
+    },
+    {
+      "id": "E05",
+      "title": "Séries temporelles et anomalies de marché",
+      "task": "Créer un stockage borné par serveur, objet, variante et taille de lot. Détecter ruptures et valeurs aberrantes sans effacer la preuve brute utile.",
+      "accept": "Une anomalie reste inspectable et n'influence pas silencieusement une recommandation. La rétention est bornée.",
+      "checks": "Prix multiplié100, changement de serveur, trou de données et modification de lot disponible.",
+      "dependencies": [
+        "H02",
+        "E01"
+      ]
+    },
+    {
+      "id": "E06",
+      "title": "Optimiseur d'équipement sous budget",
+      "task": "Formaliser les exigences du stuff Foragerbot en contraintes et compromis. Énumérer des offres exactes, pas une liste de prix moyens.",
+      "accept": "Le panier respecte budget et caractéristiques obligatoires. Le modèle explique les compromis et la fraîcheur du devis.",
+      "checks": "PA obligatoire, set bonus, deux anneaux, malus vitalité, prix périmé et monture.",
+      "dependencies": [
+        "H03",
+        "H07",
+        "C03"
+      ]
+    },
+    {
+      "id": "E07",
+      "title": "Provenance et fraîcheur des données économiques",
+      "task": "Associer à chaque prix sa source, son serveur, son instant, son unité et son niveau de preuve. Prévoir migration et invalidation du cache.",
+      "accept": "Un conseil peut remonter jusqu'au relevé qui le justifie. Les agrégats ne mélangent pas silencieusement plusieurs mondes.",
+      "checks": "Moyenne serveur, offre achetable, import externe, saisie manuelle et donnée sans date.",
+      "dependencies": [
+        "E01",
+        "E05"
+      ]
+    },
+    {
+      "id": "E08",
+      "title": "Collecte passive de marché et dofus-prospection",
+      "task": "Étudier la séparation collecte, stockage et analyse du dépôt Python. Prototyper un import d'observations vers un contrat Givre, sans double capture sur les sessions actives.",
+      "accept": "Rapport sourcé et adaptateur de fixtures, avec limites sur la visibilité réelle des prix et des ventes.",
+      "checks": "Fichier d'observations expurgées, schéma ancien, objet inconnu et événement répété.",
+      "dependencies": [
+        "E07",
+        "R03"
+      ]
+    },
+    {
+      "id": "E09",
+      "title": "Taux d'ogrines et coût d'abonnement",
+      "task": "Étudier Ogrine-Rates_Server pour modéliser une conversion datée et sourcée. Construire une vue de coût sans achat ni renouvellement automatique.",
+      "accept": "Le taux affiche serveur/source/date et reste une indication. Aucun abonnement n'est acheté pour un test.",
+      "checks": "Taux manquant, source en panne, variations brusques et comparaison de périodes.",
+      "dependencies": [
+        "E07",
+        "R05"
+      ]
+    },
+    {
+      "id": "E10",
+      "title": "Tableau économique compréhensible",
+      "task": "Présenter revenu réalisé, valeur estimée, coûts et stock avec définitions courtes. Offrir une fenêtre par run au lieu des seuls cumuls journaliers.",
+      "accept": "L'utilisateur peut distinguer rentabilité observée, potentiel et trésorerie sans lire des journaux. Les unités sont cohérentes.",
+      "checks": "Retrait1M Minerbot, achat1,453M Foragerbot, dépôt de ressources et jour contenant plusieurs scripts.",
+      "dependencies": [
+        "E02",
+        "E03",
+        "E07",
+        "U03"
+      ]
+    },
+    {
+      "id": "P01",
+      "title": "Recette actuelle de clé du donjon Bouftou",
+      "task": "Résoudre l'ID de la clé, sa recette, les niveaux métiers, l'atelier et les quantités depuis la base actuelle. Ne pas réutiliser une recette historique sans contrôle.",
+      "accept": "Une fiche de production indique sources, recette, version et prérequis réellement connus. Aucune fabrication n'est lancée par ce lot.",
+      "checks": "Comparer catalogue installé, métier du personnage, recette intermédiaire et objet consommé à l'entrée du donjon.",
+      "dependencies": [
+        "S01",
+        "F03"
+      ]
+    },
+    {
+      "id": "P02",
+      "title": "Plan d'approvisionnement pour cent clés",
+      "task": "Calculer besoins bruts, ingrédients disponibles, manquants et provenance de récolte/drop/achat. Éviter de double compter les stocks équipés ou déjà réservés.",
+      "accept": "Le plan varie correctement avec quantité et stock, distingue banque en cache et stock confirmé et respecte les réservations.",
+      "checks": "Zéro, une, cent clés, recette avec intermédiaire et stock bancaire inconnu.",
+      "dependencies": [
+        "P01",
+        "E07",
+        "F02"
+      ]
+    },
+    {
+      "id": "P03",
+      "title": "Chaîne récursive craft ou achat",
+      "task": "Étudier Dofus-Craft et construire un optimiseur de recettes avec alternatives acheter/crafter, rendements et arrondis entiers.",
+      "accept": "La décision est traçable par ingrédient, sans cycles infinis ni double utilisation du même stock. Les prix manquants sont explicites.",
+      "checks": "Recette partagée, quantité par lot, cycle de données malformé et ingrédient sans prix.",
+      "dependencies": [
+        "P01",
+        "E01",
+        "E07"
+      ]
+    },
+    {
+      "id": "P04",
+      "title": "Réservations de stock pour la production",
+      "task": "Créer un contrat de stock réservé pour un lot de clés pendant que les bots continuent à récolter ou déposer. Inclure les matériaux consommés et produits confirmés.",
+      "accept": "Deux plans ne peuvent consommer la même ressource. Annulation et échec libèrent seulement les réservations encore valides.",
+      "checks": "Deux recettes simultanées, dépôt bancaire, quantité modifiée et résultat de craft partiel.",
+      "dependencies": [
+        "S08",
+        "P02",
+        "F02"
+      ]
+    },
+    {
+      "id": "P05",
+      "title": "Exécution du craft par lots vérifiés",
+      "task": "Raccorder un plan à l'atelier réel avec pose des UID, quantités et nombre de fabrications confirmés. Gérer plusieurs piles et résultat partiel.",
+      "accept": "Le nombre de clés obtenu et les ressources consommées sont rapprochés. Aucun Ready envoyé après pose non confirmée.",
+      "checks": "UID incorrect, mauvais côté d'échange, multi-piles, artisan indisponible et fermeture en cours.",
+      "dependencies": [
+        "P01",
+        "P04",
+        "F03"
+      ]
+    },
+    {
+      "id": "P06",
+      "title": "Entrée donjon, clés et trousseau",
+      "task": "Auditer dialogue d'entrée, clé normale, trousseau et refus. Identifier les réponses serveur et la consommation exacte.",
+      "accept": "Une entrée est prouvée par carte/salle et coût de clé, pas par sélection de réponse PNJ. Le refus garde le stock cohérent.",
+      "checks": "Clé absente, trousseau disponible, dialogue modifié et entrée confirmée après retard.",
+      "dependencies": [
+        "P01",
+        "N02",
+        "F07"
+      ]
+    },
+    {
+      "id": "P07",
+      "title": "Parcours complet du donjon Bouftou",
+      "task": "Construire un scénario de toutes les salles avec groupes, déplacements et conditions de fin. Préparer un test borné avant boucle illimitée.",
+      "accept": "Un passage fini est défini par récompense/sortie observée et état final cohérent. Les salles inconnues ne sont pas sautées.",
+      "checks": "Combat long, refus de porte, défaite, salle sans groupe et sortie vers carte inattendue.",
+      "dependencies": [
+        "P06",
+        "C09",
+        "N02"
+      ]
+    },
+    {
+      "id": "P08",
+      "title": "Boucle donjon avec réapprovisionnement",
+      "task": "Concevoir la machine d'état farm-matériaux, stockage, craft, entrée, salles, sortie, banque et reprise. Chaque transition doit être confirmable et annulable.",
+      "accept": "Une boucle ne consomme pas des clés en aveugle. Elle s'arrête explicitement sur résultat inconnu et reprend les étapes seulement prouvées.",
+      "checks": "Plus de clés, pods pleins, inventaire désynchronisé, reconnect et annulation entre deux passages.",
+      "dependencies": [
+        "P02",
+        "P05",
+        "P07",
+        "S05"
+      ]
+    },
+    {
+      "id": "P09",
+      "title": "Économie du cycle farm-clés-donjons",
+      "task": "Comparer vente de la laine, vente des clés et consommation des clés en donjon. Inclure temps de craft, coût d'atelier, butin et risques.",
+      "accept": "Le conseil peut recommander de ne pas fabriquer. Les récompenses non observées sont des hypothèses affichées.",
+      "checks": "Cent clés théoriques, dix passages observés, prix de laine en baisse et coût de trajet dominant.",
+      "dependencies": [
+        "P03",
+        "P07",
+        "E02",
+        "E03",
+        "E04"
+      ]
+    },
+    {
+      "id": "P10",
+      "title": "Pilotage utilisateur et MCP de la production",
+      "task": "Créer un devis de production et un suivi de lot avec objectifs, budget et compte assigné. Séparer préparation, validation et exécution de la chaîne.",
+      "accept": "L'utilisateur voit besoin en ingrédients, étapes terminées et prochaine action. Le MCP peut reprendre un lot par ID sans doublonner.",
+      "checks": "Devis périmé, budget insuffisant, autre compte, arrêt partiel et relance du même identifiant.",
+      "dependencies": [
+        "P04",
+        "P08",
+        "P09",
+        "H09"
+      ]
+    },
+    {
+      "id": "U01",
+      "title": "Trois directions visuelles sans gris dominant",
+      "task": "Explorer trois propositions cohérentes : encre/pétrole-émeraude, sombre nuit/cuivre et clair ivoire/forêt. Produire des prototypes d'écrans réels, pas seulement une palette.",
+      "accept": "Chaque proposition couvre tableau de bord, carte et HDV avec états chargement/erreur. L'utilisateur peut comparer les directions.",
+      "checks": "Captures à1280x800 et1920x1080, contraste, densité et longue liste de bots.",
+      "dependencies": [
+        "S04"
+      ]
+    },
+    {
+      "id": "U02",
+      "title": "Tokens de thème et hiérarchie visuelle",
+      "task": "Définir fonds, surfaces, bordures, accents, typographie, espacements, rayons et états. Remplacer progressivement les valeurs dispersées par des ressources cohérentes.",
+      "accept": "Un changement de thème ne casse pas les états désactivés ou les couleurs sémantiques. Le gris n'est pas simplement remplacé partout par une couleur saturée.",
+      "checks": "Inventaire, marché, erreur, sélection, hover, focus clavier et traduction longue.",
+      "dependencies": [
+        "U01"
+      ]
+    },
+    {
+      "id": "U03",
+      "title": "Navigation et densité par tâche",
+      "task": "Repenser l'organisation selon superviser, jouer/voir, préparer, automatiser et diagnostiquer. Réduire les panneaux permanents et utiliser une divulgation progressive.",
+      "accept": "Les actions fréquentes sont visibles sans une forêt de réglages. Les diagnostics restent accessibles sans dominer l'écran.",
+      "checks": "Superviser trois bots, ouvrir le marché d'un bot Socket, vérifier un combat et modifier une ronde.",
+      "dependencies": [
+        "S04",
+        "U01"
+      ]
+    },
+    {
+      "id": "U04",
+      "title": "Tableau de bord des bots centré sur l'action",
+      "task": "Afficher activité, état confirmé, problème utile et prochaine étape avec une densité raisonnable. Concevoir des tailles compactes et détaillées.",
+      "accept": "La situation des trois bots est compréhensible en cinq secondes. Un arrêt volontaire ne ressemble pas à une panne.",
+      "checks": "Bots nombreux, reconnexion, combat, banque, attente ressource et une opération incertaine.",
+      "dependencies": [
+        "S09",
+        "U02",
+        "U03"
+      ]
+    },
+    {
+      "id": "U05",
+      "title": "Composants de listes riches réutilisables",
+      "task": "Créer des lignes d'objets, badges, panneaux de propriétés et comparateurs cohérents. Prévoir virtualisation, sélection stable et infobulles réelles.",
+      "accept": "Les objets et offres HDV utilisent les mêmes conventions sans perdre les différences de contexte. Les listes volumineuses restent fluides.",
+      "checks": "Dix mille lignes, mises à jour rapides, jets négatifs, noms longs et icône absente.",
+      "dependencies": [
+        "U02",
+        "H07",
+        "Q05"
+      ]
+    },
+    {
+      "id": "U06",
+      "title": "Commandes, raccourcis et palette d'actions",
+      "task": "Concevoir une palette contextuelle recherchant bot, vue et action disponible. Afficher les préconditions et éviter les raccourcis dangereux hors contexte.",
+      "accept": "Une commande indique le compte ciblé et ne dépend pas d'une ancienne sélection. Le clavier couvre les parcours principaux.",
+      "checks": "Changer de bot pendant une recherche, dialogue ouvert, commande indisponible et raccourci en édition Lua.",
+      "dependencies": [
+        "S06",
+        "U03"
+      ]
+    },
+    {
+      "id": "U07",
+      "title": "États vides, chargement et erreurs utiles",
+      "task": "Remplacer les placeholders ambigus et faux zéros par des messages courts fondés sur l'état réel. Fournir reprise ou diagnostic adapté au contexte.",
+      "accept": "Une banque non chargée ne dit pas vide et un marché sans réponse ne dit pas rupture de stock. Une erreur ne disparaît pas avant sa résolution.",
+      "checks": "Connexion lente, catalogue absent, mode non supporté, cache périmé et timeout après envoi.",
+      "dependencies": [
+        "S05",
+        "U02"
+      ]
+    },
+    {
+      "id": "U08",
+      "title": "Accessibilité et traduction des nouveaux écrans",
+      "task": "Tester clavier, focus, lisibilité, taille de police, contraste et réduction d'animations. Réviser FR/EN/ES avec clés uniques et formats culturels.",
+      "accept": "La hiérarchie ne repose pas uniquement sur couleur ou survol. Les nouveaux composants restent utilisables en texte agrandi.",
+      "checks": "Police150%, noms longs espagnols, navigation sans souris et thème clair/sombre.",
+      "dependencies": [
+        "U02",
+        "U03",
+        "U05"
+      ]
+    },
+    {
+      "id": "U09",
+      "title": "Migration de thème et préférences sans perte",
+      "task": "Conserver thème, densité, panneaux, colonnes et raccourcis par utilisateur en versionnant les préférences. Éviter d'écrire un état transitoire lors de fermeture.",
+      "accept": "Un ancien profil s'ouvre proprement et les valeurs inconnues ne cassent pas l'application. Un reset ciblé est possible.",
+      "checks": "Préférence partielle, ancienne version, écran débranché et interruption pendant sauvegarde.",
+      "dependencies": [
+        "U02",
+        "U03",
+        "S06"
+      ]
+    },
+    {
+      "id": "U10",
+      "title": "Revue UI indépendante sur vrais parcours",
+      "task": "Évaluer les propositions retenues avec les tâches concrètes du projet. Consigner les irritants avec captures, nombre d'étapes et proposition de correction.",
+      "accept": "La revue produit des constats vérifiables plutôt qu'un jugement esthétique vague. La direction visuelle reste cohérente entre écrans.",
+      "checks": "OuvrirHDVSocket, choisirGelanoPA, suivreprotecteur, comprendrepausemine et modifierbanque85%.",
+      "dependencies": [
+        "U04",
+        "U05",
+        "U06",
+        "U07",
+        "M03",
+        "H01"
+      ]
+    },
+    {
+      "id": "M01",
+      "title": "Carte épurée par défaut",
+      "task": "Réduire la densité de l'onglet carte : montrer terrain, bot, entités utiles et activité actuelle. Déplacer données techniques et détails de ressources vers un inspecteur à la demande.",
+      "accept": "Les informations indispensables restent lisibles sans masquer la carte. L'utilisateur active les couches qu'il veut.",
+      "checks": "Carte dense de ressources, zone urbaine avec joueurs, intérieur de mine et écran compact.",
+      "dependencies": [
+        "U01",
+        "U03"
+      ]
+    },
+    {
+      "id": "M02",
+      "title": "Pipeline de rendu carte et invalidation",
+      "task": "Auditer IsoMapControl, RouteMapControl et leurs données. Réduire les recalculs, allocations et invalidations globales pendant déplacements et combats.",
+      "accept": "La carte ne bloque pas le thread UI lors des mises à jour. Les couches inchangées sont réutilisées et leur cache est borné.",
+      "checks": "Carte pleine, changement de bot rapide, événements fréquents et mesure de frame time.",
+      "dependencies": [
+        "M01",
+        "Q05"
+      ]
+    },
+    {
+      "id": "M03",
+      "title": "Carte de combat vraiment lisible",
+      "task": "Concevoir placement, unités, PV/PA/PM, cible, zones et état de tour avec une hiérarchie nette. Montrer les informations confirmées et réserver l'analyse avancée à l'inspecteur.",
+      "accept": "Une personne comprend qui joue et quelle action se prépare sans lire les logs. La vue réagit correctement à poussées et morts.",
+      "checks": "Trois ennemis superposés, invocation, unité invisible, changement de tour et combatSocket.",
+      "dependencies": [
+        "C02",
+        "C05",
+        "M01",
+        "U02"
+      ]
+    },
+    {
+      "id": "M04",
+      "title": "Portées et zones interactives fiables",
+      "task": "Ajouter un survol de sort affichant portée utile, obstacles, cellules candidates et zone touchée en réutilisant les mêmes contrats que le moteur.",
+      "accept": "La prévisualisation n'annonce pas une case légale que le moteur refuse pour une règle connue. Les inconnues sont signalées.",
+      "checks": "Zone orientée, portée modifiable, ligne de vue, minimum de portée et cases non ciblables.",
+      "dependencies": [
+        "C03",
+        "C04",
+        "M03"
+      ]
+    },
+    {
+      "id": "M05",
+      "title": "Sélection et inspecteur d'entités",
+      "task": "Unifier hit-testing, choix d'entités empilées, infobulles et panneau de détails. Limiter les étiquettes permanentes.",
+      "accept": "Les clics sélectionnent ce qui est affiché et les données restent liées à la bonne entité après mouvement.",
+      "checks": "Plusieurs unités même cellule, icônes petites, disparition d'entité et zoom.",
+      "dependencies": [
+        "M01",
+        "M03",
+        "S06"
+      ]
+    },
+    {
+      "id": "M06",
+      "title": "Sprites et looks Socket depuis données locales",
+      "task": "Étudier SuperDofus et les renderers liés pour proposer des personnages plus lisibles que des points génériques. Comparer rendu natif, atlas pré-rendu et rendu hors-processus.",
+      "accept": "Prototype isolé avec coût mesuré, licences et cache explicites. Aucun moteur Godot embarqué dans Avalonia sans justification de coût.",
+      "checks": "Trois looks, recoloration, monture/cavalier, animation et asset absent.",
+      "dependencies": [
+        "R04",
+        "M02",
+        "U01"
+      ]
+    },
+    {
+      "id": "M07",
+      "title": "Carte du monde, recherche et itinéraires",
+      "task": "Proposer une recherche de lieu, ressource, atelier et accès utile, avec aperçu du trajet. Éviter l'accumulation d'icônes permanentes.",
+      "accept": "La recherche explique la destination et ses prérequis. La carte du monde ne révèle pas une position confirmée imaginaire.",
+      "checks": "Banque intérieure, HDV ressources/équipement, étage différent et coordonnées ambiguës.",
+      "dependencies": [
+        "N03",
+        "M01",
+        "U03"
+      ]
+    },
+    {
+      "id": "M08",
+      "title": "Timeline et replay visuel de combat",
+      "task": "Construire une timeline de tours/actions reliée au replay déterministe. Permettre de sélectionner une action et voir avant/après, refus et données de décision.",
+      "accept": "La timeline reste distincte du combat live et n'envoie jamais d'action serveur. Les trous de données sont visibles.",
+      "checks": "Saut temporel, action rejetée, soin ignoré dans ancienneversion et comparaison de deux moteurs.",
+      "dependencies": [
+        "C10",
+        "M03"
+      ]
+    },
+    {
+      "id": "M09",
+      "title": "Éditeur de trajets et couches de ressources",
+      "task": "Relier l'enregistreur à une carte où l'utilisateur peut revoir les étapes et conditions. Les ressources se filtrent par métier, niveau et utilité.",
+      "accept": "Un parcours est révisable sans exposer tous les IDs et détails techniques dans le flux normal.",
+      "checks": "Circuit répété, banque, porte, filtre métier et ressource épuisée.",
+      "dependencies": [
+        "N07",
+        "N08",
+        "M01"
+      ]
+    },
+    {
+      "id": "M10",
+      "title": "Rendu multi-échelle et budgets graphiques",
+      "task": "Mesurer résolution, zoom, DPI, mémoire et batterie sur les différentes cartes. Fixer des budgets et une dégradation progressive de détail.",
+      "accept": "Le zoom garde les éléments importants lisibles, les caches ne croissent pas sans borne et le rendu se dégrade proprement.",
+      "checks": "4K, DPI150%, fenêtre minimale, vingt minutes de navigation et rendu sans accélération.",
+      "dependencies": [
+        "M02",
+        "M05",
+        "Q05"
+      ]
+    },
+    {
+      "id": "F01",
+      "title": "Récolte confirmée et compteur exact",
+      "task": "Vérifier les messages de ressource utilisée, fin d'interaction, quantité reçue et poids. Éviter de traiter gatherAll=true comme preuve d'une collecte.",
+      "accept": "La récolte terminée est associée à une ressource et une variation confirmées. Les tentatives injoignables restent séparées.",
+      "checks": "Ressource épuisée, protecteur, gain nul, inventaire plein et deux événements identiques.",
+      "dependencies": [
+        "S05",
+        "N02"
+      ]
+    },
+    {
+      "id": "F02",
+      "title": "Inventaire et banque à fraîcheur explicite",
+      "task": "Auditer le cache des objets, effets, quantités et snapshots bancaires. Différencier inconnu, partiel, ancien, chargé et vide confirmé.",
+      "accept": "Zéro piles après reconnexion n'est jamais présenté comme une banque vide. Les objets équipés ne sont pas comptés disponibles au craft.",
+      "checks": "Reconnexion, banque non ouverte, modification partielle, split de pile et déplacement d'objet.",
+      "dependencies": [
+        "S05",
+        "S06"
+      ]
+    },
+    {
+      "id": "F03",
+      "title": "Craft multi-piles et nombre réellement exécuté",
+      "task": "Renforcer les corrections récentes de pose atelier, compte de crafts et consommation. Exécuter le vrai service avec transport simulé puis essai autorisé borné.",
+      "accept": "Une recette ne part pas tant que UID/quantité/côté et nombre de fabrications ne concordent pas. Un résultat partiel reste visible.",
+      "checks": "Objet direct vs inventaire, mauvaisepile, mauvaiscôté, nombre différent et fermetureatelier.",
+      "dependencies": [
+        "S08",
+        "F02"
+      ]
+    },
+    {
+      "id": "F04",
+      "title": "Forgemagie et puits observés",
+      "task": "Auditer la séparation conseil, choix de rune, application et résultat. Comparer changements d'effets et estimation de puits sans faire passer une estimation pour une vérité.",
+      "accept": "L'outil expose son niveau de confiance et les limites de calcul. L'application d'une rune dépend de la bonne instance d'objet.",
+      "checks": "Échec neutre/critique, effet absent, overmage, objet remplacé et réponse tardive.",
+      "dependencies": [
+        "S08",
+        "F02",
+        "F03"
+      ]
+    },
+    {
+      "id": "F05",
+      "title": "Budget et annulation de forge",
+      "task": "Vérifier budget global, stock de runes et compteur d'actions sur annulation/reprise. Empêcher plusieurs séances d'utiliser le même budget.",
+      "accept": "Le plafond est évalué avant l'action et les consommations incertaines restent à rapprocher. L'annulation empêche la rune suivante.",
+      "checks": "Timeout après pose, achat de rune concurrent, budget juste et reprise après crash.",
+      "dependencies": [
+        "F04",
+        "E02",
+        "S08"
+      ]
+    },
+    {
+      "id": "F06",
+      "title": "Métiers et plans de progression réels",
+      "task": "Rendre visibles niveaux métiers, XP connue et paliers sans déduire l'XP métier de l'XP personnage. Proposer un plan tenant compte des accès confirmés.",
+      "accept": "Les gains et prérequis sont sourcés. Une carte du catalogue n'est pas déclarée accessible par sa seule présence.",
+      "checks": "Mineur130, pêcheur200, métier inconnu, île verrouillée et palier franchi pendant run.",
+      "dependencies": [
+        "F01",
+        "F02",
+        "N07"
+      ]
+    },
+    {
+      "id": "F07",
+      "title": "Dialogue PNJ et choix de réponse",
+      "task": "Auditer les recherches de PNJ, actions numériques et réponses de dialogue. Gérer l'ouverture par interactif et le changement de contexte sans faux succès.",
+      "accept": "Une réponse n'est considérée réussie qu'avec la transition attendue. Les hôtels de vente extérieurs ne sont pas confondus avec ateliers intérieurs.",
+      "checks": "HDV créaturesBonta, banquier, entréedonjon, PNJ introuvable et dialogue interrompu.",
+      "dependencies": [
+        "S05",
+        "N02"
+      ]
+    },
+    {
+      "id": "F08",
+      "title": "Chasse au trésor de bout en bout",
+      "task": "Qualifier départ, indice, navigation, validation, combat et récompense sur une chasse bornée. Distinguer indice introuvable et faute de position.",
+      "accept": "Le module peut reprendre une chasse connue et expliquer une étape bloquée. Une recherche d'indice ne vaut pas validation serveur.",
+      "checks": "Indice ambigu, direction, étage, échec de validation, coffre et inventaire plein.",
+      "dependencies": [
+        "F07",
+        "N02",
+        "C09"
+      ]
+    },
+    {
+      "id": "F09",
+      "title": "Capture d'âmes et synchronisation Metamob",
+      "task": "Auditer pierre, état de capture, résultat et inventaire, puis préparer une synchronisation explicite des collections. Étudier le client typé metamob.api.",
+      "accept": "Une capture n'est annoncée qu'après preuve. La synchronisation peut être prévisualisée et n'écrase pas les données externes sans choix.",
+      "checks": "Monstre non capturable, pierre insuffisante, doublon, API en panne et conflit de collection.",
+      "dependencies": [
+        "F02",
+        "R06",
+        "H09"
+      ]
+    },
+    {
+      "id": "F10",
+      "title": "Ateliers et banques dans les scripts",
+      "task": "Unifier les contrats d'ouverture/fermeture et l'emploi de leaveDialog pour éviter le masquage du module bank par la fonction bank().",
+      "accept": "Une fonction de trajet bank n'empêche pas la fermeture du vrai dialogue. La reprise de ronde utilise la carte réellement atteinte.",
+      "checks": "Dépôtglobal, fraisbancaires, banqueferméeparserveur et craft annulé pendant dépôt.",
+      "dependencies": [
+        "F02",
+        "F03",
+        "F07",
+        "L03"
+      ]
+    },
+    {
+      "id": "A01",
+      "title": "Connexion et choix de personnage précis",
+      "task": "Auditer les commandes de connexion, serveur demandé et personnage cible, en Socket et MITM. Vérifier que les erreurs finales arrivent dans l'UI et MCP.",
+      "accept": "Le compte demandé rejoint le personnage demandé ou retourne une cause précise. Pas de sélection implicite basée sur la dernière ligne visible.",
+      "checks": "Deuxpersonnages, serveurindisponible, abonnementinconnu et demande remplacée.",
+      "dependencies": [
+        "S05",
+        "S06"
+      ]
+    },
+    {
+      "id": "A02",
+      "title": "Reconnexion complète après cellule perdue",
+      "task": "Reconstituer pourquoi reconnect simple diffère de disconnect puis connect. Préparer une reprise qui invalide tous les états nécessaires au lieu d'exiger une manipulation manuelle.",
+      "accept": "La cellule confirmée, les interactifs et le script repartent dans une même génération. Les anciens accusés ne sont plus valides.",
+      "checks": "Carteintérieure, inactivitéserveur, microcoupure et reconnexionpendanttrajet.",
+      "dependencies": [
+        "A01",
+        "S06",
+        "N02"
+      ]
+    },
+    {
+      "id": "A03",
+      "title": "Équipes, chef et suiveurs",
+      "task": "Qualifier déplacement, regroupement, combat, placement et départ d'un membre. Les accusés et ordres doivent être liés à une équipe et sa version.",
+      "accept": "Une absence de suiveur ne devient pas un succès de regroupement. Le changement de chef annule les anciens ordres différés.",
+      "checks": "Suiveur lent, membre déconnecté, arrivée tardive et combat lancé avant regroupement.",
+      "dependencies": [
+        "S05",
+        "S06",
+        "C05"
+      ]
+    },
+    {
+      "id": "A04",
+      "title": "Planning et horaires fiables",
+      "task": "Auditer fuseaux, changements d'heure, scripts en cours et fin de session après combat. Rendre les actions futures lisibles et annulables.",
+      "accept": "Un planning ne lance pas deux runs du même bot et n'interrompt pas un combat pour respecter une minute exacte.",
+      "checks": "Changementheureoctobre, passagejour, redémarrageapplication et tâche déjà lancée.",
+      "dependencies": [
+        "S05",
+        "S06",
+        "L07"
+      ]
+    },
+    {
+      "id": "A05",
+      "title": "Sélection de bot et commandes contextuelles",
+      "task": "Tracer les commandes UI qui lisent un bot sélectionné mutable. Capturer l'identité cible au déclenchement et revalider les préconditions à l'envoi.",
+      "accept": "Cliquer sur un autre bot pendant une attente ne redirige pas l'action. L'UI montre toujours la cible originale.",
+      "checks": "Ouverturemarché, équipement, stopscript et dialogue de configuration pendant changement de sélection.",
+      "dependencies": [
+        "S06",
+        "U03"
+      ]
+    },
+    {
+      "id": "A06",
+      "title": "Isolation des données entre comptes",
+      "task": "Auditer caches globaux, statistiques, journaux, profils et objets partagés. Documenter ce qui est volontairement commun et ce qui doit être séparé.",
+      "accept": "Les informations d'un compte ne contaminent pas les décisions d'un autre. Les données communes gardent leur source et serveur.",
+      "checks": "Même nom sur deuxserveurs, mêmesGID, PIDréutilisé et deuxcomptes avec HDV ouverts.",
+      "dependencies": [
+        "S06",
+        "S07"
+      ]
+    },
+    {
+      "id": "A07",
+      "title": "Notifications utiles et déduplication",
+      "task": "Revoir les notifications de blocage, défaite, banque, succès et fin de tâche. Les rendre actionnables, dédupliquées et ciblées au bon compte.",
+      "accept": "Un incident ne produit pas des dizaines d'alertes identiques. Une reprise résout l'incident visible sans effacer l'historique utile.",
+      "checks": "Refus répétés, combat perdu, bot volontairement arrêté et reconnexion réussie.",
+      "dependencies": [
+        "S09",
+        "U07"
+      ]
+    },
+    {
+      "id": "A08",
+      "title": "Supervision durable à trois bots",
+      "task": "Formaliser le contrôle périodique actuel : curseurs, vérifications, actions autorisées et preuves. Séparer supervision, activité en jeu et fin de session.",
+      "accept": "Le contrôle ne répète ni retrait, ni achat de stuff, ni déploiement. Les curseurs repartent correctement après redémarrage.",
+      "checks": "Consoleréinitialisée,400lignesavec truncatedfalse, donnéesbancairesen cache et tâchesconcurrentes.",
+      "dependencies": [
+        "A04",
+        "L07",
+        "S09"
+      ]
+    },
+    {
+      "id": "A09",
+      "title": "Reprise d'instance et récupération de préférences",
+      "task": "Auditer sauvegardes, schémas et restauration après crash. Séparer paramètres permanents, activité interrompue et opérations au résultat inconnu.",
+      "accept": "Une instance restaurée ne répète pas une opération économique ambiguë. Les profils et scripts ne disparaissent pas silencieusement.",
+      "checks": "Fichierpartiel, versionancienne, crashpendantreprice et arrêtWindows.",
+      "dependencies": [
+        "S05",
+        "S06",
+        "U09"
+      ]
+    },
+    {
+      "id": "A10",
+      "title": "Vue flotte et actions groupées contrôlées",
+      "task": "Concevoir une vue compacte pour plusieurs comptes, avec préconditions et résultat individuel des actions groupées.",
+      "accept": "Une action groupée affiche succès/refus par bot, sans faire croire qu'un lot entier a réussi quand un seul compte répond.",
+      "checks": "Relancer3scripts, Turbo3comptes, un compteencombat et quatrièmeinactif à exclure.",
+      "dependencies": [
+        "A05",
+        "A06",
+        "U04"
+      ]
+    },
+    {
+      "id": "R01",
+      "title": "Inventaire des artefacts et versions natives",
+      "task": "Constituer un dossier minimal de versions, empreintes, exports et dépendances pour les modules natifs et clients de test. Utiliser REA pour les artefacts, outils source pour les dépôts.",
+      "accept": "Chaque affirmation renvoie à une version exacte et une méthode. Aucun binaire téléchargé n'est exécuté par simple curiosité.",
+      "checks": "Comparer DLLembarquée et source, ABI, architecture et dépendance manquante dans une instance isolée.",
+      "dependencies": [
+        "S01"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Résolution structurelle du tactique",
+      "task": "Étudier les types obfusqués et points d'accroche du rendu actuel à partir des artefacts attribués. Documenter les alternatives quand un nom historique ne résout plus.",
+      "accept": "Les candidats ont des preuves structurelles et une stratégie de refus propre. Une correspondance approximative n'est pas injectée comme certaine.",
+      "checks": "Deuxversionsclient, fauxpositifstructurel, typeabsent et restaurationaprèsinitialisationpartielle.",
+      "dependencies": [
+        "R01"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Comparaison des décodeurs et schémas",
+      "task": "Comparer Givre, JondoEmu, stakk et dofus-prospection sur quelques messages réellement utilisés. Produire un tableau sémantique et une fixture par divergence utile.",
+      "accept": "Les numéros de champs d'anciennes versions ne sont pas copiés dans le client courant. Les noms et types sont corroborés par le bundle actuel.",
+      "checks": "Perte/gainPV, changementcarte, offreHDV, inventaire et résultatcraft.",
+      "dependencies": [
+        "S01",
+        "R01"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Rendu de looks SuperDofus",
+      "task": "Analyser architecture de décodage/bake/cache des entités et les dépendances de ses assets. Prototyper une extraction de concepts compatible avec l'application.",
+      "accept": "Rapport avec coûts, limites et preuve sur looks choisis. Les fichiers du jeu restent externes à la distribution du prototype.",
+      "checks": "Personnage, monstre, monture, recoloration et direction avec assetmanquant.",
+      "dependencies": [
+        "R01"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Atlas des neuf dépôts de référence",
+      "task": "Lire sources pertinentes aux commits figés, licences et tests. Classer idées réutilisables, adaptables, incompatibles et non vérifiées avec justification.",
+      "accept": "Chaque dépôt a au moins un chemin inspecté et une idée reliée à un lot Givre. Aucun copier-coller aveugle d'un projet sans licence claire.",
+      "checks": "Vérifier langage réel, version de jeu, présence d'une API et statut du dépôt.",
+      "dependencies": [
+        "S01"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Client Metamob typé et collections",
+      "task": "Étudier résolution de noms, pagination, limites, erreurs et mutations du client. Préparer un contrat .NET ou une passerelle avec données de test.",
+      "accept": "L'adaptateur sait distinguer réseau, autorisation, limite et entité inconnue. Les mutations ne sont pas exécutées pendant la recherche.",
+      "checks": "Nominconnue, pagevide, retry, conflit et limiteAPI.",
+      "dependencies": [
+        "R05"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Étude comparative UI stakk et BillBot",
+      "task": "Analyser navigation, densité, cartes, panneaux économiques et retours d'action depuis les sources et captures publiques.",
+      "accept": "Recommandations illustrées et liées aux problèmes Givre. Le rapport distingue ce qui a été vu de ce qui a seulement été déduit.",
+      "checks": "Au moins trois parcours comparés et une proposition originale adaptée à Avalonia.",
+      "dependencies": [
+        "R05",
+        "U01"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Évolution des modules dofus-enhanced",
+      "task": "Comparer les sources actuellement embarquées au nouveau commit consulté, par fonctionnalité et contrat ABI. Préparer des portages séparés des changements non nécessaires.",
+      "accept": "Chaque portage a son périmètre, sa licence, ses dépendances et une méthode de restauration. Les effets ne sont pas annoncés validés sans essai.",
+      "checks": "Masquesanimation, changementprofil, déchargement, mappingtypes et clientnull.",
+      "dependencies": [
+        "R01",
+        "R05"
+      ]
+    },
+    {
+      "id": "R09",
+      "title": "Corpus de paquets expurgés et minimisés",
+      "task": "Construire des fixtures utiles depuis les événements nécessaires, en retirant authentification, noms non utiles et données de comptes. Conserver provenance et hash.",
+      "accept": "Le corpus peut être partagé aux agents sans logs complets. Une fixture conserve assez de contexte pour reproduire le défaut.",
+      "checks": "Casuredeparsing, doublemessage, mauvaisegénération et contrôle de redaction automatique.",
+      "dependencies": [
+        "S06",
+        "R03",
+        "Q02"
+      ]
+    },
+    {
+      "id": "R10",
+      "title": "Laboratoire local compatible avec JondoEmu",
+      "task": "Étudier un banc d'essai local émulé pour scénarios répétables. Délimiter clairement les différences de version et les comportements qui ne prouvent rien sur le serveur réel.",
+      "accept": "Un scénario local peut être automatisé sans toucher les comptes actifs. L'émulateur reste une source d'essais, pas une vérité protocolaire.",
+      "checks": "Banque, déplacement, soin, craft et actionrefusée avec versionexplicitementdifférente.",
+      "dependencies": [
+        "R03",
+        "R05",
+        "Q02"
+      ]
+    },
+    {
+      "id": "B01",
+      "title": "Audit des capacités réelles T3 et CoS",
+      "task": "Comparer la version installée, le catalogue d'outils et les sources figées de T3/CoS. Identifier ce qui est déjà exposé et ce qui exige un adaptateur.",
+      "accept": "Table disponible/draft/absent prouvée pour liste, lecture, envoi, réveil, attente et annulation. Aucun endpoint imaginé présenté comme existant.",
+      "checks": "Un agentCoS endormi, un actif, un T3thread et une installation sans extension connectée.",
+      "dependencies": [
+        "S01"
+      ]
+    },
+    {
+      "id": "B02",
+      "title": "Adressage d'un worker et propriété de conversation",
+      "task": "Modéliser appInstance, ownerSession, ownerConversation, family, incarnation et worker. Respecter les contrôles existants au lieu d'usurper les en-têtes de corrélation.",
+      "accept": "Une requête T3 n'adopte pas les workers d'un autre propriétaire. La reprise peut distinguer famille endormie et incarnation retirée.",
+      "checks": "Nomsworkeridentiques, propriétairedifférent, redémarrageCoS et ancienworkerretiré.",
+      "dependencies": [
+        "B01",
+        "S06"
+      ]
+    },
+    {
+      "id": "B03",
+      "title": "Contrat durable des jobs multi-agents",
+      "task": "Définir JobSpec, Lease, Progress, Artifact, Result et Review avec version, base commit et clés d'idempotence. Prévoir import/export manuel avant automatisation.",
+      "accept": "Un lot peut être distribué et relu sans transcript complet. Les formats restent indépendants du fournisseur et du modèle.",
+      "checks": "Double soumission, résultat sans commit, artefact absent, changement de base et reprise de job.",
+      "dependencies": [
+        "B01",
+        "S05"
+      ]
+    },
+    {
+      "id": "B04",
+      "title": "Broker local de tâches et baux",
+      "task": "Prototyper une file durable locale avec revendication atomique, bail expirant, heartbeat et état de réconciliation. Les handlers ne font pas encore d'actions de jeu.",
+      "accept": "Un seul lease actif autorise l'écriture d'un lot. La perte d'un worker ne duplique pas automatiquement une opération externe déjà envoyée.",
+      "checks": "Deuxworkers, crashbroker, expirationbail, notificationperdue et retourtardif.",
+      "dependencies": [
+        "B02",
+        "B03"
+      ]
+    },
+    {
+      "id": "B05",
+      "title": "Passerelle CoS à identité prouvée",
+      "task": "Concevoir un adaptateur qui fait exécuter les opérations de workers par leur propriétaire légitime. Étudier worker pull, plugin et API officiellement exposée avant toute automation DOM.",
+      "accept": "Preuve d'un réveil d'un worker connu et lecture de son résultat dans une famille autorisée. Les contrôles Host/Origin/token ne sont pas supprimés.",
+      "checks": "Propriétaireabsent, ongletfermé, nouvelleincarnation et messageenvoyédeuxfois.",
+      "dependencies": [
+        "B02",
+        "B04"
+      ]
+    },
+    {
+      "id": "B06",
+      "title": "Adaptateur T3 et notifications de fin",
+      "task": "Relier le broker aux capacités T3 disponibles sans créer des conversations ordinaires à la place de tâches déléguées. Prévoir webhook ou mécanisme applicatif pris en charge.",
+      "accept": "Le résultat revient au thread/projet prévu, une fois logiquement, avec tâche et preuve identifiées. Le modèle/options retournés sont contrôlés.",
+      "checks": "Notificationdupliquée, threadoccupé, projetincorrect et repriseaprèsredémarrage.",
+      "dependencies": [
+        "B01",
+        "B03",
+        "B04"
+      ]
+    },
+    {
+      "id": "B07",
+      "title": "Contexte utile et artefacts sans fuite",
+      "task": "Construire des paquets de tâche bornés : brief, extraits, docs, base, objections et références d'artefacts. Éviter de recopier userdata et historiques entiers.",
+      "accept": "Le worker reçoit ce qui est nécessaire et le rapport garde la provenance. Un nouveau tour peut continuer avec les objections non résolues.",
+      "checks": "Fichiergros, documentexterne, sourceabsente et artefactcontenantunechaînesensible.",
+      "dependencies": [
+        "B03",
+        "R09"
+      ]
+    },
+    {
+      "id": "B08",
+      "title": "Tableau de pilotage des agents",
+      "task": "Concevoir la vue jobs, leases, worktrees, preuves, blocages et décisions de revue. Distinguer transport accepté, worker actif et résultat vérifié.",
+      "accept": "Un coordinateur gère des dizaines d'agents sans perdre propriété de fichiers et base de chaque patch. Les actions restent traçables.",
+      "checks": "Vingtagents, troiscoordinateurs, tâchesliées, agentendormi et revueàreprendre.",
+      "dependencies": [
+        "B03",
+        "B04",
+        "U03"
+      ]
+    },
+    {
+      "id": "B09",
+      "title": "Revue en boucle et désaccords conservés",
+      "task": "Formaliser première livraison, objections, réponse et seconde revue comme objets distincts. Garder l'identité de chaque round et ses preuves.",
+      "accept": "Un relecteur ne répète pas des constats déjà corrigés faute de contexte. Une objection ne disparaît pas en réécrivant le résumé.",
+      "checks": "Deuxrounds, correctifpartiel, nouvellehypothèse et changementdebaseentrelesrounds.",
+      "dependencies": [
+        "B03",
+        "B07",
+        "Q07"
+      ]
+    },
+    {
+      "id": "B10",
+      "title": "Robustesse du pont multi-orchestrateurs",
+      "task": "Tester deux coordinateurs et plusieurs familles CoS avec pertes réseau et redémarrages. Prévoir quotas de concurrence locaux, arrêt et reprise sans changer d'identité.",
+      "accept": "Pas d'action ni de fichier attribué au mauvais agent. Un timeout de réveil peut rester indéterminé et doit être rapproché avant répétition.",
+      "checks": "Crashapresenvoi, duplicatcallback, leaseretiré, sessioninconnue et restaurationsimultanée.",
+      "dependencies": [
+        "B04",
+        "B05",
+        "B06",
+        "B09"
+      ]
+    },
+    {
+      "id": "Q01",
+      "title": "Critères de réception communs aux lots",
+      "task": "Définir les niveaux recherche, prototype, code vérifié et validé en session. Créer une checklist courte par famille avec preuves minimales et limites.",
+      "accept": "Deux relecteurs peuvent classer le même livrable avec des raisons comparables. Les quatre niveaux ne sont pas confondus.",
+      "checks": "LotUI, protocole, économie, reverseengineering et broker sans essairéel.",
+      "dependencies": [
+        "S02",
+        "S04"
+      ]
+    },
+    {
+      "id": "Q02",
+      "title": "Injection de fautes sur services réels",
+      "task": "Préparer transport et horloge contrôlables pour exécuter la source métier sans serveur réel. Éviter les faux services qui recopient l'implémentation.",
+      "accept": "Les tests injectent refus, retard, réordonnancement, annulation et mauvaise identité sur les points de production.",
+      "checks": "CommandeHDV, changementcarte, combat et craft avec étatavant/après vérifiable.",
+      "dependencies": [
+        "S03",
+        "S05"
+      ]
+    },
+    {
+      "id": "Q03",
+      "title": "Vérification des traductions et ressources",
+      "task": "Automatiser unicité des clés, présence FR/EN/ES, formats et ressources référencées. Conserver les essais nécessaires aux écrans réellement modifiés.",
+      "accept": "Une clé dupliquée ou un format cassé est détecté avant packaging. Les valeurs manquantes ont un repli lisible.",
+      "checks": "Clédupliquée, placeholderincompatible, ressourceabsente et cultureespagnole.",
+      "dependencies": [
+        "S03",
+        "U08"
+      ]
+    },
+    {
+      "id": "Q04",
+      "title": "Protocole d'essai en session isolée",
+      "task": "Définir autorisation, compte, instance, durée, budget et critères d'arrêt de chaque essai réel. Le coordinateur alloue la fenêtre sans interrompre le farm courant.",
+      "accept": "Chaque preuve indique version et scénario exacts. Aucun agent ne partage un compte de test sans réservation.",
+      "checks": "Essai achatborné, forgerune, transportMITM, Socket et déchargementnative.",
+      "dependencies": [
+        "S02",
+        "S03",
+        "Q01"
+      ]
+    },
+    {
+      "id": "Q05",
+      "title": "Budgets de performance reproductibles",
+      "task": "Fixer mesures de démarrage, mémoire, UI, rendu, latence de décision et tailles de caches. Comparer scénarios contrôlés plutôt que ressentis.",
+      "accept": "Les régressions importantes ont un seuil et une méthode. Un gain local ne masque pas une régression sur un autre écran.",
+      "checks": "Cartedense, dixmilleoffres, traceslongues, troissessions et redémarrages.",
+      "dependencies": [
+        "S03",
+        "S09"
+      ]
+    },
+    {
+      "id": "Q06",
+      "title": "Packaging et dépendances reproductibles",
+      "task": "Vérifier runtime, DLL natives, notices et fichiers de catalogue réellement publiés. Préparer un artefact séparé au lieu d'écraser la version en cours.",
+      "accept": "Le package démarre sur un environnement de validation et déclare son identité de build. Les artefacts de recherche ne partent pas en production.",
+      "checks": "Machinepropre, DLLmanquante, architectureincorrecte et catalogueincompatible.",
+      "dependencies": [
+        "S03",
+        "R01",
+        "Q03"
+      ]
+    },
+    {
+      "id": "Q07",
+      "title": "Revue contradictoire indépendante",
+      "task": "Assigner à un autre agent une reproduction et une revue des risques métier. Il ne se limite pas à lire le résumé du développeur.",
+      "accept": "La revue contient au moins un essai susceptible de réfuter la correction et répond aux limites annoncées. Le reviewer ne modifie pas le même worktree.",
+      "checks": "Régressionancienne, casoùuneconfirmationmanque et scénarioadversarial de concurrence.",
+      "dependencies": [
+        "Q01",
+        "Q02"
+      ]
+    },
+    {
+      "id": "Q08",
+      "title": "Compatibilité des schémas et migrations",
+      "task": "Inventorier fichiers JSON, bases caches et contrats d'artefacts. Définir migrations idempotentes et repli sur version inconnue.",
+      "accept": "Une migration peut être relancée sans doubler les données et ne convertit pas des états inconnus en succès.",
+      "checks": "Sauvegardepartielle, deuxversionssuccessives, retourarrière et cacheavecchampinconnu.",
+      "dependencies": [
+        "S05",
+        "A09"
+      ]
+    },
+    {
+      "id": "Q09",
+      "title": "Rapports de régression navigables",
+      "task": "Construire un index par lot, scénario, version et preuve avec résumé court. Permettre au coordinateur de retrouver rapidement le test correspondant à un défaut.",
+      "accept": "Une affirmation de correction peut être suivie jusqu'au diff et à la preuve. Les liens cassés et empreintes incorrectes sont signalés.",
+      "checks": "Rapportdéplacé, artefactmanquant, anciennebase et plusieursrounds de revue.",
+      "dependencies": [
+        "Q01",
+        "Q07",
+        "B03"
+      ]
+    },
+    {
+      "id": "Q10",
+      "title": "Livraison finale et audit de non-régression",
+      "task": "Assembler une version candidate après intégrations sérialisées et exécuter les contrôles requis. Préparer rollback, limites connues et points encore ouverts.",
+      "accept": "La livraison n'annonce pas tous les bugs résolus sur la seule base des tests. La version exécutée est vérifiée après activation par le coordinateur.",
+      "checks": "Buildapplication, suiterequise, cléslangues, smokeUI et sessionsautoriséesbornées.",
+      "dependencies": [
+        "S10",
+        "Q03",
+        "Q04",
+        "Q06",
+        "Q07",
+        "Q08"
+      ]
+    },
+    {
+      "id": "X01",
+      "title": "Centre d'intentions et prochaine action",
+      "task": "Proposer une vue qui dit ce que chaque bot cherche à obtenir, pourquoi il attend et ce qui permettra d'avancer. Réutiliser la provenance d'état métier.",
+      "accept": "La vue donne une explication courte et utile, sans inventer de raisonnement caché ou exposer des dumps techniques.",
+      "checks": "Attenterepousse, manqueclé, groupemort, banqueinconnue et déconnexion.",
+      "dependencies": [
+        "S09",
+        "U04",
+        "B08"
+      ]
+    },
+    {
+      "id": "X02",
+      "title": "Laboratoire de stratégie sans dépenses",
+      "task": "Créer un outil what-if sur profils combat, taille de groupes, itinéraire et équipement. Utiliser simulation et données observées avec niveau de confiance.",
+      "accept": "L'utilisateur peut comparer deux choix sans lancer le bot ni acheter. Les limites et hypothèses sont visibles au résultat.",
+      "checks": "Stuffactuel, variantebudget, groupe8 et cibleavecsoininconnu.",
+      "dependencies": [
+        "C10",
+        "E04",
+        "E06",
+        "M08"
+      ]
+    },
+    {
+      "id": "X03",
+      "title": "Planificateur d'objectifs métier et donjon",
+      "task": "Décomposer un objectif utilisateur en tâches et prérequis vérifiables, comme obtenir100clés puis faire10donjons. Distinguer préparation et exécution.",
+      "accept": "Chaque étape a coût, compte, dépendances et preuve de fin. Le plan peut être révisé sans refaire une étape confirmée.",
+      "checks": "Stockinconnu, métierinsuffisant, cléconsommée et arrêtde session.",
+      "dependencies": [
+        "P02",
+        "P08",
+        "P10",
+        "F06"
+      ]
+    },
+    {
+      "id": "X04",
+      "title": "Bibliothèque de recettes d'automatisation",
+      "task": "Proposer des assemblages réutilisables de blocs réels : trajet, récolte, banque, combat, marché et production. Chaque bloc indique ses capacités et limites.",
+      "accept": "Un assemblage ne génère pas de squelette caché. Les prérequis manquants empêchent l'exécution avec explication.",
+      "checks": "Blocnonimplémenté, événementinconnu, paramètreinvalidé et changementd'API.",
+      "dependencies": [
+        "L03",
+        "L08",
+        "S05"
+      ]
+    },
+    {
+      "id": "X05",
+      "title": "Optimisation coopérative des comptes",
+      "task": "Étudier répartition de récolte, craft et transport entre comptes en fonction des métiers et stocks. Commencer par un plan sans transfert réel.",
+      "accept": "Aucun plan n'attribue un métier absent ni une ressource non disponible. Les échanges futurs sont des étapes explicitement confirmables.",
+      "checks": "Pêcheur200, mineur130, artisanfaibleniveau et budgetcommun nonautorisé.",
+      "dependencies": [
+        "A03",
+        "F02",
+        "F06",
+        "P04"
+      ]
+    },
+    {
+      "id": "X06",
+      "title": "Catalogue de données avec preuves de compatibilité",
+      "task": "Proposer une page version de jeu, catalogue, champs requis, sources et fonctions compatibles. Prévoir une mise à jour atomique et réversible du catalogue.",
+      "accept": "Une base ancienne ne donne pas silencieusement une recette ou une portée comme actuelle. L'utilisateur comprend les fonctions indisponibles.",
+      "checks": "Baseinstallée, ancienbundle, migrationratée et comparaison de deuxversions.",
+      "dependencies": [
+        "R03",
+        "Q08",
+        "U07"
+      ]
+    },
+    {
+      "id": "X07",
+      "title": "Assistant d'analyse d'incident pour MCP",
+      "task": "Définir un outil qui retourne un diagnostic compact : dernier progrès, action en attente, refus, fraîcheur et artefacts utiles. Aucun log complet par défaut.",
+      "accept": "Un agent peut orienter une enquête sans scanner tout userdata ni répéter des transactions. Les causes non prouvées restent hypothèses.",
+      "checks": "Boucle83tours, routebloquée, achatindéterminé et consoletropancienne.",
+      "dependencies": [
+        "S09",
+        "L07",
+        "B03",
+        "R09"
+      ]
+    },
+    {
+      "id": "X08",
+      "title": "Architecture de plugins de confort",
+      "task": "Étudier des points d'extension pour rendus, conseils et sources externes, sans multiplier les singletons ni casser les versions. Comparer stakk et l'existant Givre.",
+      "accept": "Prototype d'un plugin lecture seule avec version de contrat, désactivation et limites de ressources. Pas de chargeur universel prématuré.",
+      "checks": "Pluginabsent, versionincompatible, exception et déchargement pendant une vue.",
+      "dependencies": [
+        "R05",
+        "R07",
+        "S07"
+      ]
+    },
+    {
+      "id": "X09",
+      "title": "Expériences visuelles orientées utilisateur",
+      "task": "Proposer trois interactions ambitieuses : combat lisible, HDV Socket immédiat et vue flotte avec carte sobre. Faire des prototypes navigables et recueillir des décisions comparables.",
+      "accept": "Chaque prototype résout une tâche concrète et indique ce qu'il faudra raccorder. Aucune maquette déclarée fonctionnalité finie.",
+      "checks": "Parcoursd'un GelanoPA, suivi d'un groupe8 et compréhension d'un détour de mine.",
+      "dependencies": [
+        "U01",
+        "U03",
+        "M03",
+        "H01",
+        "A10"
+      ]
+    },
+    {
+      "id": "X10",
+      "title": "Roadmap vérifiée après les premiers retours",
+      "task": "Consolider les résultats des agents en priorités produit fondées sur défauts, dépendances, efforts et bénéfices. Retirer les idées déjà résolues et conserver les inconnues.",
+      "accept": "La prochaine vague dépend des preuves reçues, pas du nombre de fichiers ou de tokens consommés. Chaque priorité a un propriétaire et une raison.",
+      "checks": "Trois lotsrejetés, correctiontransversale, ideerendueinutile et nouvellecontrainteutilisateur.",
+      "dependencies": [
+        "Q01",
+        "Q09",
+        "B09"
+      ]
+    },
+    {
+      "id": "A11",
+      "title": "Nouveau personnage Kourial — player.four666+1",
+      "task": "Prendre en charge le compte mis à disposition, créer un nouveau personnage sur Kourial exclusivement, puis assurer son démarrage et sa progression via une surface MCP ou Chat on Steroids Desktop effectivement disponible. Coordonner les interventions nécessaires sur les autres comptes.",
+      "accept": "Identité compte vérifiée, nouveau personnage créé et serveur Kourial relu depuis une source réelle. Aucun repli vers Mikhal ou Dakhal. Activité et suivi de progression réellement confirmés.",
+      "checks": "Serveur absent ou complet, authentification bloquante, nom indisponible, erreur de sélection, création acceptée sans confirmation, reconnexion et conflit de propriétaire du compte.",
+      "dependencies": [
+        "S02",
+        "A01",
+        "L01"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "source_file": "treasure-hints.json",
+  "values_removed": true,
+  "fields": [
+    {
+      "path": "$.v",
+      "type": "int"
+    },
+    {
+      "path": "$.server_version",
+      "type": "int"
+    },
+    {
+      "path": "$.server",
+      "type": "list"
+    },
+    {
+      "path": "$.server_absent",
+      "type": "list"
+    },
+    {
+      "path": "$.server_solved",
+      "type": "list"
+    },
+    {
+      "path": "$.dofusdb",
+      "type": "list"
+    },
+    {
+      "path": "$.map_ids",
+      "type": "list"
+    },
+    {
+      "path": "$.confirmed",
+      "type": "list"
+    },
+    {
+      "path": "$.absent",
+      "type": "list"
+    },
+    {
+      "path": "$.solved",
+      "type": "list"
+    },
+    {
+      "path": "$.wrong",
+      "type": "list"
+    },
+    {
+      "path": "$.asked",
+      "type": "list"
+    },
+    {
+      "path": "$.pending",
+      "type": "list"
+    }
+  ]
+}

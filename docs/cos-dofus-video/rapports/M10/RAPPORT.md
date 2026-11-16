@@ -1,0 +1,46 @@
+# M10 — Dégâts de poussée et collision : limites, obstacles, résistances
+
+Recherche documentaire du 4 novembre 2026, DOFUS 3.7. **Périmètre précis :** comparer une poussée de Forgelance depuis la Lance vers un ennemi placé devant un mur avec la même poussée sur une ligne libre, puis comparer à résistances de poussée différentes. Aucune formule ou valeur de dommages n'est tenue pour validée sur le client cible.
+
+## Synthèse exploitable
+Un sort tel que **Dégagement** peut combiner une ligne de dommages Air immédiats, un déplacement forcé de quatre cases et, si le déplacement est empêché, des dommages de collision. Ces contributions sont à conserver séparément. Une cible éloignée d'un mur peut recevoir la ligne de dommages directs sans recevoir le même supplément lié à une collision ; le montant réel dépend notamment des résistances de poussée et des conditions de déplacement. Les passages vidéo V1 [02:00–02:25](https://www.youtube.com/watch?v=_YXtVLQnCU8&t=120s) et [17:13–17:39](https://www.youtube.com/watch?v=_YXtVLQnCU8&t=1033s) motivent le choix mur vs terrain libre, mais ne prouvent pas un montant précis.
+
+La mise à jour **3.7 d'octobre 2026** introduit de nouvelles faiblesses aux dommages de poussée sur plus de 300 monstres selon la [synthèse 3.7 de Dofus pour les Noobs, publiée le 4 octobre 2026](https://www.dofuspourlesnoobs.com/mise-a-jour-307.html). Cette évolution justifie d'utiliser la **résistance de poussée propre à la cible**, et non une constante par famille ni sa résistance Air. L'existence de monstres à résistance de poussée très élevée et de cibles non déplaçables impose une garde séparée. L'effet 3.7 d'équipement *Bottes du Cul Botté* (+31 à +40 résistances poussée selon [Back from AFK, différence 3.6→3.7](https://www.backfromafk.com/objets/depuis-3-6/)) fournit un contre-exemple ciblé pour vérifier la résistance réelle dans l'état de combat.
+
+## Tutoriels YouTube vérifiés par MCP
+| ID | Identité et pertinence | Version/date | Vérification | Passages réellement examinés |
+| --- | --- | --- | --- | --- |
+| V1 | [INFI — J'ai testé.. le Forgelance new stuff 700 do pou sur Dofus 3.7 (sous-coté)](https://www.youtube.com/watch?v=_YXtVLQnCU8) | 1er novembre 2026 ; ~39 min ; DOFUS 3.7 revendiqué par le titre | get_video_info + get_available_languages : FR automatique présent ; get_timed_transcript(lang=fr) : 1 412 segments, next_cursor=null | 01:05–02:35, 03:40–04:15, 16:50–17:45, 22:20–23:45, 37:50–39:00 ; phrases repérées sur la transcription complète |
+| V2 | [INFI — IMPRESSIONNANT !! New stuff air do cri 600+ do pou Dofus 3.7](https://www.youtube.com/watch?v=LKtiaIGNZt0) | 3 novembre 2026 ; ~40 min ; DOFUS 3.7 revendiqué par le titre | mêmes trois outils ; FR automatique présent, 1 206 segments, next_cursor=null | 01:20–03:35, 09:45–10:35, 38:40–39:25 ; vidéo Écaflip essentiellement utilisée pour attester la variabilité de bonus d'équipement |
+
+V1 est une démonstration commentée de combat PvP ; V2 est surtout une revue d'équipement et de combats PvP. Les textes « 700 do pou », « 600+ » désignent des **caractéristiques annoncées de builds**, jamais 700 dégâts par collision. Aucun passage n'établit une formule universelle. Les métadonnées et sous-titres horodatés ont été lus ; aucune capture d'image de plateau correspondant aux instants concernés n'a été examinée. Les cases ou jets affichés dans les vidéos ne sont donc pas classés « observe-video ».
+
+## Sources 3.7 et formules
+- [OpenDofusDB — Dégagement, Forgelance](https://openddb.dev/spells/23743-degagement) : sort Air de niveau 175, **4 PA**, repousse de **4 cases**, une fois par tour ; dégâts Air **29–32** (35–38 en coup critique), lancé sur la Lance, qui est rappelée si le lanceur est Désarmé. Source communautaire indiquant une extraction de données du client, non homologuée comme test serveur. Les jets Air ne sont **pas** les dégâts de poussée.
+- [OpenDofusDB — Pluie d'Airain](https://openddb.dev/spells/24219-pluie-d-airain) : **2 PA**, **-40 résistances de poussée (2 tours)** et 19–21 dommages Air, zone ; exige la Lance selon le texte. Le malus concerne la résistance poussée, pas la résistance Air de la cible.
+- [OpenDofusDB — Charge Héroïque](https://openddb.dev/spells/23824-charge-heroique) : **3 PA**, rapproche le lanceur et repousse la cible **si** le lanceur termine au contact ; l'intensité dépend de la distance. Ne pas assimiler un déplacement du lanceur à une collision de la cible. [Back from AFK — Forgelance 3.0→3.7](https://backfromafk.com/classes/forgelance/depuis-3-0/) relève de nouvelles composantes de poussée.
+- [Dofus Grimoire — Forgelance, guide 3.7](https://dofus-grimoire.fr/classes/forgelance/) : exemple de rotation **Lance-cyclone (3 PA) → Pluie d'Airain (2 PA) → Dégagement (4 PA) → Volée d'Airain (3 PA)** ; ce sont des sorts, des dommages Air et des déplacements distincts. Les bonus/prérequis de Lance et les effets intermédiaires sont nécessaires pour rendre le combo légal.
+- [Dofus pour les Noobs — mise à jour 3.7](https://www.dofuspourlesnoobs.com/mise-a-jour-307.html) : **plus de 300** monstres désormais dotés de faiblesses de poussée ; souligne aussi la présence de cibles avec **9 999 résistances de poussée** ou non déplaçables. Il s'agit d'une synthèse communautaire datée, pas d'une preuve que chaque monstre est vulnérable.
+- [Dofus pour les Noobs — Les dommages](https://www.dofuspourlesnoobs.com/les-dommages.html) distingue résistances élémentaires fixes/% et caractéristique dédiée résistance de poussée. **Ne pas appliquer automatiquement la formule Air normale à la collision.**
+- [Raceko — formulaire non versionné](https://raceko.wifeo.com/formulaire.php) propose une **formule historique** faisant intervenir niveau, dommages poussée, résistances poussée et distance non parcourue divisée par quatre. Sa version, ses arrondis, les effets de collision sur une autre entité et sa validité 3.7 ne sont pas établis : **ni oracle, ni code de production** à partir de cette page.
+
+Le document de mise à jour officielle détaillée n'a pas été directement validé dans cette mission ; seules les sources communautaires ci-dessus sont utilisées pour les règles 3.7.
+
+## Règles documentées et frontière de preuve
+| ID | Point utile | Statut | Précision |
+| --- | --- | --- | --- |
+| M10-R01 | Dégagement inflige une ligne Air et repousse de 4 cases depuis le centre (Lance), 4 PA. | corrobore-source | Texte de [sort](https://openddb.dev/spells/23743-degagement) ; centre, retour Lance et état Désarmé à modéliser. |
+| M10-R02 | Le mur derrière la cible rend la poussée tactiquement plus favorable ; terrain libre et mur ne produisent pas la même situation de dommages. | declare-video, corrobore-source-partiel | V1 [02:17](https://www.youtube.com/watch?v=_YXtVLQnCU8&t=137s), [17:15](https://www.youtube.com/watch?v=_YXtVLQnCU8&t=1035s) ; [Grimoire](https://dofus-grimoire.fr/classes/forgelance/) décrit les bonus contre obstacles. Montant non connu. |
+| M10-R03 | La résistance de poussée de chaque cible et les modificateurs -40 jouent sur les collisions ; les résistances élémentaires restent distinctes. | corrobore-source, declare-video | [Pluie d'Airain](https://openddb.dev/spells/24219-pluie-d-airain) ; V1 [03:55–04:03](https://www.youtube.com/watch?v=_YXtVLQnCU8&t=235s) décrit un adversaire à 160 ré pou. |
+| M10-R04 | Le PVM 3.7 modifie fortement la distribution des résistances poussée : plusieurs centaines de monstres faibles et exceptions extrêmes. | corrobore-source | [MAJ 3.7, partie V](https://www.dofuspourlesnoobs.com/mise-a-jour-307.html). Ne pas généraliser au PvP de V1/V2. |
+| M10-R05 | Une poussée de 2 cases accompagne un jet annoncé d'environ 400 dans V1, sans équipement ni détail de dégâts réidentifiés. | declare-video | [V1 22:31–22:37](https://www.youtube.com/watch?v=_YXtVLQnCU8&t=1351s). **Ce n'est ni un coefficient ni un test de formule**. |
+| M10-R06 | Le bonus de dommages poussée peut évoluer pendant le tour selon le build ; V2 détaille des cumuls progressifs. | declare-video | [V2 02:06–03:33](https://www.youtube.com/watch?v=LKtiaIGNZt0&t=126s). Les noms de passifs sont bruités par ASR ; exactitude des conditions à revalider. |
+
+## Décision de recherche
+Un seul mécanisme de comparaison est proposé : **Dégagement depuis la Lance**, avec *même rang, même lanceur, même cible et même jet Air*, et une géométrie de collision variable. Tester ensuite une variation de la résistance poussée avec Pluie d'Airain, en isolant les dégâts Air de Pluie. La fiche expose ces fixtures et les inconnues; le passage développeur définit des sorties d'événements différenciées.
+
+Le critère tactique qui manque encore est : `gain espéré de collision après résistances et coût de placement` face à `dégâts directs au même budget PA + risques de position`. Impossible de chiffrer ce seuil avec les seules paroles de V1/V2.
+
+## Reprise
+Données nécessaires : capture de V1 vers 02:17–02:30 et 17:15–17:40 montrant le plateau et la ligne du combat ; texte client exact des contraintes Lance/case/portée ; logs combat expurgés de trois géométries identiques avec obstacle à 1, 3 ou plus de 4 cases ; comparaison résistance 0/160 et malus -40 ; cas Indéplaçable et collision avec une entité. Tous les tests de la fiche sont proposés, aucun n'est exécuté.
+

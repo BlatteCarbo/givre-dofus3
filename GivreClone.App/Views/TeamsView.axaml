@@ -1,0 +1,279 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:vm="using:GivreClone.App.ViewModels"
+ xmlns:acv="using:Avalonia.Data.Converters"
+ x:Class="GivreClone.App.Views.TeamsView"
+ x:DataType="vm:TeamsViewModel"
+ Classes="page">
+ <UserControl.Styles>
+ <!-- Carte d'équipe repliable, style MAISON: on n'utilise PAS d'Expander (son chrome par défaut peint un fond
+ noir hors DA et son déroulé ne s'anime pas — même choix que l'éditeur Lua de BotsView). Corps animé par
+ MaxHeight + fondu, chevron pivotant, le tout sur le Surface1 de la carte (surface unifiée, plus de bande noire). -->
+ <Style Selector="Border.teamBody">
+ <Setter Property="MaxHeight" Value="0" />
+ <Setter Property="Opacity" Value="0" />
+ <Setter Property="IsHitTestVisible" Value="False" />
+ <Setter Property="Transitions">
+ <Transitions>
+ <DoubleTransition Property="MaxHeight" Duration="0:0:0.30" Easing="CubicEaseOut" />
+ <DoubleTransition Property="Opacity" Duration="0:0:0.20" Easing="CubicEaseOut" />
+ </Transitions>
+ </Setter>
+ </Style>
+ <Style Selector="Border.teamBody.open">
+ <!-- Plafond volontairement large (roster multi-comptes = quelques membres): jamais atteint donc jamais de coupe. -->
+ <Setter Property="MaxHeight" Value="1600" />
+ <Setter Property="Opacity" Value="1" />
+ <Setter Property="IsHitTestVisible" Value="True" />
+ </Style>
+
+ <!-- Chevron de dépliage: bouton transparent, survol discret (comme les ghost), pivote -90° (replié) → 0° (déplié). -->
+ <Style Selector="ToggleButton.disc">
+ <Setter Property="Background" Value="Transparent" />
+ <Setter Property="BorderThickness" Value="0" />
+ <Setter Property="Padding" Value="6" />
+ <Setter Property="MinWidth" Value="0" />
+ <Setter Property="CornerRadius" Value="8" />
+ <Setter Property="Cursor" Value="Hand" />
+ </Style>
+ <Style Selector="ToggleButton.disc /template/ ContentPresenter">
+ <Setter Property="Background" Value="Transparent" />
+ </Style>
+ <Style Selector="ToggleButton.disc:pointerover /template/ ContentPresenter">
+ <Setter Property="Background" Value="{StaticResource HoverSoftBrush}" />
+ </Style>
+ <Style Selector="ToggleButton.disc:checked /template/ ContentPresenter">
+ <Setter Property="Background" Value="Transparent" />
+ </Style>
+ <Style Selector="ToggleButton.disc:checked:pointerover /template/ ContentPresenter">
+ <Setter Property="Background" Value="{StaticResource HoverSoftBrush}" />
+ </Style>
+ <Style Selector="PathIcon.chev">
+ <Setter Property="RenderTransformOrigin" Value="50%,50%" />
+ <Setter Property="RenderTransform" Value="rotate(-90deg)" />
+ <Setter Property="Transitions">
+ <Transitions>
+ <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.26" Easing="CubicEaseOut" />
+ </Transitions>
+ </Setter>
+ </Style>
+ <Style Selector="PathIcon.chev.open">
+ <Setter Property="RenderTransform" Value="rotate(0deg)" />
+ </Style>
+ </UserControl.Styles>
+ <Grid>
+ <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+ <StackPanel Margin="30,26" Spacing="20" MaxWidth="1000" HorizontalAlignment="Stretch">
+
+ <StackPanel Spacing="5">
+ <TextBlock Classes="h1" Text="{DynamicResource L.Team.Title}" />
+ <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Team.Subtitle}" />
+ </StackPanel>
+
+ <!-- Besoin d'au moins 2 comptes en jeu -->
+ <Border Classes="notice" IsVisible="{Binding !Bots.CanFormTeam}">
+ <Grid ColumnDefinitions="Auto,*">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconAccount}" />
+ <TextBlock Grid.Column="1" Text="{DynamicResource L.Bots.Team.NeedTwo}" />
+ </Grid>
+ </Border>
+
+ <!-- LISTE DES ÉQUIPES (cartes): chaque équipe = une couleur de démarcation -->
+ <ItemsControl ItemsSource="{Binding Bots.Teams}">
+ <ItemsControl.ItemTemplate>
+ <DataTemplate x:DataType="vm:Team">
+ <Border Background="{StaticResource Surface1Brush}" BorderBrush="{Binding ColorBrush}" BorderThickness="1.5" CornerRadius="12" Padding="4" Margin="0,0,0,10">
+ <StackPanel>
+ <!-- En-tête = pastille couleur + nom éditable + compteur + supprimer + chevron. Le chevron déplie le corps animé. -->
+ <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto" ColumnSpacing="10" Margin="8,6">
+ <Button Grid.Column="0" Width="22" Height="22" CornerRadius="11" Padding="0" Background="{Binding ColorBrush}"
+ VerticalAlignment="Center" ToolTip.Tip="{DynamicResource L.Bots.Team.Color}"
+ Command="{Binding $parent[UserControl].((vm:TeamsViewModel)DataContext).Bots.CycleTeamColorCommand}" CommandParameter="{Binding}" />
+ <TextBox Grid.Column="1" Text="{Binding Name}" MaxLength="24" FontWeight="SemiBold" VerticalAlignment="Center" />
+ <Border Grid.Column="2" Background="{Binding ColorSoftBrush}" CornerRadius="6" Padding="8,3" VerticalAlignment="Center" ToolTip.Tip="{DynamicResource L.Bots.Team.Registered}">
+ <TextBlock Text="{Binding RosterCount}" Foreground="{Binding ColorBrush}" FontSize="11" FontWeight="SemiBold" />
+ </Border>
+ <Button Grid.Column="3" Classes="ghost" Padding="7" VerticalAlignment="Center" ToolTip.Tip="{DynamicResource L.Bots.Team.Remove}"
+ Command="{Binding $parent[UserControl].((vm:TeamsViewModel)DataContext).Bots.RemoveTeamCommand}" CommandParameter="{Binding}">
+ <PathIcon Data="{StaticResource IconTrash}" Width="12" Height="12" />
+ </Button>
+ <ToggleButton Grid.Column="4" Classes="disc" IsChecked="{Binding IsExpanded, Mode=TwoWay}" VerticalAlignment="Center">
+ <PathIcon Classes="chev" Classes.open="{Binding IsExpanded}" Data="{StaticResource IconChevronDown}"
+ Width="12" Height="12" Foreground="{StaticResource TextSecondaryBrush}" />
+ </ToggleButton>
+ </Grid>
+
+ <!-- Corps repliable ANIMÉ (MaxHeight + fondu). Fond transparent -> hérite du Surface1 de la carte. -->
+ <Border Classes="teamBody" Classes.open="{Binding IsExpanded}" ClipToBounds="True" Background="Transparent">
+ <StackPanel Spacing="12" Margin="8,8,8,8">
+
+ <!-- Membres de l'équipe: EN JEU (BotRow, présence live) OU HORS LIGNE (nom + icône grisés) -->
+ <ItemsControl ItemsSource="{Binding DisplayMembers}">
+ <ItemsControl.DataTemplates>
+ <!-- Membre EN JEU -->
+ <DataTemplate x:DataType="vm:BotRowViewModel">
+ <Border Classes="spellrow" CornerRadius="9" Padding="11,7" Margin="0,0,0,3">
+ <Grid ColumnDefinitions="Auto,Auto,*,Auto,Auto" ColumnSpacing="10">
+ <Ellipse Grid.Column="0" Width="9" Height="9" Fill="{Binding PresenceBrush}" VerticalAlignment="Center" ToolTip.Tip="{Binding PresenceText}" />
+ <Image Grid.Column="1" Source="{Binding Row.ClassIcon}" Width="24" Height="24" VerticalAlignment="Center"
+ IsVisible="{Binding Row.ClassIcon, Converter={x:Static acv:ObjectConverters.IsNotNull}}" />
+ <StackPanel Grid.Column="2" VerticalAlignment="Center">
+ <TextBlock Text="{Binding Row.CharacterName}" FontWeight="SemiBold" Classes="pii" TextTrimming="CharacterEllipsis" />
+ <TextBlock Text="{Binding PresenceText}" Classes="caption" Foreground="{StaticResource TextMutedBrush}" />
+ </StackPanel>
+ <Border Grid.Column="3" Background="{Binding TeamColorBrush}" CornerRadius="6" Padding="9,3" VerticalAlignment="Center" IsVisible="{Binding IsLeader}">
+ <TextBlock Text="{DynamicResource L.Bots.Team.RoleLeader}" Foreground="White" FontSize="11" FontWeight="SemiBold" />
+ </Border>
+ <Button Grid.Column="3" Classes="ghost" Padding="9,3" FontSize="11" VerticalAlignment="Center" IsVisible="{Binding !IsLeader}"
+ Content="{DynamicResource L.Bots.Team.MakeLeader}"
+ Command="{Binding $parent[UserControl].((vm:TeamsViewModel)DataContext).Bots.SetTeamLeaderCommand}" CommandParameter="{Binding}" />
+ <Button Grid.Column="4" Classes="ghost" Padding="7" VerticalAlignment="Center" ToolTip.Tip="{DynamicResource L.Bots.Team.RemoveMember}"
+ Command="{Binding $parent[UserControl].((vm:TeamsViewModel)DataContext).Bots.RemoveMemberCommand}" CommandParameter="{Binding}">
+ <PathIcon Data="{StaticResource IconClose}" Width="10" Height="10" />
+ </Button>
+ </Grid>
+ </Border>
+ </DataTemplate>
+ <!-- Membre HORS LIGNE (grisé): icône de classe persistée + nom + actions par nom+serveur -->
+ <DataTemplate x:DataType="vm:OfflineMemberViewModel">
+ <Border Classes="spellrow" CornerRadius="9" Padding="11,7" Margin="0,0,0,3" Opacity="0.55">
+ <Grid ColumnDefinitions="Auto,Auto,*,Auto,Auto" ColumnSpacing="10">
+ <Ellipse Grid.Column="0" Width="9" Height="9" Fill="{StaticResource TextMutedBrush}" VerticalAlignment="Center" ToolTip.Tip="{DynamicResource L.Bots.Team.PresOffline}" />
+ <Image Grid.Column="1" Source="{Binding ClassIcon}" Width="24" Height="24" VerticalAlignment="Center"
+ IsVisible="{Binding ClassIcon, Converter={x:Static acv:ObjectConverters.IsNotNull}}" />
+ <StackPanel Grid.Column="2" VerticalAlignment="Center">
+ <TextBlock Text="{Binding Name}" FontWeight="SemiBold" Classes="pii" TextTrimming="CharacterEllipsis" />
+ <TextBlock Text="{DynamicResource L.Bots.Team.PresOffline}" Classes="caption" Foreground="{StaticResource TextMutedBrush}" />
+ </StackPanel>
+ <Border Grid.Column="3" Background="{StaticResource TextMutedBrush}" CornerRadius="6" Padding="9,3" VerticalAlignment="Center" IsVisible="{Binding IsLeader}">
+ <TextBlock Text="{DynamicResource L.Bots.Team.RoleLeader}" Foreground="White" FontSize="11" FontWeight="SemiBold" />
+ </Border>
+ <Button Grid.Column="3" Classes="ghost" Padding="9,3" FontSize="11" VerticalAlignment="Center" IsVisible="{Binding !IsLeader}" IsEnabled="{Binding CanEdit}"
+ Content="{DynamicResource L.Bots.Team.MakeLeader}"
+ Command="{Binding $parent[UserControl].((vm:TeamsViewModel)DataContext).Bots.SetOfflineLeaderCommand}" CommandParameter="{Binding}" />
+ <Button Grid.Column="4" Classes="ghost" Padding="7" VerticalAlignment="Center" IsEnabled="{Binding CanEdit}" ToolTip.Tip="{DynamicResource L.Bots.Team.RemoveMember}"
+ Command="{Binding $parent[UserControl].((vm:TeamsViewModel)DataContext).Bots.RemoveOfflineMemberCommand}" CommandParameter="{Binding}">
+ <PathIcon Data="{StaticResource IconClose}" Width="10" Height="10" />
+ </Button>
+ </Grid>
+ </Border>
+ </DataTemplate>
+ </ItemsControl.DataTemplates>
+ </ItemsControl>
+
+ <!-- Ajouter un membre (bots en jeu non encore affectés) -->
+ <ComboBox HorizontalAlignment="Stretch" IsEnabled="{Binding !Active}"
+ ItemsSource="{Binding $parent[UserControl].((vm:TeamsViewModel)DataContext).Bots.UnassignedBots}"
+ PlaceholderText="{DynamicResource L.Bots.Team.AddMember}" SelectionChanged="OnTeamAddMember">
+ <ComboBox.ItemTemplate>
+ <DataTemplate x:DataType="vm:BotRowViewModel">
+ <StackPanel Orientation="Horizontal" Spacing="8">
+ <Image Source="{Binding Row.ClassIcon}" Width="18" Height="18" VerticalAlignment="Center"
+ IsVisible="{Binding Row.ClassIcon, Converter={x:Static acv:ObjectConverters.IsNotNull}}" />
+ <TextBlock Text="{Binding Row.CharacterName}" Classes="pii" VerticalAlignment="Center" />
+ </StackPanel>
+ </DataTemplate>
+ </ComboBox.ItemTemplate>
+ </ComboBox>
+
+ <!-- 2 réglages CLAIRS: le suivi = raw-move + attente avant map (implicites);
+ le combat = auto-join + attente avant combat (implicites). Plus de « simultané/collé » séparé. -->
+ <CheckBox IsChecked="{Binding FollowEnabled}" Content="{DynamicResource L.Bots.Team.FollowToggle}" FontSize="13" />
+ <TextBlock Classes="caption" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap" Margin="26,-4,0,0" Text="{DynamicResource L.Bots.Team.FollowHelp}" />
+ <CheckBox IsChecked="{Binding CombatJoinEnabled}" Content="{DynamicResource L.Bots.Team.CombatToggle}" FontSize="13" />
+ <TextBlock Classes="caption" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap" Margin="26,-4,0,0" Text="{DynamicResource L.Bots.Team.CombatHelp}" />
+ <StackPanel Spacing="6" IsEnabled="{Binding FollowEnabled}">
+ <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Team.SyncDelay}" />
+ <Grid ColumnDefinitions="*,Auto,*" ColumnSpacing="8">
+ <NumericUpDown Grid.Column="0" Value="{Binding SyncMinMs}" Minimum="0" Maximum="10000" Increment="50" FormatString="0" ShowButtonSpinner="False" />
+ <TextBlock Grid.Column="1" Text="→" VerticalAlignment="Center" Foreground="{StaticResource TextMutedBrush}" />
+ <NumericUpDown Grid.Column="2" Value="{Binding SyncMaxMs}" Minimum="0" Maximum="10000" Increment="50" FormatString="0" ShowButtonSpinner="False" />
+ </Grid>
+ </StackPanel>
+
+ <!-- Connecter en jeu: lance les comptes du roster (via LEUR proxy défini dans « Mon compte », PAR compte)
+ puis auto-invite chaque membre dès qu'il arrive en jeu. Masqué une fois le groupe formé. -->
+ <Button Classes="ghost" HorizontalAlignment="Stretch" Height="36" IsVisible="{Binding !Active}" IsEnabled="{Binding CanConnect}"
+ Command="{Binding $parent[UserControl].((vm:TeamsViewModel)DataContext).Bots.ConnectTeamInGameCommand}" CommandParameter="{Binding}">
+ <Panel>
+ <TextBlock Text="{DynamicResource L.Bots.Team.Connect}" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="{Binding !Connecting}" />
+ <TextBlock Text="{DynamicResource L.Bots.Team.ConnectBusy}" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="{Binding Connecting}" />
+ </Panel>
+ </Button>
+ <TextBlock Classes="caption" TextWrapping="Wrap" IsVisible="{Binding !Active}"
+ Text="{DynamicResource L.Bots.Team.ConnectHint}" />
+
+ <!-- Former / Dissoudre (par équipe) -->
+ <Button Classes="primary" HorizontalAlignment="Stretch" Height="36" IsVisible="{Binding !Active}" IsEnabled="{Binding CanForm}"
+ Content="{DynamicResource L.Bots.Team.Form}"
+ Command="{Binding $parent[UserControl].((vm:TeamsViewModel)DataContext).Bots.FormTeamCommand}" CommandParameter="{Binding}" />
+ <!-- Groupe FORMÉ: démarrer/arrêter tout le groupe en un clic (le chef lance son script, les followers suivent) -->
+ <Grid ColumnDefinitions="*,*" ColumnSpacing="8" IsVisible="{Binding Active}">
+ <Button Grid.Column="0" Classes="primary" HorizontalAlignment="Stretch" Height="36"
+ Content="{DynamicResource L.Bots.Team.StartGroup}"
+ Command="{Binding $parent[UserControl].((vm:TeamsViewModel)DataContext).Bots.StartTeamCommand}" CommandParameter="{Binding}" />
+ <Button Grid.Column="1" Classes="ghost" HorizontalAlignment="Stretch" Height="36"
+ Content="{DynamicResource L.Bots.Team.StopGroup}"
+ Command="{Binding $parent[UserControl].((vm:TeamsViewModel)DataContext).Bots.StopTeamCommand}" CommandParameter="{Binding}" />
+ </Grid>
+ <Button Classes="ghost" HorizontalAlignment="Stretch" Height="36" IsVisible="{Binding Active}"
+ Content="{DynamicResource L.Bots.Team.Disband}"
+ Command="{Binding $parent[UserControl].((vm:TeamsViewModel)DataContext).Bots.DisbandTeamCommand}" CommandParameter="{Binding}" />
+ </StackPanel>
+ </Border>
+ </StackPanel>
+ </Border>
+ </DataTemplate>
+ </ItemsControl.ItemTemplate>
+ </ItemsControl>
+
+ <!-- Nouvelle équipe -->
+ <Button Classes="ghost" HorizontalAlignment="Stretch" Height="40" Command="{Binding Bots.AddTeamCommand}">
+ <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+ <PathIcon Data="{StaticResource IconPlus}" Width="13" Height="13" />
+ <TextBlock Text="{DynamicResource L.Bots.Team.New}" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+
+ <TextBlock Classes="caption" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap" Text="{DynamicResource L.Bots.Team.FollowHint}" />
+
+ <!-- Console ÉQUIPE commune: agrège les logs de tous les bots du groupe (préfixés du perso) + orchestration [équipe]. Copiable. -->
+ <Border Background="{StaticResource Surface1Brush}" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1" CornerRadius="12" Padding="12" Margin="0,4,0,0">
+ <StackPanel Spacing="8">
+ <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="6">
+ <TextBlock Grid.Column="0" Text="{DynamicResource L.Team.Console}" FontWeight="SemiBold" VerticalAlignment="Center" />
+ <Button Grid.Column="1" Classes="ghost" Height="28" MinWidth="0" Padding="10,0" Click="OnCopyTeamConsole">
+ <StackPanel Orientation="Horizontal" Spacing="6">
+ <PathIcon Data="{StaticResource IconCopy}" Width="11" Height="11" />
+ <TextBlock Text="{DynamicResource L.Bots.Copy}" FontSize="11.5" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ <Button Grid.Column="2" Classes="ghost" Height="28" MinWidth="0" Padding="10,0" Command="{Binding Bots.ClearTeamConsoleCommand}">
+ <StackPanel Orientation="Horizontal" Spacing="6">
+ <PathIcon Data="{StaticResource IconTrash}" Width="11" Height="11" />
+ <TextBlock Text="{DynamicResource L.Bots.ClearConsole}" FontSize="11.5" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ </Grid>
+ <Border Background="{StaticResource Bg1Brush}" CornerRadius="8" Height="220" ClipToBounds="True">
+ <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="8,6">
+ <ItemsControl ItemsSource="{Binding Bots.TeamConsole}">
+ <ItemsControl.ItemTemplate>
+ <DataTemplate x:DataType="vm:TeamLogRow">
+ <Grid ColumnDefinitions="Auto,Auto,Auto,*" ColumnSpacing="8" Margin="0,0,0,1">
+ <TextBlock Grid.Column="0" Text="{Binding Time}" FontFamily="Cascadia Code,Consolas,monospace" FontSize="11" Foreground="{StaticResource TextMutedBrush}" />
+ <TextBlock Grid.Column="1" Text="{Binding Bot}" FontFamily="Cascadia Code,Consolas,monospace" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource TextSecondaryBrush}" Width="110" TextTrimming="CharacterEllipsis" Classes="pii" />
+ <TextBlock Grid.Column="2" Text="{Binding Category}" FontFamily="Cascadia Code,Consolas,monospace" FontSize="11" Foreground="{StaticResource TextMutedBrush}" Width="64" TextTrimming="CharacterEllipsis" />
+ <TextBlock Grid.Column="3" Text="{Binding Message}" FontFamily="Cascadia Code,Consolas,monospace" FontSize="11" Foreground="{Binding Brush}" TextWrapping="Wrap" />
+ </Grid>
+ </DataTemplate>
+ </ItemsControl.ItemTemplate>
+ </ItemsControl>
+ </ScrollViewer>
+ </Border>
+ </StackPanel>
+ </Border>
+ </StackPanel>
+ </ScrollViewer>
+ </Grid>
+</UserControl>

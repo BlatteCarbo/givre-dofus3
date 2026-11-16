@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <AssemblyName>MZP3ReplicaWorkbench</AssemblyName>
+    <EnableAvaloniaPro Condition="'$(EnableAvaloniaPro)' == ''">false</EnableAvaloniaPro>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(EnableAvaloniaPro)' == 'true'">
+    <DefineConstants>$(DefineConstants);AVALONIA_PRO</DefineConstants>
+    <ReplicaAvaloniaLicense Condition="'$(AVALONIA_UI_PRO_LICENSE_KEY)' != ''">$(AVALONIA_UI_PRO_LICENSE_KEY)</ReplicaAvaloniaLicense>
+    <ReplicaAvaloniaLicense Condition="'$(ReplicaAvaloniaLicense)' == '' and '$(AVALONIA_TOOLS_LICENSE_KEY)' != ''">$(AVALONIA_TOOLS_LICENSE_KEY)</ReplicaAvaloniaLicense>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(EnableAvaloniaPro)' == 'true'">
+    <PackageReference Include="Avalonia.Controls.TreeDataGrid" Version="12.1.1" />
+    <PackageReference Include="Avalonia.Controls.Charts" Version="12.1.1" />
+    <AvaloniaUILicenseKey Include="$(ReplicaAvaloniaLicense)" Condition="'$(ReplicaAvaloniaLicense)' != ''" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.1.1" />
+    <PackageReference Include="Avalonia.Desktop" Version="12.1.1" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.1" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.1" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.3" Condition="'$(Configuration)' == 'Debug'" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="ReplicaApplication.cs" />
+    <Compile Include="ReplicaWorkbenchWindow.cs" />
+    <Compile Include="../MZP1OperatorShell/PanelXamlLoader.cs" Link="Controls/PanelXamlLoader.cs" />
+    <Compile Include="../../GivreClone.App/ViewModels/ViewModelBase.cs" Link="ViewModels/ViewModelBase.cs" />
+    <Compile Include="../../GivreClone.App/ViewModels/MZP0OperatorContracts.cs" Link="ViewModels/MZP0OperatorContracts.cs" />
+    <Compile Include="../../GivreClone.App/ViewModels/MZP0OperatorViewModel.cs" Link="ViewModels/MZP0OperatorViewModel.cs" />
+    <Compile Include="../../GivreClone.App/Controls/MZP0OperatorPanel.axaml.cs" Link="Controls/MZP0OperatorPanel.axaml.cs" />
+    <AvaloniaResource Include="../../GivreClone.App/Controls/MZP0OperatorPanel.axaml" Link="Controls/MZP0OperatorPanel.axaml" />
+    <!-- Real test-account persistence implementation, not a stub. Its
+         separately compiled admission adapter still requires GivreCore,
+         so only the offline store is linked into this independent WinExe. -->
+    <Compile Include="../../GivreClone.App/Services/MZP3TestAccountService.cs" Link="Services/MZP3TestAccountService.cs" />
+    <Compile Include="../../GivreClone.App/Services/MZP4LauncherPreflight.cs" Link="Services/MZP4LauncherPreflight.cs" />
+    <Compile Include="../../GivreClone.App/Services/MZP5TestRecoveryPreparation.cs" Link="Services/MZP5TestRecoveryPreparation.cs" />
+    <Compile Include="../../GivreClone.App/Services/MZP5OfflineJournalHealth.cs" Link="Services/MZP5OfflineJournalHealth.cs" />
+    <Compile Include="../../GivreClone.App/Views/MZP4TestAccountsPanel.cs" Link="Views/MZP4TestAccountsPanel.cs" />
+    <Compile Include="../../GivreClone.App/Views/MZP6ProtocolInspectorPanel.cs" Link="Views/MZP6ProtocolInspectorPanel.cs" />
+    <Compile Include="../../GivreClone.Protocol/MZP0ProtocolAdmission.cs" Link="Protocol/MZP0ProtocolAdmission.cs" />
+    <Compile Include="../../GivreClone.Protocol/MZP4ProtocolAdapter.cs" Link="Protocol/MZP4ProtocolAdapter.cs" />
+    <Compile Include="../../GivreClone.Protocol/MZP5InboundProtocol.cs" Link="Protocol/MZP5InboundProtocol.cs" />
+    <Compile Include="../../GivreClone.Engine/Recovery/MZP0RecoveryModels.cs" Link="Engine/MZP0RecoveryModels.cs" />
+    <Compile Include="../../GivreClone.Engine/Recovery/MZP0RecoveryJournal.cs" Link="Engine/MZP0RecoveryJournal.cs" />
+    <Compile Include="../../GivreClone.Engine/Recovery/MZP5RecoveryHealthProjection.cs" Link="Engine/MZP5RecoveryHealthProjection.cs" />
+    <Compile Include="../../GivreClone.Protocol/MZP3RawProtobuf.cs" Link="Protocol/MZP3RawProtobuf.cs" />
+    <Compile Include="../../GivreClone.Protocol/MZP3FrameAndEnvelope.cs" Link="Protocol/MZP3FrameAndEnvelope.cs" />
+  </ItemGroup>
+</Project>

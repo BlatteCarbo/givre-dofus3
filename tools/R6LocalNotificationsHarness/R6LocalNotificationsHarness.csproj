@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../GivreClone.App/Services/LocalNotificationPreferences.cs" Link="LocalNotificationPreferences.cs" />
+    <Compile Include="../../GivreClone.App/Services/LocalBotNotifications.cs" Link="LocalBotNotifications.cs" />
+    <Compile Include="../../GivreClone.App/Services/WindowsLocalToastDelivery.cs" Link="WindowsLocalToastDelivery.cs" />
+    <Compile Include="../../GivreClone.App/Services/Supervisor/SupervisorModel.cs" Link="SupervisorModel.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(ValidateAvaloniaUi)' == 'true'">
+    <Reference Include="Avalonia.Base"><HintPath>../../GivreClone.App/bin/Debug/net10.0/Avalonia.Base.dll</HintPath></Reference>
+    <Reference Include="Avalonia.Controls"><HintPath>../../GivreClone.App/bin/Debug/net10.0/Avalonia.Controls.dll</HintPath></Reference>
+    <Compile Include="../../GivreClone.App/Views/LocalNotificationSettingsWindow.cs" Link="LocalNotificationSettingsWindow.cs" />
+  </ItemGroup>
+</Project>

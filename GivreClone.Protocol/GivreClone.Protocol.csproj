@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+ <PropertyGroup>
+ <TargetFramework>net10.0</TargetFramework>
+ <ImplicitUsings>enable</ImplicitUsings>
+ <Nullable>enable</Nullable>
+ <RootNamespace>GivreClone.Protocol</RootNamespace>
+ </PropertyGroup>
+
+ <!-- Reutilise le moteur MITM+codec de GivreProxy (repo voisin sous GivreSuite). -->
+ <ItemGroup>
+ <ProjectReference Include="..\..\GivreProxy\GivreCore\GivreCore.csproj" />
+ </ItemGroup>
+
+ <!-- Migration protobuf: runtime Google.Protobuf. Les classes sont PRE-GENEREES
+ (Generated/Givre.cs via protoc, pas de Grpc.Tools) -> regenerer avec protoc apres edition du.proto. -->
+ <ItemGroup>
+ <PackageReference Include="Google.Protobuf" Version="3.30.2" />
+ </ItemGroup>
+
+</Project>

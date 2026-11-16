@@ -1,0 +1,24 @@
+﻿<ResourceDictionary x:Class="GivreClone.App.Themes.Dark" xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Thème : Dark. Mode opaque (pas d'acrylique). WindowGlowBrush = solide dense qui
+         recouvre la couche acrylique -> plus de blur ni de wallpaper visible. -->
+    <Color x:Key="Accent">#5C9FFF</Color>
+    <Color x:Key="AccentBright">#7DB3FF</Color>
+    <Color x:Key="AccentDeep">#3B7BD6</Color>
+
+    <SolidColorBrush x:Key="AccentBrush"       Color="{StaticResource Accent}" />
+    <SolidColorBrush x:Key="AccentBrightBrush" Color="{StaticResource AccentBright}" />
+    <SolidColorBrush x:Key="AccentDeepBrush"   Color="{StaticResource AccentDeep}" />
+    <SolidColorBrush x:Key="AccentSoftBrush"   Color="#205C9FFF" />
+
+    <Color x:Key="SystemAccentColor">#5C9FFF</Color>
+    <Color x:Key="SystemAccentColorLight1">#7DB3FF</Color>
+    <Color x:Key="SystemAccentColorLight2">#9AC6FF</Color>
+    <Color x:Key="SystemAccentColorLight3">#B6D8FF</Color>
+    <Color x:Key="SystemAccentColorDark1">#3B7BD6</Color>
+    <Color x:Key="SystemAccentColorDark2">#2C61AC</Color>
+    <Color x:Key="SystemAccentColorDark3">#1F4682</Color>
+
+    <!-- opaque dense qui masque l'acrylique ; les autres thèmes ont un RadialGradientBrush translucide ici -->
+    <SolidColorBrush x:Key="WindowGlowBrush" Color="#0B0E14" />
+</ResourceDictionary>

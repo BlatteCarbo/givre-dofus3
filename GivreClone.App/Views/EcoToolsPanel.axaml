@@ -1,0 +1,869 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             xmlns:eco="using:GivreClone.App.Services.Eco"
+             x:Class="GivreClone.App.Views.EcoToolsPanel"
+             x:DataType="vm:EcoToolsViewModel">
+    <!-- Atelier éco : Craft ou acheter · Forgemagie · Carnet. Lecture seule côté jeu (HDV déjà observé + données du jeu). -->
+    <UserControl.Styles>
+        <Style Selector="Border.ecoCard">
+            <Setter Property="Background" Value="{StaticResource Surface2Brush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource StrokeSoftBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="{StaticResource PanelCornerRadius}" />
+            <Setter Property="Padding" Value="{StaticResource PanelPadding}" />
+        </Style>
+        <Style Selector="TextBlock.ecoTitle"><Setter Property="FontSize" Value="15" /><Setter Property="FontWeight" Value="SemiBold" /><Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" /></Style>
+        <Style Selector="TextBlock.ecoMuted"><Setter Property="FontSize" Value="12" /><Setter Property="Foreground" Value="{StaticResource TextMutedBrush}" /><Setter Property="TextWrapping" Value="Wrap" /></Style>
+        <Style Selector="TextBlock.ecoLabel"><Setter Property="FontSize" Value="11.5" /><Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}" /></Style>
+        <Style Selector="TextBlock.ecoBig"><Setter Property="FontSize" Value="20" /><Setter Property="FontWeight" Value="SemiBold" /><Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" /></Style>
+        <Style Selector="Border.ecoStat"><Setter Property="Background" Value="{StaticResource Surface3Brush}" /><Setter Property="CornerRadius" Value="10" /><Setter Property="Padding" Value="14,10" /><Setter Property="MinWidth" Value="150" /></Style>
+        <Style Selector="TextBlock.ecoBest"><Setter Property="FontWeight" Value="Bold" /><Setter Property="Foreground" Value="{DynamicResource AccentBrightBrush}" /></Style>
+        <Style Selector="Border.ecoWarn"><Setter Property="Background" Value="#3A2A1A" /><Setter Property="BorderBrush" Value="#C98A3A" /></Style>
+        <Style Selector="Border.ecoGood"><Setter Property="Background" Value="#1F3A2A" /><Setter Property="BorderBrush" Value="#3FA45B" /></Style>
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="Auto,*" Margin="4">
+        <StackPanel Grid.Row="0" Margin="4,0,4,12" Spacing="4">
+            <TextBlock Text="Atelier éco" FontSize="24" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" />
+            <TextBlock Classes="ecoMuted" Text="Fabriquer ou acheter, forgemagie et carnet personnel. L'atelier lit l'HDV déjà observé par le bot sélectionné et les données du jeu. Seul « Acheter » dans Bonnes affaires passe un ordre, borné par ta quantité, ton prix unitaire maximum et ton budget, avec les prix relus avant chaque lot." />
+            <TextBlock Classes="ecoLabel" Text="{Binding BotLine}" />
+        </StackPanel>
+
+        <TabControl Grid.Row="1">
+            <!-- =============================== CRAFT OU ACHETER =============================== -->
+            <TabItem Header="Craft ou acheter">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid ColumnDefinitions="330,*" ColumnSpacing="14" Margin="0,10,6,10">
+                        <StackPanel Grid.Column="0" Spacing="12">
+                            <Border Classes="ecoCard">
+                                <StackPanel Spacing="10">
+                                    <TextBlock Classes="ecoTitle" Text="Objet à fabriquer" />
+                                    <TextBox Text="{Binding CraftSearch, Mode=TwoWay}" PlaceholderText="Nom de l'objet (2 lettres minimum)" />
+                                    <ListBox Classes="surfaceList" ItemsSource="{Binding CraftResults}" SelectedItem="{Binding SelectedHit, Mode=TwoWay}" MaxHeight="300">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:EcoItemHit"><StackPanel Orientation="Horizontal" Spacing="8"><Image Source="{Binding Icon}" Width="22" Height="22" IsVisible="{Binding HasIcon}" VerticalAlignment="Center" /><TextBlock Text="{Binding Caption}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" /></StackPanel></DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </StackPanel>
+                            </Border>
+                            <Border Classes="ecoCard">
+                                <Expander Header="Importer une liste de prix" IsExpanded="False">
+                                    <StackPanel Spacing="8" Margin="0,8,0,0">
+                                        <TextBlock Classes="ecoMuted" Text="Colle des lignes « nom  prix » copiées d'un site ou d'un tableur (ex. « Laine de Bouftou  120 »). Les prix sont enregistrés comme prix manuels." />
+                                        <TextBox Text="{Binding ImportText, Mode=TwoWay}" AcceptsReturn="True" MinHeight="90" MaxHeight="180" TextWrapping="NoWrap" PlaceholderText="Laine de Bouftou&#9;120&#10;Sang de Bouftou : 45" />
+                                        <Button Classes="primary" Content="Importer les prix" Command="{Binding ImportPricesCommand}" HorizontalAlignment="Left" />
+                                        <TextBlock Classes="ecoMuted" Text="{Binding ImportStatus}" />
+                                    </StackPanel>
+                                </Expander>
+                            </Border>
+                            <Border Classes="ecoCard" IsVisible="{Binding Board.Count}">
+                                <StackPanel Spacing="8">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock Classes="ecoTitle" Text="Objets suivis" VerticalAlignment="Center" />
+                                        <Button Grid.Column="1" Classes="ghost" Padding="8,3" FontSize="11.5" Content="Actualiser" Command="{Binding RefreshBoardCommand}" />
+                                    </Grid>
+                                    <ItemsControl ItemsSource="{Binding Board}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:EcoBoardRow">
+                                                <Button Classes="ghost" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="0,0,0,4" MinHeight="48" Padding="10,6"
+                                                        Command="{Binding $parent[ItemsControl].((vm:EcoToolsViewModel)DataContext).OpenBoardItemCommand}" CommandParameter="{Binding}">
+                                                    <StackPanel Spacing="1">
+                                                        <StackPanel Orientation="Horizontal" Spacing="8"><Image Source="{Binding Icon}" Width="22" Height="22" IsVisible="{Binding HasIcon}" VerticalAlignment="Center" /><TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" FontWeight="SemiBold" VerticalAlignment="Center" /></StackPanel>
+                                                        <TextBlock FontSize="11.5" Foreground="{StaticResource TextSecondaryBrush}">
+                                                            <Run Text="{Binding Verdict}" /><Run Text="  ·  " /><Run Text="{Binding SavingText}" /><Run Text="  ·  fab. " /><Run Text="{Binding CraftText}" /><Run Text=" / achat " /><Run Text="{Binding BuyText}" />
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                </Button>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Spacing="12">
+                            <Border Classes="ecoCard">
+                                <StackPanel Spacing="12">
+                                    <Grid ColumnDefinitions="*,Auto,Auto,Auto" ColumnSpacing="10">
+                                        <TextBlock Grid.Column="0" Classes="ecoBig" Text="{Binding SelectedHit.Name, FallbackValue='Aucun objet choisi'}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                        <TextBlock Grid.Column="1" Classes="ecoLabel" Text="Quantité" VerticalAlignment="Center" />
+                                        <NumericUpDown Grid.Column="2" Value="{Binding CraftQty, Mode=TwoWay}" Minimum="1" Maximum="10000" Increment="1" FormatString="0" Width="130" />
+                                        <Button Grid.Column="3" Classes="ghost" Content="Suivre / ne plus suivre" Command="{Binding ToggleTrackCommand}" />
+                                    </Grid>
+                                    <WrapPanel>
+                                        <Border Classes="ecoStat" Margin="0,0,10,10"><StackPanel Spacing="2"><TextBlock Classes="ecoLabel" Text="Coût de fabrication" /><TextBlock Classes="ecoBig" Text="{Binding CraftCostText}" /></StackPanel></Border>
+                                        <Border Classes="ecoStat" Margin="0,0,10,10"><StackPanel Spacing="2"><TextBlock Classes="ecoLabel" Text="Achat à l'HDV" /><TextBlock Classes="ecoBig" Text="{Binding BuyCostText}" /></StackPanel></Border>
+                                        <Border Classes="ecoStat" Margin="0,0,10,10"><StackPanel Spacing="2"><TextBlock Classes="ecoLabel" Text="Économie en fabriquant" /><TextBlock Classes="ecoBig" Text="{Binding SavingText}" /></StackPanel></Border>
+                                    </WrapPanel>
+                                    <Border CornerRadius="10" Padding="14,10" BorderThickness="1" Classes="ecoWarn" Classes.ecoGood="{Binding RecommendCraft}">
+                                        <TextBlock Text="{Binding Recommendation}" FontSize="14" FontWeight="SemiBold" TextWrapping="Wrap" Foreground="{StaticResource TextPrimaryBrush}" />
+                                    </Border>
+                                    <TextBlock Classes="ecoMuted" Text="{Binding ResaleText}" IsVisible="{Binding ResaleText.Length}" />
+                                    <TextBlock Classes="ecoMuted" Text="{Binding StaleText}" Foreground="#E0A050" IsVisible="{Binding StaleText.Length}" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border Classes="ecoCard" IsVisible="{Binding HasRows}">
+                                <StackPanel Spacing="8">
+                                    <TextBlock Classes="ecoTitle" Text="Arbre de fabrication" />
+                                    <TextBlock Classes="ecoMuted" Text="Chaque ingrédient fabricable est compté au moins cher entre son prix HDV et sa propre fabrication. Force « Acheter » ou « Fabriquer » sur une ligne pour comparer." />
+                                    <ListBox Classes="surfaceList" ItemsSource="{Binding CraftRows}" SelectedItem="{Binding SelectedRow, Mode=TwoWay}">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:EcoCraftRow">
+                                                <Grid ColumnDefinitions="*,70,90,90,90,130,Auto" ColumnSpacing="8">
+                                                    <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                                                        <TextBlock Text="{Binding Indent}" Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center" />
+                                                        <Image Source="{Binding Icon}" Width="22" Height="22" IsVisible="{Binding HasIcon}" VerticalAlignment="Center" />
+                                                        <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+                                                    </StackPanel>
+                                                    <TextBlock Grid.Column="1" Text="{Binding QtyText}" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                    <TextBlock Grid.Column="2" Text="{Binding DecisionText}" VerticalAlignment="Center" FontWeight="SemiBold" />
+                                                    <TextBlock Grid.Column="3" Text="{Binding UnitText}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                                    <TextBlock Grid.Column="4" Text="{Binding TotalText}" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="SemiBold" />
+                                                    <TextBlock Grid.Column="5" Text="{Binding SourceText}" VerticalAlignment="Center" Foreground="{StaticResource TextMutedBrush}" FontSize="11.5" TextTrimming="CharacterEllipsis" />
+                                                    <StackPanel Grid.Column="6" Orientation="Horizontal" Spacing="4" IsVisible="{Binding CanForce}">
+                                                        <Button Classes="ghost" Padding="8,3" FontSize="11.5" Content="Acheter"
+                                                                Command="{Binding $parent[ListBox].((vm:EcoToolsViewModel)DataContext).ForceBuyCommand}" CommandParameter="{Binding}" />
+                                                        <Button Classes="ghost" Padding="8,3" FontSize="11.5" Content="Fabriquer"
+                                                                Command="{Binding $parent[ListBox].((vm:EcoToolsViewModel)DataContext).ForceCraftCommand}" CommandParameter="{Binding}" />
+                                                        <Button Classes="ghost" Padding="8,3" FontSize="11.5" Content="Auto"
+                                                                Command="{Binding $parent[ListBox].((vm:EcoToolsViewModel)DataContext).ForceAutoCommand}" CommandParameter="{Binding}" />
+                                                    </StackPanel>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                    <Grid ColumnDefinitions="Auto,200,Auto,*" ColumnSpacing="10">
+                                        <TextBlock Classes="ecoLabel" Text="Prix manuel de la ligne choisie" VerticalAlignment="Center" />
+                                        <TextBox Grid.Column="1" Text="{Binding ManualPriceText, Mode=TwoWay}" PlaceholderText="kamas / unité (0 = effacer)" />
+                                        <Button Grid.Column="2" Classes="primary" Content="Enregistrer" Command="{Binding ApplyManualPriceCommand}" />
+                                        <TextBlock Grid.Column="3" Classes="ecoMuted" Text="{Binding CraftStatus}" VerticalAlignment="Center" />
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Classes="ecoCard" IsVisible="{Binding ShoppingText.Length}">
+                                <StackPanel Spacing="8">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock Classes="ecoTitle" Text="Liste de courses (à acheter à l'HDV)" VerticalAlignment="Center" />
+                                        <Button Grid.Column="1" Classes="ghost" Padding="8,3" FontSize="11.5" Content="Copier" Command="{Binding CopyShoppingCommand}" />
+                                    </Grid>
+                                    <TextBlock Text="{Binding ShoppingText}" TextWrapping="Wrap" Foreground="{StaticResource TextSecondaryBrush}" />
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- =============================== PANOPLIES =============================== -->
+            <TabItem Header="Panoplies">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid ColumnDefinitions="330,*" ColumnSpacing="14" Margin="0,10,6,10">
+                        <Border Classes="ecoCard" VerticalAlignment="Top">
+                            <StackPanel Spacing="10">
+                                <TextBlock Classes="ecoTitle" Text="Panoplie" />
+                                <TextBox Text="{Binding SetSearch, Mode=TwoWay}" PlaceholderText="Nom de la panoplie (2 lettres)" />
+                                <ListBox ItemsSource="{Binding SetResults}" SelectedItem="{Binding SelectedSet, Mode=TwoWay}" MaxHeight="360">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:EcoSetHit"><TextBlock Text="{Binding Caption}" TextTrimming="CharacterEllipsis" /></DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Grid.Column="1" Spacing="12">
+                            <Border Classes="ecoCard">
+                                <StackPanel Spacing="12">
+                                    <TextBlock Classes="ecoBig" Text="{Binding SelectedSet.Name, FallbackValue='Aucune panoplie choisie'}" TextTrimming="CharacterEllipsis" />
+                                    <WrapPanel>
+                                        <Border Classes="ecoStat" Margin="0,0,10,10"><StackPanel Spacing="2"><TextBlock Classes="ecoLabel" Text="Coût optimal" /><TextBlock Classes="ecoBig" Text="{Binding SetTotalText}" /></StackPanel></Border>
+                                        <Border Classes="ecoStat" Margin="0,0,10,10"><StackPanel Spacing="2"><TextBlock Classes="ecoLabel" Text="Tout acheter" /><TextBlock Classes="ecoBig" Text="{Binding SetBuyAllText}" /></StackPanel></Border>
+                                        <Border Classes="ecoStat" Margin="0,0,10,10"><StackPanel Spacing="2"><TextBlock Classes="ecoLabel" Text="Tout fabriquer" /><TextBlock Classes="ecoBig" Text="{Binding SetCraftAllText}" /></StackPanel></Border>
+                                    </WrapPanel>
+                                    <TextBlock Classes="ecoMuted" Text="{Binding SetNote}" />
+                                </StackPanel>
+                            </Border>
+                            <Border Classes="ecoCard" IsVisible="{Binding SetRows.Count}">
+                                <StackPanel Spacing="6">
+                                    <TextBlock Classes="ecoTitle" Text="Pièces" />
+                                    <ItemsControl ItemsSource="{Binding SetRows}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:EcoSetRow">
+                                                <Grid ColumnDefinitions="*,90,90,100,100,Auto" ColumnSpacing="8" Margin="0,3">
+                                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                                        <Image Source="{Binding Icon}" Width="22" Height="22" IsVisible="{Binding HasIcon}" />
+                                                        <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+                                                    </StackPanel>
+                                                    <TextBlock Grid.Column="1" Text="{Binding CraftText}" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                    <TextBlock Grid.Column="2" Text="{Binding BuyText}" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                    <TextBlock Grid.Column="3" Text="{Binding VerdictText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" />
+                                                    <TextBlock Grid.Column="4" Text="{Binding ChosenText}" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="SemiBold" />
+                                                    <Button Grid.Column="5" Classes="ghost" Padding="8,3" FontSize="11.5" Content="Détail"
+                                                            Command="{Binding $parent[ItemsControl].((vm:EcoToolsViewModel)DataContext).OpenSetPieceCommand}" CommandParameter="{Binding}" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                    <TextBlock Classes="ecoLabel" Text="Colonnes : fabriquer · acheter · verdict · coût retenu" />
+                                </StackPanel>
+                            </Border>
+                            <Border Classes="ecoCard" IsVisible="{Binding SetShopping.Length}">
+                                <StackPanel Spacing="8">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock Classes="ecoTitle" Text="Liste de courses de la panoplie" VerticalAlignment="Center" />
+                                        <Button Grid.Column="1" Classes="ghost" Padding="8,3" FontSize="11.5" Content="Copier" Command="{Binding CopySetShoppingCommand}" />
+                                    </Grid>
+                                    <TextBlock Text="{Binding SetShopping}" TextWrapping="Wrap" Foreground="{StaticResource TextSecondaryBrush}" />
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <!-- =============================== XP DES MÉTIERS =============================== -->
+            <TabItem Header="XP métiers">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid ColumnDefinitions="330,*" ColumnSpacing="14" Margin="0,10,6,10">
+                        <Border Classes="ecoCard" VerticalAlignment="Top">
+                            <StackPanel Spacing="10">
+                                <TextBlock Classes="ecoTitle" Text="Monter un métier" />
+                                <ComboBox ItemsSource="{Binding JobOptions}" SelectedItem="{Binding SelectedJob, Mode=TwoWay}" PlaceholderText="Métier" HorizontalAlignment="Stretch" />
+                                <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                                    <StackPanel Spacing="3"><TextBlock Classes="ecoLabel" Text="Niveau actuel" /><NumericUpDown Value="{Binding JobFrom, Mode=TwoWay}" Minimum="1" Maximum="199" FormatString="0" /></StackPanel>
+                                    <StackPanel Grid.Column="1" Spacing="3"><TextBlock Classes="ecoLabel" Text="Niveau visé" /><NumericUpDown Value="{Binding JobTo, Mode=TwoWay}" Minimum="2" Maximum="200" FormatString="0" /></StackPanel>
+                                </Grid>
+                                <StackPanel Spacing="3"><TextBlock Classes="ecoLabel" Text="Choix de la recette" /><ComboBox ItemsSource="{Binding JobModes}" SelectedIndex="{Binding JobModeIndex, Mode=TwoWay}" HorizontalAlignment="Stretch" /></StackPanel>
+                                <StackPanel Spacing="3"><TextBlock Classes="ecoLabel" Text="Bonus d'XP (%)" /><NumericUpDown Value="{Binding JobBonus, Mode=TwoWay}" Minimum="1" Maximum="600" FormatString="0" /></StackPanel>
+                                <Button Classes="primary" Content="Calculer le plan" Command="{Binding ComputeJobPlanCommand}" />
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Grid.Column="1" Spacing="12">
+                            <Border Classes="ecoCard">
+                                <StackPanel Spacing="10">
+                                    <WrapPanel>
+                                        <Border Classes="ecoStat" Margin="0,0,10,10"><StackPanel Spacing="2"><TextBlock Classes="ecoLabel" Text="Plan" /><TextBlock Classes="ecoBig" Text="{Binding JobSummary}" /></StackPanel></Border>
+                                        <Border Classes="ecoStat" Margin="0,0,10,10"><StackPanel Spacing="2"><TextBlock Classes="ecoLabel" Text="Coût estimé" /><TextBlock Classes="ecoBig" Text="{Binding JobCostText}" /></StackPanel></Border>
+                                    </WrapPanel>
+                                    <TextBlock Classes="ecoMuted" Text="{Binding JobNote}" TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Border>
+                            <Border Classes="ecoCard" IsVisible="{Binding XpRows.Count}">
+                                <StackPanel Spacing="6">
+                                    <TextBlock Classes="ecoTitle" Text="Étapes" />
+                                    <ItemsControl ItemsSource="{Binding XpRows}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:EcoXpRow">
+                                                <Grid ColumnDefinitions="*,120,90,100,90" ColumnSpacing="8" Margin="0,3">
+                                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                                        <Image Source="{Binding Icon}" Width="22" Height="22" IsVisible="{Binding HasIcon}" />
+                                                        <TextBlock Text="{Binding Recipe}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+                                                    </StackPanel>
+                                                    <TextBlock Grid.Column="1" Text="{Binding Levels}" VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                    <TextBlock Grid.Column="2" Text="{Binding Crafts}" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="SemiBold" />
+                                                    <TextBlock Grid.Column="3" Text="{Binding Xp}" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                    <TextBlock Grid.Column="4" Text="{Binding Cost}" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+                            <Border Classes="ecoCard" IsVisible="{Binding JobShopping.Length}">
+                                <StackPanel Spacing="8">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock Classes="ecoTitle" Text="Liste de courses du plan" VerticalAlignment="Center" />
+                                        <Button Grid.Column="1" Classes="ghost" Padding="8,3" FontSize="11.5" Content="Copier" Command="{Binding CopyJobShoppingCommand}" />
+                                    </Grid>
+                                    <TextBlock Text="{Binding JobShopping}" TextWrapping="Wrap" Foreground="{StaticResource TextSecondaryBrush}" />
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <!-- =============================== RESSOURCES =============================== -->
+            <TabItem Header="Ressources">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid ColumnDefinitions="330,*" ColumnSpacing="14" Margin="0,10,6,10">
+                        <Border Classes="ecoCard" VerticalAlignment="Top">
+                            <StackPanel Spacing="10">
+                                <TextBlock Classes="ecoTitle" Text="Où récolter" />
+                                <TextBox Text="{Binding ResourceSearch, Mode=TwoWay}" PlaceholderText="Nom de la ressource" />
+                                <ComboBox ItemsSource="{Binding ResourceJobs}" SelectedIndex="{Binding ResourceJobIndex, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+                                <ListBox ItemsSource="{Binding ResourceResults}" SelectedItem="{Binding SelectedResource, Mode=TwoWay}" MaxHeight="380">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:EcoResourceHit">
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                                <Image Source="{Binding Icon}" Width="22" Height="22" IsVisible="{Binding HasIcon}" />
+                                                <TextBlock Text="{Binding Caption}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <CheckBox IsChecked="{Binding ResourceIndoor, Mode=TwoWay}" Content="Inclure les intérieurs" />
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Grid.Column="1" Spacing="12">
+                            <Border Classes="ecoCard">
+                                <StackPanel Spacing="8">
+                                    <TextBlock Classes="ecoBig" Text="{Binding SelectedResource.Info.Name, FallbackValue='Aucune ressource choisie'}" TextTrimming="CharacterEllipsis" />
+                                    <TextBlock Classes="ecoMuted" Text="{Binding ResourceNote}" TextWrapping="Wrap" />
+                                    <TextBlock Classes="ecoLabel" Text="Quantité à récolter" />
+                                    <NumericUpDown Value="{Binding ResourceQuantity, Mode=TwoWay}" Minimum="1" Maximum="1000000000" Increment="1" FormatString="0" Width="180" HorizontalAlignment="Left" AutomationProperties.Name="Quantité à récolter" />
+                                    <TextBlock Classes="ecoMuted" Text="Le compte est celui du sac. Si la banque n'est pas confirmée, « Sac seulement » vise le sac, sans déposer cet objet." />
+                                    <WrapPanel>
+                                        <Button Classes="primary" Margin="0,0,8,6" Content="Créer un script de récolte" Command="{Binding MakeGatherScriptCommand}" IsEnabled="{Binding SelectedResource, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                        <Button Classes="ghost" Margin="0,0,8,6" Content="Script de chasse au trésor automatique" Command="{Binding MakeTreasureScriptCommand}" />
+                                        <Button Classes="primary" Margin="0,0,8,6" Content="Récolter cette quantité" Command="{Binding StartResourceQuantityCommand}" IsEnabled="{Binding SelectedResource, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                        <Button Classes="ghost" Margin="0,0,8,6" Content="Sac seulement" Command="{Binding AcceptResourceQuantityBagOnlyCommand}" IsVisible="{Binding ResourceQuantityBagOnlyOffer}" />
+                                        <Button Classes="ghost" Margin="0,0,8,6" Content="Arrêter" Command="{Binding StopResourceQuantityCommand}" />
+                                    </WrapPanel>
+                                    <TextBlock Classes="ecoMuted" Text="{Binding ResourceQuantityStatus}" />
+                                    <TextBlock Classes="ecoMuted" Text="{Binding ResourceQuantityProgress}" Foreground="{DynamicResource AccentBrightBrush}" />
+                                </StackPanel>
+                            </Border>
+                            <Border Classes="ecoCard" IsVisible="{Binding ResourceMapRows.Count}">
+                                <StackPanel Spacing="6">
+                                    <TextBlock Classes="ecoTitle" Text="Cartes" />
+                                    <ItemsControl ItemsSource="{Binding ResourceMapRows}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:EcoResourceMapRow">
+                                                <Grid ColumnDefinitions="110,110,100,90,Auto" ColumnSpacing="8" Margin="0,3">
+                                                    <TextBlock Text="{Binding Coords}" FontWeight="SemiBold" VerticalAlignment="Center" />
+                                                    <TextBlock Grid.Column="1" Text="{Binding Count}" VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                    <TextBlock Grid.Column="2" Text="{Binding Distance}" VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                    <TextBlock Grid.Column="3" Text="{Binding Where}" VerticalAlignment="Center" Foreground="{StaticResource TextMutedBrush}" />
+                                                    <Button Grid.Column="4" Classes="ghost" Padding="8,3" FontSize="11.5" Content="Copier"
+                                                            Command="{Binding $parent[ItemsControl].((vm:EcoToolsViewModel)DataContext).CopyResourceCoordsCommand}" CommandParameter="{Binding}" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <!-- =============================== FORGEMAGIE =============================== -->
+            <TabItem Header="Forgemagie">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Spacing="12" Margin="0,10,6,10">
+                        <Border Classes="ecoCard">
+                            <StackPanel Spacing="10">
+                                <TextBlock Classes="ecoTitle" Text="Poids d'un objet" />
+                                <TextBlock Classes="ecoMuted" Text="Le poids de chaque caractéristique vient des données du jeu (PA 100, PM 90, Portée 51, Invocation 30, Dommages 20, Sagesse 3, Force 1, Vitalité 0,2…). La réussite d'une forgemagie dépend des jets maximums de l'objet, que l'atelier ne connaît pas : saisis le poids maximum si tu le connais." />
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                    <ComboBox ItemsSource="{Binding FmItems}" SelectedItem="{Binding SelectedFmItem, Mode=TwoWay}" HorizontalAlignment="Stretch" PlaceholderText="Objet du sac du bot sélectionné">
+                                        <ComboBox.ItemTemplate><DataTemplate x:DataType="vm:EcoBagItem"><TextBlock Text="{Binding Caption}" /></DataTemplate></ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <Button Grid.Column="1" Classes="ghost" Content="Actualiser le sac" Command="{Binding RefreshFmItemsCommand}" />
+                                </Grid>
+                                <TextBlock Classes="ecoMuted" Text="{Binding FmHint}" />
+                                <ItemsControl ItemsSource="{Binding FmStats}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:EcoStatRow">
+                                            <Grid ColumnDefinitions="*,80,80,90" ColumnSpacing="8" Margin="0,2">
+                                                <TextBlock Text="{Binding Text}" TextTrimming="CharacterEllipsis" />
+                                                <TextBlock Grid.Column="1" Text="{Binding ValueText}" HorizontalAlignment="Right" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                <TextBlock Grid.Column="2" Text="{Binding RateText}" HorizontalAlignment="Right" Foreground="{StaticResource TextMutedBrush}" />
+                                                <TextBlock Grid.Column="3" Text="{Binding WeightText}" HorizontalAlignment="Right" FontWeight="SemiBold" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <Grid ColumnDefinitions="Auto,*,Auto,160,*" ColumnSpacing="10">
+                                    <TextBlock Classes="ecoLabel" Text="Poids total" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Column="1" Classes="ecoBig" Text="{Binding FmTotalText}" />
+                                    <TextBlock Grid.Column="2" Classes="ecoLabel" Text="Poids maximum" VerticalAlignment="Center" />
+                                    <TextBox Grid.Column="3" Text="{Binding FmMaxWeightText, Mode=TwoWay}" PlaceholderText="optionnel" />
+                                    <TextBlock Grid.Column="4" Text="{Binding FmPercentText}" VerticalAlignment="Center" Foreground="{DynamicResource AccentBrightBrush}" />
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Classes="ecoCard">
+                            <StackPanel Spacing="10">
+                                <TextBlock Classes="ecoTitle" Text="Conseil de rune" />
+                                <TextBlock Classes="ecoMuted" TextWrapping="Wrap" Text="Fixe l'objectif de chaque ligne (et le jet maximum si tu le connais). Le conseiller choisit la plus grosse rune du sac qui ne dépasse ni l'objectif ni le maximum. Rien n'est posé en jeu ; le reliquat n'est pas pris en compte." />
+                                <Grid ColumnDefinitions="*,80,110,110" ColumnSpacing="8" IsVisible="{Binding HasFmTargets}">
+                                    <TextBlock Classes="ecoLabel" Text="Ligne" />
+                                    <TextBlock Grid.Column="1" Classes="ecoLabel" Text="Actuel" HorizontalAlignment="Right" />
+                                    <TextBlock Grid.Column="2" Classes="ecoLabel" Text="Objectif" />
+                                    <TextBlock Grid.Column="3" Classes="ecoLabel" Text="Jet max" />
+                                </Grid>
+                                <ItemsControl ItemsSource="{Binding FmTargets}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:FmTargetRow">
+                                            <Grid ColumnDefinitions="*,80,110,110" ColumnSpacing="8" Margin="0,2">
+                                                <TextBlock Text="{Binding Label}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                                <TextBlock Grid.Column="1" Text="{Binding Current}" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                <NumericUpDown Grid.Column="2" Value="{Binding Target, Mode=TwoWay}" Minimum="0" FormatString="0" />
+                                                <NumericUpDown Grid.Column="3" Value="{Binding Max, Mode=TwoWay}" Minimum="0" FormatString="0" PlaceholderText="inconnu" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
+                                    <CheckBox Content="Autoriser l'over (dépasser le jet max)" IsChecked="{Binding FmAllowOver, Mode=TwoWay}" />
+                                    <Button Grid.Column="2" Classes="ghost" Content="Recalculer" Command="{Binding AdviseRuneCommand}" />
+                                </Grid>
+                                <TextBlock Text="{Binding FmAdviceText}" FontWeight="SemiBold" TextWrapping="Wrap" Foreground="{DynamicResource AccentBrightBrush}" />
+                                <TextBlock Classes="ecoMuted" Text="{Binding FmStockText}" TextWrapping="Wrap" />
+                                <TextBlock Classes="ecoMuted" Text="{Binding FmUnmodeledText}" TextWrapping="Wrap" IsVisible="{Binding FmUnmodeledText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                            </StackPanel>
+                        </Border>
+
+                        <Border Classes="ecoCard" x:Name="BrisageCard">
+                            <StackPanel Spacing="8">
+                                <TextBlock Classes="ecoTitle" Text="Brisage : Focus ou sans Focus" />
+                                <TextBlock Classes="ecoMuted" Text="Compare la valeur nette (taxe HDV 2 %) des runes obtenues en brisant l'objet choisi, avec ou sans Focus sur une ligne. Le coût est ce que l'objet t'a coûté (prérempli avec le prix HDV observé s'il existe). Aucune requête n'est envoyée." />
+                                <Grid ColumnDefinitions="Auto,130,Auto,110,*" ColumnSpacing="10">
+                                    <TextBlock Classes="ecoLabel" Text="Coût de l'objet (kamas)" VerticalAlignment="Center" />
+                                    <NumericUpDown Grid.Column="1" Value="{Binding BrisageCost, Mode=TwoWay}" Minimum="0" Increment="1000" FormatString="0" PlaceholderText="inconnu" />
+                                    <TextBlock Grid.Column="2" Classes="ecoLabel" Text="Coeff. serveur (%)" VerticalAlignment="Center" />
+                                    <NumericUpDown Grid.Column="3" Value="{Binding BrisageCoeff, Mode=TwoWay}" Minimum="0" Maximum="10000" Increment="10" FormatString="0" />
+                                    <Button Grid.Column="4" Classes="ghost" HorizontalAlignment="Left" Content="Recalculer" Command="{Binding RecomputeBrisageCommand}" />
+                                </Grid>
+                                <TextBlock Classes="ecoMuted" Text="{Binding BrisageHint}" />
+                                <StackPanel Spacing="6" IsVisible="{Binding BrisageVerdict, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                                    <TextBlock x:Name="BrisageVerdictText" Text="{Binding BrisageVerdict}" FontSize="16" FontWeight="SemiBold" TextWrapping="Wrap" Foreground="{DynamicResource AccentBrightBrush}" />
+                                    <StackPanel Orientation="Horizontal" Spacing="16">
+                                        <TextBlock Text="{Binding BrisageBreakEven}" FontWeight="SemiBold" />
+                                        <TextBlock Text="{Binding BrisageClassText}" FontWeight="SemiBold" Foreground="{DynamicResource AccentBrightBrush}" />
+                                        <TextBlock Text="{Binding BrisageProfitText}" Foreground="{StaticResource TextSecondaryBrush}" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <Grid ColumnDefinitions="*,80,80,120" ColumnSpacing="8" IsVisible="{Binding BrisageRows.Count}">
+                                    <TextBlock Classes="ecoLabel" Text="Ligne" />
+                                    <TextBlock Grid.Column="1" Classes="ecoLabel" Text="Jet" HorizontalAlignment="Right" />
+                                    <TextBlock Grid.Column="2" Classes="ecoLabel" Text="Poids focus" HorizontalAlignment="Right" />
+                                    <TextBlock Grid.Column="3" Classes="ecoLabel" Text="Valeur si focus" HorizontalAlignment="Right" />
+                                </Grid>
+                                <ItemsControl ItemsSource="{Binding BrisageRows}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:EcoBrisageRow">
+                                            <Grid ColumnDefinitions="*,80,80,120" ColumnSpacing="8" Margin="0,2">
+                                                <TextBlock Classes.ecoBest="{Binding Best}" Text="{Binding StatText}" TextTrimming="CharacterEllipsis" />
+                                                <TextBlock Grid.Column="1" Text="{Binding ValueText}" HorizontalAlignment="Right" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                <TextBlock Grid.Column="2" Text="{Binding WeightText}" HorizontalAlignment="Right" Foreground="{StaticResource TextMutedBrush}" />
+                                                <TextBlock Grid.Column="3" Text="{Binding FocusText}" HorizontalAlignment="Right" FontWeight="SemiBold" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                            <Border Classes="ecoCard">
+                                <StackPanel Spacing="8">
+                                    <TextBlock Classes="ecoTitle" Text="Runes et prix" />
+                                    <TextBlock Classes="ecoMuted" Text="Ba = rune de base, Pa = ×3, Ra = ×10. Prix : HDV observé ou prix saisi." />
+                                    <Grid ColumnDefinitions="*,120,Auto" ColumnSpacing="8">
+                                        <ComboBox ItemsSource="{Binding FmRuneNames}" SelectedItem="{Binding RunePriceRune, Mode=TwoWay}" HorizontalAlignment="Stretch" PlaceholderText="Rune" />
+                                        <NumericUpDown Grid.Column="1" Value="{Binding RunePriceValue, Mode=TwoWay}" Minimum="0" FormatString="0.##" PlaceholderText="prix" />
+                                        <Button Grid.Column="2" Classes="ghost" Content="Saisir le prix" Command="{Binding SaveRunePriceCommand}" />
+                                    </Grid>
+                                    <ItemsControl ItemsSource="{Binding FmRunes}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:EcoRuneRow">
+                                                <Grid ColumnDefinitions="*,90,70,90" ColumnSpacing="8" Margin="0,1">
+                                                    <TextBlock Text="{Binding Name}" />
+                                                    <TextBlock Grid.Column="1" Text="{Binding AmountText}" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                    <TextBlock Grid.Column="2" Text="{Binding WeightText}" HorizontalAlignment="Right" Foreground="{StaticResource TextMutedBrush}" />
+                                                    <TextBlock Grid.Column="3" Text="{Binding PriceText}" HorizontalAlignment="Right" FontWeight="SemiBold" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="1" Classes="ecoCard">
+                                <StackPanel Spacing="10">
+                                    <TextBlock Classes="ecoTitle" Text="Combien de runes ?" />
+                                    <TextBlock Classes="ecoMuted" Text="Décompose une hausse de points en Ra / Pa / Ba (le moins de runes possible) et estime le coût." />
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                                        <ComboBox ItemsSource="{Binding MixStats}" SelectedItem="{Binding SelectedMixStat, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+                                        <NumericUpDown Grid.Column="1" Value="{Binding MixPoints, Mode=TwoWay}" Minimum="1" Maximum="100000" FormatString="0" />
+                                    </Grid>
+                                    <TextBlock Text="{Binding MixText}" TextWrapping="Wrap" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <Border Classes="ecoCard">
+                            <StackPanel Spacing="10">
+                                <TextBlock Classes="ecoTitle" Text="Séances de forgemagie" />
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                    <TextBox Text="{Binding NewSessionItem, Mode=TwoWay}" PlaceholderText="Objet forgemagé (nom libre)" />
+                                    <Button Grid.Column="1" Classes="primary" Content="Démarrer une séance" Command="{Binding StartSessionCommand}" />
+                                </Grid>
+                                <ComboBox ItemsSource="{Binding FmSessions}" SelectedItem="{Binding SelectedFmSession, Mode=TwoWay}" HorizontalAlignment="Stretch" PlaceholderText="Séance en cours">
+                                    <ComboBox.ItemTemplate><DataTemplate x:DataType="vm:EcoFmSessionRow"><TextBlock Text="{Binding Title}" /></DataTemplate></ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <StackPanel Spacing="10" IsVisible="{Binding HasSession}">
+                                    <Grid ColumnDefinitions="*,110,150,Auto" ColumnSpacing="10">
+                                        <ComboBox ItemsSource="{Binding FmRuneNames}" SelectedItem="{Binding PurchaseRune, Mode=TwoWay}" HorizontalAlignment="Stretch" PlaceholderText="Rune achetée" />
+                                        <NumericUpDown Grid.Column="1" Value="{Binding PurchaseQty, Mode=TwoWay}" Minimum="1" FormatString="0" />
+                                        <NumericUpDown Grid.Column="2" Value="{Binding PurchasePrice, Mode=TwoWay}" Minimum="0" FormatString="0.##" PlaceholderText="prix unitaire" />
+                                        <Button Grid.Column="3" Classes="ghost" Content="Ajouter l'achat" Command="{Binding AddPurchaseCommand}" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,110,Auto" ColumnSpacing="10">
+                                        <ComboBox ItemsSource="{Binding FmRuneNames}" SelectedItem="{Binding UseRune, Mode=TwoWay}" HorizontalAlignment="Stretch" PlaceholderText="Rune utilisée" />
+                                        <NumericUpDown Grid.Column="1" Value="{Binding UseCount, Mode=TwoWay}" Minimum="1" FormatString="0" />
+                                        <Button Grid.Column="2" Classes="ghost" Content="Ajouter l'utilisation" Command="{Binding AddUseCommand}" />
+                                    </Grid>
+                                    <TextBlock Text="{Binding FmWarning}" Foreground="#E0A050" IsVisible="{Binding FmWarning.Length}" TextWrapping="Wrap" />
+                                    <Border Classes="ecoStat" HorizontalAlignment="Stretch"><TextBlock Text="{Binding SessionSummary}" FontWeight="SemiBold" TextWrapping="Wrap" Foreground="{StaticResource TextPrimaryBrush}" /></Border>
+                                    <TextBlock Text="{Binding SessionLines}" Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap" />
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <Button Classes="ghost" Content="Pause / reprise" Command="{Binding TogglePauseCommand}" />
+                                        <Button Classes="ghost" Content="Archiver" Command="{Binding ArchiveSessionCommand}" />
+                                        <Button Classes="ghost" Content="Supprimer" Command="{Binding DeleteSessionCommand}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- =============================== PATRIMOINE =============================== -->
+            <TabItem Header="Patrimoine">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Spacing="12" Margin="0,10,6,10">
+                        <Border Classes="ecoCard">
+                            <StackPanel Spacing="10">
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Classes="ecoTitle" Text="Valeur estimée du personnage" />
+                                        <TextBlock Classes="ecoMuted" Text="{Binding WealthNote}" />
+                                    </StackPanel>
+                                    <Button Grid.Column="1" Classes="primary" Content="Actualiser" Command="{Binding RefreshWealthCommand}" VerticalAlignment="Top" />
+                                </Grid>
+                                <WrapPanel>
+                                    <Border Classes="ecoStat" Margin="0,0,10,10"><StackPanel Spacing="2"><TextBlock Classes="ecoLabel" Text="Total estimé" /><TextBlock Classes="ecoBig" Text="{Binding GrandTotalText}" /></StackPanel></Border>
+                                    <Border Classes="ecoStat" Margin="0,0,10,10"><StackPanel Spacing="2"><TextBlock Classes="ecoLabel" Text="Objets du sac" /><TextBlock Classes="ecoBig" Text="{Binding BagTotalText}" /></StackPanel></Border>
+                                    <Border Classes="ecoStat" Margin="0,0,10,10"><StackPanel Spacing="2"><TextBlock Classes="ecoLabel" Text="Objets de la banque" /><TextBlock Classes="ecoBig" Text="{Binding BankTotalText}" /></StackPanel></Border>
+                                    <Border Classes="ecoStat" Margin="0,0,10,10" MinWidth="260"><StackPanel Spacing="2"><TextBlock Classes="ecoLabel" Text="Kamas" /><TextBlock FontSize="15" FontWeight="SemiBold" Text="{Binding KamasText}" Foreground="{StaticResource TextPrimaryBrush}" /></StackPanel></Border>
+                                </WrapPanel>
+                            </StackPanel>
+                        </Border>
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                            <Border Classes="ecoCard">
+                                <StackPanel Spacing="6">
+                                    <TextBlock Classes="ecoTitle" Text="Sac : objets les plus chers" />
+                                    <ItemsControl ItemsSource="{Binding BagTop}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:EcoWealthRow">
+                                                <Grid ColumnDefinitions="*,70,80,100" ColumnSpacing="8" Margin="0,2">
+                                                    <StackPanel Orientation="Horizontal" Spacing="8"><Image Source="{Binding Icon}" Width="22" Height="22" IsVisible="{Binding HasIcon}" VerticalAlignment="Center" /><TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" /></StackPanel>
+                                                    <TextBlock Grid.Column="1" Text="{Binding QtyText}" HorizontalAlignment="Right" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                    <TextBlock Grid.Column="2" Text="{Binding UnitText}" HorizontalAlignment="Right" Foreground="{StaticResource TextMutedBrush}" />
+                                                    <TextBlock Grid.Column="3" Text="{Binding TotalText}" HorizontalAlignment="Right" FontWeight="SemiBold" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="1" Classes="ecoCard">
+                                <StackPanel Spacing="6">
+                                    <TextBlock Classes="ecoTitle" Text="Banque : objets les plus chers" />
+                                    <ItemsControl ItemsSource="{Binding BankTop}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:EcoWealthRow">
+                                                <Grid ColumnDefinitions="*,70,80,100" ColumnSpacing="8" Margin="0,2">
+                                                    <StackPanel Orientation="Horizontal" Spacing="8"><Image Source="{Binding Icon}" Width="22" Height="22" IsVisible="{Binding HasIcon}" VerticalAlignment="Center" /><TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" /></StackPanel>
+                                                    <TextBlock Grid.Column="1" Text="{Binding QtyText}" HorizontalAlignment="Right" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                    <TextBlock Grid.Column="2" Text="{Binding UnitText}" HorizontalAlignment="Right" Foreground="{StaticResource TextMutedBrush}" />
+                                                    <TextBlock Grid.Column="3" Text="{Binding TotalText}" HorizontalAlignment="Right" FontWeight="SemiBold" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <!-- =============================== BONNES AFFAIRES =============================== -->
+            <TabItem Header="Bonnes affaires">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Spacing="12" Margin="0,10,6,10">
+                        <Border Classes="ecoCard">
+                            <StackPanel Spacing="10">
+                                <TextBlock Classes="ecoTitle" Text="Lots sous le prix du marché" />
+                                <TextBlock Classes="ecoMuted" Text="Lit les prix que le bot sélectionné a déjà reçus de l'HDV (prix du lot le moins cher par taille et prix moyen). Aucune requête n'est envoyée : ouvre l'HDV dans l'onglet Bots pour relever des prix." />
+                                <Grid ColumnDefinitions="Auto,110,Auto,130,Auto,110,Auto" ColumnSpacing="10">
+                                    <TextBlock Classes="ecoLabel" Text="Remise min. (%)" VerticalAlignment="Center" />
+                                    <NumericUpDown Grid.Column="1" Value="{Binding DealMinDiscount, Mode=TwoWay}" Minimum="1" Maximum="95" FormatString="0" />
+                                    <TextBlock Grid.Column="2" Classes="ecoLabel" Text="Gain min. du lot (kamas)" VerticalAlignment="Center" />
+                                    <NumericUpDown Grid.Column="3" Value="{Binding DealMinGain, Mode=TwoWay}" Minimum="0" Increment="500" FormatString="0" />
+                                    <TextBlock Grid.Column="4" Classes="ecoLabel" Text="Âge max (min)" VerticalAlignment="Center" />
+                                    <NumericUpDown Grid.Column="5" Value="{Binding DealMaxAgeMin, Mode=TwoWay}" Minimum="0" Increment="30" FormatString="0" />
+                                    <Button Grid.Column="6" Classes="primary" Content="Actualiser" Command="{Binding RefreshDealsCommand}" />
+                                </Grid>
+                                <TextBlock Classes="ecoMuted" Text="{Binding DealsStatus}" />
+                            </StackPanel>
+                        </Border>
+                        <Border Classes="ecoCard" IsVisible="{Binding Deals.Count}">
+                            <StackPanel Spacing="6">
+                                <Grid ColumnDefinitions="*,60,90,90,80,100,80,Auto,Auto" ColumnSpacing="8">
+                                    <TextBlock Classes="ecoLabel" Text="Objet" /><TextBlock Grid.Column="1" Classes="ecoLabel" Text="Lot" /><TextBlock Grid.Column="2" Classes="ecoLabel" Text="Prix unité" HorizontalAlignment="Right" />
+                                    <TextBlock Grid.Column="3" Classes="ecoLabel" Text="Moyenne" HorizontalAlignment="Right" /><TextBlock Grid.Column="4" Classes="ecoLabel" Text="Remise" HorizontalAlignment="Right" />
+                                    <TextBlock Grid.Column="5" Classes="ecoLabel" Text="Gain du lot" HorizontalAlignment="Right" /><TextBlock Grid.Column="6" Classes="ecoLabel" Text="Âge" HorizontalAlignment="Right" />
+                                </Grid>
+                                <ItemsControl ItemsSource="{Binding Deals}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:EcoDealRow">
+                                            <Grid ColumnDefinitions="*,60,90,90,80,100,80,Auto,Auto" ColumnSpacing="8" Margin="0,3">
+                                                <StackPanel Orientation="Horizontal" Spacing="8"><Image Source="{Binding Icon}" Width="22" Height="22" IsVisible="{Binding HasIcon}" VerticalAlignment="Center" /><TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" /></StackPanel>
+                                                <TextBlock Grid.Column="1" Text="{Binding LotText}" VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                <TextBlock Grid.Column="2" Text="{Binding UnitText}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                                <TextBlock Grid.Column="3" Text="{Binding AverageText}" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{StaticResource TextMutedBrush}" />
+                                                <TextBlock Grid.Column="4" Text="{Binding DiscountText}" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#3FA45B" FontWeight="SemiBold" />
+                                                <TextBlock Grid.Column="5" Text="{Binding GainText}" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="SemiBold" />
+                                                <TextBlock Grid.Column="6" Text="{Binding AgeText}" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{StaticResource TextMutedBrush}" FontSize="11.5" />
+                                                <Button Grid.Column="7" Classes="ghost" Padding="8,3" FontSize="11.5" Content="Copier"
+                                                        Command="{Binding $parent[ItemsControl].((vm:EcoToolsViewModel)DataContext).CopyDealNameCommand}" CommandParameter="{Binding}" />
+                                                <Button Grid.Column="8" Classes="ghost" Padding="8,3" FontSize="11.5" Content="Craft"
+                                                        Command="{Binding $parent[ItemsControl].((vm:EcoToolsViewModel)DataContext).OpenDealInCraftCommand}" CommandParameter="{Binding}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                        <Border Classes="ecoCard" IsVisible="{Binding BatchSplitStatus.Length}">
+                            <StackPanel Spacing="8">
+                                <TextBlock Classes="ecoTitle" Text="Découpe de lots (1 / 10 / 100 / 1000)" />
+                                <TextBlock Classes="ecoMuted" Text="Acheter un gros lot puis le revendre en lots plus petits, si le gain reste positif après la taxe HDV de 2 %. Calcul sur prix déjà observés, aucune requête ni ordre envoyé." />
+                                <Grid ColumnDefinitions="Auto,100,Auto,130" ColumnSpacing="10">
+                                    <TextBlock Classes="ecoLabel" Text="Marge nette min. (%)" VerticalAlignment="Center" />
+                                    <NumericUpDown Grid.Column="1" Value="{Binding BatchSplitMinMargin, Mode=TwoWay}" Minimum="0" Increment="1" FormatString="0" />
+                                    <TextBlock Grid.Column="2" Classes="ecoLabel" Text="Gain net min. (kamas)" VerticalAlignment="Center" />
+                                    <NumericUpDown Grid.Column="3" Value="{Binding BatchSplitMinProfit, Mode=TwoWay}" Minimum="0" Increment="500" FormatString="0" />
+                                </Grid>
+                                <TextBlock Classes="ecoMuted" Text="{Binding BatchSplitStatus}" />
+                                <ItemsControl ItemsSource="{Binding BatchSplitDeals}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:EcoBatchSplitRow">
+                                            <Grid ColumnDefinitions="*,90,70,70,Auto" ColumnSpacing="8" Margin="0,3">
+                                                <StackPanel Spacing="1">
+                                                    <StackPanel Orientation="Horizontal" Spacing="8"><Image Source="{Binding Icon}" Width="20" Height="20" IsVisible="{Binding HasIcon}" VerticalAlignment="Center" /><TextBlock Text="{Binding Name}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" /></StackPanel>
+                                                    <TextBlock Text="{Binding RouteText}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="12" TextTrimming="CharacterEllipsis" ToolTip.Tip="{Binding DetailText}" />
+                                                </StackPanel>
+                                                <TextBlock Grid.Column="1" Text="{Binding ProfitText}" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#3FA45B" FontWeight="SemiBold" ToolTip.Tip="Gain net après taxe de 2 %" />
+                                                <TextBlock Grid.Column="2" Text="{Binding MarginText}" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#3FA45B" />
+                                                <TextBlock Grid.Column="3" Text="{Binding AgeText}" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{StaticResource TextMutedBrush}" FontSize="11.5" />
+                                                <Button Grid.Column="4" Classes="ghost" Padding="8,3" FontSize="11.5" Content="Copier"
+                                                        Command="{Binding $parent[ItemsControl].((vm:EcoToolsViewModel)DataContext).CopyBatchSplitNameCommand}" CommandParameter="{Binding}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <!-- =============================== ALERTES DE PRIX =============================== -->
+            <TabItem Header="Alertes de prix">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Spacing="12" Margin="0,10,6,10">
+                        <Border Classes="ecoCard">
+                            <StackPanel Spacing="10">
+                                <TextBlock Classes="ecoTitle" Text="Prévenir quand un prix atteint ma cible" />
+                                <TextBlock Classes="ecoMuted" Text="{Binding AlertStatus}" />
+                                <Grid ColumnDefinitions="*,170,150,Auto" ColumnSpacing="8">
+                                    <TextBox Text="{Binding AlertSearch, Mode=TwoWay}" PlaceholderText="Objet (2 lettres minimum)" />
+                                    <ComboBox Grid.Column="1" ItemsSource="{Binding AlertDirections}" SelectedIndex="{Binding AlertDirectionIndex, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+                                    <NumericUpDown Grid.Column="2" Value="{Binding AlertTarget, Mode=TwoWay}" Minimum="0" Increment="100" FormatString="0" PlaceholderText="prix cible" />
+                                    <Button Grid.Column="3" Classes="primary" Content="Ajouter l'alerte" Command="{Binding AddAlertCommand}" />
+                                </Grid>
+                                <ListBox ItemsSource="{Binding AlertResults}" SelectedItem="{Binding SelectedAlertHit, Mode=TwoWay}" MaxHeight="190" IsVisible="{Binding AlertResults.Count}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:EcoItemHit"><StackPanel Orientation="Horizontal" Spacing="8"><Image Source="{Binding Icon}" Width="22" Height="22" IsVisible="{Binding HasIcon}" /><TextBlock Text="{Binding Caption}" VerticalAlignment="Center" /></StackPanel></DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </Border>
+                        <Border Classes="ecoCard">
+                            <StackPanel Spacing="8">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <TextBlock Classes="ecoTitle" Text="Mes alertes" VerticalAlignment="Center" />
+                                    <Button Grid.Column="1" Classes="ghost" Padding="8,3" FontSize="11.5" Content="Actualiser" Command="{Binding RefreshAlertsCommand}" />
+                                </Grid>
+                                <ItemsControl ItemsSource="{Binding AlertRows}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:EcoAlertRow">
+                                            <Border Background="{StaticResource Surface3Brush}" CornerRadius="10" Padding="12,8" Margin="0,0,0,6">
+                                                <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="12">
+                                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                                        <Image Source="{Binding Icon}" Width="22" Height="22" IsVisible="{Binding HasIcon}" />
+                                                        <StackPanel>
+                                                            <TextBlock Text="{Binding Name}" FontWeight="SemiBold" />
+                                                            <TextBlock Text="{Binding Condition}" FontSize="11.5" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                    <TextBlock Grid.Column="1" Text="{Binding CurrentText}" VerticalAlignment="Center" Foreground="{StaticResource TextMutedBrush}" />
+                                                    <Button Grid.Column="2" Classes="ghost" Padding="8,3" Content="✕"
+                                                            Command="{Binding $parent[ItemsControl].((vm:EcoToolsViewModel)DataContext).RemoveAlertCommand}" CommandParameter="{Binding}" />
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <!-- =============================== ABONNEMENTS =============================== -->
+            <TabItem Header="Abonnements">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Spacing="12" Margin="0,10,6,10">
+                        <Border Classes="ecoCard">
+                            <StackPanel Spacing="10">
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Classes="ecoTitle" Text="Abonnements Ankama" />
+                                        <TextBlock Classes="ecoMuted" Text="{Binding SubsSummary}" />
+                                    </StackPanel>
+                                    <Button Grid.Column="1" Classes="ghost" Content="Actualiser" Command="{Binding RefreshSubsCommand}" VerticalAlignment="Top" />
+                                </Grid>
+                                <Grid ColumnDefinitions="*,*,170,80,Auto" ColumnSpacing="8">
+                                    <TextBox Text="{Binding SubLogin, Mode=TwoWay}" PlaceholderText="Compte (identifiant Ankama)" />
+                                    <TextBox Grid.Column="1" Text="{Binding SubCharacter, Mode=TwoWay}" PlaceholderText="Personnage (pour le webhook, optionnel)" />
+                                    <CalendarDatePicker Grid.Column="2" SelectedDate="{Binding SubDate, Mode=TwoWay}" />
+                                    <TextBox Grid.Column="3" Text="{Binding SubTime, Mode=TwoWay}" PlaceholderText="HH:mm" />
+                                    <Button Grid.Column="4" Classes="primary" Content="Saisir la fin" Command="{Binding SaveSubCommand}" />
+                                </Grid>
+                                <ItemsControl ItemsSource="{Binding Subs}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:EcoSubRow">
+                                            <Border Background="{StaticResource Surface3Brush}" CornerRadius="10" Padding="14,10" Margin="0,0,0,8">
+                                                <Grid ColumnDefinitions="*,150,120,90,Auto" ColumnSpacing="12">
+                                                    <StackPanel VerticalAlignment="Center">
+                                                        <TextBlock Text="{Binding Who}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                                                        <TextBlock Text="{Binding SeenText, StringFormat='vu le {0}'}" FontSize="11" Foreground="{StaticResource TextMutedBrush}" />
+                                                    </StackPanel>
+                                                    <TextBlock Grid.Column="1" Text="{Binding EndText}" VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                    <TextBlock Grid.Column="2" Text="{Binding RemainingText}" VerticalAlignment="Center" FontWeight="SemiBold" />
+                                                    <Border Grid.Column="3" Background="{Binding LevelBrush}" CornerRadius="8" Padding="8,3" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                                        <TextBlock Text="{Binding LevelText}" FontSize="11.5" FontWeight="SemiBold" Foreground="#101418" />
+                                                    </Border>
+                                                    <Button Grid.Column="4" Classes="ghost" Padding="8,3" Content="✕"
+                                                            Command="{Binding $parent[ItemsControl].((vm:EcoToolsViewModel)DataContext).RemoveSubCommand}" CommandParameter="{Binding}" />
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <!-- =============================== CARNET =============================== -->
+            <TabItem Header="Carnet">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Spacing="12" Margin="0,10,6,10">
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                            <TextBox Text="{Binding NotebookFilter}" PlaceholderText="{DynamicResource L.Notebook.Search}" />
+                            <CheckBox Grid.Column="1" IsChecked="{Binding NotebookCompact}" Content="{DynamicResource L.Notebook.Compact}" />
+                        </Grid>
+                        <TextBlock Classes="ecoMuted" Text="{DynamicResource L.Notebook.Empty}" IsVisible="{Binding NotebookEmpty}" />
+                        <TextBlock Classes="ecoMuted" Text="{Binding NotebookStatus}" IsVisible="{Binding NotebookStatus.Length}" />
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
+                            <Border Classes="ecoCard">
+                                <StackPanel Spacing="8">
+                                    <TextBlock Classes="ecoTitle" Text="Positions" />
+                                    <StackPanel Spacing="8" IsVisible="{Binding !NotebookCompact}">
+                                    <TextBox Text="{Binding NewPosName, Mode=TwoWay}" PlaceholderText="Nom (Zaap, atelier, spot…)" />
+                                    <TextBox Text="{Binding NewPosCoords, Mode=TwoWay}" PlaceholderText="Coordonnées x,y" />
+                                    <TextBox Text="{Binding NewPosNote, Mode=TwoWay}" PlaceholderText="Note (optionnelle)" />
+                                    <Button Classes="primary" Content="Ajouter la position" Command="{Binding AddPositionCommand}" />
+                                    </StackPanel>
+                                    <ItemsControl ItemsSource="{Binding PositionsView}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="eco:Notebook+Position">
+                                                <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="6" Margin="0,3">
+                                                    <StackPanel>
+                                                        <TextBlock Text="{Binding Name}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                                                        <TextBlock FontSize="11.5" Foreground="{StaticResource TextMutedBrush}">
+                                                            <Run Text="[" /><Run Text="{Binding X}" /><Run Text="," /><Run Text="{Binding Y}" /><Run Text="] " /><Run Text="{Binding Note}" />
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                    <Button Grid.Column="1" Classes="ghost" Padding="8,3" Content="Copier"
+                                                            Command="{Binding $parent[ItemsControl].((vm:EcoToolsViewModel)DataContext).CopyPositionCommand}" CommandParameter="{Binding}" />
+                                                    <Button Grid.Column="2" Classes="ghost" Padding="8,3" Content="✕"
+                                                            Command="{Binding $parent[ItemsControl].((vm:EcoToolsViewModel)DataContext).RemovePositionCommand}" CommandParameter="{Binding}" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="1" Classes="ecoCard">
+                                <StackPanel Spacing="8">
+                                    <TextBlock Classes="ecoTitle" Text="Notes" />
+                                    <StackPanel Spacing="8" IsVisible="{Binding !NotebookCompact}">
+                                    <TextBox Text="{Binding NewNoteTitle, Mode=TwoWay}" PlaceholderText="Titre" />
+                                    <TextBox Text="{Binding NewNoteText, Mode=TwoWay}" PlaceholderText="Texte" AcceptsReturn="True" MinHeight="70" TextWrapping="Wrap" />
+                                    <Button Classes="primary" Content="Ajouter la note" Command="{Binding AddNoteCommand}" />
+                                    </StackPanel>
+                                    <ItemsControl ItemsSource="{Binding NotesView}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="eco:Notebook+Note">
+                                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="6" Margin="0,4">
+                                                    <StackPanel>
+                                                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                                                        <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Foreground="{StaticResource TextSecondaryBrush}" FontSize="12.5" />
+                                                    </StackPanel>
+                                                    <Button Grid.Column="1" Classes="ghost" Padding="8,3" Content="✕" VerticalAlignment="Top"
+                                                            Command="{Binding $parent[ItemsControl].((vm:EcoToolsViewModel)DataContext).RemoveNoteCommand}" CommandParameter="{Binding}" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="2" Classes="ecoCard">
+                                <StackPanel Spacing="8">
+                                    <TextBlock Classes="ecoTitle" Text="Messages prêts à coller" />
+                                    <TextBlock Classes="ecoMuted" Text="« Copier » met le texte dans le presse-papiers ; tu le colles toi-même dans le chat du jeu." />
+                                    <StackPanel Spacing="8" IsVisible="{Binding !NotebookCompact}">
+                                    <TextBox Text="{Binding NewMsgTitle, Mode=TwoWay}" PlaceholderText="Titre" />
+                                    <TextBox Text="{Binding NewMsgText, Mode=TwoWay}" PlaceholderText="Message" AcceptsReturn="True" MinHeight="70" TextWrapping="Wrap" />
+                                    <Button Classes="primary" Content="Ajouter le message" Command="{Binding AddMessageCommand}" />
+                                    </StackPanel>
+                                    <ItemsControl ItemsSource="{Binding MessagesView}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="eco:Notebook+Message">
+                                                <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="6" Margin="0,4">
+                                                    <StackPanel>
+                                                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                                                        <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Foreground="{StaticResource TextSecondaryBrush}" FontSize="12.5" />
+                                                    </StackPanel>
+                                                    <Button Grid.Column="1" Classes="ghost" Padding="8,3" Content="Copier" VerticalAlignment="Top"
+                                                            Command="{Binding $parent[ItemsControl].((vm:EcoToolsViewModel)DataContext).CopyMessageCommand}" CommandParameter="{Binding}" />
+                                                    <Button Grid.Column="2" Classes="ghost" Padding="8,3" Content="✕" VerticalAlignment="Top"
+                                                            Command="{Binding $parent[ItemsControl].((vm:EcoToolsViewModel)DataContext).RemoveMessageCommand}" CommandParameter="{Binding}" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

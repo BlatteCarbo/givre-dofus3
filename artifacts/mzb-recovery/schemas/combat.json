@@ -1,0 +1,134 @@
+{
+  "source_file": "combat.json",
+  "values_removed": true,
+  "fields": [
+    {
+      "path": "$.Profiles",
+      "type": "dict"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe",
+      "type": "dict"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.AutoFight",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.Style",
+      "type": "str"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.Target",
+      "type": "str"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.FinishKill",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.AutoSpells",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.Speed",
+      "type": "str"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.TurboAckAll",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.TurboEagerReady",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.MaxCastsPerTurn",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.MaxFightTurns",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.KiteMinDistance",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.KiteMaxDistance",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.AutoLevelStats",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.LevelStatTarget",
+      "type": "str"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.Spells",
+      "type": "list"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.AutoPreFight",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.AutoChallenge",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.ChallengeRules",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.ChallengeAbandonHp",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.ChallengeLoot",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.ChallengeOn",
+      "type": "list"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.ChallengeOff",
+      "type": "list"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.AutoRevive",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.LockSpectators",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.LockJoin",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.LockParty",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.NoAnim",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.Tactical",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.Collapse",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.InstantMove",
+      "type": "bool"
+    }
+  ]
+}

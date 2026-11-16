@@ -1,0 +1,57 @@
+# Base de connaissances
+
+Notes accumulées pendant le développement : diagnostics, causes racines, mesures en jeu, décisions.
+Elles sont datées et reflètent l'état du projet à ce moment-là. Les noms de personnages sont fictifs.
+
+- [givre-accounts-keyboard-qa-20261105](givre-accounts-keyboard-qa-20261105.md) : Compact-window Accounts keyboard navigation regression, bounded fix, and validation status from 2026-11-05
+- [givre-ban-20261116](givre-ban-20261116.md) : Eliobot et Sylvanbot bannis définitivement le 16/11 (code d'identification 14) ; contexte et chronologie
+- [givre-character-switch-20261103](givre-character-switch-20261103.md) : Live findings on GivreClone character switching and relogin behavior from 2026-11-03; read before changing this flow.
+- [givre-class-coverage](givre-class-coverage.md) : GivreClone class-mechanic scope and JondoEmu oracle findings; read when continuing combat-AI work.
+- [givre-class-tactics-20261112](givre-class-tactics-20261112.md) : Active class tactics request: Eliotrope self-support portals, Sram invisibility, Cra threat-aware kite, Sadida utilities; current code restriction discovered
+- [givre-closed-modal-focus-immunity-20261105](givre-closed-modal-focus-immunity-20261105.md) : Current status of closed language/confirmation panel keyboard regression and live combat immunity-state propagation investigation (2026-11-05).
+- [givre-combat-admission-20261102](givre-combat-admission-20261102.md) : Givre learned utility admission correction, per-step Lua policy, and verification evidence locations.
+- [givre-combat-approach-20261103](givre-combat-approach-20261103.md) : Reported GivreClone combat-planner changes and test evidence from 2026-11-03; read alongside combat AI notes when resuming planner work.
+- [givre-combat-audit-500-20261108](givre-combat-audit-500-20261108.md) : Givre - audit telemetrique de 514 combats du 2026-11-08 : 4 goulets identifies et corriges
+- [givre-combat-journal-ineffective-attacks-20261105](givre-combat-journal-ineffective-attacks-20261105.md) : Combat journal corrections and the unresolved Ishigro Pake zero-damage loop observed on 2026-11-05
+- [givre-combat-speed-fixes-20261109](givre-combat-speed-fixes-20261109.md) : Correctifs de vitesse de combat et de robustesse d'expédition validés en jeu le 09/11/2026, avec mesures avant/après
+- [givre-combat-state-investigation-20261105](givre-combat-state-investigation-20261105.md) : Evidence and limits from the 2026-11-05 native/client investigation into combat-state and immunity decoding
+- [givre-combat-v2-20261102](givre-combat-v2-20261102.md) : GivreClone combat AI v2 (SpellResolver + team board), live QA recipe and findings, 2026-11-02
+- [givre-combat-wave-and-combos-20261106](givre-combat-wave-and-combos-20261106.md) : Combat wave team sync fix, Sacrieur Transposition+Attirance chain, Sram Invisibilite/Peur action 783, and true kiting reply-map fix (2026-11-06)
+- [givre-combat-zero-enemy-detection-20261106](givre-combat-zero-enemy-detection-20261106.md) : Live combat evidence of repeated no-target turns and defeat on 2026-11-06; consult when investigating fighter team attribution and turn completion
+- [givre-companion-owner-level-20261106](givre-companion-owner-level-20261106.md) : Companion level equals owner level; withdrawn unknown-level change
+- [givre-control-pipe-instance-collision-20261105](givre-control-pipe-instance-collision-20261105.md) : Confirmed local control-pipe ambiguity across concurrent GivreWork windows and safe isolation requirements, observed 2026-11-05
+- [givre-cos-wave3-20261104](givre-cos-wave3-20261104.md) : CoS wave3 inputs, incurable state proof and unresolved live validation
+- [givre-dag-audit-20261105](givre-dag-audit-20261105.md) : Givre combat/journal/temporary-ban DAG independent audit, shared mutation incident and clean verification evidence.
+- [givre-eliotrope-20261109](givre-eliotrope-20261109.md) : Passage au personnage Eliotrope (montee 1-200) : etat du support portails dans le code, donnees de sorts extraites du client, et correctifs de selection de sorts
+- [givre-eliotrope-gear-farm-20261111](givre-eliotrope-gear-farm-20261111.md) : Éliotrope Eliobot : équipement 80, révision IA puis comparaison de zones de farm
+- [givre-eliotrope-portal-ai-20261110](givre-eliotrope-portal-ai-20261110.md) : Givre : IA Éliotrope (tir à travers les portails) validée en jeu le 10/11 : règles, code, mesures.
+- [givre-expedition-failure-policy-20261105](givre-expedition-failure-policy-20261105.md) : Confirmed expedition policy distinguishes no matching group from readiness or movement failures.
+- [givre-fm-parity](givre-fm-parity.md) : Givre project context: automatic workshop routing, FM objectives and reference UI/code parity request, October 2026.
+- [givre-followup-20261106](givre-followup-20261106.md) : Follow-up evidence on Givre planner, accessibility QA, and Sram installed-data testing from 2026-11-06
+- [givre-forge-overlay-mod-20261107](givre-forge-overlay-mod-20261107.md) : Mod overlay FM MITM : conseil de rune affiché en jeu via cadre vert, pont existant branché
+- [givre-fouduglen-one-click](givre-fouduglen-one-click.md) : GivreClone feature scope for launching two Fouduglen legendary hunts from one action, including fragment purchasing, assembly, automation, verification, and accounting.
+- [givre-hdv-price-incident-20261104](givre-hdv-price-incident-20261104.md) : HDV inflated x100 incident, skip-item fix, thresholds, verified tests and protected running build
+- [givre-jondo-lab-20261103](givre-jondo-lab-20261103.md) : Purpose of JondoEmu laboratory for Givre integration testing, not only emulator unit tests
+- [givre-live-defects-20261103](givre-live-defects-20261103.md) : Official combat defects, tested fixes and pending Turbo/companion validation on November 3
+- [givre-live-deploy-20261107](givre-live-deploy-20261107.md) : 2026-11-07 live redeploy of GivreClone: dotnet publish output was incomplete (no MoonSharp, no protocol/map data); how to deploy a working build
+- [givre-live-deploy-b234-20261106](givre-live-deploy-b234-20261106.md) : How the live GivreClone was redeployed with planner B2/B3/B4 on 2026-11-06 (binary path, env, pipe, account ids) and first live results
+- [givre-live-testing](givre-live-testing.md) : GivreClone live-testing facts: worktree/build paths, logs, account/character, user-granted scope, budgets, and the treasure-hunt final-fight mechanic.
+- [givre-shadowbot-bans-and-regen-fix-20261107](givre-shadowbot-bans-and-regen-fix-20261107.md) : Root causes & fixes for Shadowbot 5-min bans (Terrdala Teapot PA0 + 46-turn Geoglyph Turbo), 2s 1-turn defeat (50% HP entry + IdCurLifeDelta 97), and 50% regen freeze (2026-11-07)
+- [givre-miner-live-recovery-20261105](givre-miner-live-recovery-20261105.md) : Live evidence on recovery after miner scripts stop during regeneration, including Sylvanbot's restart and Bastionbot's continued harvest.
+- [givre-official-371317-20261103](givre-official-371317-20261103.md) : Official client testing direction and Bastionbot account mapping, November 3
+- [givre-open-interaction-keyboard-20261105](givre-open-interaction-keyboard-20261105.md) : Verified compact bank/trade keyboard accessibility fix and validation scope.
+- [givre-planner-budget-search-20261106](givre-planner-budget-search-20261106.md) : Combat planner search-order experiment for recovering attacks under a fixed node budget, with validation boundaries
+- [givre-planner-replay-20261106](givre-planner-replay-20261106.md) : Combat replay traceability correction for planner decisions and bounded live gathering results from 2026-11-06
+- [givre-protocol-family-20261104](givre-protocol-family-20261104.md) : Correction de compatibilité protocole Givre : famille majeure.mineure, correctifs 3.7 partagés et catalogue 3.8 distinct.
+- [givre-qa-accessibility-20261106](givre-qa-accessibility-20261106.md) : Accessibility and UI-validation evidence from account controls and compact/keyboard QA on 2026-11-06
+- [givre-repeated-empty-turns-20261106](givre-repeated-empty-turns-20261106.md) : Evidence and unresolved status from the 2026-11-06 investigation into Shadowbot's temporary suspension and repeated empty combat turns
+- [givre-root-causes-20261107](givre-root-causes-20261107.md) : Causes racines Givre prouvees par code le 2026-11-07 : bans MITM sans limitation, HDV 400ms codes en dur, memoire 514Mo/min, mods condamnes a tort, telefrag/portails en code mort
+- [givre-state-gated-combat-potential-20261106](givre-state-gated-combat-potential-20261106.md) : Source-level combat-planner correction and validation for excluding damage gated by unmet state requirements on 2026-11-06
+- [givre-stuff-eliotrope-huz](givre-stuff-eliotrope-huz.md) : Stuff Eliotrope 80 PVM Feu de HUZ a acheter pour Eliobot : composition exacte, panoplies, budget et regles d'achat fixees par l'utilisateur
+- [givre-summon-grade-preservation-20261105](givre-summon-grade-preservation-20261105.md) : Scope and verification of summon-grade preservation in GivreClone simulation.
+- [givre-test-regressions-20261107](givre-test-regressions-20261107.md) : 2026-11-07 full-suite regressions in GivreClone: ImmutableArray default crash, HS state-criterion fallback, Sram invisibility test expectation
+- [givre-three-account-farming-20261105](givre-three-account-farming-20261105.md) : Live miner and Frigost harvest evidence, Shadowbot one-HP stall, account assignments and pending acceptance
+- [givre-turbo-ban-analysis-20261107](givre-turbo-ban-analysis-20261107.md) : Why Givre accounts get 5-min bans/cuts in Turbo (2026-11-07 log analysis of 1042 fights) and the chosen fix direction
+- [givre-turbo-companion-validation-20261103](givre-turbo-companion-validation-20261103.md) : Current Turbo and companion defects, repeated combat validation requested, and critical-buff clarification
+- [givre-ux-scripts-wave2-20261106](givre-ux-scripts-wave2-20261106.md) : Progress and partial evidence from the Givre UX/scripts Wave 2 and follow-up combat/economy work on 2026-11-06; consult when resuming those parallel tracks.
+- [givre-walk-continuation-20261106](givre-walk-continuation-20261106.md) : Evidence and validation boundaries for replanning after confirmed combat movement exhausts a planned walk

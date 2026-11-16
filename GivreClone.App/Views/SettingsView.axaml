@@ -1,0 +1,491 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:vm="using:GivreClone.App.ViewModels"
+ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="760"
+ x:Class="GivreClone.App.Views.SettingsView"
+ x:DataType="vm:SettingsViewModel"
+ Classes="page">
+
+ <UserControl.Resources>
+ <x:String x:Key="Settings.PauseTurnsLabel">Pause après (tours)</x:String>
+ <x:String x:Key="Settings.AbandonTurnsLabel">Abandon après (tours)</x:String>
+ <x:String x:Key="Settings.FightPauseMinLabel">Pause entre combats, min (s)</x:String>
+ <x:String x:Key="Settings.FightPauseMaxLabel">Pause entre combats, max (s)</x:String>
+ <x:String x:Key="Settings.RemoteLabel">Activer l'accès depuis le téléphone</x:String>
+ <x:String x:Key="Settings.RemoteLanLabel">Autoriser aussi le réseau local (Wi-Fi)</x:String>
+ <x:String x:Key="Settings.SeasonalLabel">Décor de saison</x:String>
+ </UserControl.Resources>
+
+ <UserControl.Styles>
+ <Style Selector="NumericUpDown#PauseTurnsBox /template/ TextBox">
+ <Setter Property="AutomationProperties.Name" Value="{DynamicResource Settings.PauseTurnsLabel}" />
+ </Style>
+ <Style Selector="NumericUpDown#AbandonTurnsBox /template/ TextBox">
+ <Setter Property="AutomationProperties.Name" Value="{DynamicResource Settings.AbandonTurnsLabel}" />
+ </Style>
+ <Style Selector="NumericUpDown#FightPauseMinBox /template/ TextBox">
+ <Setter Property="AutomationProperties.Name" Value="{DynamicResource Settings.FightPauseMinLabel}" />
+ </Style>
+ <Style Selector="NumericUpDown#FightPauseMaxBox /template/ TextBox">
+ <Setter Property="AutomationProperties.Name" Value="{DynamicResource Settings.FightPauseMaxLabel}" />
+ </Style>
+ <Style Selector="Button.swatch">
+ <Setter Property="Background" Value="{StaticResource Surface1Brush}" />
+ <Setter Property="BorderBrush" Value="{StaticResource StrokeSoftBrush}" />
+ <Setter Property="BorderThickness" Value="1" />
+ <Setter Property="CornerRadius" Value="12" />
+ <Setter Property="Padding" Value="14,10" />
+ <Setter Property="Cursor" Value="Hand" />
+ </Style>
+ <Style Selector="Button.swatch:pointerover">
+ <Setter Property="Background" Value="{StaticResource HoverSoftBrush}" />
+ </Style>
+ <Style Selector="Button.swatch.active">
+ <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+ <Setter Property="BorderThickness" Value="2" />
+ <Setter Property="Background" Value="{StaticResource HoverMedBrush}" />
+ </Style>
+ </UserControl.Styles>
+
+ <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+ <StackPanel Margin="34,26,34,40" Spacing="22" MaxWidth="760" HorizontalAlignment="Left">
+
+ <TextBlock Classes="h1" Text="{DynamicResource L.Settings.Title}" />
+
+ <!-- langue -->
+ <StackPanel Spacing="12">
+ <TextBlock Classes="section" Text="{DynamicResource L.Settings.Language}" />
+ <Border Classes="card" Padding="16">
+ <StackPanel x:Name="LangSwatches" Orientation="Horizontal" Spacing="12">
+ <Button Classes="langpick" Tag="fr" Click="OnPickLang">
+ <StackPanel Orientation="Horizontal" Spacing="10">
+ <Image Source="avares://GivreClone/Assets/flags/fr.png" Width="34" Height="22" />
+ <TextBlock Text="Français" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ <Button Classes="langpick" Tag="en" Click="OnPickLang">
+ <StackPanel Orientation="Horizontal" Spacing="10">
+ <Image Source="avares://GivreClone/Assets/flags/en.png" Width="34" Height="22" />
+ <TextBlock Text="English" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ <Button Classes="langpick" Tag="es" Click="OnPickLang">
+ <StackPanel Orientation="Horizontal" Spacing="10">
+ <Image Source="avares://GivreClone/Assets/flags/es.png" Width="34" Height="22" />
+ <TextBlock Text="Español" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ </StackPanel>
+ </Border>
+ </StackPanel>
+
+ <!-- apparence -->
+ <StackPanel Spacing="12">
+ <TextBlock Classes="section" Text="{DynamicResource L.Settings.Appearance}" />
+ <TextBlock Classes="body" Foreground="{StaticResource TextMutedBrush}"
+ Text="{DynamicResource L.Settings.AppearanceDesc}" />
+ <Border Classes="card" Padding="16">
+ <WrapPanel x:Name="ThemeSwatches" Orientation="Horizontal" ItemWidth="176" ItemHeight="52">
+ <Button Classes="swatch" Tag="blue" Click="OnPickTheme" Margin="0,0,10,10" Width="166">
+ <StackPanel Orientation="Horizontal" Spacing="12">
+ <Border Width="22" Height="22" CornerRadius="11" Background="#4C8DFF" />
+ <TextBlock Text="{DynamicResource L.Settings.ThemeBlue}" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ <Button Classes="swatch" Tag="purple" Click="OnPickTheme" Margin="0,0,10,10" Width="166">
+ <StackPanel Orientation="Horizontal" Spacing="12">
+ <Border Width="22" Height="22" CornerRadius="11" Background="#9B6BFF" />
+ <TextBlock Text="{DynamicResource L.Settings.ThemePurple}" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ <Button Classes="swatch" Tag="emerald" Click="OnPickTheme" Margin="0,0,10,10" Width="166">
+ <StackPanel Orientation="Horizontal" Spacing="12">
+ <Border Width="22" Height="22" CornerRadius="11" Background="#2FD68A" />
+ <TextBlock Text="{DynamicResource L.Settings.ThemeEmerald}" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ <Button Classes="swatch" Tag="crimson" Click="OnPickTheme" Margin="0,0,10,10" Width="166">
+ <StackPanel Orientation="Horizontal" Spacing="12">
+ <Border Width="22" Height="22" CornerRadius="11" Background="#FF5C6E" />
+ <TextBlock Text="{DynamicResource L.Settings.ThemeCrimson}" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ <Button Classes="swatch" Tag="amber" Click="OnPickTheme" Margin="0,0,10,10" Width="166">
+ <StackPanel Orientation="Horizontal" Spacing="12">
+ <Border Width="22" Height="22" CornerRadius="11" Background="#F0A93C" />
+ <TextBlock Text="{DynamicResource L.Settings.ThemeAmber}" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ <Button Classes="swatch" Tag="dark" Click="OnPickTheme" Margin="0,0,10,10" Width="166">
+ <StackPanel Orientation="Horizontal" Spacing="12">
+ <Border Width="22" Height="22" CornerRadius="11" Background="#3A4150" />
+ <TextBlock Text="{DynamicResource L.Settings.ThemeDark}" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ </WrapPanel>
+ </Border>
+ </StackPanel>
+
+ <!-- interface: skin un bot tiers (disponible; SkinService.FeatureEnabled=true). Bascule = redémarrage (le
+ swap ne se fait pas à chaud; cf SkinService). Défaut = UI GivreClone. -->
+ <StackPanel Spacing="12">
+ <TextBlock Classes="section" Text="{DynamicResource L.Settings.Skin}" />
+ <Border Classes="card" Padding="18,14">
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Grid.Column="0" Spacing="2" Margin="0,0,14,0">
+ <TextBlock Text="{DynamicResource L.Settings.SkinSnow}" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Settings.SkinSnowDesc}" />
+ </StackPanel>
+ <ToggleSwitch Grid.Column="1" x:Name="SkinToggle" IsCheckedChanged="OnSkinToggled" VerticalAlignment="Top"
+ AutomationProperties.Name="{DynamicResource L.Settings.SkinSnow}"
+ OnContent="{DynamicResource L.Common.On}" OffContent="{DynamicResource L.Common.Off}" />
+ </Grid>
+ </Border>
+ </StackPanel>
+
+ <!-- contrôle à distance (téléphone) -->
+ <StackPanel Spacing="12">
+ <TextBlock Classes="section" Text="Contrôle à distance (téléphone)" />
+ <Border Classes="card" Padding="18,14">
+ <StackPanel Spacing="14">
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Grid.Column="0" Spacing="2">
+ <TextBlock Text="{DynamicResource Settings.RemoteLabel}" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" TextWrapping="Wrap" Text="Ouvre une page web de contrôle sur ce PC, protégée par un jeton. Accessible uniquement via Tailscale (et le réseau local si tu l'autorises) : jamais depuis Internet." />
+ </StackPanel>
+ <ToggleSwitch Grid.Column="1" x:Name="RemoteToggle" IsCheckedChanged="OnRemoteToggled"
+ AutomationProperties.Name="{DynamicResource Settings.RemoteLabel}"
+ OnContent="{DynamicResource L.Common.On}" OffContent="{DynamicResource L.Common.Off}" />
+ </Grid>
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Grid.Column="0" Spacing="2">
+ <TextBlock Text="{DynamicResource Settings.RemoteLanLabel}" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" Text="En plus de Tailscale. Garde-le désactivé si tu n'en as pas besoin." />
+ </StackPanel>
+ <ToggleSwitch Grid.Column="1" x:Name="RemoteLanToggle" IsCheckedChanged="OnRemoteLanToggled"
+ AutomationProperties.Name="{DynamicResource Settings.RemoteLanLabel}"
+ OnContent="{DynamicResource L.Common.On}" OffContent="{DynamicResource L.Common.Off}" />
+ </Grid>
+ <StackPanel Spacing="6" x:Name="RemoteDetails" IsVisible="False">
+ <TextBlock Classes="caption" Text="Adresse à ouvrir sur le téléphone" />
+ <TextBlock x:Name="RemoteAddresses" TextWrapping="Wrap" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" Text="Jeton (à saisir une fois sur le téléphone)" Margin="0,6,0,0" />
+ <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+ <TextBox x:Name="RemoteTokenBox" IsReadOnly="True" PasswordChar="●" />
+ <Button Grid.Column="1" Classes="ghost" Content="Copier" Click="OnRemoteCopyToken" />
+ <Button Grid.Column="2" Classes="ghost" Content="Nouveau jeton" Click="OnRemoteNewToken" />
+ </Grid>
+ </StackPanel>
+ </StackPanel>
+ </Border>
+ </StackPanel>
+
+ <!-- audio -->
+ <StackPanel Spacing="12">
+ <TextBlock Classes="section" Text="{DynamicResource L.Settings.Audio}" />
+ <Border Classes="card" Padding="18,14">
+ <StackPanel Spacing="14">
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Grid.Column="0" Spacing="2">
+ <TextBlock Text="{DynamicResource L.Settings.UiSounds}" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" Text="{DynamicResource L.Settings.UiSoundsDesc}" />
+ </StackPanel>
+ <ToggleSwitch Grid.Column="1" x:Name="SfxToggle" IsCheckedChanged="OnSfxToggled"
+ AutomationProperties.Name="{DynamicResource L.Settings.UiSounds}"
+ OnContent="{DynamicResource L.Common.On}" OffContent="{DynamicResource L.Common.Off}" />
+ </Grid>
+ <Grid ColumnDefinitions="*,150">
+ <StackPanel Grid.Column="0" Spacing="2" VerticalAlignment="Center">
+ <TextBlock Text="{DynamicResource L.Settings.UiSoundsVolume}" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" Text="{DynamicResource L.Settings.UiSoundsVolumeDesc}" />
+ </StackPanel>
+ <Slider Grid.Column="1" x:Name="SfxVolumeSlider" Minimum="0" Maximum="100"
+ AutomationProperties.Name="{DynamicResource L.Settings.UiSoundsVolume}"
+ VerticalAlignment="Center" ValueChanged="OnSfxVolumeChanged" />
+ </Grid>
+ <Border Height="1" Background="{StaticResource StrokeSoftBrush}" />
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Grid.Column="0" Spacing="2">
+ <TextBlock Text="{DynamicResource L.Settings.AmbientMusic}" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" Text="{DynamicResource L.Settings.AmbientMusicDesc}" />
+ </StackPanel>
+ <ToggleSwitch Grid.Column="1" x:Name="AmbientToggle" IsCheckedChanged="OnAmbientToggled"
+ AutomationProperties.Name="{DynamicResource L.Settings.AmbientMusic}"
+ OnContent="{DynamicResource L.Common.On}" OffContent="{DynamicResource L.Common.Off}" />
+ </Grid>
+ </StackPanel>
+ </Border>
+ </StackPanel>
+
+ <!-- effets -->
+ <StackPanel Spacing="12">
+ <TextBlock Classes="section" Text="{DynamicResource L.Settings.Effects}" />
+ <Border Classes="card" Padding="18,14">
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Grid.Column="0" Spacing="2">
+ <TextBlock Text="{DynamicResource L.Settings.BgParticles}" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" Text="{DynamicResource L.Settings.BgParticlesDesc}" />
+ </StackPanel>
+ <ToggleSwitch Grid.Column="1" x:Name="ParticlesToggle" IsCheckedChanged="OnParticlesToggled"
+ AutomationProperties.Name="{DynamicResource L.Settings.BgParticles}"
+ OnContent="{DynamicResource L.Common.On}" OffContent="{DynamicResource L.Common.Off}" />
+ </Grid>
+ </Border>
+ <Border Classes="card" Padding="18,14">
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Grid.Column="0" Spacing="2" Margin="0,0,14,0">
+ <TextBlock Text="{DynamicResource Settings.SeasonalLabel}" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" TextWrapping="Wrap" Text="Halloween (15 oct. – 2 nov.) et Noël (15 déc. – 2 janv.) : braises, chauves-souris, neige, par-dessus l'interface. Ne prend jamais un clic." />
+ </StackPanel>
+ <ToggleSwitch Grid.Column="1" x:Name="SeasonalToggle" IsCheckedChanged="OnSeasonalToggled"
+ AutomationProperties.Name="{DynamicResource Settings.SeasonalLabel}"
+ OnContent="{DynamicResource L.Common.On}" OffContent="{DynamicResource L.Common.Off}" />
+ </Grid>
+ </Border>
+ </StackPanel>
+
+ <!-- mods natifs (injection) -->
+ <StackPanel Spacing="12">
+ <TextBlock Classes="section" Text="{DynamicResource L.Settings.Mods}" />
+ <Border Classes="card" Padding="18,14">
+ <StackPanel>
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Grid.Column="0" Spacing="2" Margin="0,0,14,0">
+ <TextBlock Text="{DynamicResource L.Settings.ModsInject}" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Settings.ModsInjectDesc}" />
+ </StackPanel>
+ <ToggleSwitch Grid.Column="1" x:Name="ModsToggle" IsCheckedChanged="OnModsToggled" VerticalAlignment="Top"
+ AutomationProperties.Name="{DynamicResource L.Settings.ModsInject}"
+ OnContent="{DynamicResource L.Common.On}" OffContent="{DynamicResource L.Common.Off}" />
+ </Grid>
+ <StackPanel Margin="0,12,0,0" Spacing="8">
+ <TextBlock Classes="label" Text="Modules tactique / sans animations (source indépendant)" />
+ <TextBlock x:Name="NativeModHealth" Classes="caption" TextWrapping="Wrap"
+            Text="Diagnostic des binaires non réalisé." />
+ <Button Classes="ghost" HorizontalAlignment="Left" Content="Vérifier les modules hors ligne"
+         Click="OnRefreshNativeMods" />
+ </StackPanel>
+ </StackPanel>
+ </Border>
+ <!-- relance auto sur crash -->
+ <Border Classes="card" Padding="18,14">
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Grid.Column="0" Spacing="2" Margin="0,0,14,0">
+ <TextBlock Text="{DynamicResource L.Settings.AutoRelaunch}" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Settings.AutoRelaunchDesc}" />
+ </StackPanel>
+ <ToggleSwitch Grid.Column="1" x:Name="AutoRelaunchToggle" IsCheckedChanged="OnAutoRelaunchToggled" VerticalAlignment="Top"
+ AutomationProperties.Name="{DynamicResource L.Settings.AutoRelaunch}"
+ OnContent="{DynamicResource L.Common.On}" OffContent="{DynamicResource L.Common.Off}" />
+ </Grid>
+ </Border>
+ <!-- Sauvegarde / restauration des réglages (après un reset de PC, ou pour un autre PC). -->
+ <Border Classes="card" Padding="18,14">
+ <StackPanel Spacing="10">
+ <StackPanel Spacing="2">
+ <TextBlock Text="Sauvegarde des réglages" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" TextWrapping="Wrap" Text="Un zip avec tes profils de combat, plannings, scripts, réglages par perso, carnet et données éco. Les journaux et caches ne sont pas inclus. Après une restauration, relance l'appli." />
+ </StackPanel>
+ <CheckBox x:Name="BackupSecretsBox" Content="Inclure les comptes, proxys et identifiants d'appareil (contiennent des jetons : garde le zip pour toi)" />
+ <StackPanel Orientation="Horizontal" Spacing="8">
+ <Button Classes="ghost" Content="Exporter sur le Bureau" Click="OnExportSettings" />
+ <Button Classes="ghost" Content="Restaurer un zip…" Click="OnImportSettings" />
+ </StackPanel>
+ <TextBlock x:Name="BackupStatus" Classes="caption" TextWrapping="Wrap" />
+ </StackPanel>
+ </Border>
+ <!-- Combats sans fin : pause (on reprend la main) puis abandon éventuel, en nombre de MES tours. 0 = jamais. -->
+ <Border Classes="card" Padding="18,14">
+ <StackPanel Spacing="10">
+ <StackPanel Spacing="2">
+ <TextBlock Text="Combats anormalement longs" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" TextWrapping="Wrap" Text="Au-delà de N tours, le bot arrête de jouer et te laisse la main (pause), puis peut abandonner. 0 = jamais. Un combat abandonné est perdu." />
+ </StackPanel>
+ <Grid ColumnDefinitions="*,140" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="8">
+  <TextBlock x:Name="PauseTurnsLabel" Text="{DynamicResource Settings.PauseTurnsLabel}" VerticalAlignment="Center" />
+  <NumericUpDown Grid.Column="1" x:Name="PauseTurnsBox" AutomationProperties.Name="{DynamicResource Settings.PauseTurnsLabel}" Minimum="0" Maximum="1000" Increment="10" FormatString="0" ValueChanged="OnFightTurnsChanged" />
+  <TextBlock Grid.Row="1" x:Name="AbandonTurnsLabel" Text="{DynamicResource Settings.AbandonTurnsLabel}" VerticalAlignment="Center" />
+  <NumericUpDown Grid.Row="1" Grid.Column="1" x:Name="AbandonTurnsBox" AutomationProperties.Name="{DynamicResource Settings.AbandonTurnsLabel}" Minimum="0" Maximum="1000" Increment="10" FormatString="0" ValueChanged="OnFightTurnsChanged" />
+ </Grid>
+ <TextBlock Classes="caption" TextWrapping="Wrap" Text="Pause aléatoire entre deux combats : enchaîner des combats éclair toutes les quelques secondes a précédé chaque suspension temporaire observée. 0 et 0 = aucune pause." />
+ <Grid ColumnDefinitions="*,140" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="8">
+  <TextBlock x:Name="FightPauseMinLabel" Text="{DynamicResource Settings.FightPauseMinLabel}" VerticalAlignment="Center" />
+  <NumericUpDown Grid.Column="1" x:Name="FightPauseMinBox" AutomationProperties.Name="{DynamicResource Settings.FightPauseMinLabel}" Minimum="0" Maximum="600" Increment="5" FormatString="0" ValueChanged="OnFightTurnsChanged" />
+  <TextBlock Grid.Row="1" x:Name="FightPauseMaxLabel" Text="{DynamicResource Settings.FightPauseMaxLabel}" VerticalAlignment="Center" />
+  <NumericUpDown Grid.Row="1" Grid.Column="1" x:Name="FightPauseMaxBox" AutomationProperties.Name="{DynamicResource Settings.FightPauseMaxLabel}" Minimum="0" Maximum="600" Increment="5" FormatString="0" ValueChanged="OnFightTurnsChanged" />
+ </Grid>
+ </StackPanel>
+ </Border>
+ </StackPanel>
+
+ <!-- confidentialité: mode Recording/Stream -->
+ <StackPanel Spacing="12">
+ <TextBlock Classes="section" Text="{DynamicResource L.Settings.Privacy}" />
+ <Border Classes="card" Padding="18,14">
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Grid.Column="0" Spacing="2" Margin="0,0,14,0">
+ <TextBlock Text="{DynamicResource L.Settings.StreamMode}" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Settings.StreamModeDesc}" />
+ </StackPanel>
+ <ToggleSwitch Grid.Column="1" x:Name="StreamToggle" IsCheckedChanged="OnStreamToggled" VerticalAlignment="Top"
+ AutomationProperties.Name="{DynamicResource L.Settings.StreamMode}"
+ OnContent="{DynamicResource L.Common.On}" OffContent="{DynamicResource L.Common.Off}" />
+ </Grid>
+ </Border>
+ <!-- Captures de diagnostic: outils de reverse, visibles UNIQUEMENT avec la licence développeur (code-behind). -->
+ <Border Classes="card" Padding="18,14" x:Name="PacketDumpCard" IsVisible="False">
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Grid.Column="0" Spacing="2" Margin="0,0,14,0">
+ <TextBlock Text="{DynamicResource L.Settings.PacketDump}" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Settings.PacketDumpDesc}" />
+ </StackPanel>
+ <ToggleSwitch Grid.Column="1" x:Name="PacketDumpToggle" IsCheckedChanged="OnPacketDumpToggled" VerticalAlignment="Top"
+ AutomationProperties.Name="{DynamicResource L.Settings.PacketDump}"
+ OnContent="{DynamicResource L.Common.On}" OffContent="{DynamicResource L.Common.Off}" />
+ </Grid>
+ </Border>
+ <Border Classes="card" Padding="18,14" x:Name="PacketDumpAllCard" IsVisible="False">
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Grid.Column="0" Spacing="2" Margin="0,0,14,0">
+ <TextBlock Text="{DynamicResource L.Settings.PacketDumpAll}" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Settings.PacketDumpAllDesc}" />
+ </StackPanel>
+ <ToggleSwitch Grid.Column="1" x:Name="PacketDumpAllToggle" IsCheckedChanged="OnPacketDumpAllToggled" VerticalAlignment="Top"
+ AutomationProperties.Name="{DynamicResource L.Settings.PacketDumpAll}"
+ OnContent="{DynamicResource L.Common.On}" OffContent="{DynamicResource L.Common.Off}" />
+ </Grid>
+ </Border>
+ </StackPanel>
+
+ <!-- archimonstres -->
+ <StackPanel Spacing="12">
+ <TextBlock Classes="section" Text="{DynamicResource L.Settings.Arch}" />
+ <Border Classes="card" Padding="18,14">
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Grid.Column="0" Spacing="2" Margin="0,0,14,0">
+ <TextBlock Text="{DynamicResource L.Settings.ArchDm}" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Settings.ArchDmDesc}" />
+ </StackPanel>
+ <ToggleSwitch Grid.Column="1" x:Name="ArchDmToggle" IsCheckedChanged="OnArchDmToggled" VerticalAlignment="Top"
+ AutomationProperties.Name="{DynamicResource L.Settings.ArchDm}"
+ OnContent="{DynamicResource L.Common.On}" OffContent="{DynamicResource L.Common.Off}" />
+ </Grid>
+ </Border>
+ </StackPanel>
+
+ <!-- discord: rich presence -->
+ <StackPanel Spacing="12">
+ <TextBlock Classes="section" Text="{DynamicResource L.Settings.Discord}" />
+ <Border Classes="card" Padding="18,14">
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Grid.Column="0" Spacing="2" Margin="0,0,14,0">
+ <TextBlock Text="{DynamicResource L.Settings.RichPresence}" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Settings.RichPresenceDesc}" />
+ </StackPanel>
+ <ToggleSwitch Grid.Column="1" x:Name="RichPresenceToggle" IsCheckedChanged="OnRichPresenceToggled" VerticalAlignment="Top"
+ AutomationProperties.Name="{DynamicResource L.Settings.RichPresence}"
+ OnContent="{DynamicResource L.Common.On}" OffContent="{DynamicResource L.Common.Off}" />
+ </Grid>
+ </Border>
+ <!-- Rejoindre le Discord GivreClone (support, annonces, entraide) -->
+ <Border Classes="card" Padding="18,14">
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Grid.Column="0" Spacing="2" Margin="0,0,14,0" VerticalAlignment="Center">
+ <TextBlock Text="{DynamicResource L.Settings.DiscordJoin}" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Settings.DiscordJoinDesc}" />
+ </StackPanel>
+ <Button Grid.Column="1" Classes="discord" Click="OnJoinDiscord" VerticalAlignment="Center">
+ <StackPanel Orientation="Horizontal" Spacing="8">
+ <PathIcon Data="{StaticResource IconDiscord}" Width="15" Height="15" Foreground="White" />
+ <TextBlock Text="{DynamicResource L.Settings.DiscordJoinBtn}" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ </Grid>
+ </Border>
+ </StackPanel>
+
+ <!-- densité -->
+ <StackPanel Spacing="12">
+ <TextBlock Classes="section" Text="{DynamicResource L.Settings.ViewDensity}" />
+ <TextBlock Classes="body" Foreground="{StaticResource TextMutedBrush}"
+ Text="{DynamicResource L.Settings.ViewDensityDesc}" />
+ <Border Classes="card" Padding="16">
+ <WrapPanel x:Name="DensitySwatches" Orientation="Horizontal">
+ <Button Classes="swatch" Tag="compact" Click="OnPickDensity" Margin="0,0,10,10" Width="166">
+ <StackPanel Orientation="Horizontal" Spacing="12">
+ <TextBlock Text="A" FontSize="13" VerticalAlignment="Center"
+ Foreground="{StaticResource TextMutedBrush}" />
+ <TextBlock Text="{DynamicResource L.Settings.DensityCompact}" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ <Button Classes="swatch" Tag="normal" Click="OnPickDensity" Margin="0,0,10,10" Width="166">
+ <StackPanel Orientation="Horizontal" Spacing="12">
+ <TextBlock Text="A" FontSize="16" VerticalAlignment="Center"
+ Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Text="{DynamicResource L.Settings.DensityNormal}" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ <Button Classes="swatch" Tag="large" Click="OnPickDensity" Margin="0,0,10,10" Width="166">
+ <StackPanel Orientation="Horizontal" Spacing="12">
+ <TextBlock Text="A" FontSize="20" VerticalAlignment="Center"
+ Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Text="{DynamicResource L.Settings.DensityLarge}" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ </WrapPanel>
+ </Border>
+ </StackPanel>
+
+ <!-- mode d'affichage + mode discret -->
+ <StackPanel Spacing="12">
+ <TextBlock Classes="section" Text="Mode d'affichage" />
+ <Border Classes="card" Padding="16">
+ <StackPanel Spacing="14">
+ <StackPanel Spacing="8">
+ <TextBlock Text="Mode d'affichage : Standard / Expert / Développeur" Foreground="{StaticResource TextPrimaryBrush}" />
+ <StackPanel Orientation="Horizontal" Spacing="8">
+ <Button Classes="swatch" Width="150" Content="Standard" HorizontalContentAlignment="Center"
+ Command="{Binding SetUiModeCommand}" CommandParameter="standard"
+ Classes.active="{Binding IsStandardUi}" />
+ <Button Classes="swatch" Width="150" Content="Expert" HorizontalContentAlignment="Center"
+ Command="{Binding SetUiModeCommand}" CommandParameter="expert"
+ Classes.active="{Binding IsExpertOnlyUi}" />
+ <Button Classes="swatch" Width="150" Content="Développeur" HorizontalContentAlignment="Center"
+ Command="{Binding SetUiModeCommand}" CommandParameter="dev"
+ IsVisible="{Binding IsDeveloperLicense}"
+ Classes.active="{Binding IsDeveloperUi}" />
+ </StackPanel>
+ <TextBlock Classes="caption" TextWrapping="Wrap"
+ Text="Standard : l'essentiel. Expert : réglages avancés. Développeur : outils de diagnostic (licence développeur)." />
+ </StackPanel>
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Grid.Column="0" Spacing="2" Margin="0,0,14,0">
+ <TextBlock Text="Mode discret (masquer identifiants sensibles)" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption" TextWrapping="Wrap"
+ Text="Masque les identifiants sensibles à l'écran, utile pour un stream ou une capture." />
+ </StackPanel>
+ <ToggleSwitch Grid.Column="1" IsChecked="{Binding StreamerPrivacy, Mode=TwoWay}" VerticalAlignment="Top"
+ AutomationProperties.Name="Mode discret (masquer identifiants sensibles)"
+ OnContent="{DynamicResource L.Common.On}" OffContent="{DynamicResource L.Common.Off}" />
+ </Grid>
+ </StackPanel>
+ </Border>
+ </StackPanel>
+
+ <!-- à propos -->
+ <StackPanel Spacing="12">
+ <TextBlock Classes="section" Text="{DynamicResource L.Settings.About}" />
+ <Border Classes="card" Padding="18,14">
+ <StackPanel Spacing="4">
+ <TextBlock Text="{DynamicResource L.Settings.AboutName}" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Classes="caption"
+ Text="{DynamicResource L.Settings.AboutDesc}" />
+ </StackPanel>
+ </Border>
+ </StackPanel>
+
+ </StackPanel>
+ </ScrollViewer>
+</UserControl>

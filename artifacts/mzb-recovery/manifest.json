@@ -1,0 +1,32 @@
+[
+  {
+    "source": "%USERPROFILE%\\AppData\\Local\\Mizan\\app\\MizanBot.exe",
+    "artifact": "payload\\MZBBot.exe",
+    "bytes": 58519552,
+    "sha256": "c88ce04cde1e823662232b0f04aec89dad6e234cfd615f7bbae488ad635ebc50"
+  },
+  {
+    "source": "%USERPROFILE%\\AppData\\Local\\Mizan\\app\\MizanKama.dll",
+    "artifact": "payload\\MZBKama.dll",
+    "bytes": 12458496,
+    "sha256": "6d32e460a1f5e066fe83ab8849e4f2ea54566139ea992fd99b9ed342f76e2867"
+  },
+  {
+    "source": "%USERPROFILE%\\AppData\\Local\\Mizan\\app\\MizanMods.dll",
+    "artifact": "payload\\MZBMods.dll",
+    "bytes": 12512768,
+    "sha256": "706d979fc5434cef58ad554ac7400d3b0ace66b2a674d46aa153d04ea21792c7"
+  },
+  {
+    "source": "%USERPROFILE%\\AppData\\Local\\Mizan\\app\\MizanMcp.exe",
+    "artifact": "payload\\MZBMcp.exe",
+    "bytes": 1863168,
+    "sha256": "0de63ef10a699b452cf920b50cc558c506bae960eb030422181d1a6c02d05d36"
+  },
+  {
+    "source": "%USERPROFILE%\\AppData\\Local\\Mizan\\app\\WebAuth\\MizanLauncher.WebAuth.dll",
+    "artifact": "payload\\MZBLauncher.WebAuth.dll",
+    "bytes": 82944,
+    "sha256": "040d9af63b2ed1fb0fcc3b7feef9730a1a60a330778dc7f8b225fc9dcb875377"
+  }
+]

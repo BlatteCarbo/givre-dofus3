@@ -1,0 +1,212 @@
+{
+  "mission": "N03",
+  "date_local": "2026-11-04",
+  "provenance": "Contrôles locaux en lecture seule via CoS Core; aucun jeu, test, build ou benchmark lancé",
+  "state": "BLOCKED_NO_BENCHMARK",
+  "benchmark_executed": false,
+  "benchmark_runs": 0,
+  "benchmark_samples": [],
+  "slow_cases_observed": [],
+  "raw_decisions_observed": [],
+  "duration_distribution_ms": null,
+  "allocated_bytes_distribution": null,
+  "measured_nodes_expanded": null,
+  "actual_work_used": null,
+  "issues": [
+    "Dofus et GivreClone actifs : absence de sessions non certifiée et contamination CPU possible",
+    "Processus dotnet transitoires observés, rôle non attribué",
+    "Binaires Release/Debug antérieurs au test et au planificateur actuels",
+    "Banc existant ne publie pas les 15 échantillons bruts, ni noeuds ni cas lents",
+    "Dépendances transversales vers GivreProxy et GivreLauncher rendent une copie partielle dangereuse"
+  ],
+  "platform": {
+    "manufacturer": "HP",
+    "model": "HP Laptop 14s-dq2xxx",
+    "cpu": "11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz",
+    "cores": 4,
+    "logical_processors": 8,
+    "max_clock_mhz_reported": 2701,
+    "physical_memory_bytes": 16805027840,
+    "os_name": "Windows",
+    "os_version": "10.0.26300",
+    "rid": "win-x64",
+    "dotnet_sdk": "10.0.402",
+    "msbuild": "18.9.15",
+    "dotnet_host": "10.0.13",
+    "dotnet_runtimes": [
+      "8.0.32",
+      "10.0.13"
+    ],
+    "target_framework": "net10.0"
+  },
+  "processes": {
+    "initial": [
+      {
+        "name": "Ankama Launcher",
+        "pid": 11356,
+        "start_local": "2026-11-03 18:04:17"
+      },
+      {
+        "name": "Dofus",
+        "pid": 14252,
+        "start_local": "2026-11-04 12:15:35"
+      },
+      {
+        "name": "GivreClone",
+        "pid": 15976,
+        "start_local": "2026-11-04 12:14:30"
+      },
+      {
+        "name": "UnityCrashHandler64",
+        "pid": 28220,
+        "start_local": "2026-11-04 12:15:36"
+      }
+    ],
+    "dotnet_second_snapshot": [
+      3956,
+      13060,
+      15180,
+      20256,
+      25708,
+      29220,
+      29224
+    ],
+    "dotnet_second_start_times_local": [
+      "2026-11-04 12:59:35",
+      "2026-11-04 12:59:48"
+    ],
+    "dotnet_last_snapshot": "no_process_matching_dotnet",
+    "session_absence_certified": false,
+    "processes_modified": false
+  },
+  "existing_fixture": {
+    "path": "GivreClone.Tests/CombatPlannerPerformanceTests.cs",
+    "test": "Full_board_budgeted_search_is_repeatable",
+    "cells": 560,
+    "fighters": 3,
+    "spells": 19,
+    "ap": 11,
+    "mp": 5,
+    "budget_maxWork": 60000,
+    "expected_work_assertion": 60000,
+    "initial_expected_calls": 1,
+    "additional_warmup_calls": 5,
+    "measured_calls_defined": 15,
+    "measured_calls_executed_N03": 0,
+    "reported_fields_from_source": [
+      "min_ms",
+      "median_ms",
+      "max_ms",
+      "median_allocated_bytes_current_thread",
+      "work_units",
+      "budget_exhausted",
+      "actions",
+      "score"
+    ],
+    "reported_raw_individual_samples": false,
+    "nodes_exposed": false,
+    "source_status": "READ_NOT_RUN"
+  },
+  "engine_from_source": {
+    "path": "GivreClone.App/Services/Combat/CombatTurnPlanner.cs",
+    "default_maxWork": 180000,
+    "beam_width": 8,
+    "max_depth": 3,
+    "work_is_node_count": false,
+    "internal_budget_consumers": [
+      "threat_map",
+      "reachability",
+      "cast_candidates",
+      "enemy_replies",
+      "beam"
+    ]
+  },
+  "source_evidence": [
+    {
+      "rel": "GivreClone.Tests/CombatPlannerPerformanceTests.cs",
+      "sha256": "628E6BA91F0611F433335D395ECB7A62232E67A77AA29C49A05F7132131BD917",
+      "bytes": 2706,
+      "modified_utc": "2026-11-03T18:05:17.9805947Z"
+    },
+    {
+      "rel": "GivreClone.App/Services/Combat/CombatTurnPlanner.cs",
+      "sha256": "7618468265FC2D32B6C186ADFB0E3917947A1C03B6C7C5E903344399BB142A3F",
+      "bytes": 42395,
+      "modified_utc": "2026-11-04T08:36:02.1923772Z"
+    },
+    {
+      "rel": "GivreClone.Tests/GivreClone.Tests.csproj",
+      "sha256": "2F6FA9397EACAD604992A38F67A11B53D91CD183D742CE2EA4D693E4936BE5FF",
+      "bytes": 20675,
+      "modified_utc": "2026-11-03T09:15:25.0091463Z"
+    }
+  ],
+  "binary_evidence": [
+    {
+      "rel": "GivreClone.Tests/bin/Release/net10.0/GivreClone.Tests.dll",
+      "sha256": "E903031B9AA0989A3D2DCEB5E712F4D903EAE04EA3F067128B6CB4602A45B1E6",
+      "bytes": 5060608,
+      "modified_utc": "2026-11-03T12:49:22.3642722Z"
+    },
+    {
+      "rel": "GivreClone.Tests/bin/Debug/net10.0/GivreClone.Tests.dll",
+      "sha256": "BF439E8644500DA03283A85B1EB400F2EF116F86796B8C6EDF37CB14292FF5B9",
+      "bytes": 5325824,
+      "modified_utc": "2026-11-03T17:07:10.7923345Z"
+    }
+  ],
+  "audit_command_results": [
+    {
+      "purpose": "initial_processes",
+      "command": "Get-Process | Where-Object { $_.ProcessName -match '(?i)dofus|ankama|givre|dotnet|testhost|msbuild|vstest|java|unity' } | Select-Object ProcessName,Id,CPU,StartTime",
+      "exit_code": 0
+    },
+    {
+      "purpose": "sdk_info",
+      "command": "dotnet --info",
+      "exit_code": 0
+    },
+    {
+      "purpose": "hardware",
+      "command": "Get-CimInstance Win32_Processor | Select-Object Name,NumberOfCores,NumberOfLogicalProcessors,MaxClockSpeed",
+      "exit_code": 0
+    },
+    {
+      "purpose": "memory",
+      "command": "Get-CimInstance Win32_ComputerSystem | Select-Object TotalPhysicalMemory,Manufacturer,Model",
+      "exit_code": 0
+    },
+    {
+      "purpose": "hashes",
+      "command": "Get-FileHash -Algorithm SHA256 -LiteralPath <fixture|planner|csproj|test_dll>",
+      "exit_code": 0,
+      "redacted_placeholders": true
+    },
+    {
+      "purpose": "existing_trx_lookup",
+      "command": "rg -l -g '*.trx' 'Full_board_budgeted_search_is_repeatable' GivreClone.Tests/TestResults",
+      "exit_code": 1,
+      "result": "no_match"
+    },
+    {
+      "purpose": "global_file_inventory",
+      "command": "rg --files -g AGENTS.md -g '!**/bin/**' -g '!**/obj/**' -g '!**/.git/**'",
+      "exit_code": 2,
+      "result": "access_denied_two_artifacts_subdirs"
+    },
+    {
+      "purpose": "package_and_reference_presence",
+      "command": "Test-Path for sibling project csproj and project.assets.json",
+      "exit_code": 0,
+      "result": "present"
+    },
+    {
+      "purpose": "dotnet_last_snapshot",
+      "command": "Get-Process -Name dotnet -ErrorAction SilentlyContinue | Select-Object -First 15 Id,CPU,StartTime",
+      "exit_code": 1,
+      "result": "no_match"
+    }
+  ],
+  "next_action": "Ne lancer le banc qu'après fin naturelle des sessions et vérification de la copie complète/isolée et du build offline; protocole PREUVES.md",
+  "no_source_or_git_mutation": true
+}

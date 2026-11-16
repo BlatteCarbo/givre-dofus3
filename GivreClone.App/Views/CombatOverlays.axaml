@@ -1,0 +1,427 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             xmlns:acv="using:Avalonia.Data.Converters"
+             xmlns:conv="using:GivreClone.App.Converters"
+             x:Class="GivreClone.App.Views.CombatOverlays"
+             x:DataType="vm:BotsViewModel">
+    <Panel>
+    <!-- Overlay niveau fenêtre : modal de configuration d'UN sort (onglet Sorts -> Configurer). -->
+    <Grid Classes.modalOpen="{Binding SpellConfigVisible}" IsHitTestVisible="{Binding SpellConfigVisible}"
+          IsEnabled="{Binding SpellConfigVisible}">
+        <Border Classes="modalScrim" PointerPressed="OnScrimPressed" />
+        <Border Classes="modalCard" Width="660" MaxHeight="640" Padding="0" CornerRadius="16"
+                Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid RowDefinitions="Auto,Auto,*,Auto">
+
+                <!-- En-tête : icône + nom du sort -->
+                <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" Margin="22,20,18,14">
+                    <Image Grid.Column="0" Source="{Binding EditingSpell.Icon}" Width="34" Height="34" VerticalAlignment="Center"
+                           IsVisible="{Binding EditingSpell.Icon, Converter={x:Static acv:ObjectConverters.IsNotNull}}" />
+                    <StackPanel Grid.Column="1" Spacing="1" Margin="12,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="{DynamicResource L.Bots.Combat.SpellConfigTitle}" Classes="caption" Foreground="{DynamicResource AccentBrightBrush}" />
+                        <TextBlock Text="{Binding EditingSpell.Name}" FontSize="18" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+                    <Button Grid.Column="2" Classes="ghost" Width="34" Height="34" MinWidth="0" Padding="0" VerticalAlignment="Center"
+                            Command="{Binding CloseSpellConfigCommand}" ToolTip.Tip="{DynamicResource L.Common.Close}">
+                        <PathIcon Data="{StaticResource IconClose}" Width="15" Height="15" />
+                    </Button>
+                </Grid>
+
+                <!-- Sous-onglets segmentés -->
+                <Border Grid.Row="1" Classes="segbar" Margin="22,0,22,4">
+                    <StackPanel Orientation="Horizontal" Spacing="3">
+                        <RadioButton x:Name="cfgEssentiel" Classes="seg" GroupName="spellCfg" IsChecked="True">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <Image Source="avares://GivreClone/Assets/stats/pa.png" Width="15" Height="15" VerticalAlignment="Center" />
+                                <TextBlock Text="{DynamicResource L.Bots.Combat.TabEssential}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </RadioButton>
+                        <RadioButton x:Name="cfgPlacement" Classes="seg" GroupName="spellCfg">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <Image Source="avares://GivreClone/Assets/stats/po.png" Width="15" Height="15" VerticalAlignment="Center" />
+                                <TextBlock Text="{DynamicResource L.Bots.Combat.TabPlacement}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </RadioButton>
+                        <RadioButton x:Name="cfgConditions" Classes="seg" GroupName="spellCfg">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <Image Source="avares://GivreClone/Assets/stats/pv.png" Width="15" Height="15" VerticalAlignment="Center" />
+                                <TextBlock Text="{DynamicResource L.Bots.Combat.TabAdvConditions}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </RadioButton>
+                    </StackPanel>
+                </Border>
+
+                <!-- Contenu -->
+                <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="22,10,22,10">
+                    <Panel>
+                        <!-- ===== ESSENTIEL ===== -->
+                        <StackPanel Classes="subtab" Spacing="16" IsVisible="{Binding #cfgEssentiel.IsChecked}"
+                                    Opacity="{Binding #cfgEssentiel.IsChecked, Converter={x:Static conv:BoolToDoubleConverter.Instance}, ConverterParameter=1}">
+                            <StackPanel.Styles>
+                                <Style Selector="NumericUpDown"><Setter Property="Background" Value="{StaticResource Surface2Brush}" /><Setter Property="MinHeight" Value="34" /></Style>
+                            </StackPanel.Styles>
+                            <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="12">
+                                <StackPanel Grid.Column="0" Spacing="5">
+                                    <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Combat.ColPriority}" />
+                                    <NumericUpDown Value="{Binding EditingSpell.Priority}" Minimum="0" Maximum="99" Increment="1" FormatString="0" ShowButtonSpinner="False" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Spacing="5">
+                                    <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Combat.ColPerTurn}" />
+                                    <NumericUpDown Value="{Binding EditingSpell.PerTurn}" Minimum="1" Maximum="20" Increment="1" FormatString="0" ShowButtonSpinner="False" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Spacing="5">
+                                    <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Combat.ColCooldown}" />
+                                    <NumericUpDown Value="{Binding EditingSpell.Cooldown}" Minimum="0" Maximum="20" Increment="1" FormatString="0" ShowButtonSpinner="False" ToolTip.Tip="{DynamicResource L.Bots.Combat.CooldownTip}" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="3" Spacing="5">
+                                    <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Combat.ColPerTarget}" />
+                                    <NumericUpDown Value="{Binding EditingSpell.MaxPerTarget}" Minimum="0" Maximum="20" Increment="1" FormatString="0" ShowButtonSpinner="False" ToolTip.Tip="{DynamicResource L.Bots.Combat.PerTargetCfgTip}" />
+                                </StackPanel>
+                            </Grid>
+                            <Border Background="{StaticResource Surface1Brush}" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1" CornerRadius="10" Padding="14,12">
+                                <StackPanel Spacing="10">
+                                    <TextBlock Classes="label" Text="{DynamicResource L.Bots.Combat.QuickRules}" />
+                                    <CheckBox IsChecked="{Binding EditingSpell.Enabled}" Content="{DynamicResource L.Bots.Combat.RuleEnabled}" FontSize="12.5" />
+                                    <CheckBox IsChecked="{Binding EditingSpell.OnMe}" Content="{DynamicResource L.Bots.Combat.RuleOnMe}" FontSize="12.5" ToolTip.Tip="{DynamicResource L.Bots.Combat.SelfCastTip}" />
+                                    <CheckBox IsChecked="{Binding EditingSpell.SelfBuff}" IsEnabled="{Binding EditingSpell.OnMe}" Content="{DynamicResource L.Bots.Combat.RuleBuff}" FontSize="12.5" ToolTip.Tip="{DynamicResource L.Bots.Combat.SelfBuffTip}" />
+                                    <CheckBox IsChecked="{Binding EditingSpell.IsSummon}" Content="{DynamicResource L.Bots.Combat.RuleSummon}" FontSize="12.5" ToolTip.Tip="{DynamicResource L.Bots.Combat.SummonTip}" />
+                                    <CheckBox IsChecked="{Binding EditingSpell.TargetAlly}" Content="{DynamicResource L.Bots.Combat.RuleTargetAlly}" FontSize="12.5" ToolTip.Tip="{DynamicResource L.Bots.Combat.TargetAllyTip}" />
+                                    <CheckBox IsChecked="{Binding EditingSpell.TargetAdjacent}" Content="Lancer sur une case adjacente" FontSize="12.5" ToolTip.Tip="Le sort est lancé sur une des cases collées à toi : celle qui touche le plus d'ennemis dans sa zone (corps-à-corps, zones autour de soi). Rien à toucher autour de toi : sort suivant." />
+                                    <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding EditingSpell.IsSummon}">
+                                        <TextBlock Text="{DynamicResource L.Bots.Combat.MaxSummons}" VerticalAlignment="Center" FontSize="12.5" Foreground="{StaticResource TextSecondaryBrush}" />
+                                        <NumericUpDown Value="{Binding EditingSpell.MaxSummons}" Minimum="1" Maximum="20" Increment="1" FormatString="0" Width="120" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+
+                        <!-- ===== PLACEMENT & ZONES ===== -->
+                        <StackPanel Classes="subtab" Spacing="12" IsVisible="{Binding #cfgPlacement.IsChecked}"
+                                    Opacity="{Binding #cfgPlacement.IsChecked, Converter={x:Static conv:BoolToDoubleConverter.Instance}, ConverterParameter=1}">
+                            <StackPanel.Styles>
+                                <Style Selector="NumericUpDown"><Setter Property="Background" Value="{StaticResource Surface2Brush}" /><Setter Property="MinHeight" Value="34" /></Style>
+                                <Style Selector="NumericUpDown /template/ TextBox"><Setter Property="Background" Value="Transparent" /><Setter Property="HorizontalContentAlignment" Value="Center" /><Setter Property="TextAlignment" Value="Center" /></Style>
+                            </StackPanel.Styles>
+                            <!-- Portée de tir (kite / rapprochement) -->
+                            <Border Background="#141E88E5" BorderBrush="#261E88E5" BorderThickness="1" CornerRadius="10" Padding="14,13" ToolTip.Tip="{DynamicResource L.Bots.Combat.PlaceRangeTip}">
+                                <StackPanel Spacing="11">
+                                    <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                        <Image Source="avares://GivreClone/Assets/stats/po.png" Width="17" Height="17" VerticalAlignment="Center" />
+                                        <TextBlock Classes="label" Text="{DynamicResource L.Bots.Combat.PlaceRange}" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="14">
+                                        <StackPanel Grid.Column="0" Spacing="5">
+                                            <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Combat.PlaceRangeMin}" />
+                                            <NumericUpDown Value="{Binding EditingSpell.CastRangeMin}" Minimum="0" Maximum="20" Increment="1" FormatString="0" ShowButtonSpinner="False" ToolTip.Tip="{DynamicResource L.Bots.Combat.PlaceRangeMinTip}" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Spacing="5">
+                                            <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Combat.PlaceRangeMax}" />
+                                            <NumericUpDown Value="{Binding EditingSpell.CastRangeMax}" Minimum="0" Maximum="20" Increment="1" FormatString="0" ShowButtonSpinner="False" ToolTip.Tip="{DynamicResource L.Bots.Combat.PlaceRangeMaxTip}" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Combat.PlaceRangeHint}" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Border>
+                            <!-- Déplacement -->
+                            <Border Background="{StaticResource Surface1Brush}" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1" CornerRadius="10" Padding="14,13">
+                                <StackPanel Spacing="9">
+                                    <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                        <Image Source="avares://GivreClone/Assets/stats/pm.png" Width="16" Height="16" VerticalAlignment="Center" />
+                                        <TextBlock Classes="label" Text="{DynamicResource L.Bots.Combat.PlaceMove}" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <CheckBox IsChecked="{Binding EditingSpell.AllowApproach}" Content="{DynamicResource L.Bots.Combat.PlaceApproach}" FontSize="12.5" ToolTip.Tip="{DynamicResource L.Bots.Combat.PlaceApproachTip}" />
+                                    <TextBlock Classes="caption" TextWrapping="Wrap" Foreground="{StaticResource AmberBrush}"
+                                               IsVisible="{Binding CombatNeverApproach}"
+                                               Text="{DynamicResource L.Bots.Combat.NeverApproachHint}" />
+                                    <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Combat.PlaceApproachHint}" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+
+                        <!-- ===== CONDITIONS AVANCÉES ===== -->
+                        <StackPanel Classes="subtab" Spacing="4" IsVisible="{Binding #cfgConditions.IsChecked}"
+                                    Opacity="{Binding #cfgConditions.IsChecked, Converter={x:Static conv:BoolToDoubleConverter.Instance}, ConverterParameter=1}">
+                            <StackPanel.Styles>
+                                <Style Selector="NumericUpDown"><Setter Property="Background" Value="{StaticResource Surface2Brush}" /><Setter Property="MinHeight" Value="32" /></Style>
+                                <Style Selector="NumericUpDown /template/ TextBox"><Setter Property="Background" Value="Transparent" /><Setter Property="HorizontalContentAlignment" Value="Center" /><Setter Property="TextAlignment" Value="Center" /></Style>
+                            </StackPanel.Styles>
+                            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                                <!-- PV de la cible -->
+                                <Border Grid.Column="0" Background="#14F0533B" BorderBrush="#26F0533B" BorderThickness="1" CornerRadius="9" Padding="12,11" ToolTip.Tip="{DynamicResource L.Bots.Combat.CondTgtHpTip}">
+                                    <StackPanel Spacing="9">
+                                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                            <Image Source="avares://GivreClone/Assets/stats/pv.png" Width="16" Height="16" VerticalAlignment="Center" />
+                                            <TextBlock Classes="label" Text="{DynamicResource L.Bots.Combat.CondGroupTarget}" VerticalAlignment="Center" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                                            <NumericUpDown Value="{Binding EditingSpell.TgtHpMin}" Minimum="0" Maximum="100" Increment="5" FormatString="0" ShowButtonSpinner="False" Width="66" ToolTip.Tip="{DynamicResource L.Bots.Combat.CondHpMinTip}" />
+                                            <TextBlock Text="–" VerticalAlignment="Center" Foreground="{StaticResource TextMutedBrush}" />
+                                            <NumericUpDown Value="{Binding EditingSpell.TgtHpMax}" Minimum="0" Maximum="100" Increment="5" FormatString="0" ShowButtonSpinner="False" Width="66" ToolTip.Tip="{DynamicResource L.Bots.Combat.CondHpMaxTip}" />
+                                            <TextBlock Text="%" VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" />
+                                        </StackPanel>
+                                        <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Combat.CondTgtHpDesc}" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </Border>
+                                <!-- PV du personnage -->
+                                <Border Grid.Column="1" Background="#143BD17E" BorderBrush="#263BD17E" BorderThickness="1" CornerRadius="9" Padding="12,11" ToolTip.Tip="{DynamicResource L.Bots.Combat.CondSelfHpTip}">
+                                    <StackPanel Spacing="9">
+                                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                            <Image Source="avares://GivreClone/Assets/stats/pv.png" Width="16" Height="16" VerticalAlignment="Center" />
+                                            <TextBlock Classes="label" Text="{DynamicResource L.Bots.Combat.CondGroupSelf}" VerticalAlignment="Center" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                                            <NumericUpDown Value="{Binding EditingSpell.SelfHpMin}" Minimum="0" Maximum="100" Increment="5" FormatString="0" ShowButtonSpinner="False" Width="66" ToolTip.Tip="{DynamicResource L.Bots.Combat.CondHpMinTip}" />
+                                            <TextBlock Text="–" VerticalAlignment="Center" Foreground="{StaticResource TextMutedBrush}" />
+                                            <NumericUpDown Value="{Binding EditingSpell.SelfHpMax}" Minimum="0" Maximum="100" Increment="5" FormatString="0" ShowButtonSpinner="False" Width="66" ToolTip.Tip="{DynamicResource L.Bots.Combat.CondHpMaxTip}" />
+                                            <TextBlock Text="%" VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" />
+                                        </StackPanel>
+                                        <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Combat.CondSelfHpDesc}" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </Border>
+                                <!-- Contexte -->
+                                <Border Grid.Column="2" Background="#14F0A93C" BorderBrush="#26F0A93C" BorderThickness="1" CornerRadius="9" Padding="12,11">
+                                    <StackPanel Spacing="8">
+                                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                            <Image Source="avares://GivreClone/Assets/stats/tools.png" Width="16" Height="16" VerticalAlignment="Center" />
+                                            <TextBlock Classes="label" Text="{DynamicResource L.Bots.Combat.CondGroupContext}" VerticalAlignment="Center" />
+                                        </StackPanel>
+                                        <Grid ColumnDefinitions="19,*,64" ColumnSpacing="8" ToolTip.Tip="{DynamicResource L.Bots.Combat.CondMinApTip}">
+                                            <Image Grid.Column="0" Source="avares://GivreClone/Assets/stats/pa.png" Width="15" Height="15" VerticalAlignment="Center" />
+                                            <TextBlock Grid.Column="1" Classes="caption" Text="{DynamicResource L.Bots.Combat.CondMinAp}" VerticalAlignment="Center" />
+                                            <NumericUpDown Grid.Column="2" Value="{Binding EditingSpell.MinAp}" Minimum="0" Maximum="12" Increment="1" FormatString="0" ShowButtonSpinner="False" />
+                                        </Grid>
+                                        <Grid ColumnDefinitions="19,*,64" ColumnSpacing="8" ToolTip.Tip="{DynamicResource L.Bots.Combat.CondMinTurnTip}">
+                                            <Image Grid.Column="0" Source="avares://GivreClone/Assets/stats/initiative.png" Width="15" Height="15" VerticalAlignment="Center" />
+                                            <TextBlock Grid.Column="1" Classes="caption" Text="{DynamicResource L.Bots.Combat.CondMinTurn}" VerticalAlignment="Center" />
+                                            <NumericUpDown Grid.Column="2" Value="{Binding EditingSpell.MinTurn}" Minimum="0" Maximum="50" Increment="1" FormatString="0" ShowButtonSpinner="False" />
+                                        </Grid>
+                                        <Grid ColumnDefinitions="19,*,64" ColumnSpacing="8" ToolTip.Tip="{DynamicResource L.Bots.Combat.CondMinEnemiesTip}">
+                                            <Image Grid.Column="0" Source="avares://GivreClone/Assets/stats/combat.png" Width="15" Height="15" VerticalAlignment="Center" />
+                                            <TextBlock Grid.Column="1" Classes="caption" Text="{DynamicResource L.Bots.Combat.CondMinEnemies}" VerticalAlignment="Center" />
+                                            <NumericUpDown Grid.Column="2" Value="{Binding EditingSpell.MinEnemies}" Minimum="0" Maximum="20" Increment="1" FormatString="0" ShowButtonSpinner="False" />
+                                        </Grid>
+                                        <Grid ColumnDefinitions="19,*,64" ColumnSpacing="8" ToolTip.Tip="{DynamicResource L.Bots.Combat.CondMinAoeHitsTip}">
+                                            <Image Grid.Column="0" Source="avares://GivreClone/Assets/stats/combat.png" Width="15" Height="15" VerticalAlignment="Center" />
+                                            <TextBlock Grid.Column="1" Classes="caption" Text="{DynamicResource L.Bots.Combat.CondMinAoeHits}" VerticalAlignment="Center" />
+                                            <NumericUpDown Grid.Column="2" Value="{Binding EditingSpell.MinAoeHits}" Minimum="0" Maximum="20" Increment="1" FormatString="0" ShowButtonSpinner="False" />
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </StackPanel>
+                    </Panel>
+                </ScrollViewer>
+
+                <!-- Pied : Terminer -->
+                <Border Grid.Row="3" Background="#12000000" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="0,1,0,0" Padding="22,14">
+                    <Button Classes="primary" Height="40" MinWidth="130" HorizontalAlignment="Right" Command="{Binding CloseSpellConfigCommand}">
+                        <StackPanel Orientation="Horizontal" Spacing="7">
+                            <PathIcon Data="{StaticResource IconCheck}" Width="14" Height="14" />
+                            <TextBlock Text="{DynamicResource L.Bots.Combat.Done}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+
+    <!-- Overlay niveau fenêtre : « Challenges acceptés » (carte Challenges de l'onglet Combat). -->
+    <Grid Classes.modalOpen="{Binding ChallengeListVisible}" IsHitTestVisible="{Binding ChallengeListVisible}"
+          IsEnabled="{Binding ChallengeListVisible}">
+        <Border Classes="modalScrim" PointerPressed="OnChallengeScrimPressed" />
+        <Border Classes="modalCard" Width="700" MaxHeight="680" Padding="0" CornerRadius="16"
+                Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid RowDefinitions="Auto,*,Auto">
+                <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="22,20,18,12">
+                    <StackPanel Grid.Column="0" Spacing="4">
+                        <TextBlock Text="{DynamicResource L.Bots.Combat.ChallengeListTitle}" FontSize="18" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" />
+                        <TextBlock Text="{DynamicResource L.Bots.Combat.ChallengeListSub}" Classes="caption" TextWrapping="Wrap" />
+                    </StackPanel>
+                    <Button Grid.Column="1" Classes="ghost" Width="34" Height="34" MinWidth="0" Padding="0" VerticalAlignment="Top"
+                            Command="{Binding CloseChallengeListCommand}" ToolTip.Tip="{DynamicResource L.Common.Close}">
+                        <PathIcon Data="{StaticResource IconClose}" Width="15" Height="15" />
+                    </Button>
+                </Grid>
+
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="22,4,22,12">
+                    <ItemsControl ItemsSource="{Binding ChallengeChoices}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate><StackPanel Spacing="6" /></ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:ChallengeChoiceRow">
+                                <Border Background="{StaticResource Surface1Brush}" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1"
+                                        CornerRadius="10" Padding="12,9">
+                                    <Grid ColumnDefinitions="Auto,Auto,*,Auto" ColumnSpacing="10">
+                                        <CheckBox Grid.Column="0" IsChecked="{Binding IsAccepted}" VerticalAlignment="Center" MinWidth="0" />
+                                        <!-- Icône du challenge dans le jeu (silhouette teintée : dorée si accepté, éteinte sinon ; absente si le
+                                             bundle n'est pas lisible -> la colonne se replie). -->
+                                        <Panel Grid.Column="1" Width="32" Height="32" VerticalAlignment="Center" IsVisible="{Binding HasIcon}">
+                                            <Image Source="{Binding IconOn}" RenderOptions.BitmapInterpolationMode="HighQuality" IsVisible="{Binding IsAccepted}" />
+                                            <Image Source="{Binding IconOff}" RenderOptions.BitmapInterpolationMode="HighQuality" IsVisible="{Binding IsRefused}" />
+                                        </Panel>
+                                        <StackPanel Grid.Column="2" Spacing="2" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="13" Foreground="{StaticResource TextPrimaryBrush}" />
+                                            <TextBlock Text="{Binding Rule}" Classes="caption" TextWrapping="Wrap" />
+                                        </StackPanel>
+                                        <Panel Grid.Column="3" VerticalAlignment="Center">
+                                            <Border Classes="badge" Background="#1F6FEB" Padding="7,1" IsVisible="{Binding IsEnforced}"
+                                                    ToolTip.Tip="{DynamicResource L.Bots.Combat.ChallengeSupportEnforcedTip}">
+                                                <TextBlock Text="{DynamicResource L.Bots.Combat.ChallengeSupportEnforced}" FontSize="10.5" FontWeight="SemiBold" Foreground="White" />
+                                            </Border>
+                                            <Border Classes="badge" Background="{StaticResource Surface2Brush}" Padding="7,1" IsVisible="{Binding IsNatural}"
+                                                    ToolTip.Tip="{DynamicResource L.Bots.Combat.ChallengeSupportNaturalTip}">
+                                                <TextBlock Text="{DynamicResource L.Bots.Combat.ChallengeSupportNatural}" FontSize="10.5" FontWeight="SemiBold"
+                                                           Foreground="{StaticResource TextPrimaryBrush}" />
+                                            </Border>
+                                            <Border Classes="badge" Background="#5A2D2D" Padding="7,1" IsVisible="{Binding IsUnsupported}"
+                                                    ToolTip.Tip="{DynamicResource L.Bots.Combat.ChallengeSupportNoneTip}">
+                                                <TextBlock Text="{DynamicResource L.Bots.Combat.ChallengeSupportNone}" FontSize="10.5" FontWeight="SemiBold" Foreground="White" />
+                                            </Border>
+                                        </Panel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+
+                <Border Grid.Row="2" Background="#12000000" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="0,1,0,0" Padding="22,14">
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <Button Grid.Column="0" Classes="ghost" Height="40" Padding="14,0" Command="{Binding ResetChallengeChoicesCommand}"
+                                Content="{DynamicResource L.Bots.Combat.ChallengeDefaults}" />
+                        <Button Grid.Column="2" Classes="primary" Height="40" MinWidth="130" Command="{Binding CloseChallengeListCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <PathIcon Data="{StaticResource IconCheck}" Width="14" Height="14" />
+                                <TextBlock Text="{DynamicResource L.Bots.Combat.Done}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+
+    <!-- Overlay niveau fenêtre : « Importer d'un autre perso » (onglet Combat) : réglages et sorts d'un autre profil, au choix. -->
+    <Grid Classes.modalOpen="{Binding CombatImportVisible}" IsHitTestVisible="{Binding CombatImportVisible}"
+          IsEnabled="{Binding CombatImportVisible}">
+        <Border Classes="modalScrim" PointerPressed="OnImportScrimPressed" />
+        <Border Classes="modalCard" Width="760" MaxHeight="700" Padding="0" CornerRadius="16"
+                Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid RowDefinitions="Auto,Auto,*,Auto">
+                <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="22,20,18,10">
+                    <StackPanel Grid.Column="0" Spacing="4">
+                        <TextBlock Text="{DynamicResource L.Bots.Combat.ImportTitle}" FontSize="18" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" />
+                        <TextBlock Text="{Binding CombatImportSubtitle}" Classes="caption" />
+                    </StackPanel>
+                    <Button Grid.Column="1" Classes="ghost" Width="34" Height="34" MinWidth="0" Padding="0" VerticalAlignment="Top"
+                            Command="{Binding CloseCombatImportCommand}" ToolTip.Tip="{DynamicResource L.Common.Close}">
+                        <PathIcon Data="{StaticResource IconClose}" Width="15" Height="15" />
+                    </Button>
+                </Grid>
+
+                <StackPanel Grid.Row="1" Spacing="8" Margin="22,0,22,8">
+                    <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Combat.ImportNoSource}" TextWrapping="Wrap"
+                               IsVisible="{Binding !HasCombatImportSources}" />
+                    <ComboBox HorizontalAlignment="Stretch" ItemsSource="{Binding CombatImportSources}" SelectedItem="{Binding CombatImportFrom}"
+                              PlaceholderText="{DynamicResource L.Bots.Combat.ImportPick}" IsVisible="{Binding HasCombatImportSources}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="vm:CombatImportSource">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <TextBlock Text="{Binding Name}" FontWeight="SemiBold" />
+                                    <TextBlock Text="{Binding Detail}" Classes="caption" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Grid ColumnDefinitions="Auto,Auto,*,Auto,Auto" ColumnSpacing="10" IsVisible="{Binding HasCombatImportSource}">
+                        <RadioButton Grid.Column="0" GroupName="combatImportMode" IsChecked="{Binding CombatImportMerge}" Content="{DynamicResource L.Bots.Combat.ImportMerge}" />
+                        <RadioButton Grid.Column="1" GroupName="combatImportMode" IsChecked="{Binding CombatImportReplace}" Content="{DynamicResource L.Bots.Combat.ImportReplace}" />
+                        <Button Grid.Column="3" Classes="ghost" Height="30" Padding="10,0" Command="{Binding CombatImportCheckAllCommand}" Content="{DynamicResource L.Bots.Combat.ImportAll}" />
+                        <Button Grid.Column="4" Classes="ghost" Height="30" Padding="10,0" Command="{Binding CombatImportCheckNoneCommand}" Content="{DynamicResource L.Bots.Combat.ImportNone}" />
+                    </Grid>
+                    <TextBlock Classes="caption" Foreground="{StaticResource AmberBrush}" Text="{Binding CombatImportSpellsNote}" TextWrapping="Wrap"
+                               IsVisible="{Binding CombatImportSpellsNote, Converter={x:Static acv:StringConverters.IsNotNullOrEmpty}}" />
+                    <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Combat.ImportIdentical}" IsVisible="{Binding CombatImportIdentical}" />
+                </StackPanel>
+
+                <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="22,0,22,12">
+                    <StackPanel Spacing="4">
+                        <ItemsControl ItemsSource="{Binding CombatImportSettings}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:CombatImportItem">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="{Binding Header}" Classes="label" Margin="0,6,0,2" IsVisible="{Binding HasHeader}" />
+                                        <Border Background="{StaticResource Surface1Brush}" CornerRadius="8" Padding="10,6">
+                                            <Grid ColumnDefinitions="Auto,*,*,*" ColumnSpacing="10">
+                                                <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected}" IsEnabled="{Binding CanSelect}" MinWidth="0" VerticalAlignment="Center" />
+                                                <TextBlock Grid.Column="1" Text="{Binding Label}" Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                                <TextBlock Grid.Column="2" Text="{Binding Current}" Classes="caption" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                                <TextBlock Grid.Column="3" Text="{Binding Imported}" Foreground="{DynamicResource AccentBrightBrush}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <ItemsControl ItemsSource="{Binding CombatImportSpells}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:CombatImportItem">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="{Binding Header}" Classes="label" Margin="0,6,0,2" IsVisible="{Binding HasHeader}" />
+                                        <Border Background="{StaticResource Surface1Brush}" CornerRadius="8" Padding="10,6">
+                                            <Grid ColumnDefinitions="Auto,Auto,*,*,*,Auto" ColumnSpacing="10">
+                                                <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected}" IsEnabled="{Binding CanSelect}" MinWidth="0" VerticalAlignment="Center" />
+                                                <Image Grid.Column="1" Source="{Binding Icon}" Width="22" Height="22" IsVisible="{Binding HasIcon}" VerticalAlignment="Center" />
+                                                <TextBlock Grid.Column="2" Text="{Binding Label}" Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                                <TextBlock Grid.Column="3" Text="{Binding Current}" Classes="caption" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                                <TextBlock Grid.Column="4" Text="{Binding Imported}" Foreground="{DynamicResource AccentBrightBrush}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                                <Border Grid.Column="5" Classes="badge" Background="#1F6FEB" Padding="7,1" IsVisible="{Binding IsNew}" VerticalAlignment="Center">
+                                                    <TextBlock Text="{DynamicResource L.Bots.Combat.ImportNew}" FontSize="10.5" FontWeight="SemiBold" Foreground="White" />
+                                                </Border>
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <StackPanel Spacing="4" IsVisible="{Binding HasCombatImportRemoved}">
+                            <TextBlock Text="{DynamicResource L.Bots.Combat.ImportRemoved}" Classes="label" Margin="0,6,0,2" />
+                            <ItemsControl ItemsSource="{Binding CombatImportRemoved}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="vm:CombatImportItem">
+                                        <Border Background="{StaticResource Surface1Brush}" CornerRadius="8" Padding="10,6" Margin="0,0,0,4">
+                                            <Grid ColumnDefinitions="Auto,*,*" ColumnSpacing="10">
+                                                <Image Grid.Column="0" Source="{Binding Icon}" Width="22" Height="22" IsVisible="{Binding HasIcon}" VerticalAlignment="Center" />
+                                                <TextBlock Grid.Column="1" Text="{Binding Label}" Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center" />
+                                                <TextBlock Grid.Column="2" Text="{Binding Current}" Classes="caption" VerticalAlignment="Center" TextDecorations="Strikethrough" />
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <Border Grid.Row="3" Background="#12000000" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="0,1,0,0" Padding="22,14">
+                    <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
+                        <TextBlock Grid.Column="0" Text="{Binding CombatImportSummary}" Classes="caption" VerticalAlignment="Center" TextWrapping="Wrap" />
+                        <Button Grid.Column="1" Classes="ghost" Height="40" Padding="14,0" Command="{Binding CloseCombatImportCommand}" Content="{DynamicResource L.Common.Cancel}" />
+                        <Button Grid.Column="2" Classes="primary" Height="40" MinWidth="130" Command="{Binding ConfirmCombatImportCommand}" IsEnabled="{Binding CanConfirmCombatImport}">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <PathIcon Data="{StaticResource IconDownload}" Width="14" Height="14" />
+                                <TextBlock Text="{DynamicResource L.Bots.Combat.ImportConfirm}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+    </Panel>
+</UserControl>

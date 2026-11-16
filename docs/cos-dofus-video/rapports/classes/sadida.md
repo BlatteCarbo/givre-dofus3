@@ -1,0 +1,47 @@
+# Sadida — fiche de cadrage stratégique et technique
+
+**Classe** : Sadida · **Version des références générales** : Dofus Grimoire 3.7.12 ; **version cible à confronter** : 3.7.13.17 cité dans le code local. **Statut global : indexée ; mécaniques et combos à établir par preuve.** Ce dossier est un guide de recherche et de tests, pas une liste de sorts validée.
+
+**Profil à étudier :** Entrave, arbres et poupées, propagation conditionnelle. Source d'orientation de classe : [Dofus Grimoire — Sadida](https://dofus-grimoire.fr/classes/sadida/). Pour les données de sorts, récupérer le rang et la version précise via [OpenDofusDB](https://openddb.dev/) ou les données locales.
+
+## Ce qui fait la différence pour cette classe
+
+Séparer marques de propagation, états sur cibles, invocations/arbres vivants et événements de déclenchement. Variables minimales à observer : **arbres, poupées, cellules, propriétaires, états sur cibles, durée des liens, ordre des actions**. La fiche d'un sort seule ne suffit pas : établir l'événement exact qui produit l'effet et l'état après confirmation.
+
+## Tour solo à reconstituer
+
+Préparer une zone et un effet de contrôle, puis comparer le gain de propagation à la simple attaque directe sur la cible la plus dangereuse. Avant chaque décision, noter carte, ligne de vue, ressources, initiative, possibilité de survie au tour ennemi, états et délai jusqu'à l'effet utile. Comparer à une action simple immédiatement disponible.
+
+## Les partenaires et les compositions
+
+- **Duo à examiner :** Huppermage — endurance et contrôle selon VID-HUPPER-DUO-01. Consigner quel acteur prépare l'autre et ce qui se passe lorsque l'ordre d'initiative est inversé.
+- **Trio candidat :** Pandawa + Sadida + Enutrof — zones et retrait. Distinguer ressources des trois participants, bonus sur la bonne cible, protection réellement nécessaire.
+- **Quatuor candidat ou cité :** Pandawa + Sadida + Enutrof + Féca — VID-TEAM4-01. Vérifier l'ordre des quatre tours, la durée de préparation, les conflits de cellules et les dommages collatéraux.
+- **5–8 acteurs :** vérifier limites du combat, occupation du terrain, éventuels compagnons/invocations, attribution des kills et challenges ; ne pas doubler fictivement les gains d'une même cible.
+
+## Scénario positif — à formaliser en fixture
+
+Situation : au moins deux cases cibles et un allié/ennemi contextuel, avec une seule condition clé changée. **Action hypothétique :** Préparer une zone et un effet de contrôle, puis comparer le gain de propagation à la simple attaque directe sur la cible la plus dangereuse. Attendu *sous réserve de la mécanique exacte* : plan légal, ressources distinctes, état modifié **après** événement observé. Écrire le nom exact du sort et les valeurs seulement après consultation de la version cible.
+
+## Scénario négatif — doit invalider le plan naïf
+
+Poupée détruite ou état absent, donc propagation supposée mais impossible. Attendu : la transition non observée n'est pas appliquée ; le moteur écarte le combo, revient aux actions légales ou conserve `Unknown` si le serveur ne confirme pas.
+
+**Test discriminant prioritaire :** Deux ennemis avec et sans état de propagation confirmé ; comparer effets suite au même lancer. Statut : `hypothese`, proposé, non exécuté.
+
+## Interactions à cartographier
+
+invocations, infection, pièges de zone, mobilité, déclenchement, durée. Pour chaque interaction : précondition, sort et variante, cible et cellule, coût, événement serveur, durée, impact et contre-exemple.
+
+## Lecture ciblée d'un tutoriel sur les duos
+
+**[HUZ REPLAY — Les meilleurs duos par classe, 31:25](https://www.youtube.com/watch?v=X9gMQA5rhVw&t=1885s)**, vidéo du 5 décembre 2025 ; transcription horodatée FR automatique inspectée le 4 novembre 2026 ; **statut `declare-video` uniquement** (avis d'auteur, plateau non examiné). Huppermage est sa préférence pour propager pression et effets sur plusieurs cibles. Il juge Crâ souvent plus rapide et Féca/Steamer protecteurs ; l'utilisation de certains poisons dépend du mouvement réel des monstres, ce qui peut entrer en tension avec un retrait PM excessif. Les mécaniques et valeurs de sorts ont évolué jusqu'à 3.7 : revalider les conditions exactes avant de convertir cette suggestion en logique de simulation.
+
+## Sources, limites et travail restant
+
+- [Fiche générale Sadida, version 3.7.12](https://dofus-grimoire.fr/classes/sadida/) — source tierce, utile pour découvrir les sorts et vérifier les variantes ; les chiffres sont à recouper avec la cible.
+- [Comparateur de changements de classe 3.3–3.7](https://backfromafk.com/) — l'utiliser pour repérer les anciennes règles obsolètes.
+- [Index tutoriels et passages déjà consultés](../INDEX_SOURCES_TUTORIELS.md). Le registre vidéo contient des sections ou compositions correspondantes, à vérifier au lien horodaté.
+- Collecter un tutoriel récent par mécanique, sa transcription datée et les captures du passage concerné ; relever un cas positif, un cas négatif et les conséquences pour le simulateur.
+- Toutes les combinaisons ci-dessus sont des **pistes** (`hypothese`) tant qu'une preuve spécifique n'est pas citée ; une source d'opinion sur les meilleurs duos donne `declare-video`, pas `valide-test`.
+

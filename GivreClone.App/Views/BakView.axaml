@@ -1,0 +1,137 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             x:Class="GivreClone.App.Views.BakView"
+             x:DataType="vm:BakViewModel">
+    <ScrollViewer Margin="16,12">
+        <StackPanel Spacing="16" MaxWidth="920" HorizontalAlignment="Left">
+            
+            <!-- En-tête : Cours de l'Ogrine & Indicateur de Rentabilité -->
+            <Border Classes="card" Padding="20,16" Background="#161B22" CornerRadius="8" BorderBrush="#30363D" BorderThickness="1">
+                <Grid ColumnDefinitions="Auto,*,Auto" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Spacing="16" VerticalAlignment="Center">
+                        <Border Width="48" Height="48" CornerRadius="24" Background="#1F2937" VerticalAlignment="Center">
+                            <TextBlock Text="🪙" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Bourse aux Kamas (BAK) &amp; Taux Ogrines" FontSize="18" FontWeight="Bold" Foreground="#F0F6FC" />
+                            <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,4,0,0">
+                                <TextBlock Text="Taux Actuel :" Foreground="#8B949E" FontSize="13" />
+                                <TextBlock Text="{Binding CurrentRate, StringFormat='{}{0:N0} k / Ogrine'}" FontWeight="Bold" Foreground="#58A6FF" FontSize="13" />
+                                <TextBlock Text="·" Foreground="#484F58" />
+                                <TextBlock Text="Moyenne :" Foreground="#8B949E" FontSize="13" />
+                                <TextBlock Text="{Binding AverageRate, StringFormat='{}{0:N0} k'}" Foreground="#C9D1D9" FontSize="13" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Badge de rentabilité dynamique -->
+                    <Border Grid.Column="1" Margin="24,0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Padding="14,6" CornerRadius="16" Background="#1F2937" BorderBrush="{Binding ProfitabilityBrush}" BorderThickness="1.5">
+                        <TextBlock Text="{Binding ProfitabilityText}" Foreground="{Binding ProfitabilityBrush}" FontWeight="SemiBold" FontSize="13" />
+                    </Border>
+
+                    <Button Grid.Column="2" Classes="ghost" Command="{Binding RefreshRateCommand}" VerticalAlignment="Center" Padding="12,8">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <TextBlock Text="🔄" />
+                            <TextBlock Text="Actualiser le cours" FontSize="12" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Border>
+
+            <!-- Statut de l'abonnement du personnage sélectionné -->
+            <Border Classes="card" Padding="20,16" Background="#161B22" CornerRadius="8" BorderBrush="#30363D" BorderThickness="1">
+                <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+                    <StackPanel Grid.Column="0" Spacing="4">
+                        <TextBlock Text="État de l'Abonnement du Compte" FontSize="15" FontWeight="SemiBold" Foreground="#E6EDF3" />
+                        <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,4,0,0">
+                            <TextBlock Text="{Binding SubscriptionStatusText}" FontSize="14" FontWeight="Bold" Foreground="#3FB950" />
+                            <TextBlock Text="·" Foreground="#484F58" />
+                            <TextBlock Text="Expire le :" Foreground="#8B949E" FontSize="13" />
+                            <TextBlock Text="{Binding ExpirationDateText}" Foreground="#C9D1D9" FontSize="13" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                        <CheckBox Content="Renouvellement automatique sous 6h" IsChecked="{Binding AutoRenewEnabled}" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Cartes d'achat d'abonnement 1-Clic -->
+            <TextBlock Text="Options d'Abonnement Direct (BAK Dofus 3)" FontSize="15" FontWeight="SemiBold" Foreground="#E6EDF3" Margin="0,4,0,-4" />
+            
+            <Grid ColumnDefinitions="*,*">
+                <!-- Carte 7 Jours (1 400 Ogrines) -->
+                <Border Grid.Column="0" Margin="0,0,8,0" Classes="card" Padding="18,16" Background="#161B22" CornerRadius="8" BorderBrush="#30363D" BorderThickness="1">
+                    <StackPanel Spacing="12">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <StackPanel>
+                                <TextBlock Text="Abonnement 7 Jours" FontSize="16" FontWeight="Bold" Foreground="#F0F6FC" />
+                                <TextBlock Text="1 400 Ogrines" Foreground="#8B949E" FontSize="12" Margin="0,2,0,0" />
+                            </StackPanel>
+                            <Border Grid.Column="1" Padding="8,4" CornerRadius="6" Background="#238636">
+                                <TextBlock Text="Recommandé" FontSize="11" FontWeight="Bold" Foreground="White" />
+                            </Border>
+                        </Grid>
+
+                        <Border Height="1" Background="#30363D" Margin="0,4" />
+
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Coût Total Estimé :" Foreground="#8B949E" FontSize="12" />
+                            <TextBlock Text="{Binding Kamas7Days, StringFormat='{}{0:N0} Kamas'}" FontSize="20" FontWeight="Bold" Foreground="#58A6FF" />
+                        </StackPanel>
+
+                        <Button Classes="primary" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                                Command="{Binding Buy7DaysCommand}" Padding="0,10" Margin="0,6,0,0">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="⚡" />
+                                <TextBlock Text="S'abonner 7 jours (1-Clic)" FontWeight="SemiBold" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Border>
+
+                <!-- Carte 30 Jours (4 000 Ogrines) -->
+                <Border Grid.Column="1" Margin="8,0,0,0" Classes="card" Padding="18,16" Background="#161B22" CornerRadius="8" BorderBrush="#30363D" BorderThickness="1">
+                    <StackPanel Spacing="12">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <StackPanel>
+                                <TextBlock Text="Abonnement 1 Mois (30 Jours)" FontSize="16" FontWeight="Bold" Foreground="#F0F6FC" />
+                                <TextBlock Text="4 000 Ogrines" Foreground="#8B949E" FontSize="12" Margin="0,2,0,0" />
+                            </StackPanel>
+                            <Border Grid.Column="1" Padding="8,4" CornerRadius="6" Background="#1F6FEB">
+                                <TextBlock Text="Économique" FontSize="11" FontWeight="Bold" Foreground="White" />
+                            </Border>
+                        </Grid>
+
+                        <Border Height="1" Background="#30363D" Margin="0,4" />
+
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Coût Total Estimé :" Foreground="#8B949E" FontSize="12" />
+                            <TextBlock Text="{Binding Kamas30Days, StringFormat='{}{0:N0} Kamas'}" FontSize="20" FontWeight="Bold" Foreground="#A371F7" />
+                        </StackPanel>
+
+                        <Button Classes="primary" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                                Command="{Binding Buy30DaysCommand}" Padding="0,10" Margin="0,6,0,0">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="⚡" />
+                                <TextBlock Text="S'abonner 1 mois (1-Clic)" FontWeight="SemiBold" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Message d'état / Log d'opération -->
+            <Border Classes="card" Padding="14,10" Background="#0D1117" CornerRadius="6" BorderBrush="#21262D" BorderThickness="1">
+                <Grid ColumnDefinitions="Auto,*">
+                    <TextBlock Text="ℹ️ " VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="1" Text="{Binding LastActionMessage}" Foreground="#8B949E" FontSize="12" VerticalAlignment="Center" />
+                </Grid>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,2 @@
+[mcp_servers.givre]
+command = '%USERPROFILE%\Videos\GIVRE\GivreWork\GivreMcp\bin\Debug\net10.0\GivreMcp.exe'

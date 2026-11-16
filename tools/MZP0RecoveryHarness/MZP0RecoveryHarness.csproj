@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- The ACTUAL IActionSender/ActionSender, transport abstraction, protobuf builders
+         and MZP0Recovery sources, with only absent GivreCore types stubbed offline. -->
+    <Compile Include="../../GivreClone.Engine/ActionSender.cs" Link="Engine/ActionSender.cs" />
+    <Compile Include="../../GivreClone.Engine/FrameSink.cs" Link="Engine/FrameSink.cs" />
+    <Compile Include="../../GivreClone.Engine/Pacer.cs" Link="Engine/Pacer.cs" />
+    <Compile Include="../../GivreClone.Engine/PacketBus.cs" Link="Engine/PacketBus.cs" />
+    <Compile Include="../../GivreClone.Engine/BotMessage.cs" Link="Engine/BotMessage.cs" />
+    <Compile Include="../../GivreClone.Engine/Recovery/MZP0RecoveryModels.cs" Link="Engine/Recovery/MZP0RecoveryModels.cs" />
+    <Compile Include="../../GivreClone.Engine/Recovery/MZP0RecoveryJournal.cs" Link="Engine/Recovery/MZP0RecoveryJournal.cs" />
+    <Compile Include="../../GivreClone.Engine/Recovery/MZP0GuardedActionSender*.cs" Link="Engine/Recovery/%(Filename)%(Extension)" />
+    <Compile Include="../../GivreClone.Protocol/EnvelopeBuilder.cs" Link="Protocol/EnvelopeBuilder.cs" />
+    <Compile Include="../../GivreClone.Protocol/PayloadBuilder.cs" Link="Protocol/PayloadBuilder.cs" />
+    <Compile Include="../../GivreClone.Protocol/ProtocolCatalog.cs" Link="Protocol/ProtocolCatalog.cs" />
+    <Compile Include="../../GivreClone.Protocol/ProtoSchemaText.cs" Link="Protocol/ProtoSchemaText.cs" />
+    <Compile Include="../../GivreClone.Protocol/RequestCorrelator.cs" Link="Protocol/RequestCorrelator.cs" />
+    <Compile Include="../../GivreClone.Tests/MZP0GuardedActionSenderTests.cs" Link="Tests/MZP0GuardedActionSenderTests.cs" />
+    <Compile Include="MZP0GivreCoreStubs.cs" />
+  </ItemGroup>
+</Project>

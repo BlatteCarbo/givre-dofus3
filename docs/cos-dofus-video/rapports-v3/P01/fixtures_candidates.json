@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "mission": "P01",
+  "status": "candidate-synthetic-not-executed",
+  "clientVersion": "3.7.13.17",
+  "clientBuildDate": "2026-11-03T14:09:52+00:00",
+  "inputProvenance": {
+    "spellStatesBundleSha256": "50db7a3a8fcf118f8cf2ac119b5be34530dfcfadea57d78aa9f770c5987db48a",
+    "spellsBundleSha256": "96c830cd1add89cb0af1c613886a7f193fd38706d1cd27e51556bfad9b330e26",
+    "spellLevelsBundleSha256": "525048d9a4406720ba79fb6a23826b9ac5e40d4a87dcd3c452e1a0ccc27b2a30"
+  },
+  "interpretation": "Spell, grade, level and effect IDs come from official installed client data. Fighter states, life, shield, target arrangements and event sequences below are invented candidates only. There are no server receipts, successful casts, executed tests or server oracles.",
+  "cases": [
+    {
+      "id": "P01-01",
+      "category": "state-identification",
+      "source": [
+        {"type": "client-serialized", "record": "SpellStateData", "id": 76, "incurable": 1, "icon": "stateInsoignable"},
+        {"type": "client-serialized", "record": "SpellStateData", "id": 5920, "incurable": 0, "icon": "stateInsoignable"}
+      ],
+      "syntheticInput": {"life": 30, "maxLife": 100, "shield": 0, "variantAStateIds": [76], "variantBStateIds": [5920]},
+      "documentaryOracle": "The client distinguishes 76 incurable=1 from 5920 incurable=0 despite matching icons; never infer incurability from icon alone.",
+      "serverOracle": "Unknown",
+      "requiredServerEvidence": ["authoritative state IDs on target", "Life/MaxLife/Shield before and after healing attempt"]
+    },
+    {
+      "id": "P01-02",
+      "category": "heal-before-state-application",
+      "source": [
+        {"type": "client-serialized", "spellId": 13187, "grade": 1, "levelId": 41440, "branch": "normal", "effectUid": 209838, "actionId": 1109, "diceNum": 100, "order": 0},
+        {"type": "client-serialized", "spellId": 13187, "grade": 1, "levelId": 41440, "branch": "normal", "effectUid": 209839, "actionId": 950, "stateId": 76, "duration": 4, "order": 1}
+      ],
+      "syntheticInput": {"targetLife": 30, "targetMaxLife": 100, "variantAStates": [], "variantBStates": [76]},
+      "documentaryOracle": "The serialized normal branch lists a 100-percent maximum-life heal before state-76 application. A later heal on a confirmed state-76 target cannot be credited without independent evidence.",
+      "serverOracle": "Unknown",
+      "requiredServerEvidence": ["cast acceptance", "per-effect ordered server results", "target state immediately before each effect", "life before and after"]
+    },
+    {
+      "id": "P01-03",
+      "category": "direct-percentage-heal",
+      "source": [
+        {"type": "client-serialized", "spellId": 14587, "grade": 1, "levelId": 44378, "branch": "normal", "effectUid": 226187, "actionId": 1109, "diceNum": 6},
+        {"type": "client-serialized", "spellId": 14587, "grade": 1, "levelId": 44378, "branch": "critical", "effectUid": 226190, "actionId": 1109, "diceNum": 8}
+      ],
+      "syntheticInput": {"targetLife": 30, "targetMaxLife": 100, "variantAStates": [], "variantBStates": [76]},
+      "documentaryOracle": "Both branches of the same grade heal with action 1109 but have different serialized diceNum values, 6 and 8; incurable target state must be modeled explicitly.",
+      "serverOracle": "Unknown",
+      "requiredServerEvidence": ["actual critical branch", "healing receipt", "target states before action", "effective maximum life"]
+    },
+    {
+      "id": "P01-04",
+      "category": "life-steal-caster-state",
+      "source": [
+        {"type": "client-serialized", "spellId": 12911, "grade": 1, "levelId": 40910, "branch": "normal", "effectUid": 208179, "actionId": 93, "diceNum": 16, "diceSide": 18},
+        {"type": "client-serialized", "spellId": 12911, "grade": 1, "levelId": 40910, "branch": "critical", "effectUid": 208180, "actionId": 93, "diceNum": 19, "diceSide": 21},
+        {"type": "code-reading", "file": "GivreClone.App/Services/Combat/SpellResolver.cs", "lines": "344-368"}
+      ],
+      "syntheticInput": {"casterLife": 30, "casterMaxLife": 100, "targetLife": 100, "targetMaxLife": 100, "variantACasterStates": [], "variantBCasterStates": [76]},
+      "documentaryOracle": "The local resolver associates damage action 93 with a separate life-recovery attempt on the caster; never test only the damaged target's incurable state.",
+      "serverOracle": "Unknown",
+      "requiredServerEvidence": ["actual damage and absorbed shield", "caster state 76", "caster life change receipt"]
+    },
+    {
+      "id": "P01-05",
+      "category": "triggered-heal",
+      "source": [
+        {"type": "client-serialized", "spellId": 14584, "grade": 1, "levelId": 44369, "branch": "normal", "effectUid": 410153, "actionId": 2998, "triggers": "I"},
+        {"type": "client-serialized", "spellId": 14584, "grade": 1, "levelId": 44369, "branch": "normal", "effectUid": 410155, "actionId": 2998, "triggers": "TB"},
+        {"type": "code-reading", "file": "GivreClone.App/Services/Combat/SpellResolver.cs", "lines": "72-73"}
+      ],
+      "syntheticInput": {"life": 30, "maxLife": 100, "variantAStatesAtTB": [76], "variantBStatesAtTB": []},
+      "documentaryOracle": "The TB-triggered line must be kept distinct from the immediate I-triggered line and remains deferred in the local resolver.",
+      "serverOracle": "Unknown",
+      "requiredServerEvidence": ["meaning and timing of TB", "target ID at trigger", "state ID 76 at trigger", "life before and after each trigger"]
+    },
+    {
+      "id": "P01-06",
+      "category": "shield-versus-healing",
+      "source": [
+        {"type": "client-serialized", "spellId": 13431, "grade": 1, "levelId": 41883, "branch": "normal", "effectUid": 259838, "actionId": 1020, "diceNum": 150, "duration": 1},
+        {"type": "code-reading", "file": "GivreClone.App/Services/Combat/SpellResolver.cs", "lines": "389-394"}
+      ],
+      "syntheticInput": {"life": 30, "maxLife": 100, "shield": 0, "variantAStates": [], "variantBStates": [76]},
+      "documentaryOracle": "Shield action 1020 and the Shield property are distinct from healing and Life. The client incurable field alone does not prove whether a shield is applied under state 76.",
+      "serverOracle": "Unknown",
+      "requiredServerEvidence": ["target mask evaluation", "shield receipt", "state IDs", "shield and life before and after"]
+    },
+    {
+      "id": "P01-07",
+      "category": "max-life-separation",
+      "source": [
+        {"type": "client-serialized", "record": "SpellStateData", "id": 76, "incurable": 1},
+        {"type": "code-reading", "file": "GivreClone.App/Services/Combat/SpellResolver.cs", "lines": "143-150"}
+      ],
+      "syntheticInput": {"initialLife": 30, "initialMaxLife": 100, "initialShield": 20, "hypotheticalLaterMaxLife": 80, "states": [76]},
+      "documentaryOracle": "The state 76 record carries an incurability flag but does not itself specify a MaxLife reduction; Life, MaxLife and Shield must be compared independently.",
+      "serverOracle": "Unknown",
+      "requiredServerEvidence": ["source and amount of any maximum-life change", "before-and-after Life/MaxLife/Shield", "state 76 presence"]
+    },
+    {
+      "id": "P01-08",
+      "category": "critical-duration-change",
+      "source": [
+        {"type": "client-serialized", "spellId": 1173, "grade": 1, "levelId": 6331, "branch": "normal", "effectUid": 35490, "actionId": 950, "stateId": 76, "duration": 1},
+        {"type": "client-serialized", "spellId": 1173, "grade": 1, "levelId": 6331, "branch": "critical", "effectUid": 35491, "actionId": 950, "stateId": 76, "duration": 2}
+      ],
+      "syntheticInput": {"targetLife": 30, "targetMaxLife": 100, "initialStates": [], "variants": ["normal", "critical"]},
+      "documentaryOracle": "Grade 1 Blopagation applies state 76 with serialized duration 1 on normal and 2 on critical, so a single-duration model contradicts the client data.",
+      "serverOracle": "Unknown",
+      "requiredServerEvidence": ["branch actually taken", "state application event", "turn boundaries and expiration receipt"]
+    },
+    {
+      "id": "P01-09",
+      "category": "critical-only-state",
+      "source": [
+        {"type": "client-serialized", "spellId": 1084, "grade": 1, "levelId": 5886, "branch": "normal", "effectUids": [28068, 28069], "actions": [179, 154]},
+        {"type": "client-serialized", "spellId": 1084, "grade": 1, "levelId": 5886, "branch": "critical", "effectUid": 137566, "actionId": 950, "stateId": 76, "duration": 2}
+      ],
+      "syntheticInput": {"targetLife": 30, "targetMaxLife": 100, "initialStates": [], "variants": ["normal", "critical"]},
+      "documentaryOracle": "Dépouillage grade 1 contains a state-76 application only in the serialized critical branch, not the normal one.",
+      "serverOracle": "Unknown",
+      "requiredServerEvidence": ["critical decision", "target mask evaluation", "state application receipt"]
+    },
+    {
+      "id": "P01-10",
+      "category": "state-removal-before-heal",
+      "source": [
+        {"type": "client-serialized", "spellId": 29779, "grade": 1, "levelId": 79170, "branch": "normal", "effectUid": 385029, "actionId": 951, "stateId": 76},
+        {"type": "code-reading", "file": "GivreClone.App/Services/Combat/SpellResolver.cs", "lines": "403-412"}
+      ],
+      "syntheticInput": {"life": 30, "maxLife": 100, "statesInitially": [76], "hypotheticalSequence": ["Transhumance", "heal"]},
+      "documentaryOracle": "Serialized action 951/value 76 is a candidate removal; do not credit healing after it until authoritative removal is confirmed.",
+      "serverOracle": "Unknown",
+      "requiredServerEvidence": ["spell eligibility", "state-removal receipt", "later healing receipt"]
+    },
+    {
+      "id": "P01-11",
+      "category": "state-criterion",
+      "source": [
+        {"type": "client-serialized", "spellId": 14825, "grade": 1, "levelId": 44911, "statesCriterion": "HS!76"}
+      ],
+      "syntheticInput": {"variantAStates": [], "variantBStates": [76], "attemptedSpellId": 14825},
+      "documentaryOracle": "Literal statesCriterion HS!76 is retained as a constraint string; its grammar and cast eligibility are not proven by these data alone.",
+      "serverOracle": "Unknown",
+      "requiredServerEvidence": ["criterion grammar", "cast accepted or refused with actor states recorded"]
+    },
+    {
+      "id": "P01-12",
+      "category": "delayed-state-application",
+      "source": [
+        {"type": "client-serialized", "spellId": 3545, "grade": 1, "levelId": 20720, "branch": "normal", "effectUid": 428026, "actionId": 950, "stateId": 76, "duration": 2, "delay": 8},
+        {"type": "code-reading", "file": "GivreClone.App/Services/Combat/SpellResolver.cs", "lines": "72-73"}
+      ],
+      "syntheticInput": {"targetLife": 30, "targetMaxLife": 100, "statesInitially": [], "hypotheticalObservations": ["T", "T+8"]},
+      "documentaryOracle": "The row is delayed in client data, and the local immediate resolver retains it as Deferred instead of applying state 76 immediately.",
+      "serverOracle": "Unknown",
+      "requiredServerEvidence": ["unit of delay", "actual delayed trigger", "state application and expiration timestamps", "target identity"]
+    }
+  ]
+}

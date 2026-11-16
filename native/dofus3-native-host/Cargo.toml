@@ -1,0 +1,25 @@
+[workspace]
+members = [
+    "crates/mod-api",
+    "crates/mod-sdk",
+    "crates/host",
+    "mods/example",
+    "mods/network-dumper",
+    "mods/native-tactical",
+    "mods/runtime-inspector",
+    "mods/interface-analyzer",
+    "mods/combat-animation-skipper",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.4.0"
+edition = "2024"
+license = "MIT"
+authors = ["Nexytrus contributors"]
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+panic = "unwind"
+strip = "symbols"

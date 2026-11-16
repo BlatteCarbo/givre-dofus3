@@ -1,0 +1,24 @@
+ !"#$%&
+VS_VERSION_INFO
+VarFileInfo
+Translation
+StringFileInfo
+000004b0
+CompanyName
+MizanBot
+FileDescription
+MizanBot
+FileVersion
+1.0.0.0
+InternalName
+MizanBot.dll
+LegalCopyright
+MizanBot
+OriginalFilename
+MizanBot.dll
+ProductName
+MizanBot
+ProductVersion
+1.0.0
+Assembly Version
+1.0.0.0

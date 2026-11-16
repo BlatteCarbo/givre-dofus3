@@ -1,0 +1,185 @@
+<Project Sdk="Microsoft.NET.Sdk">
+ <PropertyGroup>
+ <OutputType>WinExe</OutputType>
+ <TargetFramework>net10.0</TargetFramework>
+ <ImplicitUsings>enable</ImplicitUsings>
+ <Nullable>enable</Nullable>
+ <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+ <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+ <ApplicationManifest>app.manifest</ApplicationManifest>
+ <AssemblyName>GivreClone</AssemblyName>
+ <RootNamespace>GivreClone.App</RootNamespace>
+ <ApplicationIcon>Assets\GivreClone.ico</ApplicationIcon>
+ <!-- AUCUNE assembly satellite de traduction (ex. AvaloniaEdit/zh-Hans): en NativeAOT (culture invariante), lire le nom
+ d'une assembly satellite lève CultureNotFoundException; Avalonia, qui parcourt TOUTES les assemblies pour résoudre
+ avares://GivreClone/…, échoue alors en silence -> plus aucun asset / XAML chargé -> crash au démarrage (1.1.8). -->
+ <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+ </PropertyGroup>
+
+ <ItemGroup>
+ <AvaloniaResource Include="Assets\**" />
+ </ItemGroup>
+
+ <!-- ===== NativeAOT (opt-in via -p:EnableAot=true): binaire natif, plus d'IL decompilable, puis VMProtect.
+ Gate derriere EnableAot pour NE PAS toucher le build/publish managé normal (build-dist.bat).
+ Publier: dotnet publish GivreClone.App -c Release -r win-x64 -p:EnableAot=true ===== -->
+ <PropertyGroup Condition="'$(Configuration)' == 'Release' and '$(EnableAot)' == 'true'">
+ <PublishAot>true</PublishAot>
+ <InvariantGlobalization>true</InvariantGlobalization>
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+    <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+    <TieredPGO>false</TieredPGO>
+ <TrimMode>full</TrimMode>
+ <!-- Avalonia + AOT: ViewLocator instancie les vues par réflexion -> conserver via le descripteur de trim. -->
+ <IlcTrimMetadata>true</IlcTrimMetadata>
+ </PropertyGroup>
+ <ItemGroup Condition="'$(Configuration)' == 'Release' and '$(EnableAot)' == 'true'">
+ <TrimmerRootDescriptor Include="Roots.xml" />
+ </ItemGroup>
+
+ <ItemGroup>
+ <PackageReference Include="Avalonia" Version="12.1.1" />
+ <PackageReference Include="Avalonia.Desktop" Version="12.1.1" />
+ <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.1" />
+ <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.1" />
+ <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+ <PackageReference Include="NAudio" Version="2.2.1" />
+ <!-- Types Win32 EventLog utilisés réellement par SentinelInventory (aucune suppression de fonctionnalité). -->
+ <PackageReference Include="System.Diagnostics.EventLog" Version="10.0.0" />
+ <!-- Read-only, bounded offline inspection of Launcher 2's gzip/SQLite game manifest.
+      This never reads Launcher accounts/tokens or bypasses original licensing. -->
+ <!-- Use OS-provided winsqlite3.dll, not the known-vulnerable bundled
+      SQLitePCLRaw.lib.e_sqlite3 2.1.x native library (NU1903). -->
+ <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.10" />
+ <PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.1.6" />
+ <!-- Lecture runtime des bundles Unity du client (table map_id -> position monde). MIT, 0 dep, LZ4/LZMA integre. -->
+ <PackageReference Include="AssetsTools.NET" Version="3.0.0" />
+ <!-- Decodage des textures (icones de monstres, DXT5 crunched -> BGRA). -->
+ <PackageReference Include="AssetsTools.NET.Texture" Version="3.0.2" />
+ <!-- Moteur Lua 100% manage pour le scripting des bots (GivreLuaHost): pas de DLL native,
+ annulation cooperative propre d'un script en cours. Modele de script move/bank. -->
+ <PackageReference Include="MoonSharp" Version="2.0.0" />
+ <!-- Éditeur de code de l'onglet Lua (coloration, numéros de ligne, complétion, recherche, repli). Validé NativeAOT
+ (0 avertissement de trim); coloration par définition xshd construite au runtime (pas de TextMate: lib native). -->
+ <PackageReference Include="Avalonia.AvaloniaEdit" Version="12.0.0" />
+ </ItemGroup>
+
+ <ItemGroup>
+ <!-- Documentation de l'API Lua (même source que le portail): complétion, signatures, survol, référence dans l'éditeur. -->
+ <EmbeddedResource Include="..\docs\portal\lua-api-doc.json" LogicalName="GivreClone.LuaApi.json" />
+    <EmbeddedResource Include="Data\resource_map.json" LogicalName="resource_map.json" />
+ </ItemGroup>
+
+ <ItemGroup>
+ <ProjectReference Include="..\GivreClone.Engine\GivreClone.Engine.csproj" />
+ <ProjectReference Include="..\GivreControl\GivreControl.csproj" />
+ <ProjectReference Include="..\GivreClone.Protocol\GivreClone.Protocol.csproj" />
+ <!-- Reutilise le moteur de lancement/auth/Zaap de GivreLauncher (repo voisin). -->
+ <ProjectReference Include="..\..\GivreLauncher\GivreLauncher.Core\GivreLauncher.Core.csproj" />
+ </ItemGroup>
+
+ <!-- Mapping protocole (LE joyau): copie a cote de l'exe UNIQUEMENT en DEBUG (repli dev sans serveur).
+ En RELEASE/PROD il n'est JAMAIS livre sur disque: GivreClone le recoit STREAME + dechiffre EN MEMOIRE
+ via le jeton de session (MappingCatalog). Livrer clear_game_2025.proto / matching_current.json /
+ confirmed.json en clair a cote de l'exe = fuite du joyau (audit securite 2026-08-21, V1 critique). -->
+ <!-- Édition locale : le mapping de data/ est livré aussi en Release (plus de livraison par serveur). -->
+ <ItemGroup>
+ <Content Include="..\data\bundle-build.json" Link="data\bundle-build.json" CopyToOutputDirectory="PreserveNewest" Condition="Exists('..\data\bundle-build.json')" />
+ <Content Include="..\data\matching_current.json" Link="data\matching_current.json" CopyToOutputDirectory="PreserveNewest" Condition="Exists('..\data\matching_current.json')" />
+ <Content Include="..\data\confirmed.json" Link="data\confirmed.json" CopyToOutputDirectory="PreserveNewest" Condition="Exists('..\data\confirmed.json')" />
+ <Content Include="..\data\fields.json" Link="data\fields.json" CopyToOutputDirectory="PreserveNewest" Condition="Exists('..\data\fields.json')" />
+ <Content Include="..\data\compatibility-review.json" Link="data\compatibility-review.json" CopyToOutputDirectory="PreserveNewest" Condition="Exists('..\data\compatibility-review.json')" />
+ <Content Include="..\data\map_positions.json" Link="data\map_positions.json" CopyToOutputDirectory="PreserveNewest" Condition="Exists('..\data\map_positions.json')" />
+ <Content Include="..\data\clear_game_2025.proto" Link="data\clear_game_2025.proto" CopyToOutputDirectory="PreserveNewest" Condition="Exists('..\data\clear_game_2025.proto')" />
+ </ItemGroup>
+ <!-- The detached source checkout has no data/ folder. Never fabricate mappings or
+      silently classify a Debug build as a protocol-capable game session. -->
+ <Target Name="WarnMissingDebugProtocolMappings" BeforeTargets="Build"
+         Condition="'$(Configuration)'=='Debug' and !Exists('..\data\matching_current.json')">
+   <Warning Text="MZP8 DEBUG: no matching_current.json in detached source; protocol mappings absent, game actions remain unverified/blocked." />
+ </Target>
+
+ <!-- Hook natif MITM PROPRE a GivreClone (GivreKama.dll, Detours): copie a cote de l'exe pour l'injection.
+ Build via native\GivreKama\GivreKama.vcxproj. Silencieux si absent -> GivreClone demarre en observe-seul. -->
+ <ItemGroup>
+ <None Include="..\native\GivreKama\GivreKama.dll" Link="GivreKama.dll"
+ CopyToOutputDirectory="PreserveNewest"
+ Condition="Exists('..\native\GivreKama\GivreKama.dll')" />
+ <!-- Mods natifs (GivreMods.dll, partages avec GivreLauncher): no-anim + mode tactique. Injecte a cote de GivreKama.
+ Silencieux si absent -> les mods ne sont juste pas disponibles. -->
+ <None Include="..\..\GivreLauncher\native\GivreMods\build\Release\GivreMods.dll" Link="GivreMods.dll"
+ CopyToOutputDirectory="PreserveNewest"
+ Condition="Exists('..\..\GivreLauncher\native\GivreMods\build\Release\GivreMods.dll')" />
+ <!-- Runtime natif Turbo MITM: fallback no-animation + speedhack combat-only, hash-gaté à l'exécution. Il n'est jamais
+      posé comme version.dll; Givre injecte uniquement son bootstrap explicitement et charge les mods par canal per-pid. -->
+ <None Include="..\native\GivreTurboRuntime\ours-bootstrap-retry\DofusNativeBootstrap.dll" Link="NativeTurboRuntime\DofusNativeBootstrap.dll" CopyToOutputDirectory="PreserveNewest" />
+ <None Include="..\native\GivreTurboRuntime\v0.4.0-skipper1.0.5-speedhack1.0.3\DofusNativeHost.dll" Link="NativeTurboRuntime\DofusNativeHost.dll" CopyToOutputDirectory="PreserveNewest" />
+ <None Include="..\native\GivreTurboRuntime\CombatSkipper\DofusCombatAnimationSkipper.dll" Link="NativeTurboRuntime\DofusCombatAnimationSkipper.dll" CopyToOutputDirectory="PreserveNewest" />
+ <None Include="..\native\GivreTurboRuntime\TacticalAutostart\DofusNativeTactical.dll" Link="NativeTurboRuntime\DofusNativeTactical.dll" CopyToOutputDirectory="PreserveNewest" />
+ <None Include="..\native\GivreTurboRuntime\v0.4.0-skipper1.0.5-speedhack1.0.3\DofusCombatSpeedHack.dll" Link="NativeTurboRuntime\DofusCombatSpeedHack.dll" CopyToOutputDirectory="PreserveNewest" />
+ <None Include="..\native\GivreTurboRuntime\ItemIdOverlay\GivreItemIdOverlay.dll" Link="NativeTurboRuntime\GivreItemIdOverlay.dll" CopyToOutputDirectory="PreserveNewest" />
+ <None Include="..\native\GivreTurboRuntime\v0.4.0-skipper1.0.5-speedhack1.0.3\PROVENANCE.md" Link="NativeTurboRuntime\PROVENANCE.md" CopyToOutputDirectory="PreserveNewest" />
+ <None Include="..\native\GivreTurboRuntime\v0.4.0-skipper1.0.5-speedhack1.0.3\LICENSE*.txt" Link="NativeTurboRuntime\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+ <None Include="..\native\GivreTurboRuntime\v0.4.0-skipper1.0.5-speedhack1.0.3\NOTICE*.txt" Link="NativeTurboRuntime\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+ <!-- Copie isolée de deux mods réellement reconstruits à partir du code MIT.
+      Aucun auto-injecteur : ces fichiers servent au diagnostic/packaging d'un
+      runtime TEST indépendant, jamais à écraser le dossier Dofus ou Givre. -->
+ <None Include="..\native\GivreTurboRuntime\ours-010eaac\DofusNativeBootstrap.dll"
+       Link="SourceOwnedMods\DofusNativeBootstrap.dll" CopyToOutputDirectory="PreserveNewest" />
+ <None Include="..\native\GivreTurboRuntime\ours-010eaac\DofusNativeHost.dll"
+       Link="SourceOwnedMods\DofusNativeHost.dll" CopyToOutputDirectory="PreserveNewest" />
+ <None Include="..\native\GivreTurboRuntime\TacticalAutostart\DofusNativeTactical.dll"
+       Link="SourceOwnedMods\NativeMods\DofusNativeTactical.dll" CopyToOutputDirectory="PreserveNewest" />
+ <None Include="..\native\GivreTurboRuntime\ours-010eaac\NativeMods\DofusCombatAnimationSkipper.dll"
+       Link="SourceOwnedMods\NativeMods\DofusCombatAnimationSkipper.dll" CopyToOutputDirectory="PreserveNewest" />
+ <None Include="..\native\GivreTurboRuntime\ours-010eaac\NativeMods\DofusInterfaceAnalyzer.dll"
+       Link="SourceOwnedMods\NativeMods\DofusInterfaceAnalyzer.dll" CopyToOutputDirectory="PreserveNewest" />
+ <None Include="..\native\GivreTurboRuntime\ours-010eaac\NativeMods\DofusRuntimeInspector.dll"
+       Link="SourceOwnedMods\NativeMods\DofusRuntimeInspector.dll" CopyToOutputDirectory="PreserveNewest" />
+ <None Include="..\native\GivreTurboRuntime\ours-010eaac\NativeMods\DofusNetworkDumper.dll"
+       Link="SourceOwnedMods\NativeMods\DofusNetworkDumper.dll" CopyToOutputDirectory="PreserveNewest" />
+ <None Include="..\native\GivreTurboRuntime\ours-010eaac\NativeMods\DofusNativeExample.dll"
+       Link="SourceOwnedMods\NativeMods\DofusNativeExample.dll" CopyToOutputDirectory="PreserveNewest" />
+ <None Include="..\native\GivreTurboRuntime\ours-010eaac\PROVENANCE-OURS.md"
+       Link="SourceOwnedMods\PROVENANCE-OURS.md" CopyToOutputDirectory="PreserveNewest" />
+ </ItemGroup>
+
+ <!-- Compagnon WebView2 reutilise de GivreLauncher (login Ankama navigateur): copie dans WebAuth\.
+ On copie la SORTIE deja buildee (pas de build cross-repo). Absent -> l'auth navigateur affiche "indisponible". -->
+ <Target Name="CopyWebAuth" AfterTargets="Build">
+ <ItemGroup>
+ <_WebAuth Include="..\..\GivreLauncher\GivreLauncher.WebAuth\bin\$(Configuration)\net10.0-windows\**\*.*"
+ Condition="Exists('..\..\GivreLauncher\GivreLauncher.WebAuth\bin\$(Configuration)\net10.0-windows\GivreLauncher.WebAuth.exe')" />
+ <!-- Reproducible isolated code-only distribution fallback, never the active
+      Givre installation nor any browser profile/account directory. -->
+ <_WebAuth Include="..\vendor\GivreWebAuth131\**\*.*"
+ Condition="!Exists('..\..\GivreLauncher\GivreLauncher.WebAuth\bin\$(Configuration)\net10.0-windows\GivreLauncher.WebAuth.exe') and Exists('..\vendor\GivreWebAuth131\GivreLauncher.WebAuth.exe')" />
+ </ItemGroup>
+ <Copy SourceFiles="@(_WebAuth)" DestinationFolder="$(OutDir)WebAuth\%(RecursiveDir)" SkipUnchangedFiles="true" Condition="'@(_WebAuth)'!=''" />
+ </Target>
+ <!-- dotnet publish ne reprend pas ce qui est copié à la main dans OutDir : sans ceci le dossier livré n'a pas de WebAuth. -->
+ <Target Name="PublishWebAuth" AfterTargets="Publish">
+ <ItemGroup>
+ <_PubWebAuth Include="$(OutDir)WebAuth\**\*.*" />
+ </ItemGroup>
+ <Copy SourceFiles="@(_PubWebAuth)" DestinationFolder="$(PublishDir)WebAuth\%(RecursiveDir)" SkipUnchangedFiles="true" Condition="'@(_PubWebAuth)'!=''" />
+ </Target>
+
+ <!-- MZP18 isolated TEST authentication helper, built separately from decompiled
+      owned managed IL (not the original active Givre installation). It has an
+      isolated browser profile and no diagnostic canary path. Keep it distinct
+      from the genuine WebAuth folder and fail closed when absent. -->
+ <Target Name="CopyMZP18IsolatedWebAuth" AfterTargets="Build">
+   <ItemGroup>
+     <_MZP18WebAuth Include="..\tools\MZP18IsolatedWebAuth\bin\Release\net10.0-windows\win-x64\*.*"
+                  Condition="Exists('..\tools\MZP18IsolatedWebAuth\bin\Release\net10.0-windows\win-x64\MZP18IsolatedWebAuth.exe')" />
+   </ItemGroup>
+   <Copy SourceFiles="@(_MZP18WebAuth)" DestinationFolder="$(OutDir)WebAuthTest\" SkipUnchangedFiles="true"
+         Condition="'@(_MZP18WebAuth)'!=''" />
+ </Target>
+ <ItemGroup>
+ <None Include="..\native\GivreCombatVisuals\bin\GivreCombatVisuals.dll" Link="NativeTurboRuntime\GivreCombatVisuals.dll" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+ </ItemGroup>
+
+  
+</Project>

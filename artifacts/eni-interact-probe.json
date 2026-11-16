@@ -1,0 +1,1 @@
+{"bot": "Valrianess", "code": "function move() print(\"AVANT \"..tostring(quest:questObjectiveDone(1634,9775))) print(\"INTERACT \"..tostring(map:useById(488960,184))) delay(2000) quest:refresh(1634) delay(1000) print(\"APRES \"..tostring(quest:questObjectiveDone(1634,9775))) return false end"}

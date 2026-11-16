@@ -1,0 +1,478 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             x:Class="GivreClone.App.Views.SocketServerPickOverlay"
+             x:DataType="vm:AccountsViewModel">
+    <!-- Overlay niveau fenêtre : choix du SERVEUR puis du PERSONNAGE en mode Socket (clientless), quand le compte est réglé
+         sur « Écran de choix du serveur » ou « Choix du personnage » — mêmes écrans que le vrai client, en 2 étapes. Données =
+         étape A de la connexion (serveurs + persos : classe, sexe, niveau, dernière connexion). Pas de fermeture par clic sur le
+         fond : il faut choisir ou Annuler. Accent* = DynamicResource (StaticResource = crash au démarrage). -->
+    <UserControl.Styles>
+        <!-- Carte cliquable (serveur / personnage) -->
+        <Style Selector="Button.pickCard">
+            <Setter Property="Background" Value="{StaticResource Surface2Brush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource StrokeSoftBrush}" />
+            <Setter Property="Padding" Value="16,14" />
+            <Setter Property="Margin" Value="0,0,0,10" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="RenderTransformOrigin" Value="50%,50%" />
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.15" />
+                    <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.12" Easing="CubicEaseOut" />
+                </Transitions>
+            </Setter>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1" CornerRadius="12" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="Button.pickCard:pointerover">
+            <Setter Property="Background" Value="{StaticResource Surface3Brush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+        </Style>
+        <Style Selector="Button.pickCard:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.985)" />
+        </Style>
+        <Style Selector="Button.pickCard PathIcon.chev">
+            <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}" />
+        </Style>
+        <Style Selector="Button.pickCard:pointerover PathIcon.chev">
+            <Setter Property="Foreground" Value="{DynamicResource AccentBrightBrush}" />
+        </Style>
+        <!-- Grilles de choix du formulaire de création (sexe, classe, tête, corps) : tuiles arrondies, sélection en accent -->
+        <Style Selector="ListBox.pickGrid">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+        <Style Selector="ListBox.pickGrid ListBoxItem">
+            <Setter Property="Padding" Value="4" />
+            <Setter Property="Margin" Value="0,0,8,8" />
+            <Setter Property="MinHeight" Value="0" />
+        </Style>
+        <Style Selector="ListBox.pickGrid ListBoxItem /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource Surface2Brush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource StrokeSoftBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="12" />
+        </Style>
+        <Style Selector="ListBox.pickGrid ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource Surface3Brush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+        </Style>
+        <Style Selector="ListBox.pickGrid ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource AccentSoftBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+            <Setter Property="BorderThickness" Value="2" />
+        </Style>
+        <Style Selector="ListBox.pickGrid ListBoxItem:selected TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource AccentBrightBrush}" />
+        </Style>
+        <!-- Puce « Jouer » : accent doux, pleine au survol de la carte personnage -->
+        <Style Selector="Border.playChip">
+            <Setter Property="Background" Value="{DynamicResource AccentSoftBrush}" />
+            <Setter Property="Transitions">
+                <Transitions><BrushTransition Property="Background" Duration="0:0:0.15" /></Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Border.playChip TextBlock"><Setter Property="Foreground" Value="{DynamicResource AccentBrightBrush}" /></Style>
+        <Style Selector="Border.playChip PathIcon"><Setter Property="Foreground" Value="{DynamicResource AccentBrightBrush}" /></Style>
+        <Style Selector="Button.pickCard:pointerover Border.playChip"><Setter Property="Background" Value="{DynamicResource AccentBrush}" /></Style>
+        <Style Selector="Button.pickCard:pointerover Border.playChip TextBlock"><Setter Property="Foreground" Value="White" /></Style>
+        <Style Selector="Button.pickCard:pointerover Border.playChip PathIcon"><Setter Property="Foreground" Value="White" /></Style>
+
+        <!-- Pastilles d'état -->
+        <Style Selector="Border.pill">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="8,2" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="{StaticResource Surface3Brush}" />
+        </Style>
+        <Style Selector="Border.pill TextBlock">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}" />
+        </Style>
+        <Style Selector="Border.pill.ok"><Setter Property="Background" Value="#213FB950" /></Style>
+        <Style Selector="Border.pill.ok TextBlock"><Setter Property="Foreground" Value="#4ED07A" /></Style>
+        <Style Selector="Border.pill.warn"><Setter Property="Background" Value="#26E0A53F" /></Style>
+        <Style Selector="Border.pill.warn TextBlock"><Setter Property="Foreground" Value="{StaticResource AmberBrush}" /></Style>
+        <Style Selector="Border.pill.level"><Setter Property="Background" Value="{DynamicResource AccentSoftBrush}" /></Style>
+        <Style Selector="Border.pill.level TextBlock"><Setter Property="Foreground" Value="{DynamicResource AccentBrightBrush}" /></Style>
+
+        <!-- Étapes (1 Serveur — 2 Personnage) -->
+        <Style Selector="Border.step">
+            <Setter Property="CornerRadius" Value="14" />
+            <Setter Property="Padding" Value="6,4,12,4" />
+            <Setter Property="Background" Value="{StaticResource Surface2Brush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource StrokeSoftBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style Selector="Border.step TextBlock">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}" />
+        </Style>
+        <Style Selector="Border.step Border.num">
+            <Setter Property="Background" Value="{StaticResource Surface3Brush}" />
+        </Style>
+        <Style Selector="Border.step.active">
+            <Setter Property="Background" Value="{DynamicResource AccentSoftBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+        </Style>
+        <Style Selector="Border.step.active TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource AccentBrightBrush}" />
+        </Style>
+        <Style Selector="Border.step.active Border.num">
+            <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+        </Style>
+        <Style Selector="Border.step.active Border.num > TextBlock">
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid>
+        <Grid Classes.modalOpen="{Binding ServerPickVisible}" IsHitTestVisible="{Binding ServerPickVisible}"
+              IsEnabled="{Binding ServerPickVisible}">
+            <Border Classes="modalScrim" />
+            <Border Classes="modalCard" Width="600" MaxHeight="700" Margin="24" Padding="26,24" CornerRadius="16"
+                    Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid RowDefinitions="Auto,Auto,Auto,*,Auto">
+
+                    <!-- ===== En-tête ===== -->
+                    <Grid Grid.Row="0" ColumnDefinitions="Auto,*" ColumnSpacing="14">
+                        <Border Grid.Column="0" Width="46" Height="46" CornerRadius="23" Background="{DynamicResource AccentSoftBrush}"
+                                VerticalAlignment="Center">
+                            <Panel>
+                                <PathIcon Data="{StaticResource IconNetwork}" Width="20" Height="20" IsVisible="{Binding ServerPickOnServers}"
+                                          Foreground="{DynamicResource AccentBrightBrush}" />
+                                <PathIcon Data="{StaticResource IconAccount}" Width="20" Height="20" IsVisible="{Binding ServerPickOnChars}"
+                                          Foreground="{DynamicResource AccentBrightBrush}" />
+                            </Panel>
+                        </Border>
+                        <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding ServerPickTitle}" FontSize="18" FontWeight="SemiBold"
+                                       Foreground="{StaticResource TextPrimaryBrush}" />
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <TextBlock Text="{Binding ServerPickLogin}" Classes="pii" FontSize="12.5" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource AccentBrightBrush}" />
+                                <TextBlock Text="·" FontSize="12.5" Foreground="{StaticResource TextMutedBrush}" />
+                                <TextBlock Text="{Binding ServerPickSubtitle}" FontSize="12.5" TextTrimming="CharacterEllipsis"
+                                           Foreground="{StaticResource TextSecondaryBrush}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- ===== Étapes ===== -->
+                    <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto" Margin="0,18,0,16">
+                        <Border Grid.Column="0" Classes="step" Classes.active="{Binding ServerPickOnServers}">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Border Classes="num" Width="20" Height="20" CornerRadius="10">
+                                    <TextBlock Text="1" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                                <TextBlock Text="{DynamicResource L.Socket.StepServer}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Column="1" Height="2" Margin="10,0" CornerRadius="1" VerticalAlignment="Center"
+                                Background="{StaticResource StrokeSoftBrush}" />
+                        <Border Grid.Column="2" Classes="step" Classes.active="{Binding ServerPickCharStep}">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Border Classes="num" Width="20" Height="20" CornerRadius="10">
+                                    <TextBlock Text="2" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                                <TextBlock Text="{DynamicResource L.Socket.StepCharacter}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <!-- ===== Recherche (listes longues seulement) ===== -->
+                    <TextBox Grid.Row="2" Text="{Binding ServerPickSearch}" Height="40" Margin="0,0,0,12"
+                             IsVisible="{Binding ServerPickShowSearch}" VerticalContentAlignment="Center"
+                             Watermark="{DynamicResource L.Socket.Search}" />
+
+                    <!-- ===== Listes ===== -->
+                    <ScrollViewer Grid.Row="3" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <Panel>
+                            <!-- Étape 1 : serveurs -->
+                            <ItemsControl ItemsSource="{Binding ServerPickServers}" IsVisible="{Binding ServerPickOnServers}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="vm:SocketServerCard">
+                                        <Button Classes="pickCard"
+                                                Command="{Binding $parent[ItemsControl].((vm:AccountsViewModel)DataContext).PickSocketServerCommand}"
+                                                CommandParameter="{Binding}">
+                                            <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="14">
+                                                <Border Grid.Column="0" Width="46" Height="46" CornerRadius="12"
+                                                        Background="{DynamicResource AccentSoftBrush}" VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding Initial}" FontSize="19" FontWeight="Bold"
+                                                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                               Foreground="{DynamicResource AccentBrightBrush}" />
+                                                </Border>
+                                                <StackPanel Grid.Column="1" Spacing="7" VerticalAlignment="Center">
+                                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                                        <TextBlock Text="{Binding Name}" FontSize="15.5" FontWeight="SemiBold" VerticalAlignment="Center"
+                                                                   Foreground="{StaticResource TextPrimaryBrush}" />
+                                                        <Border Classes="pill ok" IsVisible="{Binding Online}">
+                                                            <TextBlock Text="{DynamicResource L.Socket.Online}" />
+                                                        </Border>
+                                                        <Border Classes="pill warn" IsVisible="{Binding Maintenance}">
+                                                            <TextBlock Text="{DynamicResource L.Socket.Maintenance}" />
+                                                        </Border>
+                                                        <Border Classes="pill" IsVisible="{Binding MonoAccount}">
+                                                            <TextBlock Text="{DynamicResource L.Socket.MonoAccount}" />
+                                                        </Border>
+                                                        <Border Classes="pill warn" IsVisible="{Binding HasRestriction}">
+                                                            <TextBlock Text="{Binding Restriction}" />
+                                                        </Border>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                                        <ItemsControl ItemsSource="{Binding Preview}" VerticalAlignment="Center">
+                                                            <ItemsControl.ItemsPanel>
+                                                                <ItemsPanelTemplate><StackPanel Orientation="Horizontal" Spacing="4" /></ItemsPanelTemplate>
+                                                            </ItemsControl.ItemsPanel>
+                                                            <ItemsControl.ItemTemplate>
+                                                                <DataTemplate x:DataType="vm:SocketCharCard">
+                                                                    <Border Width="22" Height="22" CornerRadius="11"
+                                                                            Background="{StaticResource Surface3Brush}" ToolTip.Tip="{Binding Name}">
+                                                                        <Panel>
+                                                                            <Image Source="{Binding Icon}" Width="15" Height="15" IsVisible="{Binding HasIcon}" />
+                                                                            <PathIcon Data="{StaticResource IconAccount}" Width="10" Height="10"
+                                                                                      IsVisible="{Binding NoIcon}" Foreground="{StaticResource TextMutedBrush}" />
+                                                                        </Panel>
+                                                                    </Border>
+                                                                </DataTemplate>
+                                                            </ItemsControl.ItemTemplate>
+                                                        </ItemsControl>
+                                                        <TextBlock Text="{Binding CharNames}" Classes="pii" FontSize="12.5" VerticalAlignment="Center"
+                                                                   TextTrimming="CharacterEllipsis" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                    </StackPanel>
+                                                </StackPanel>
+                                                <StackPanel Grid.Column="2" Spacing="4" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                                    <TextBlock Text="{Binding CharCountText}" FontSize="12.5" FontWeight="SemiBold" HorizontalAlignment="Right"
+                                                               Foreground="{StaticResource TextPrimaryBrush}" />
+                                                    <StackPanel Orientation="Horizontal" Spacing="5" HorizontalAlignment="Right" IsVisible="{Binding HasLastPlayed}">
+                                                        <PathIcon Data="{StaticResource IconClock}" Width="11" Height="11"
+                                                                  Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center" />
+                                                        <TextBlock Text="{Binding LastPlayedText}" FontSize="11.5" VerticalAlignment="Center"
+                                                                   Foreground="{StaticResource TextMutedBrush}" />
+                                                    </StackPanel>
+                                                </StackPanel>
+                                                <PathIcon Grid.Column="3" Classes="chev" Data="{StaticResource IconChevronRight}"
+                                                          Width="12" Height="12" VerticalAlignment="Center" />
+                                            </Grid>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <!-- Étape 2 : personnages du serveur choisi -->
+                            <StackPanel IsVisible="{Binding ServerPickOnChars}">
+                            <ItemsControl ItemsSource="{Binding ServerPickChars}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="vm:SocketCharCard">
+                                        <Button Classes="pickCard"
+                                                Command="{Binding $parent[ItemsControl].((vm:AccountsViewModel)DataContext).PickSocketCharacterCommand}"
+                                                CommandParameter="{Binding}">
+                                            <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto" ColumnSpacing="14">
+                                                <Border Grid.Column="0" Width="50" Height="50" CornerRadius="25"
+                                                        Background="{DynamicResource AccentSoftBrush}" VerticalAlignment="Center">
+                                                    <Panel>
+                                                        <Image Source="{Binding Icon}" Width="30" Height="30" IsVisible="{Binding HasIcon}" />
+                                                        <PathIcon Data="{StaticResource IconAccount}" Width="20" Height="20" IsVisible="{Binding NoIcon}"
+                                                                  Foreground="{DynamicResource AccentBrightBrush}" />
+                                                    </Panel>
+                                                </Border>
+                                                <StackPanel Grid.Column="1" Spacing="5" VerticalAlignment="Center">
+                                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                                        <TextBlock Text="{Binding Name}" Classes="pii" FontSize="15.5" FontWeight="SemiBold"
+                                                                   VerticalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}" />
+                                                        <Border Classes="pill level">
+                                                            <TextBlock Text="{Binding LevelText}" />
+                                                        </Border>
+                                                    </StackPanel>
+                                                    <TextBlock Text="{Binding ClassName}" FontSize="12.5" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                </StackPanel>
+                                                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="5" VerticalAlignment="Center"
+                                                            IsVisible="{Binding HasLastPlayed}">
+                                                    <PathIcon Data="{StaticResource IconClock}" Width="11" Height="11"
+                                                              Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center" />
+                                                    <TextBlock Text="{Binding LastPlayedText}" FontSize="11.5" VerticalAlignment="Center"
+                                                               Foreground="{StaticResource TextMutedBrush}" />
+                                                </StackPanel>
+                                                <Border Grid.Column="3" Classes="playChip" CornerRadius="8" Padding="11,6" VerticalAlignment="Center">
+                                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                                        <PathIcon Data="{StaticResource IconPlay}" Width="10" Height="10" />
+                                                        <TextBlock Text="{DynamicResource L.Socket.Play}" FontSize="12" FontWeight="SemiBold"
+                                                                   VerticalAlignment="Center" />
+                                                    </StackPanel>
+                                                </Border>
+                                                <Button Grid.Column="4" Classes="ghost" Padding="9,6" VerticalAlignment="Center" ToolTip.Tip="{Binding DeleteTooltip}"
+                                                        AutomationProperties.Name="{Binding DeleteTooltip}"
+                                                        Command="{Binding $parent[ItemsControl].((vm:AccountsViewModel)DataContext).AskDeleteSocketCharacterCommand}"
+                                                        CommandParameter="{Binding}">
+                                                    <PathIcon Data="{StaticResource IconTrash}" Width="14" Height="14" />
+                                                </Button>
+                                            </Grid>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <!-- Carte « Nouveau personnage » : création en mode Socket (le bot crée le personnage puis entre en jeu) -->
+                            <Button Classes="pickCard" Command="{Binding NewSocketCharacterCommand}" IsEnabled="{Binding CreateAllowed}">
+                                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                                    <Border Grid.Column="0" Width="50" Height="50" CornerRadius="25" Background="{DynamicResource AccentSoftBrush}" VerticalAlignment="Center">
+                                        <TextBlock Text="+" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource AccentBrightBrush}" />
+                                    </Border>
+                                    <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                                        <TextBlock Text="Nouveau personnage" FontSize="15.5" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" />
+                                        <TextBlock Text="{Binding CreateCardHint}" FontSize="12.5" TextWrapping="Wrap" Foreground="{StaticResource TextSecondaryBrush}" />
+                                    </StackPanel>
+                                    <PathIcon Grid.Column="2" Classes="chev" Data="{StaticResource IconChevronRight}" Width="12" Height="12" VerticalAlignment="Center" />
+                                </Grid>
+                            </Button>
+                            </StackPanel>
+
+                            <!-- Étape « Suppression » : réponse secrète + confirmation -->
+                            <StackPanel IsVisible="{Binding ServerPickOnDelete}" Spacing="12">
+                                <Border Background="{DynamicResource AccentSoftBrush}" CornerRadius="10" Padding="14,10">
+                                    <TextBlock TextWrapping="Wrap" FontWeight="SemiBold" Foreground="{DynamicResource AccentBrightBrush}"
+                                               Text="{Binding DeleteTarget.Name, StringFormat='Supprimer « {0} » définitivement'}" />
+                                </Border>
+                                <TextBlock TextWrapping="Wrap" Foreground="{StaticResource TextSecondaryBrush}" FontSize="12.5"
+                                           Text="Le serveur te posera la question secrète du compte. Saisis la réponse exacte (la casse compte) : elle n'est jamais enregistrée. Un compte sans code secret n'est pas encore pris en charge." />
+                                <TextBox Text="{Binding DeleteAnswer, Mode=TwoWay}" PasswordChar="●" Watermark="Réponse à la question secrète" />
+                                <TextBlock Text="{DynamicResource L.Socket.Delete.TypeName}" TextWrapping="Wrap" />
+                                <TextBox Text="{Binding DeleteName, Mode=TwoWay}" Watermark="{Binding DeleteTarget.Name}" />
+                                <CheckBox IsChecked="{Binding DeleteConfirmed, Mode=TwoWay}" Content="Je confirme : suppression définitive et irréversible du personnage." />
+                            </StackPanel>
+
+                            <!-- Étape « Création » : classe, sexe, tête, corps, nom, couleurs (données du jeu) -->
+                            <StackPanel IsVisible="{Binding ServerPickOnCreate}" Spacing="12">
+                                <Border Background="{DynamicResource AccentSoftBrush}" CornerRadius="10" Padding="14,10">
+                                    <TextBlock Text="{Binding CreateSummary}" TextWrapping="Wrap" FontWeight="SemiBold" Foreground="{DynamicResource AccentBrightBrush}" />
+                                </Border>
+                                <TextBlock Text="Sexe" FontSize="12.5" Foreground="{StaticResource TextSecondaryBrush}" />
+                                <ListBox Classes="pickGrid" ItemsSource="{Binding CreateSexes}" SelectedValue="{Binding CreateSex, Mode=TwoWay}" SelectedValueBinding="{ReflectionBinding Value}">
+                                    <ListBox.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate><DataTemplate x:DataType="vm:PickOption"><TextBlock Text="{Binding Label}" Margin="22,10" FontSize="14" FontWeight="SemiBold" /></DataTemplate></ListBox.ItemTemplate>
+                                </ListBox>
+                                <TextBlock Text="Classe" FontSize="12.5" Foreground="{StaticResource TextSecondaryBrush}" />
+                                <ListBox Classes="pickGrid" ItemsSource="{Binding CreateBreeds}" SelectedValue="{Binding CreateBreed, Mode=TwoWay}" SelectedValueBinding="{ReflectionBinding Value}">
+                                    <ListBox.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:PickOption">
+                                            <StackPanel Width="84" Spacing="4" Margin="2,4">
+                                                <Border Width="52" Height="52" CornerRadius="26" HorizontalAlignment="Center" Background="{DynamicResource AccentSoftBrush}">
+                                                    <Panel>
+                                                        <Image Source="{Binding Icon}" Width="38" Height="38" IsVisible="{Binding HasIcon}" />
+                                                        <TextBlock Text="{Binding Label}" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="{Binding NoIcon}" />
+                                                    </Panel>
+                                                </Border>
+                                                <TextBlock Text="{Binding Label}" FontSize="11.5" HorizontalAlignment="Center" TextAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <StackPanel Spacing="12" IsVisible="{Binding CreateNeedsSex}">
+                                    <TextBlock Text="Tête" FontSize="12.5" Foreground="{StaticResource TextSecondaryBrush}" />
+                                    <ListBox Classes="pickGrid" ItemsSource="{Binding CreateHeads}" SelectedValue="{Binding CreateHead, Mode=TwoWay}" SelectedValueBinding="{ReflectionBinding Value}">
+                                        <ListBox.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ListBox.ItemsPanel>
+                                        <ListBox.ItemTemplate><DataTemplate x:DataType="vm:PickOption"><StackPanel Spacing="2" Margin="6,6" MinWidth="64"><Image Source="{Binding Icon}" Width="64" Height="64" HorizontalAlignment="Center" IsVisible="{Binding HasIcon}" /><TextBlock Text="{Binding Label}" TextAlignment="Center" HorizontalAlignment="Center" FontSize="11" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,4" /></StackPanel></DataTemplate></ListBox.ItemTemplate>
+                                    </ListBox>
+                                    <TextBlock Text="Corps" FontSize="12.5" Foreground="{StaticResource TextSecondaryBrush}" />
+                                    <ListBox Classes="pickGrid" ItemsSource="{Binding CreateBodies}" SelectedValue="{Binding CreateBody, Mode=TwoWay}" SelectedValueBinding="{ReflectionBinding Value}">
+                                        <ListBox.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ListBox.ItemsPanel>
+                                        <ListBox.ItemTemplate><DataTemplate x:DataType="vm:PickOption"><StackPanel Spacing="2" Margin="6,6" MinWidth="80"><Image Source="{Binding Icon}" Width="80" Height="80" HorizontalAlignment="Center" IsVisible="{Binding HasIcon}" /><TextBlock Text="{Binding Label}" TextAlignment="Center" HorizontalAlignment="Center" FontSize="11" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,4" /></StackPanel></DataTemplate></ListBox.ItemTemplate>
+                                    </ListBox>
+                                </StackPanel>
+                                <TextBlock Text="Nom" FontSize="12.5" Foreground="{StaticResource TextSecondaryBrush}" />
+                                <TextBox Text="{Binding CreateName, Mode=TwoWay}" Watermark="Vide = nom proposé par le serveur" MaxLength="20" />
+                                <TextBlock Text="Couleurs : choisis un emplacement puis une couleur (estompé = couleur de la classe)" FontSize="12.5" Foreground="{StaticResource TextSecondaryBrush}" />
+                                <ItemsControl ItemsSource="{Binding CreateColors}">
+                                    <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:CreationColor">
+                                            <Button Classes="ghost" Padding="6,5" Margin="0,0,6,6"
+                                                    Command="{Binding $parent[ItemsControl].((vm:AccountsViewModel)DataContext).SelectCreateColorSlotCommand}" CommandParameter="{Binding}">
+                                                <StackPanel Spacing="4" Width="52">
+                                                    <Border Height="28" CornerRadius="6" BorderThickness="1" BorderBrush="{StaticResource StrokeSoftBrush}" Background="{Binding Brush}" Opacity="{Binding ShownOpacity}" />
+                                                    <TextBlock Text="{Binding SlotName}" FontSize="10.5" HorizontalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                    <Border Height="3" CornerRadius="2" IsVisible="{Binding IsActive}" Background="{DynamicResource AccentBrightBrush}" />
+                                                </StackPanel>
+                                            </Button>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <ItemsControl ItemsSource="{Binding CreatePalette}">
+                                    <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:PaletteSwatch">
+                                            <Button Classes="ghost" Padding="0" Margin="0,0,5,5" Width="26" Height="26"
+                                                    Command="{Binding $parent[ItemsControl].((vm:AccountsViewModel)DataContext).ApplyCreateColorCommand}" CommandParameter="{Binding}">
+                                                <Border CornerRadius="5" Background="{Binding Brush}" Width="22" Height="22" />
+                                            </Button>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Button Classes="ghost" Content="Au hasard" Command="{Binding RandomizeCreateColorsCommand}" />
+                                    <Button Classes="ghost" Content="Couleurs de la classe" Command="{Binding ResetCreateColorsCommand}" />
+                                </StackPanel>
+                                <CheckBox IsChecked="{Binding CreateLeaveTutorial, Mode=TwoWay}" Content="Quitter le tutoriel dès l'arrivée en jeu" />
+                            </StackPanel>
+                        </Panel>
+                    </ScrollViewer>
+
+                    <!-- ===== Pied : retour + annuler ===== -->
+                    <Grid Grid.Row="4" ColumnDefinitions="Auto,*,Auto" Margin="0,14,0,0">
+                        <Button Grid.Column="0" Classes="ghost" Height="40" IsVisible="{Binding ServerPickOnChars}"
+                                Command="{Binding SocketPickBackCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <PathIcon Data="{StaticResource IconBack}" Width="12" Height="12" />
+                                <TextBlock Text="{DynamicResource L.Socket.ChangeServer}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button Grid.Column="0" Classes="ghost" Height="40" IsVisible="{Binding ServerPickOnDelete}" Command="{Binding SocketDeleteBackCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <PathIcon Data="{StaticResource IconBack}" Width="12" Height="12" />
+                                <TextBlock Text="Retour" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button Grid.Column="1" Classes="primary" Height="40" MinWidth="150" HorizontalAlignment="Right" Margin="0,0,10,0"
+                                IsVisible="{Binding ServerPickOnDelete}" Command="{Binding ConfirmSocketDeletionCommand}">
+                            <TextBlock Text="Supprimer définitivement" VerticalAlignment="Center" />
+                        </Button>
+                        <Button Grid.Column="0" Classes="ghost" Height="40" IsVisible="{Binding ServerPickOnCreate}" Command="{Binding SocketCreateBackCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <PathIcon Data="{StaticResource IconBack}" Width="12" Height="12" />
+                                <TextBlock Text="Retour" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button Grid.Column="1" Classes="primary" Height="40" MinWidth="150" HorizontalAlignment="Right" Margin="0,0,10,0"
+                                IsVisible="{Binding ServerPickOnCreate}" Command="{Binding ConfirmSocketCreationCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <PathIcon Data="{StaticResource IconPlay}" Width="11" Height="11" />
+                                <TextBlock Text="Créer et jouer" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button Grid.Column="2" Classes="ghost" Height="40" MinWidth="120" Command="{Binding CancelServerPickCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <PathIcon Data="{StaticResource IconClose}" Width="12" Height="12" />
+                                <TextBlock Text="{DynamicResource L.Common.Cancel}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

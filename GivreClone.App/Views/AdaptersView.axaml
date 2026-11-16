@@ -1,0 +1,85 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             x:Class="GivreClone.App.Views.AdaptersView"
+             x:DataType="vm:AdaptersViewModel"
+             Classes="page">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="30,26" Spacing="20" MaxWidth="920" HorizontalAlignment="Center">
+            <StackPanel Spacing="4">
+                <Grid ColumnDefinitions="*,Auto">
+                    <TextBlock Grid.Column="0" Classes="h1" Text="{DynamicResource L.Adapters.Title}" />
+                    <Button Grid.Column="1" Classes="ghost" VerticalAlignment="Center" Command="{Binding RefreshCommand}">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <PathIcon Data="{StaticResource IconUpdate}" Width="13" Height="13" />
+                            <TextBlock Text="{DynamicResource L.Adapters.Refresh}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
+                <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Adapters.Subtitle}" />
+            </StackPanel>
+
+            <!-- Bandeau licence : sans la permission "Givre Adapter", les interfaces restent listées mais les
+                 switches sont desactives (CanUseAdapters=false). Informe l'utilisateur du POURQUOI. -->
+            <Border Classes="notice" IsVisible="{Binding ShowLegacyAdapterLicenseNotice}">
+                <Grid ColumnDefinitions="Auto,*">
+                    <PathIcon Grid.Column="0" Data="{StaticResource IconLock}" />
+                    <TextBlock Grid.Column="1" Text="{DynamicResource L.Adapters.NoLicense}" />
+                </Grid>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel Spacing="10">
+                    <TextBlock Classes="section" Text="{DynamicResource L.Adapters.ListTitle}" />
+                    <TextBlock Classes="caption" IsVisible="{Binding !HasAdapters}" Text="{DynamicResource L.Adapters.Empty}" />
+
+                    <ItemsControl ItemsSource="{Binding Adapters}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:AdapterRow">
+                                <Border Classes="listItem" Margin="0,0,0,8" Padding="14,12">
+                                    <Grid ColumnDefinitions="Auto,*,Auto,Auto">
+                                        <PathIcon Grid.Column="0" Data="{StaticResource IconNetwork}" Width="20" Height="20"
+                                                  Foreground="{DynamicResource AccentBrightBrush}" VerticalAlignment="Center" Margin="0,0,14,0" />
+                                        <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center" ClipToBounds="True">
+                                            <TextBlock Text="{Binding Name}" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" />
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                                <TextBlock Text="{Binding Ip}" Classes="caption pii" VerticalAlignment="Center" />
+                                                <Button Classes="iconbtn" Width="28" Height="26" VerticalAlignment="Center"
+                                                        ToolTip.Tip="{DynamicResource L.Adapters.CopyIp}"
+                                                        Command="{Binding $parent[ItemsControl].((vm:AdaptersViewModel)DataContext).CopyIpCommand}"
+                                                        CommandParameter="{Binding}">
+                                                    <PathIcon Data="{StaticResource IconCopy}" Width="12" Height="12" />
+                                                </Button>
+                                            </StackPanel>
+                                            <!-- endpoint sur sa propre ligne : ne deborde plus sur la colonne Port -->
+                                            <Border Classes="badge" IsVisible="{Binding Running}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Endpoint}" FontSize="10.5"
+                                                           Foreground="{DynamicResource AccentBrightBrush}" />
+                                            </Border>
+                                        </StackPanel>
+
+                                        <!-- port fixe / auto (une seule ligne, centree) -->
+                                        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="9" VerticalAlignment="Center" Margin="0,0,18,0">
+                                            <TextBlock Classes="label" Text="{DynamicResource L.Adapters.Port}" VerticalAlignment="Center" />
+                                            <TextBox Width="76" Text="{Binding PortText}" IsEnabled="{Binding !Running}"
+                                                     Watermark="{DynamicResource L.Adapters.PortPlaceholder}" VerticalAlignment="Center" />
+                                            <CheckBox IsChecked="{Binding FixedPort}" IsEnabled="{Binding !Running}"
+                                                      Content="{DynamicResource L.Adapters.Fixed}" VerticalAlignment="Center"
+                                                      ToolTip.Tip="{DynamicResource L.Adapters.FixedPortHint}" />
+                                        </StackPanel>
+
+                                        <ToggleSwitch Grid.Column="3" VerticalAlignment="Center" OnContent="" OffContent=""
+                                                      IsChecked="{Binding Running, Mode=OneWay}"
+                                                      IsEnabled="{Binding $parent[ItemsControl].((vm:AdaptersViewModel)DataContext).CanUseAdapters}"
+                                                      Command="{Binding $parent[ItemsControl].((vm:AdaptersViewModel)DataContext).ToggleCommand}"
+                                                      CommandParameter="{Binding}" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

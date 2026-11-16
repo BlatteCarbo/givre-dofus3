@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GivreClone">
+      <HintPath>%USERPROFILE%\.t3\worktrees\GivreWork\fix-f01-f16-final-20261024\GivreClone.Tests\bin\Release\net10.0\GivreClone.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="GivreClone.Protocol">
+      <HintPath>%USERPROFILE%\.t3\worktrees\GivreWork\fix-f01-f16-final-20261024\GivreClone.Tests\bin\Release\net10.0\GivreClone.Protocol.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="GivreClone.Engine">
+      <HintPath>%USERPROFILE%\.t3\worktrees\GivreWork\fix-f01-f16-final-20261024\GivreClone.Tests\bin\Release\net10.0\GivreClone.Engine.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

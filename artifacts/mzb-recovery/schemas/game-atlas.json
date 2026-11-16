@@ -1,0 +1,1158 @@
+{
+  "source_file": "game-atlas.json",
+  "values_removed": true,
+  "fields": [
+    {
+      "path": "$.Npcs",
+      "type": "dict"
+    },
+    {
+      "path": "$.Npcs.8002",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.8002[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.8002[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.8002[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.8002[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.7581",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.7581[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.7581[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.7581[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.7581[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.7102",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.7102[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.7102[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.7102[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.7102[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2892",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.2892[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2892[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2892[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2892[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.871",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.871[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.871[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.871[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.871[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2887",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.2887[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2887[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2887[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2887[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2949",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.2949[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2949[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2949[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2949[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2947",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.2947[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2947[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2947[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2947[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2948",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.2948[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2948[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2948[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2948[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2950",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.2950[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2950[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2950[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2950[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2943",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.2943[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2943[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2943[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2943[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2944",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.2944[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2944[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2944[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2944[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2902",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.2902[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2902[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2902[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2902[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2905",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.2905[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2905[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2905[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2905[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2899",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.2899[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2899[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2899[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2899[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2900",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.2900[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2900[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2900[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2900[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2910",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.2910[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2910[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2910[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2910[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.1223",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.1223[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.1223[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.1223[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.1223[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2940",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.2940[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2940[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2940[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2940[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2881",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.2881[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2881[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2881[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2881[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2939",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.2939[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2939[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2939[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2939[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4360",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4360[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4360[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4360[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4360[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4398",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4398[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4398[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4398[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4398[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4355",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4355[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4355[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4355[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4355[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.6838",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.6838[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.6838[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.6838[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.6838[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2354",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.2354[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2354[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.2354[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.2354[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4425",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4425[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4425[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4425[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4425[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4319",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4319[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4319[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4319[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4319[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4313",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4313[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4313[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4313[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4313[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4366",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4366[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4366[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4366[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4366[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4428",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4428[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4428[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4428[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4428[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.6840",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.6840[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.6840[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.6840[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.6840[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.1905",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.1905[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.1905[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.1905[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.1905[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4338",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4338[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4338[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4338[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4338[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4469",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4469[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4469[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4469[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4469[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.749",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.749[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.749[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.749[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.749[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.751",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.751[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.751[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.751[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.751[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.750",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.750[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.750[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.750[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.750[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4321",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4321[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4321[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4321[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4321[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4426",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4426[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4426[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4426[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4426[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4381",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4381[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4381[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4381[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4381[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4380",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4380[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4380[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4380[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4380[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4352",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4352[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4352[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4352[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4352[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4329",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4329[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4329[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4329[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4329[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.6831",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.6831[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.6831[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.6831[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.6831[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4328",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4328[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4328[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4328[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4328[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4361",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4361[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4361[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4361[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4361[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4322",
+      "type": "list"
+    },
+    {
+      "path": "$.Npcs.4322[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4322[].Cell",
+      "type": "int"
+    },
+    {
+      "path": "$.Npcs.4322[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Npcs.4322[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Shops",
+      "type": "dict"
+    },
+    {
+      "path": "$.ObjectiveReplies",
+      "type": "dict"
+    },
+    {
+      "path": "$.ObjectiveReplies.9739",
+      "type": "list"
+    },
+    {
+      "path": "$.ObjectiveReplies.9739[].Reply",
+      "type": "int"
+    },
+    {
+      "path": "$.ObjectiveReplies.9739[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.ObjectiveReplies.9739[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Banks",
+      "type": "dict"
+    },
+    {
+      "path": "$.Banks.DCF84815E04AB655",
+      "type": "dict"
+    },
+    {
+      "path": "$.Banks.DCF84815E04AB655.Items",
+      "type": "dict"
+    },
+    {
+      "path": "$.Banks.DCF84815E04AB655.Kamas",
+      "type": "int"
+    },
+    {
+      "path": "$.Banks.DCF84815E04AB655.Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Documents",
+      "type": "dict"
+    },
+    {
+      "path": "$.Documents.752",
+      "type": "list"
+    },
+    {
+      "path": "$.Documents.752[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Documents.752[].Element",
+      "type": "int"
+    },
+    {
+      "path": "$.Documents.752[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Documents.752[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Documents.750",
+      "type": "list"
+    },
+    {
+      "path": "$.Documents.750[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Documents.750[].Element",
+      "type": "int"
+    },
+    {
+      "path": "$.Documents.750[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Documents.750[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Documents.755",
+      "type": "list"
+    },
+    {
+      "path": "$.Documents.755[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Documents.755[].Element",
+      "type": "int"
+    },
+    {
+      "path": "$.Documents.755[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Documents.755[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Documents.754",
+      "type": "list"
+    },
+    {
+      "path": "$.Documents.754[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Documents.754[].Element",
+      "type": "int"
+    },
+    {
+      "path": "$.Documents.754[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Documents.754[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Documents.753",
+      "type": "list"
+    },
+    {
+      "path": "$.Documents.753[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Documents.753[].Element",
+      "type": "int"
+    },
+    {
+      "path": "$.Documents.753[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Documents.753[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Documents.751",
+      "type": "list"
+    },
+    {
+      "path": "$.Documents.751[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Documents.751[].Element",
+      "type": "int"
+    },
+    {
+      "path": "$.Documents.751[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Documents.751[].Game",
+      "type": "str"
+    },
+    {
+      "path": "$.Documents.418",
+      "type": "list"
+    },
+    {
+      "path": "$.Documents.418[].Map",
+      "type": "int"
+    },
+    {
+      "path": "$.Documents.418[].Element",
+      "type": "int"
+    },
+    {
+      "path": "$.Documents.418[].Seen",
+      "type": "str"
+    },
+    {
+      "path": "$.Documents.418[].Game",
+      "type": "str"
+    }
+  ]
+}

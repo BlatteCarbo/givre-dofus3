@@ -1,0 +1,24 @@
+{
+  "diskSha256": "e08da74cfcac126a4d0929bf76d79b7c4f45b902ece082041b55d2715db9bf13",
+  "loadedImageSha256": "8f9b1e44044cda86034db0f38f2c0c1da7bac5c1bfcdc0d90e095efc03d94631",
+  "comparison": "PE executable sections: raw file offsets versus mapped RVAs; no relocation normalization",
+  "sections": [
+    {
+      "name": ".text",
+      "rva": "0x1000",
+      "comparedBytes": 6654612,
+      "differentBytes": 0,
+      "diskSha256": "231cb1ec11c382a412a0e4600c80fd28fdc8723090ae1cd061830af921f5e8e7",
+      "loadedSha256": "231cb1ec11c382a412a0e4600c80fd28fdc8723090ae1cd061830af921f5e8e7"
+    },
+    {
+      "name": "il2cpp",
+      "rva": "0x65a000",
+      "comparedBytes": 86934883,
+      "differentBytes": 0,
+      "diskSha256": "85125283ec5f0afe15632a09c327428ccaf1273790ade15aff5c3261d6ac2de9",
+      "loadedSha256": "85125283ec5f0afe15632a09c327428ccaf1273790ade15aff5c3261d6ac2de9"
+    }
+  ],
+  "limitation": "Nonzero differences alone cannot distinguish relocations, loader changes, instrumentation or runtime changes. No decompilation or gameplay semantics established."
+}

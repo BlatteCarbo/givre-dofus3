@@ -1,0 +1,91 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             xmlns:views="using:GivreClone.App.Views"
+             xmlns:acv="using:Avalonia.Data.Converters"
+             x:Class="GivreClone.App.Views.PlanningOverlays"
+             x:DataType="vm:BotsViewModel">
+    <!-- Overlay niveau fenêtre (les deux skins) : PLANNING D'UN PERSO HORS LIGNE (« connexion auto »). La carte garde le
+         DataContext BotsViewModel (en-tête / pied) ; seul l'éditeur prend l'instance distincte OfflinePlanning. -->
+    <Grid>
+        <Grid Classes.modalOpen="{Binding OfflinePlanningVisible}" IsHitTestVisible="{Binding OfflinePlanningVisible}"
+              IsEnabled="{Binding OfflinePlanningVisible}">
+            <Border Classes="modalScrim" PointerPressed="OnScrimPressed" />
+            <Border Classes="modalCard" MaxWidth="820" Margin="28" Padding="0" CornerRadius="16"
+                    Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                <Grid RowDefinitions="Auto,*,Auto" MaxHeight="760">
+                    <!-- En-tête : perso (pii), compte (pii), état + prochaine connexion -->
+                    <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" Margin="24,20,18,14">
+                        <Border Grid.Column="0" Width="44" Height="44" CornerRadius="22" Background="{StaticResource Surface2Brush}"
+                                ClipToBounds="True" VerticalAlignment="Top">
+                            <Panel>
+                                <PathIcon Data="{StaticResource IconAccount}" Width="20" Height="20" Foreground="{StaticResource TextMutedBrush}"
+                                          IsVisible="{Binding OfflinePlanningTarget.ClassIcon, Converter={x:Static acv:ObjectConverters.IsNull}}" />
+                                <Image Source="{Binding OfflinePlanningTarget.ClassIcon}" Width="40" Height="40" Stretch="Uniform"
+                                       IsVisible="{Binding OfflinePlanningTarget.ClassIcon, Converter={x:Static acv:ObjectConverters.IsNotNull}}" />
+                            </Panel>
+                        </Border>
+                        <StackPanel Grid.Column="1" Margin="14,0,12,0" Spacing="3" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="{Binding OfflinePlanningTarget.Character}" Classes="pii" FontSize="18" FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center" />
+                                <Border Classes="badge" Background="{StaticResource Surface2Brush}" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
+                                        <Ellipse Width="7" Height="7" Fill="#6B7280" VerticalAlignment="Center" />
+                                        <TextBlock Text="{DynamicResource L.Planning.Modal.Offline}" FontSize="10.5"
+                                                   Foreground="{StaticResource TextSecondaryBrush}" />
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                            <TextBlock Text="{Binding OfflinePlanningTarget.Login}" Classes="caption pii" />
+                            <TextBlock Text="{Binding OfflinePlanningTarget.StatusText}" FontSize="12" TextWrapping="Wrap"
+                                       Foreground="{StaticResource TextSecondaryBrush}" />
+                            <StackPanel Orientation="Horizontal" Spacing="6"
+                                        IsVisible="{Binding OfflinePlanningTarget.NextText, Converter={x:Static acv:StringConverters.IsNotNullOrEmpty}}">
+                                <PathIcon Data="{StaticResource IconClock}" Width="12" Height="12" Foreground="{DynamicResource AccentBrightBrush}" VerticalAlignment="Center" />
+                                <TextBlock Text="{Binding OfflinePlanningTarget.NextText}" FontSize="12" FontWeight="SemiBold"
+                                           Foreground="{DynamicResource AccentBrightBrush}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </StackPanel>
+                        <Button Grid.Column="2" Classes="ghost" Width="34" Height="34" MinWidth="0" Padding="0" VerticalAlignment="Top"
+                                Command="{Binding CloseOfflinePlanningCommand}" ToolTip.Tip="{DynamicResource L.Common.Close}">
+                            <PathIcon Data="{StaticResource IconClose}" Width="12" Height="12" />
+                        </Button>
+                    </Grid>
+
+                    <!-- Éditeur complet (le même que l'onglet Planning), sur l'instance du perso hors ligne -->
+                    <!-- IsEnabled coupé juste après le fondu de fermeture (la modale reste dans l'arbre, invisible) : le champ qui
+                         avait le focus le perd (valide la saisie) et plus aucune frappe n'atteint l'éditeur caché. -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="24,2,24,10"
+                                  IsEnabled="{Binding OfflineEditorEnabled}">
+                        <views:PlanningEditor DataContext="{Binding OfflinePlanning}" />
+                    </ScrollViewer>
+
+                    <!-- Pied : rappel d'enregistrement immédiat + actions -->
+                    <Border Grid.Row="2" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="0,1,0,0" Padding="24,14">
+                        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
+                            <TextBlock Grid.Column="0" Text="{DynamicResource L.Planning.Modal.Footer}" Classes="caption"
+                                       TextWrapping="Wrap" VerticalAlignment="Center" />
+                            <Button Grid.Column="1" Classes="ghost" Height="40" MinWidth="110" Command="{Binding CloseOfflinePlanningCommand}">
+                                <StackPanel Orientation="Horizontal" Spacing="7">
+                                    <PathIcon Data="{StaticResource IconClose}" Width="12" Height="12" />
+                                    <TextBlock Text="{DynamicResource L.Common.Close}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                            <Button Grid.Column="2" Classes="primary" Height="40" MinWidth="170"
+                                    Command="{Binding ConnectPlannedNowCommand}" CommandParameter="{Binding OfflinePlanningTarget}"
+                                    IsEnabled="{Binding OfflinePlanningTarget.CanConnect}"
+                                    ToolTip.Tip="{DynamicResource L.Planning.Modal.ConnectNowTip}">
+                                <StackPanel Orientation="Horizontal" Spacing="7">
+                                    <PathIcon Data="{StaticResource IconPlay}" Width="13" Height="13" />
+                                    <TextBlock Text="{DynamicResource L.Planning.Modal.ConnectNow}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

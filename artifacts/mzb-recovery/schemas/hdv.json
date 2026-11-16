@@ -1,0 +1,306 @@
+{
+  "source_file": "hdv.json",
+  "values_removed": true,
+  "fields": [
+    {
+      "path": "$.Profiles",
+      "type": "dict"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe",
+      "type": "dict"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.Enabled",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.Mode",
+      "type": "str"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.HdvMapId",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.HdvName",
+      "type": "str"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.SellWholeBag",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.SellGids",
+      "type": "str"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.SellStrategy",
+      "type": "str"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.UndercutKamas",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.MarginPercent",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.FloorPercent",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.LotIndex",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.AutoReprice",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.RepriceIntervalMin",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BuyGids",
+      "type": "str"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.MaxUnitPrice",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BuyLotIndex",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BudgetMaxSpend",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BuyRules",
+      "type": "list"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BuyRecipeGid",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BuyRecipeMult",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BuyDeductStock",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BuyStrategy",
+      "type": "str"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BuyTolerancePct",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BuyThresholds",
+      "type": "list"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BuyIgnorePrice",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BuyDelayMinMs",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BuyDelayMaxMs",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BuyRetrySec",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BuySwitchEvery",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BuySniper",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.SniperPct",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.SniperWaitMinSec",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.SniperWaitMaxSec",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.NotifySale",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.NotifyBuy",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.NotifyReprice",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.NotifyPodsFull",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.NotifyNoKamas",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.RefreshRateMs",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.RefreshRateMaxMs",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.DelayBetweenSalesMs",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.DelayBetweenSalesMaxMs",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.IgnoreGids",
+      "type": "list"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.MaxTaxSpend",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.RepriceEnabled",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.RepriceScope",
+      "type": "str"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.RepriceScopeCount",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.SanityPercent",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.PriceTtlMinSec",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.PriceTtlMaxSec",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.PriceProbeMinMs",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.PriceProbeMaxMs",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.ListUndercutKamas",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.NoCompetitorMode",
+      "type": "str"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.LotStrategy",
+      "type": "str"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.LotTolerancePct",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BulkLotIndex",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BulkMaxLotsPerItem",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BulkDelayMinMs",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BulkDelayMaxMs",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BulkPauses",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BulkPauseMinSec",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BulkPauseMaxSec",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BulkPauseEveryMin",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BulkPauseEveryMax",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.BulkRelist",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.RelistEnabled",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.RelistRules",
+      "type": "list"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.RelistOnSale",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.RelistInstant",
+      "type": "bool"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.RelistWakeMinMs",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.RelistWakeMaxMs",
+      "type": "int"
+    },
+    {
+      "path": "$.Profiles.Rey-mashinthe.RelistRetrySec",
+      "type": "int"
+    }
+  ]
+}

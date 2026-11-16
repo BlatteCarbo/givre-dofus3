@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "jobId": "A11-agent01-round1",
+  "lotId": "A11",
+  "agentId": "agent01",
+  "baseCommit": "A_REMPLIR",
+  "headCommit": null,
+  "status": "recherche",
+  "summary": "A_REMPLIR",
+  "modifiedFiles": [],
+  "artifacts": [],
+  "checks": [],
+  "sources": [],
+  "unresolvedObjections": [],
+  "limitations": [],
+  "reviewRound": 1
+}

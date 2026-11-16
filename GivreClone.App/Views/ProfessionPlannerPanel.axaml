@@ -1,0 +1,457 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             x:Class="GivreClone.App.Views.ProfessionPlannerPanel"
+             x:DataType="vm:ProfessionPlannerViewModel">
+    <UserControl.Styles>
+        <Style Selector="Border.profCard">
+            <Setter Property="Background" Value="#142238" />
+            <Setter Property="BorderBrush" Value="#293D55" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="15" />
+            <Setter Property="Padding" Value="19" />
+        </Style>
+        <Style Selector="TextBlock.profMuted">
+            <Setter Property="Foreground" Value="#92A5BE" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style Selector="TextBlock.profCaption">
+            <Setter Property="Foreground" Value="#9DB0C8" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style Selector="TextBlock.profHeading">
+            <Setter Property="Foreground" Value="#F2F6FF" />
+            <Setter Property="FontSize" Value="17" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style Selector="TextBox.profInput">
+            <Setter Property="Background" Value="#0B1829" />
+            <Setter Property="Foreground" Value="#EAF5FF" />
+            <Setter Property="BorderBrush" Value="#35516A" />
+            <Setter Property="CornerRadius" Value="9" />
+            <Setter Property="MinHeight" Value="37" />
+            <Setter Property="Padding" Value="10,8" />
+        </Style>
+        <Style Selector="ComboBox.profInput">
+            <Setter Property="Background" Value="#0B1829" />
+            <Setter Property="Foreground" Value="#ECF5FF" />
+            <Setter Property="BorderBrush" Value="#35516A" />
+            <Setter Property="CornerRadius" Value="9" />
+            <Setter Property="MinHeight" Value="36" />
+        </Style>
+        <Style Selector="Button.profPrimary">
+            <Setter Property="Background" Value="#40D0BB" />
+            <Setter Property="Foreground" Value="#081C28" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="CornerRadius" Value="9" />
+            <Setter Property="Padding" Value="15,10" />
+            <Setter Property="MinHeight" Value="37" />
+        </Style>
+        <Style Selector="Button.profSecondary">
+            <Setter Property="Background" Value="#24364D" />
+            <Setter Property="Foreground" Value="#E6F3FF" />
+            <Setter Property="CornerRadius" Value="9" />
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="MinHeight" Value="35" />
+        </Style>
+        <Style Selector="Button.profTiny">
+            <Setter Property="Background" Value="#20344C" />
+            <Setter Property="Foreground" Value="#C6D8E8" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="8,5" />
+        </Style>
+        <Style Selector="ListBox.profList">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+        <Style Selector="ListBox.profList ListBoxItem">
+            <Setter Property="Padding" Value="1" />
+            <Setter Property="Margin" Value="0,0,0,5" />
+            <Setter Property="CornerRadius" Value="9" />
+        </Style>
+        <Style Selector="ListBox.profList ListBoxItem:selected">
+            <Setter Property="Background" Value="#1D555E" />
+        </Style>
+    </UserControl.Styles>
+
+    <Border Background="#0B1424">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="25,22,25,35" HorizontalAlignment="Center"
+                        MinWidth="980" MaxWidth="1360" Spacing="15">
+                <!-- Hero: one clear job-to-job journey. -->
+                <Border CornerRadius="18" BorderThickness="1" BorderBrush="#31566F" Padding="24,21">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                            <GradientStop Color="#1B3650" Offset="0" />
+                            <GradientStop Color="#17223B" Offset="0.58" />
+                            <GradientStop Color="#282449" Offset="1" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="28">
+                        <StackPanel Grid.Column="0" Spacing="10">
+                            <TextBlock Text="Coach métiers" Foreground="#81F2D8" FontWeight="SemiBold" FontSize="12"/>
+                            <TextBlock Text="Planifie ta progression." FontSize="28" FontWeight="Bold"
+                                       Foreground="#F4F9FF"/>
+                            <TextBlock Text="Recettes, stock, ressources et sous-crafts, réunis dans un seul plan."
+                                       TextWrapping="Wrap" Foreground="#B7C9E2" FontSize="13" MaxWidth="705"/>
+                            <StackPanel Orientation="Horizontal" Spacing="11">
+                                <Border Background="#263A55" CornerRadius="7" Padding="10,6">
+                                    <TextBlock Text="{Binding GoalLabel}" Foreground="#F9CB7E" FontWeight="SemiBold" FontSize="13" />
+                                </Border>
+                                <Border Background="#41344B" BorderBrush="#685375" BorderThickness="1"
+                                        CornerRadius="7" Padding="10,6">
+                                    <TextBlock Text="{Binding DemoLabel}" Foreground="#EFC8FC" FontWeight="SemiBold" FontSize="11" />
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Spacing="5" MaxWidth="585">
+                                <ProgressBar Minimum="0" Maximum="100" Height="7"
+                                             Value="{Binding LevelProgressValue}" Foreground="#75D9C6"
+                                             Background="#35435A" CornerRadius="4"/>
+                                <TextBlock Text="{Binding LevelProgressCaption}" Foreground="#B7C9E2" FontSize="11"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Width="194" Spacing="8" VerticalAlignment="Center">
+                            <Button Classes="profPrimary" Content="↻  Construire mon plan"
+                                    Command="{Binding RefreshPlanCommand}" AutomationProperties.Name="Construire le plan hors jeu" />
+                            <Button Classes="profSecondary" Content="✦  Voir la démo fictive"
+                                    Command="{Binding ShowDemoCommand}" AutomationProperties.Name="Activer une démonstration fictive" />
+                            <Button Classes="profTiny" Content="Quitter la démo"
+                                    IsVisible="{Binding DemoMode}" Command="{Binding LeaveDemoCommand}"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Grid ColumnDefinitions="355,*" ColumnSpacing="15">
+                    <!-- Left column: practical, completely bound inputs. -->
+                    <StackPanel Grid.Column="0" Spacing="14">
+                        <Border Classes="profCard">
+                            <StackPanel Spacing="11">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <TextBlock Text="Mon objectif" Classes="profHeading" />
+                                    <Border Grid.Column="1" Background="#254C49" CornerRadius="6" Padding="8,4">
+                                        <TextBlock Text="PERSONNALISABLE" Foreground="#82DCC9" FontSize="9" FontWeight="Bold"/>
+                                    </Border>
+                                </Grid>
+                                <TextBlock Text="Recherche métier" Classes="profCaption"/>
+                                <TextBox Classes="profInput" Text="{Binding JobSearch, Mode=TwoWay}"
+                                         PlaceholderText="Bijoutier, Mineur, Bricoleur..." MaxLength="64"
+                                         AutomationProperties.Name="Rechercher un métier"/>
+                                <ItemsControl ItemsSource="{Binding FilteredJobs}" MaxHeight="77">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate><WrapPanel ItemSpacing="5" LineSpacing="5"/></ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="x:String">
+                                            <Button Classes="profTiny" Content="{Binding .}" MaxHeight="26"
+                                                    Command="{Binding $parent[ItemsControl].((vm:ProfessionPlannerViewModel)DataContext).ChooseJobCommand}"
+                                                    CommandParameter="{Binding .}" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <Grid ColumnDefinitions="*,*" ColumnSpacing="9">
+                                    <StackPanel Spacing="5">
+                                        <TextBlock Text="Niveau actuel" Classes="profCaption"/>
+                                        <TextBox Classes="profInput" Text="{Binding StartLevel, Mode=TwoWay}"
+                                                 MaxLength="3" AutomationProperties.Name="Niveau métier de départ"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Spacing="5">
+                                        <TextBlock Text="Objectif niveau" Classes="profCaption"/>
+                                        <TextBox Classes="profInput" Text="{Binding TargetLevel, Mode=TwoWay}"
+                                                 MaxLength="3" AutomationProperties.Name="Niveau métier cible"/>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid ColumnDefinitions="*,*" ColumnSpacing="9">
+                                    <StackPanel Spacing="5">
+                                        <TextBlock Text="Crafts à prévoir (optionnel)" Classes="profCaption"/>
+                                        <TextBox Classes="profInput" Text="{Binding RequestedCraftsText, Mode=TwoWay}"
+                                                 PlaceholderText="Ex. 20" MaxLength="7"
+                                                 AutomationProperties.Name="Nombre de crafts manuel"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Spacing="5">
+                                        <TextBlock Text="XP actuelle (optionnel)" Classes="profCaption"/>
+                                        <TextBox Classes="profInput" Text="{Binding CurrentXpText, Mode=TwoWay}"
+                                                 PlaceholderText="Sans preuve XP" MaxLength="13"
+                                                 AutomationProperties.Name="Expérience actuelle saisie"/>
+                                    </StackPanel>
+                                </Grid>
+                                <TextBlock Text="Un nombre de crafts permet le calcul matière même si l’XP du passage 20 → 30 n’est pas connue. Une XP manuelle reste non vérifiée."
+                                           Classes="profMuted" TextWrapping="Wrap"/>
+                                <TextBlock Text="Préférence de planification" Classes="profCaption"/>
+                                <ComboBox Classes="profInput" ItemsSource="{Binding Strategies}"
+                                          SelectedItem="{Binding Strategy, Mode=TwoWay}"
+                                          AutomationProperties.Name="Préférence entre temps et kamas"/>
+                                <TextBlock Text="Temps et kamas comparés seulement avec des preuves compatibles."
+                                           Classes="profMuted" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Classes="profCard">
+                            <StackPanel Spacing="10">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <TextBlock Text="Stock disponible" Classes="profHeading"/>
+                                    <TextBlock Grid.Column="1" Text="MANUEL" Foreground="#81D4D0" FontSize="10"/>
+                                </Grid>
+                                <TextBlock Text="Le stock partagé est consommé une seule fois par le moteur relié. Saisis tes quantités actuelles."
+                                           Classes="profMuted" TextWrapping="Wrap"/>
+                                <TextBox Classes="profInput" Text="{Binding NewInventoryItem, Mode=TwoWay}"
+                                         PlaceholderText="Ex. Plume de Piou" MaxLength="96"
+                                         AutomationProperties.Name="Nom de ressource du stock manuel"/>
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                                    <TextBox Classes="profInput" Text="{Binding NewInventoryQuantity, Mode=TwoWay}"
+                                             PlaceholderText="Quantité disponible" MaxLength="10"
+                                             AutomationProperties.Name="Quantité en inventaire"/>
+                                    <Button Grid.Column="1" Classes="profPrimary" Content="+ Ajouter"
+                                            Command="{Binding AddInventoryCommand}"/>
+                                </Grid>
+                                <TextBlock Text="{Binding InventoryCountLabel}" Classes="profMuted"/>
+                                <TextBlock IsVisible="{Binding !HasInventory}" Text="Aucune ressource indiquée pour l'instant."
+                                           Classes="profMuted" TextWrapping="Wrap"/>
+                                <ItemsControl ItemsSource="{Binding InventoryRows}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:ProfessionInventoryRow">
+                                            <Border Background="#0D1B2D" CornerRadius="7" Padding="9,6"
+                                                    Margin="0,0,0,5" BorderBrush="#263E52" BorderThickness="1">
+                                                <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="7">
+                                                    <TextBlock Text="{Binding Name}" Foreground="#E8F2FC" FontSize="12"
+                                                               TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding QuantityLabel}"
+                                                               Foreground="#7EE9D2" FontSize="12" VerticalAlignment="Center"/>
+                                                    <Button Grid.Column="2" Classes="profTiny" Content="×" ToolTip.Tip="Retirer du stock"
+                                                            Command="{Binding $parent[ItemsControl].((vm:ProfessionPlannerViewModel)DataContext).RemoveInventoryCommand}"
+                                                            CommandParameter="{Binding .}"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Right: source catalog, dependency graph and strategy inspector. -->
+                    <StackPanel Grid.Column="1" Spacing="14">
+                        <Border Classes="profCard">
+                            <StackPanel Spacing="10">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <StackPanel Spacing="2">
+                                        <TextBlock Text="Recettes disponibles" Classes="profHeading"/>
+                                        <TextBlock Text="{Binding RecipeCountLabel}" Classes="profMuted"/>
+                                    </StackPanel>
+                                    <Border Grid.Column="1" Background="#3E3044" CornerRadius="8" Padding="9,5"
+                                            VerticalAlignment="Center">
+                                        <TextBlock Text="PROVENANCE VISIBLE" Foreground="#E7BCE5" FontSize="10" FontWeight="Bold" />
+                                    </Border>
+                                </Grid>
+                                <TextBlock Text="{Binding SourceMessage}" Foreground="#E6C58D"
+                                           TextWrapping="Wrap" FontSize="12"/>
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                    <TextBox Grid.Column="0" Classes="profInput" Text="{Binding RecipeSearch, Mode=TwoWay}"
+                                             PlaceholderText="Rechercher une recette chargée..." MaxLength="96"
+                                             AutomationProperties.Name="Filtrer les recettes chargées"/>
+                                    <CheckBox Grid.Column="1" Content="Sources vérifiées"
+                                              IsChecked="{Binding VerifiedRecipesOnly, Mode=TwoWay}"
+                                              Foreground="#AFD8D0" VerticalAlignment="Center"
+                                              ToolTip.Tip="Masquer les recettes sans preuve du fournisseur local"/>
+                                </Grid>
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                                    <Button Grid.Column="0" Classes="profSecondary" Content="↥  Importer un dossier local…"
+                                            Click="SelectFolder_Click" AutomationProperties.Name="Choisir un dossier de catalogue de recettes"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding CatalogFolder}" Classes="profMuted"
+                                               TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                </Grid>
+                                <TextBlock Text="Aucune recette chargée. Relie une source vérifiée ou affiche la démonstration fictive."
+                                           IsVisible="{Binding !HasRecipes}" Classes="profMuted" TextWrapping="Wrap"/>
+                                <ListBox Classes="profList" ItemsSource="{Binding VisibleRecipes}"
+                                         SelectedItem="{Binding SelectedRecipe, Mode=TwoWay}" MaxHeight="154">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:ProfessionCatalogRecipe">
+                                            <Border Background="#0D1E31" BorderBrush="#31435F" BorderThickness="1"
+                                                    CornerRadius="9" Padding="12,9">
+                                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                                                    <StackPanel Spacing="4">
+                                                        <TextBlock Text="{Binding Name}" FontWeight="SemiBold"
+                                                                   Foreground="#F1F6FF"/>
+                                                        <TextBlock Text="{Binding SourceLabel}" FontSize="11"
+                                                                   Foreground="#9BB6D3" TextWrapping="Wrap"/>
+                                                        <TextBlock Text="{Binding EvidenceLabel}" FontSize="10"
+                                                                   Foreground="#C8B3CE" FontWeight="SemiBold"/>
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="1" HorizontalAlignment="Right" Spacing="4">
+                                                        <TextBlock Text="{Binding ProductionLabel}" Foreground="#82DEC9" FontSize="11"/>
+                                                        <TextBlock Text="{Binding ExperienceLabel}" Foreground="#E5C286" FontSize="11"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </Border>
+
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                            <Border Classes="profCard" Padding="14" BorderBrush="#276960">
+                                <StackPanel Spacing="5">
+                                    <TextBlock Text="XP" Classes="profCaption"/>
+                                    <TextBlock Text="{Binding XpLabel}" FontSize="19" FontWeight="Bold" Foreground="#7EE4CB"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="1" Classes="profCard" Padding="14" BorderBrush="#765936">
+                                <StackPanel Spacing="5">
+                                    <TextBlock Text="KAMAS" Classes="profCaption"/>
+                                    <TextBlock Text="{Binding CostLabel}" FontSize="19" FontWeight="Bold" Foreground="#F5CB85"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="2" Classes="profCard" Padding="14" BorderBrush="#534375">
+                                <StackPanel Spacing="5">
+                                    <TextBlock Text="TEMPS" Classes="profCaption"/>
+                                    <TextBlock Text="{Binding TimeLabel}" FontSize="19" FontWeight="Bold" Foreground="#D5BCFA"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <Border Classes="profCard">
+                            <StackPanel Spacing="12">
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="14">
+                                    <StackPanel Spacing="3">
+                                        <TextBlock Text="Besoins et sous-crafts" Classes="profHeading"/>
+                                        <TextBlock Text="{Binding PlanHeadline}" Foreground="#8CEADB" FontSize="13"
+                                                   FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                    <Border Grid.Column="1" Background="#403649" BorderBrush="#705A74"
+                                            BorderThickness="1" Padding="9,6" CornerRadius="7" VerticalAlignment="Top">
+                                        <TextBlock Text="{Binding CoverageLabel}" Foreground="#F4D1B7" FontSize="10" FontWeight="Bold"/>
+                                    </Border>
+                                </Grid>
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                    <ComboBox Classes="profInput" Grid.Column="0" ItemsSource="{Binding PlanViewModes}"
+                                              SelectedItem="{Binding PlanViewMode, Mode=TwoWay}"
+                                              AutomationProperties.Name="Filtrer les étapes par mode d'acquisition"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding VisibleStepCountLabel}"
+                                               Classes="profMuted" VerticalAlignment="Center"/>
+                                </Grid>
+                                <TextBlock Text="{Binding PlanExplanation}" Classes="profMuted" TextWrapping="Wrap"/>
+                                <TextBlock Text="Aucun arbre disponible : ajoute des données de recettes."
+                                           IsVisible="{Binding !HasPlan}" Classes="profMuted" TextWrapping="Wrap"/>
+                                <ListBox Classes="profList" ItemsSource="{Binding VisibleSteps}"
+                                         SelectedItem="{Binding SelectedStep, Mode=TwoWay}"
+                                         MaxHeight="344" MinHeight="102" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:ProfessionPlanStepRow">
+                                            <Border Background="#0D1B2E" BorderBrush="#2E435B" BorderThickness="1"
+                                                    CornerRadius="10" Padding="12,10" Margin="{Binding DepthMargin}">
+                                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                                                    <StackPanel Spacing="4">
+                                                        <StackPanel Orientation="Horizontal" Spacing="6">
+                                                            <Border Width="3" CornerRadius="2" Background="#51D3C4" Margin="0,2,7,2"/>
+                                                            <TextBlock Text="{Binding Title}" Foreground="#F2F7FE" FontWeight="SemiBold"/>
+                                                            <TextBlock Text="{Binding Kind}" Foreground="#D4B5ED" FontSize="10"
+                                                                       VerticalAlignment="Center"/>
+                                                        </StackPanel>
+                                                        <TextBlock Text="{Binding Description}" Classes="profMuted"
+                                                                   TextTrimming="CharacterEllipsis" MaxWidth="470"/>
+                                                        <TextBlock Text="{Binding Provenance}" Foreground="#8EB2CA" FontSize="10"
+                                                                   TextTrimming="CharacterEllipsis" MaxWidth="470"/>
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="1" Spacing="3" HorizontalAlignment="Right">
+                                                        <TextBlock Text="{Binding Required}" Foreground="#F2F6FF"
+                                                                   FontWeight="Bold" HorizontalAlignment="Right"/>
+                                                        <TextBlock Text="{Binding Missing}" Foreground="#F1C180" FontSize="12"
+                                                                   HorizontalAlignment="Right"/>
+                                                        <TextBlock Text="{Binding Evidence}" Foreground="#C9A6D9" FontSize="10"
+                                                                   HorizontalAlignment="Right"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Classes="profCard" BorderBrush="#424071">
+                            <StackPanel Spacing="10">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <TextBlock Text="Obtenir les ressources" Classes="profHeading"/>
+                                    <TextBlock Grid.Column="1" Text="DÉCISION LOCALE" FontSize="10"
+                                               Foreground="#D3B8F2" VerticalAlignment="Center"/>
+                                </Grid>
+                                <TextBlock Text="Clique une étape dans l'arbre pour voir son stock, ses manquants et les méthodes autorisées par la source."
+                                           Classes="profMuted" TextWrapping="Wrap"/>
+                                <TextBlock Text="Sélectionne d'abord une étape." Classes="profMuted"
+                                           IsVisible="{Binding !HasSelectedStep}"/>
+                                <StackPanel IsVisible="{Binding HasSelectedStep}" Spacing="10">
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="9">
+                                        <StackPanel Spacing="4">
+                                            <TextBlock Text="RESSOURCE SÉLECTIONNÉE" Classes="profCaption"/>
+                                            <TextBlock Text="{Binding SelectedStep.Title}" Foreground="#ECF5FF"
+                                                       FontWeight="Bold" TextWrapping="Wrap"/>
+                                            <TextBlock Text="{Binding SelectedStep.Provenance}" Classes="profMuted"
+                                                       TextWrapping="Wrap"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Spacing="4">
+                                            <TextBlock Text="ACTION RETENUE" Classes="profCaption"/>
+                                            <ComboBox Classes="profInput" ItemsSource="{Binding SelectedStep.ActionOptions}"
+                                                      SelectedItem="{Binding SelectedStep.SelectedAction, Mode=TwoWay}"
+                                                      AutomationProperties.Name="Choisir une méthode de collecte ou craft"/>
+                                            <TextBlock Text="Recalculer pour transmettre ce choix au moteur, sans action en jeu"
+                                                       Classes="profMuted" TextWrapping="Wrap"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                                        <Border Background="#20364B" Padding="10,8" CornerRadius="7">
+                                            <StackPanel Spacing="4">
+                                                <TextBlock Text="REQUIS" Classes="profCaption"/>
+                                                <TextBlock Text="{Binding SelectedStep.Required}" Foreground="#F3F8FF" FontWeight="Bold"/>
+                                            </StackPanel>
+                                        </Border>
+                                        <Border Grid.Column="1" Background="#1D4142" Padding="10,8" CornerRadius="7">
+                                            <StackPanel Spacing="4">
+                                                <TextBlock Text="EN STOCK" Classes="profCaption"/>
+                                                <TextBlock Text="{Binding SelectedStep.InInventory}" Foreground="#7FE5D4" FontWeight="Bold"/>
+                                            </StackPanel>
+                                        </Border>
+                                        <Border Grid.Column="2" Background="#473B36" Padding="10,8" CornerRadius="7">
+                                            <StackPanel Spacing="4">
+                                                <TextBlock Text="MANQUANT" Classes="profCaption"/>
+                                                <TextBlock Text="{Binding SelectedStep.Missing}" Foreground="#FFD08C" FontWeight="Bold"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid>
+                                    <Button Classes="profSecondary" HorizontalAlignment="Left"
+                                            Content="Consulter une route Atlas attestée"
+                                            Command="{Binding InspectVerifiedAtlasRouteCommand}"
+                                            AutomationProperties.Name="Consulter uniquement un trajet documenté par l'atlas"/>
+                                    <TextBlock Text="{Binding AtlasRouteStatus}" Classes="profMuted"
+                                               TextWrapping="Wrap" MaxWidth="600"/>
+                                </StackPanel>
+                                <Button Classes="profPrimary" HorizontalAlignment="Left"
+                                        Content="◇  Simuler ma stratégie (hors jeu)"
+                                        Command="{Binding SimulateCommand}"/>
+                                <Border Background="#0B1B2B" CornerRadius="8" Padding="11,9">
+                                    <TextBlock Text="{Binding SimulationResult}" Foreground="#C8D9EB"
+                                               TextWrapping="Wrap" FontSize="12"/>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+
+                <Border Background="#20253B" BorderBrush="#4C4B66" BorderThickness="1" Padding="14,12" CornerRadius="12">
+                    <StackPanel Spacing="6">
+                        <Button Classes="profSecondary" HorizontalAlignment="Left"
+                                Content="Diagnostiquer les preuves hôte V18 (lecture seule)"
+                                Command="{Binding InspectProfessionHostProofsV18Command}"/>
+                        <TextBlock Text="{Binding HostProofV18Status}" Foreground="#F4C891"
+                                   TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding StatusMessage}" Foreground="#E2E9F4" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding WarningLabel}" Foreground="#F4C891" FontSize="12" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding DataDisclaimer}" Foreground="#BBC5D9" FontWeight="SemiBold"
+                                   FontSize="11" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Border>
+</UserControl>

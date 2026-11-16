@@ -1,0 +1,649 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             xmlns:svc="using:GivreClone.App.Services.Production"
+             x:Class="GivreClone.App.Views.ItemCraftPlannerPanel"
+             x:DataType="vm:ItemCraftPlannerViewModel">
+    <UserControl.Styles>
+        <Style Selector="Border.icPanel">
+            <Setter Property="Background" Value="#142239" />
+            <Setter Property="BorderBrush" Value="#2C3F58" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="14" />
+            <Setter Property="Padding" Value="18" />
+        </Style>
+        <Style Selector="TextBlock.icHeading">
+            <Setter Property="Foreground" Value="#F3F7FF" />
+            <Setter Property="FontSize" Value="17" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style Selector="TextBlock.icMuted">
+            <Setter Property="Foreground" Value="#9BB0C8" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style Selector="TextBlock.icLabel">
+            <Setter Property="Foreground" Value="#B3C5DC" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style Selector="TextBox.icInput">
+            <Setter Property="Background" Value="#0A182B" />
+            <Setter Property="Foreground" Value="#F1F7FF" />
+            <Setter Property="BorderBrush" Value="#34516C" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="MinHeight" Value="36" />
+        </Style>
+        <Style Selector="ComboBox.icInput">
+            <Setter Property="Background" Value="#0A182B" />
+            <Setter Property="Foreground" Value="#F1F7FF" />
+            <Setter Property="BorderBrush" Value="#34516C" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="MinHeight" Value="36" />
+        </Style>
+        <Style Selector="Button.icPrimary">
+            <Setter Property="Background" Value="#51D8BF" />
+            <Setter Property="Foreground" Value="#0A1F2A" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="13,9" />
+            <Setter Property="MinHeight" Value="35" />
+        </Style>
+        <Style Selector="Button.icSecondary">
+            <Setter Property="Background" Value="#263853" />
+            <Setter Property="Foreground" Value="#E4EFFC" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="MinHeight" Value="35" />
+        </Style>
+        <Style Selector="Button.icSmall">
+            <Setter Property="Background" Value="#20354B" />
+            <Setter Property="Foreground" Value="#C9D8E8" />
+            <Setter Property="CornerRadius" Value="7" />
+            <Setter Property="Padding" Value="9,5" />
+        </Style>
+        <Style Selector="ListBox.icList">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+        <Style Selector="ListBox.icList ListBoxItem">
+            <Setter Property="Margin" Value="0,0,0,5" />
+            <Setter Property="Padding" Value="1" />
+            <Setter Property="CornerRadius" Value="9" />
+        </Style>
+        <Style Selector="ListBox.icList ListBoxItem:selected">
+            <Setter Property="Background" Value="#205760" />
+        </Style>
+    </UserControl.Styles>
+
+    <Border Background="#0A1424">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Margin="20,20,20,30" MaxWidth="1220"
+                        HorizontalAlignment="Stretch" Spacing="18">
+                <!-- Clear action header; the four decorative wizard tiles repeated the headings below
+                     without representing real navigation, so they have been removed. -->
+                <Border CornerRadius="12" BorderThickness="1" BorderBrush="#34536D" Padding="18,16">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                            <GradientStop Color="#193950" Offset="0"/>
+                            <GradientStop Color="#17243B" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
+                        <StackPanel Spacing="5" VerticalAlignment="Center">
+                            <TextBlock Text="Atelier de fabrication" FontSize="23"
+                                       FontWeight="Bold" Foreground="#F2F7FF" />
+                            <TextBlock Text="Choisis les objets, indique ton stock et calcule les ressources manquantes."
+                                       FontSize="13" Foreground="#C5D3E9" TextWrapping="Wrap" />
+                            <TextBlock Text="{Binding DemoBanner}" FontSize="11"
+                                       Foreground="#F1C9F9" IsVisible="{Binding DemoMode}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="7">
+                            <Button Classes="icPrimary" Content="Calculer mon plan"
+                                    Command="{Binding RefreshPlanCommand}" AutomationProperties.Name="Calculer le plan de fabrication hors jeu"/>
+                            <Button Classes="icSecondary" Content="Voir un exemple"
+                                    Command="{Binding ShowDemoCommand}" AutomationProperties.Name="Ouvrir la démonstration fictive de panoplie"/>
+                            <Button Classes="icSmall" Content="Quitter l'exemple"
+                                    IsVisible="{Binding DemoMode}" Command="{Binding LeaveDemoCommand}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Grid ColumnDefinitions="355,*" ColumnSpacing="14">
+                    <StackPanel Grid.Column="0" Spacing="14">
+                        <!-- mode/catalog -->
+                        <Border Classes="icPanel">
+                            <StackPanel Spacing="11">
+                                <TextBlock Text="01 / Créer mon objectif" Classes="icHeading"/>
+                                <TextBlock Text="Type de plan" Classes="icLabel"/>
+                                <ComboBox Classes="icInput" ItemsSource="{Binding Modes}"
+                                          SelectedItem="{Binding Mode, Mode=TwoWay}"
+                                          AutomationProperties.Name="Type de plan objet panoplie ou liste libre"/>
+                                <TextBlock Text="{Binding ModeSubtitle}" Classes="icMuted" TextWrapping="Wrap" />
+                                <Border Background="#101F31" BorderThickness="1" BorderBrush="#354A63"
+                                        CornerRadius="8" Padding="10,9">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Text="CATALOGUE LOCAL" Classes="icLabel"/>
+                                        <Button Classes="icSecondary" Content="↥  Importer un dossier local…"
+                                                Click="ChooseCatalogFolder_Click" HorizontalAlignment="Left"
+                                                AutomationProperties.Name="Choisir un dossier de catalogue"/>
+                                        <TextBlock Text="{Binding CatalogFolder}" Classes="icMuted" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding CatalogStatus}" Foreground="#F4CE9A" FontSize="11"
+                                                   TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </Border>
+                                <TextBlock Text="Rechercher un objet ou une panoplie" Classes="icLabel"/>
+                                <TextBox Classes="icInput" Text="{Binding SearchText, Mode=TwoWay}"
+                                         PlaceholderText="Recherche dans le catalogue importé"
+                                         MaxLength="90" AutomationProperties.Name="Rechercher un objet ou une panoplie"/>
+                                <Button Classes="icSecondary" Content="⌕  Rechercher tout le catalogue"
+                                        Command="{Binding SearchCatalogCommand}" HorizontalAlignment="Stretch"
+                                        AutomationProperties.Name="Rechercher dans toute la source locale"/>
+                                <TextBlock Text="{Binding SearchCount}" Classes="icMuted"/>
+                                <TextBlock Text="Aucune fiche fiable disponible. Charge un catalogue ou active la démo."
+                                           IsVisible="{Binding !HasResults}" Classes="icMuted" TextWrapping="Wrap"/>
+                                <ListBox Classes="icList" ItemsSource="{Binding SearchResults}"
+                                         SelectedItem="{Binding SelectedCatalogEntry, Mode=TwoWay}"
+                                         MaxHeight="208" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:ItemCraftCatalogEntry">
+                                            <Border Background="#0D1E31" CornerRadius="8" Padding="10,9"
+                                                    BorderThickness="1" BorderBrush="#304761">
+                                                <StackPanel Spacing="4">
+                                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="7">
+                                                        <TextBlock Text="{Binding Name}" FontWeight="SemiBold"
+                                                                   Foreground="#EBF4FF" TextWrapping="Wrap"/>
+                                                        <TextBlock Grid.Column="1" Text="{Binding CategoryLabel}"
+                                                                   Foreground="#D8B8F6" FontSize="10" VerticalAlignment="Top"/>
+                                                    </Grid>
+                                                    <TextBlock Text="{Binding PiecesLabel}" Classes="icMuted"/>
+                                                    <TextBlock Text="{Binding Provenance}" Foreground="#9FD1CE" FontSize="10"
+                                                               TextWrapping="Wrap" />
+                                                    <TextBlock Text="{Binding EvidenceLabel}" Foreground="#F5C98C"
+                                                               FontSize="10" FontWeight="Bold"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <TextBlock Text="Quantité par article / exemplaires de la panoplie" Classes="icLabel" TextWrapping="Wrap"/>
+                                <Grid ColumnDefinitions="100,*" ColumnSpacing="8">
+                                    <TextBox Classes="icInput" Text="{Binding QuantityText, Mode=TwoWay}"
+                                             MaxLength="6" PlaceholderText="1"
+                                             AutomationProperties.Name="Quantité par article"/>
+                                    <Button Grid.Column="1" Classes="icPrimary" Command="{Binding AddSelectionCommand}"
+                                            Content="+ Ajouter à mes objectifs"/>
+                                </Grid>
+                                <TextBlock Text="En mode Panoplie, chaque pièce documentée est ajoutée. En Liste libre, les articles s'accumulent."
+                                           Classes="icMuted" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Shared inventory -->
+                        <Border Classes="icPanel">
+                            <StackPanel Spacing="10">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <TextBlock Text="03 / Mon inventaire" Classes="icHeading"/>
+                                    <TextBlock Grid.Column="1" Text="SAISIE MANUELLE"
+                                               Foreground="#83E4CE" FontSize="10" VerticalAlignment="Center"/>
+                                </Grid>
+                                <TextBlock Text="Saisie partagée entre toutes les pièces. Le moteur doit consommer chaque pile une seule fois."
+                                           Classes="icMuted" TextWrapping="Wrap"/>
+                                <TextBox Classes="icInput" Text="{Binding StockItemText, Mode=TwoWay}"
+                                         PlaceholderText="Nom exact d'ingrédient" MaxLength="96"
+                                         AutomationProperties.Name="Ressource du stock manuel"/>
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                                    <TextBox Classes="icInput" Text="{Binding StockQuantityText, Mode=TwoWay}"
+                                             PlaceholderText="Quantité disponible" MaxLength="10"
+                                             AutomationProperties.Name="Quantité disponible en stock"/>
+                                    <Button Grid.Column="1" Classes="icPrimary" Content="+ Stock"
+                                            Command="{Binding AddStockCommand}"/>
+                                </Grid>
+                                <TextBlock Text="{Binding StockCount}" Classes="icMuted"/>
+                                <TextBlock Text="Stock encore vide : aucun ingrédient déduit."
+                                           IsVisible="{Binding !HasInventory}" Classes="icMuted"/>
+                                <ItemsControl ItemsSource="{Binding Inventory}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:ItemCraftStockRow">
+                                            <Border Padding="8,6" Margin="0,0,0,5" Background="#0E2133"
+                                                    BorderBrush="#2D445B" BorderThickness="1" CornerRadius="7">
+                                                <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+                                                    <TextBlock Text="{Binding ItemName}" Foreground="#E7F0FB"
+                                                               TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding QuantityLabel}" Foreground="#80E3D0"
+                                                               VerticalAlignment="Center"/>
+                                                    <Button Grid.Column="2" Classes="icSmall" Content="×"
+                                                            ToolTip.Tip="Retirer cette ressource"
+                                                            Command="{Binding $parent[ItemsControl].((vm:ItemCraftPlannerViewModel)DataContext).RemoveStockCommand}"
+                                                            CommandParameter="{Binding .}"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Spacing="14">
+                        <!-- selection and set pieces -->
+                        <Border Classes="icPanel">
+                            <StackPanel Spacing="10">
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="9">
+                                    <StackPanel Spacing="3">
+                                        <TextBlock Text="02 / Pièces à fabriquer" Classes="icHeading"/>
+                                        <TextBlock Text="{Binding TargetCount}" Classes="icMuted"/>
+                                    </StackPanel>
+                                    <Button Grid.Column="1" Classes="icSmall" Content="Vider la liste"
+                                            Command="{Binding ClearTargetsCommand}"/>
+                                </Grid>
+                                <TextBlock Text="Chaque ligne est un article requis ; une panoplie complète est automatiquement déployée en pièces."
+                                           Classes="icMuted" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding TargetEvidenceStatus}" Foreground="#F1CC91" FontSize="11"
+                                           TextWrapping="Wrap"/>
+                                <TextBlock Text="Aucune pièce sélectionnée pour le moment."
+                                           Classes="icMuted" IsVisible="{Binding !HasTargets}"/>
+                                <ItemsControl ItemsSource="{Binding Targets}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate><WrapPanel ItemSpacing="8" LineSpacing="8"/></ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:ItemCraftTarget">
+                                            <Border Background="#10273C" CornerRadius="9" Padding="11,9"
+                                                    BorderThickness="1" BorderBrush="#376074" MinWidth="193" MaxWidth="260">
+                                                <StackPanel Spacing="6">
+                                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5">
+                                                        <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Foreground="#EDF5FF"
+                                                                   FontWeight="SemiBold"/>
+                                                        <Button Grid.Column="1" Content="×" Classes="icSmall" ToolTip.Tip="Retirer cette pièce"
+                                                                Command="{Binding $parent[ItemsControl].((vm:ItemCraftPlannerViewModel)DataContext).RemoveTargetCommand}"
+                                                                CommandParameter="{Binding .}"/>
+                                                    </Grid>
+                                                    <TextBlock Text="{Binding GroupLabel}" Foreground="#9CADD0" FontSize="10"
+                                                               TextTrimming="CharacterEllipsis"/>
+                                                    <TextBlock Text="{Binding QuantityLabel}" Foreground="#90F4DD" FontWeight="Bold"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                            <Border Classes="icPanel" Padding="13" BorderBrush="#26675F">
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="CIBLES" Classes="icLabel"/>
+                                    <TextBlock Text="{Binding PlannedItems}" Foreground="#8BF2D6" FontSize="17"
+                                               FontWeight="Bold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="Pièces estimées" Classes="icMuted"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="1" Classes="icPanel" Padding="13" BorderBrush="#6C553C">
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="KAMAS" Classes="icLabel"/>
+                                    <TextBlock Text="{Binding Cost}" Foreground="#F4C98E" FontSize="17"
+                                               FontWeight="Bold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="Valeur vérifiée uniquement" Classes="icMuted" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="2" Classes="icPanel" Padding="13" BorderBrush="#564976">
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="TEMPS" Classes="icLabel"/>
+                                    <TextBlock Text="{Binding Duration}" Foreground="#DCC6FF" FontSize="17"
+                                               FontWeight="Bold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="Sans taux supposés" Classes="icMuted"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <Border Classes="icPanel">
+                            <StackPanel Spacing="11">
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock Text="04 / Arbre multi-objets" Classes="icHeading"/>
+                                        <TextBlock Text="{Binding PlanTitle}" Foreground="#8AEED7" FontWeight="SemiBold"
+                                                   TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding Completeness}" Foreground="#F5C98C" FontSize="11"
+                                                   FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                    <Border Grid.Column="1" Background="#403344" CornerRadius="7" Padding="10,6"
+                                            VerticalAlignment="Top" BorderThickness="1" BorderBrush="#725F79">
+                                        <TextBlock Text="{Binding Coverage}" Foreground="#F2D5BC" FontSize="10" FontWeight="Bold"/>
+                                    </Border>
+                                </Grid>
+                                <TextBlock Text="{Binding PlanDescription}" Classes="icMuted" TextWrapping="Wrap"/>
+                                <Border Background="#0C1C30" CornerRadius="9" Padding="10,8">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock Text="PIÈCE  →  INGRÉDIENTS  →  SOUS-CRAFTS  →  SOURCES"
+                                                   Foreground="#B4DDEE" FontSize="10.5" VerticalAlignment="Center"
+                                                   FontWeight="SemiBold"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding GraphCount}" Classes="icMuted"/>
+                                    </Grid>
+                                </Border>
+                                <TextBlock Text="Aucun arbre vérifié disponible ; choisis un article puis calcule ses besoins."
+                                           IsVisible="{Binding !HasPlan}" Classes="icMuted" TextWrapping="Wrap"/>
+                                <ListBox Classes="icList" ItemsSource="{Binding Nodes}"
+                                         SelectedItem="{Binding SelectedNode, Mode=TwoWay}"
+                                         MinHeight="115" MaxHeight="374" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:ItemCraftNodeRow">
+                                            <Border Background="#0E1E32" CornerRadius="8" Padding="11,10"
+                                                    BorderBrush="#314A62" BorderThickness="1">
+                                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                                                    <StackPanel Spacing="4">
+                                                        <StackPanel Orientation="Horizontal" Spacing="6">
+                                                            <TextBlock Text="{Binding Prefix}" FontFamily="Consolas"
+                                                                       Foreground="#57D9CA" FontWeight="Bold"/>
+                                                            <TextBlock Text="{Binding ItemName}" Foreground="#EEF5FF"
+                                                                       FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                                            <TextBlock Text="{Binding Kind}" Foreground="#D8B1EF"
+                                                                       FontSize="10" VerticalAlignment="Center"/>
+                                                        </StackPanel>
+                                                        <TextBlock Text="{Binding Description}" Classes="icMuted" TextWrapping="Wrap"/>
+                                                        <TextBlock Text="{Binding Provenance}" Foreground="#9BD8D1" FontSize="10"
+                                                                   TextWrapping="Wrap"/>
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="1" Spacing="3" HorizontalAlignment="Right">
+                                                        <TextBlock Text="{Binding Required}" Foreground="#F0F7FF" FontWeight="Bold"
+                                                                   HorizontalAlignment="Right"/>
+                                                        <TextBlock Text="{Binding Missing}" Foreground="#F3C383" FontSize="12"
+                                                                   HorizontalAlignment="Right"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="9">
+                                    <Button Classes="icSmall" Content="← Page précédente"
+                                            Command="{Binding PreviousGraphPageCommand}"
+                                            IsEnabled="{Binding HasPreviousGraphPage}"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding GraphPageLabel}" Classes="icMuted"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Button Grid.Column="2" Classes="icSmall" Content="Page suivante →"
+                                            Command="{Binding NextGraphPageCommand}"
+                                            IsEnabled="{Binding HasNextGraphPage}"/>
+                                </Grid>
+                                <TextBlock Text="{Binding GraphLimitLabel}" IsVisible="{Binding IsGraphLimited}"
+                                           Foreground="#F7C78D" FontSize="11" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding PlanSource}" Foreground="#A5E7D6" FontSize="11"
+                                           TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Classes="icPanel" BorderBrush="#59466F">
+                            <StackPanel Spacing="11">
+                                <TextBlock Text="05 / Farm, achat ou sous-craft ?" Classes="icHeading"/>
+                                <TextBlock Text="Sélectionne une branche de l'arbre pour connaître les besoins et choisir une méthode documentée."
+                                           Classes="icMuted" TextWrapping="Wrap"/>
+                                <TextBlock Text="Clique un nœud de l'arbre pour afficher ses méthodes."
+                                           Classes="icMuted" IsVisible="{Binding !HasSelectedNode}"/>
+                                <StackPanel Spacing="10" IsVisible="{Binding HasSelectedNode}">
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="11">
+                                        <StackPanel Spacing="5">
+                                            <TextBlock Text="ÉTAPE SÉLECTIONNÉE" Classes="icLabel"/>
+                                            <TextBlock Text="{Binding SelectedNode.ItemName}" Foreground="#EEF4FF"
+                                                       FontWeight="Bold" TextWrapping="Wrap"/>
+                                            <TextBlock Text="{Binding SelectedNode.Provenance}" Classes="icMuted"
+                                                       TextWrapping="Wrap"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Spacing="5">
+                                            <TextBlock Text="MÉTHODE D'OBTENTION" Classes="icLabel"/>
+                                            <ComboBox Classes="icInput" ItemsSource="{Binding SelectedNode.Methods}"
+                                                      SelectedItem="{Binding SelectedNode.SelectedMethod, Mode=TwoWay}"
+                                                      AutomationProperties.Name="Choix de la méthode pour le nœud"/>
+                                            <TextBlock Text="Recalculer pour transmettre les choix au moteur" Classes="icMuted"
+                                                       TextWrapping="Wrap"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                                        <Border Background="#23374C" Padding="10,8" CornerRadius="7">
+                                            <StackPanel Spacing="4"><TextBlock Text="REQUIS" Classes="icLabel"/>
+                                                <TextBlock Text="{Binding SelectedNode.Required}" Foreground="#F1F6FF" FontWeight="Bold"/></StackPanel>
+                                        </Border>
+                                        <Border Grid.Column="1" Background="#1C4144" Padding="10,8" CornerRadius="7">
+                                            <StackPanel Spacing="4"><TextBlock Text="EN STOCK" Classes="icLabel"/>
+                                                <TextBlock Text="{Binding SelectedNode.Available}" Foreground="#8BE5D2" FontWeight="Bold"/></StackPanel>
+                                        </Border>
+                                        <Border Grid.Column="2" Background="#473C35" Padding="10,8" CornerRadius="7">
+                                            <StackPanel Spacing="4"><TextBlock Text="MANQUANT" Classes="icLabel"/>
+                                                <TextBlock Text="{Binding SelectedNode.Missing}" Foreground="#F4CA8F" FontWeight="Bold"/></StackPanel>
+                                        </Border>
+                                    </Grid>
+                                </StackPanel>
+                                <TextBlock Text="Préférence générale (consultative)" Classes="icLabel"/>
+                                <ComboBox Classes="icInput" ItemsSource="{Binding Strategies}"
+                                          SelectedItem="{Binding Strategy, Mode=TwoWay}"
+                                          AutomationProperties.Name="Préférence générale farm achat ou craft"/>
+                                <StackPanel Orientation="Horizontal" Spacing="9">
+                                    <Button Classes="icPrimary" Content="◇  Simuler (hors jeu)"
+                                            Command="{Binding SimulateCommand}"/>
+                                    <Button Classes="icSecondary" Content="↻  Recalculer avec mes choix"
+                                            Command="{Binding RefreshPlanCommand}"/>
+                                </StackPanel>
+                                <Border Background="#0B1B30" Padding="11,10" CornerRadius="9">
+                                    <TextBlock Text="{Binding Simulation}" Foreground="#D5E3F4"
+                                               TextWrapping="Wrap" FontSize="12"/>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+
+                <Border Classes="icPanel" BorderBrush="#2F6B62">
+                    <StackPanel Spacing="11">
+                        <TextBlock Text="06 / Fabriquer" Classes="icHeading"/>
+                        <TextBlock Classes="icMuted" TextWrapping="Wrap"
+                                   Text="Un seul objet, avec la quantité déjà choisie. Le calcul au-dessus reste hors jeu. Lancer retire du coffre si tu l'autorises, achète seulement les ingrédients dont la méthode est Acheter, puis fabrique jusqu'à la quantité, le budget ou Stop."/>
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                            <StackPanel Spacing="6">
+                                <TextBlock Text="BUDGET MAXIMUM (KAMAS)" Classes="icLabel"/>
+                                <TextBox Classes="icInput" Text="{Binding BudgetText, Mode=TwoWay}"
+                                         PlaceholderText="Kamas maximum" MaxLength="12"
+                                         IsEnabled="{Binding !IsProductionRunning}"
+                                         AutomationProperties.Name="Budget maximum en kamas"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Spacing="6">
+                                <TextBlock Text="COÛT D'ATELIER PAR FABRICATION" Classes="icLabel" TextWrapping="Wrap"/>
+                                <TextBox Classes="icInput" Text="{Binding CraftCostText, Mode=TwoWay}"
+                                         PlaceholderText="0 si l'atelier ne coûte rien" MaxLength="12"
+                                         IsEnabled="{Binding !IsProductionRunning}"
+                                         AutomationProperties.Name="Coût d'atelier par fabrication"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Spacing="6">
+                                <TextBlock Text="PLANCHER DE VENTE (OPTIONNEL)" Classes="icLabel" TextWrapping="Wrap"/>
+                                <TextBox Classes="icInput" Text="{Binding SaleFloorText, Mode=TwoWay}"
+                                         PlaceholderText="Prix minimum d'une unité" MaxLength="12"
+                                         IsEnabled="{Binding !IsProductionRunning}"
+                                         AutomationProperties.Name="Plancher de vente optionnel"/>
+                            </StackPanel>
+                        </Grid>
+                        <CheckBox Content="Autoriser le coffre" IsChecked="{Binding BankAllowed, Mode=TwoWay}"
+                                  Foreground="#E4EFFC" FontSize="13"
+                                  IsEnabled="{Binding !IsProductionRunning}"
+                                  AutomationProperties.Name="Autoriser le retrait du coffre"/>
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                            <TextBlock Text="{Binding GuidedActivityStatus}" FontSize="11"
+                                       Foreground="#F5CD94" TextWrapping="Wrap"
+                                       VerticalAlignment="Center"/>
+                            <Button Grid.Column="1" Classes="icSmall"
+                                    Content="Détacher objectif"
+                                    Command="{Binding ClearGuidedActivityCommand}"
+                                    IsEnabled="{Binding !IsProductionRunning}"
+                                    AutomationProperties.Name="Détacher la liaison activité atelier sans effacer les journaux durables"/>
+                        </Grid>
+                        <Border Background="#101D2B" BorderBrush="#355A79" BorderThickness="1"
+                                CornerRadius="5" Padding="8" >
+                            <StackPanel Spacing="5">
+                                <TextBlock Text="V16 · Approvisionnement GID → activité → observation → atelier → vente"
+                                           FontSize="12" FontWeight="SemiBold" Foreground="#D8E9FA"/>
+                                <Grid ColumnDefinitions="Auto,110,*" ColumnSpacing="8">
+                                    <TextBlock Grid.Column="0" Text="RESSOURCE À RÉCOLTER · GID"
+                                               FontSize="10" FontWeight="SemiBold"
+                                               VerticalAlignment="Center" Foreground="#95ACC2"/>
+                                    <TextBox Grid.Column="1" Classes="icInput"
+                                             Text="{Binding GuidedSupplyGatherItemGidText, Mode=TwoWay}"
+                                             MaxLength="12" PlaceholderText="GID exact"
+                                             IsEnabled="{Binding !IsProductionRunning}"
+                                             AutomationProperties.Name="GID exact de l'ingrédient manquant à récolter"/>
+                                    <TextBlock Grid.Column="2" FontSize="10.5" TextWrapping="Wrap"
+                                               VerticalAlignment="Center" Foreground="#C2D4E7"
+                                               Text="Un seul GID manquant à la fois ; la route Lua filtre ITEMS_TO_GATHER, sans récolter une ressource voisine."/>
+                                </Grid>
+                                <WrapPanel Orientation="Horizontal">
+                                    <Button Classes="icSecondary" Content="Vérifier ressources"
+                                            Command="{Binding InspectGuidedStockPreflightCommand}"
+                                            IsEnabled="{Binding !IsProductionRunning}"
+                                            AutomationProperties.Name="Pré-vérifier les ingrédients, l'identité et le journal avant toute fabrication"/>
+                                    <Button Classes="icSecondary" Content="Retour banque / Lua / HDV · réinspecter"
+                                            Command="{Binding ReinspectGuidedSupplyAfterExternalActionCommand}"
+                                            IsEnabled="{Binding !IsProductionRunning}"
+                                            AutomationProperties.Name="Relire les journaux et le vrai préflight V9/V13 après intervention externe, afficher les choix GID exacts de la nouvelle révision sans aucune émission"/>
+                                    <Button Classes="icSmall" Content="État workflow durable"
+                                            Command="{Binding InspectGuidedWorkflowCommand}"
+                                            AutomationProperties.Name="Lire la phase du workflow activité atelier et le run de fabrication exact"/>
+                                    <Button Classes="icSmall" Content="Inspecter suite activité"
+                                            Command="{Binding InspectGuidedSupplyContinuationCommand}"
+                                            AutomationProperties.Name="Relire sans modification les journaux activité, workflow, production et le plan d'approvisionnement source-bound"/>
+                                    <Button Classes="icSmall" Content="Préparer étape suivante"
+                                            Command="{Binding PrepareGuidedSupplyNextStepCommand}"
+                                            IsEnabled="{Binding !IsProductionRunning}"
+                                            AutomationProperties.Name="Choisir une transition existante après revalidation des preuves sans envoi direct ni ACK inventé"/>
+                                    <Button Classes="icSmall" Content="Préparer récolte GID exacte"
+                                            Command="{Binding PrepareGuidedSupplyRouteCommand}"
+                                            IsEnabled="{Binding !IsProductionRunning}"
+                                            AutomationProperties.Name="Ouvrir la préparation du véritable trajet Lua one-shot depuis les ressources manquantes, sans départ automatique"/>
+                                    <Button Classes="icSmall" Content="Inspecter listing HDV"
+                                            Command="{Binding InspectGuidedHdvListingCommand}"
+                                            AutomationProperties.Name="Ouvrir le journal exact HDV sans émission de vente ou rapprochement automatique"/>
+                                    <Button Classes="icSmall" Content="Banque / pods manuels"
+                                            Command="{Binding InspectGuidedBankSupplyCommand}"
+                                            IsEnabled="{Binding !IsProductionRunning}"
+                                            AutomationProperties.Name="Ouvrir l'onglet bancaire du personnage, sans retrait automatique et avec contrôle de reprise durable"/>
+                                </WrapPanel>
+                                <WrapPanel Orientation="Horizontal">
+                                    <Button Classes="icSmall" Content="Inspecter choix GID V16"
+                                            Command="{Binding InspectGuidedV16ExactChoicesCommand}"
+                                            IsEnabled="{Binding !IsProductionRunning}"
+                                            AutomationProperties.Name="Relire le plan V13 et les choix GID disponibles dans les journaux durables"/>
+                                    <ComboBox Width="215" MaxDropDownHeight="210"
+                                              ItemsSource="{Binding GuidedV16ExactChoices}"
+                                              SelectedItem="{Binding SelectedGuidedV16ExactChoice, Mode=TwoWay}"
+                                              IsEnabled="{Binding !IsProductionRunning}"
+                                              AutomationProperties.Name="Choisir instruction GID et quantité exacte">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate x:DataType="svc:GuidedSupplyExactChoiceV16">
+                                                <StackPanel Orientation="Horizontal" Spacing="5">
+                                                    <TextBlock Text="{Binding Kind}"/>
+                                                    <TextBlock Text="{Binding Gid}"/>
+                                                    <TextBlock Text="×"/>
+                                                    <TextBlock Text="{Binding Quantity}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <Button Classes="icSmall" Content="Valider choix durable"
+                                            Command="{Binding ChooseGuidedV16ExactStepCommand}"
+                                            IsEnabled="{Binding !IsProductionRunning}"
+                                            AutomationProperties.Name="Persister une unique instruction GID source-bound puis revenir aux commandes existantes"/>
+                                    <Button Classes="icSmall" Content="Reprendre choix conservé"
+                                            Command="{Binding ResumeGuidedV16RecordedChoiceCommand}"
+                                            IsEnabled="{Binding !IsProductionRunning}"
+                                            AutomationProperties.Name="Revalider le choix GID journalisé après redémarrage sans rejouer une tentative ambiguë"/>
+                                </WrapPanel>
+                                <TextBlock FontSize="11" TextWrapping="Wrap"
+                                           Foreground="#E7D7FF" Text="{Binding GuidedSupplyV16ChoiceStatus}"/>
+                                <WrapPanel Orientation="Horizontal">
+                                    <CheckBox Content="Autoriser ce passage V9 unique (coffre / achats / craft / annonce)"
+                                              IsChecked="{Binding GuidedSupplyV16RunnerOptIn, Mode=TwoWay}"
+                                              IsEnabled="{Binding !IsProductionRunning}"
+                                              Foreground="#E4EFFC" FontSize="11"
+                                              AutomationProperties.Name="Autoriser une fois le runner existant sous admission du journal durable"/>
+                                    <Button Classes="icSmall" Content="Exécuter étape prête via V9"
+                                            Command="{Binding ExecuteGuidedSupplyV16RunnerCommand}"
+                                            IsEnabled="{Binding !IsProductionRunning}"
+                                            AutomationProperties.Name="Revalider source et checkpoint puis lancer les véritables étapes bancaires achat craft et listing via ItemCraftProductionRun V9"/>
+                                </WrapPanel>
+                                <TextBlock FontSize="11" TextWrapping="Wrap"
+                                           Foreground="#D3F2C5" Text="{Binding GuidedSupplyV16RunnerStatus}"/>
+                                <TextBlock FontSize="11" TextWrapping="Wrap"
+                                           Foreground="#F6DEA3" Text="{Binding GuidedSupplyV16RecoveryStatus}"/>
+                                <TextBlock FontSize="11" TextWrapping="Wrap"
+                                           Foreground="#F5CD94" Text="{Binding GuidedWorkflowStatus}"/>
+                                <TextBlock FontSize="11" TextWrapping="Wrap"
+                                           Foreground="#C2D4E7" Text="{Binding GuidedStockStatus}"/>
+                                <TextBlock FontSize="11" TextWrapping="Wrap"
+                                           Foreground="#B9DCBE" Text="{Binding GuidedSupplyActionStatus}"/>
+                                <TextBlock FontSize="11" TextWrapping="Wrap"
+                                           Foreground="#D1D8FC" Text="{Binding GuidedSupplyListingEvidenceStatus}"/>
+                                <TextBlock FontSize="11" TextWrapping="Wrap"
+                                           Foreground="#E3CDFF" Text="{Binding GuidedSupplyContinuationStatus}"/>
+                                <TextBlock Text="ÉTAPES EFFECTIVES / PRÉREQUIS · Aucune lecture locale ne vaut ACK serveur"
+                                           FontSize="10" FontWeight="SemiBold" Foreground="#95ACC2"/>
+                                <ItemsControl ItemsSource="{Binding GuidedSupplyStages}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:GuidedSupplyStageRow">
+                                            <Grid ColumnDefinitions="66,56,64,*,125" ColumnSpacing="5" Margin="0,1">
+                                                <TextBlock Grid.Column="0" Text="{Binding Stage}" FontSize="10.5"/>
+                                                <TextBlock Grid.Column="1" Text="{Binding Gid}" FontSize="10.5"/>
+                                                <TextBlock Grid.Column="2" Text="{Binding Missing}" FontSize="10.5"/>
+                                                <TextBlock Grid.Column="3" Text="{Binding Decision}" TextWrapping="Wrap" FontSize="10.5"/>
+                                                <TextBlock Grid.Column="4" Text="{Binding State}" TextWrapping="Wrap"
+                                                           Foreground="#F5CD94" FontSize="10"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <ItemsControl ItemsSource="{Binding GuidedObservedIngredients}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="svc:GuidedProductionIngredientObservation">
+                                            <Grid ColumnDefinitions="75,80,80,80,*" ColumnSpacing="7">
+                                                <TextBlock Grid.Column="0" Text="{Binding Gid}" FontSize="10.5"/>
+                                                <TextBlock Grid.Column="1" Text="{Binding Required}" FontSize="10.5"/>
+                                                <TextBlock Grid.Column="2" Text="{Binding BagObserved}" FontSize="10.5"/>
+                                                <TextBlock Grid.Column="3" Text="{Binding ChestObserved}" FontSize="10.5"/>
+                                                <TextBlock Grid.Column="4" Text="{Binding MissingAfterAuthorizedBank}" FontSize="10.5"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <TextBlock Text="GID · Besoin · Sac · Coffre · Manque après coffre (observations locales, pas des ACK)"
+                                           FontSize="10" Foreground="#95ACC2" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Orientation="Horizontal" Spacing="9">
+                            <Button Classes="icPrimary" Content="Lancer"
+                                    Command="{Binding RunProductionCommand}"
+                                    AutomationProperties.Name="Lancer la fabrication"/>
+                            <Button Classes="icSecondary" Content="Stop"
+                                    Command="{Binding StopProductionCommand}"
+                                    AutomationProperties.Name="Arrêter la fabrication"/>
+                        </StackPanel>
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                            <TextBlock Text="{Binding ProductionRecoveryStatus}" Foreground="#F5CD94"
+                                       FontSize="11" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                            <Button Grid.Column="1" Classes="icSmall" Content="État reprise"
+                                    Command="{Binding RefreshProductionRecoveryCommand}"
+                                    AutomationProperties.Name="Vérifier le journal de production avant lancement"/>
+                        </Grid>
+                        <Border Background="#0B1B30" Padding="11,10" CornerRadius="9">
+                            <TextBlock Text="{Binding ProductionProgress}" Foreground="#D5E3F4"
+                                       TextWrapping="Wrap" FontSize="12"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#25243A" BorderBrush="#5D5272" BorderThickness="1"
+                        CornerRadius="11" Padding="15,12">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="{Binding Status}" Foreground="#E2ECFA" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding Warnings}" Foreground="#F5CD94" FontSize="12" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding FooterDisclaimer}" Foreground="#BFC9DD" FontSize="11"
+                                   FontWeight="SemiBold" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Border>
+</UserControl>

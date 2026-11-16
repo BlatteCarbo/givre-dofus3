@@ -1,0 +1,5 @@
+/obj/
+/*.rcgu.o
+/*.pdb
+/*.lib
+/*.exp

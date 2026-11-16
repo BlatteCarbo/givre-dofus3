@@ -1,0 +1,74 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             x:Class="GivreClone.App.Views.ProxysOverlays"
+             x:DataType="vm:ProxysViewModel">
+    <!-- Overlay au niveau fenetre : le scrim couvre TOUTE la fenetre (sidebar + barre de titre comprises),
+         avec la meme animation (fade scrim + scale carte) que le modal de lancement de compte. -->
+    <Grid>
+
+        <!-- Modal : modifier un proxy enregistre -->
+        <Grid Classes.modalOpen="{Binding EditVisible}" IsHitTestVisible="{Binding EditVisible}"
+              IsEnabled="{Binding EditVisible}">
+            <Border Classes="modalScrim" />
+            <Border Classes="modalCard" Width="480" Padding="26,24" CornerRadius="16"
+                    Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Spacing="14">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <PathIcon Data="{StaticResource IconWrench}" Width="20" Height="20"
+                                  Foreground="{DynamicResource AccentBrightBrush}" VerticalAlignment="Center" />
+                        <TextBlock Classes="section" Text="{DynamicResource L.Proxys.EditTitle}" VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="6">
+                        <TextBlock Classes="label" Text="{DynamicResource L.Proxys.Name}" />
+                        <TextBox Watermark="{DynamicResource L.Proxys.NameHint}" Text="{Binding EditName}" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="12" IsVisible="{Binding !EditIsAdapter}">
+                        <Grid ColumnDefinitions="0.9*,1.6*,0.8*" ColumnSpacing="12">
+                            <StackPanel Grid.Column="0" Spacing="6">
+                                <TextBlock Classes="label" Text="{DynamicResource L.Proxys.Protocol}" />
+                                <ComboBox HorizontalAlignment="Stretch" ItemsSource="{Binding Protocols}" SelectedItem="{Binding EditProtocol}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Spacing="6">
+                                <TextBlock Classes="label" Text="{DynamicResource L.Proxys.Host}" />
+                                <TextBox Watermark="127.0.0.1" Text="{Binding EditHost}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Spacing="6">
+                                <TextBlock Classes="label" Text="{DynamicResource L.Proxys.Port}" />
+                                <TextBox Watermark="8080" Text="{Binding EditPort}" />
+                            </StackPanel>
+                        </Grid>
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                            <StackPanel Grid.Column="0" Spacing="6">
+                                <TextBlock Classes="label" Text="{DynamicResource L.Proxys.User}" />
+                                <TextBox Watermark="{DynamicResource L.Proxys.Optional}" Text="{Binding EditUser}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Spacing="6">
+                                <TextBlock Classes="label" Text="{DynamicResource L.Proxys.Pass}" />
+                                <TextBox PasswordChar="●" Watermark="{DynamicResource L.Proxys.PassUnchanged}" Text="{Binding EditPass}" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,4,0,0">
+                        <Button Classes="ghost" Height="40" MinWidth="110" Command="{Binding CancelEditCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <PathIcon Data="{StaticResource IconClose}" Width="13" Height="13" />
+                                <TextBlock Text="{DynamicResource L.Common.Cancel}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button Classes="primary" Height="40" MinWidth="140" Command="{Binding SaveEditCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <PathIcon Data="{StaticResource IconSave}" Width="14" Height="14" />
+                                <TextBlock Text="{DynamicResource L.Common.Save}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

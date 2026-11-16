@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>GivreTurboLiveHarness</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\GivreClone.App\Services\NativeTurboRuntime.cs" Link="NativeTurboRuntime.cs" />
+    <Compile Include="..\..\GivreClone.App\Services\NativeModules.cs" Link="NativeModules.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\native\GivreTurboRuntime\v0.4.0-skipper1.0.5-speedhack1.0.3\DofusNativeBootstrap.dll"
+          Link="NativeTurboRuntime\DofusNativeBootstrap.dll"
+          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\native\GivreTurboRuntime\v0.4.0-skipper1.0.5-speedhack1.0.3\DofusNativeHost.dll"
+          Link="NativeTurboRuntime\DofusNativeHost.dll"
+          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\native\GivreTurboRuntime\v0.4.0-skipper1.0.5-speedhack1.0.3\DofusCombatAnimationSkipper.dll"
+          Link="NativeTurboRuntime\DofusCombatAnimationSkipper.dll"
+          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\native\GivreTurboRuntime\v0.4.0-skipper1.0.5-speedhack1.0.3\DofusCombatSpeedHack.dll"
+          Link="NativeTurboRuntime\DofusCombatSpeedHack.dll"
+          CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

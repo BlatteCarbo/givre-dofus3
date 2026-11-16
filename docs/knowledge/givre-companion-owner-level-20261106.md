@@ -1,0 +1,3 @@
+# Companion level equals owner level; withdrawn unknown-level change
+
+The user corrected companion level semantics with: "niveau du compagnon = celui du proprio hein". Treat companion level as the owner's level, while keeping its own characteristics, range and spellbook. The parent removed its mistaken EngineCasterLevel=0 controlled-root change and related assertions; snapshot again passes CharacterLevel(pid). Arbitrary recursive target-casters are a separate attribution problem and are not automatically companions. Fresh validation was started after restoration; prior 283-pass receipt covered the withdrawn change, not the restored source.

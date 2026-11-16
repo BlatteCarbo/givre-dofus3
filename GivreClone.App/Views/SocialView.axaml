@@ -1,0 +1,125 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             xmlns:social="using:GivreClone.App.Services.Social"
+             xmlns:ctrl="using:GivreClone.App.Controls"
+             xmlns:acv="using:Avalonia.Data.Converters"
+             x:Class="GivreClone.App.Views.SocialView"
+             x:DataType="vm:SocialViewModel">
+  <TabControl>
+    <TabItem Header="Profil">
+      <Grid RowDefinitions="Auto,Auto,*" Margin="14" RowSpacing="12">
+        <StackPanel Spacing="6">
+          <TextBlock Text="Profil" Classes="section" />
+          <TextBlock Text="{Binding ShownName}" FontWeight="SemiBold" IsVisible="{Binding ShownName, Converter={x:Static acv:StringConverters.IsNotNullOrEmpty}}" />
+          <TextBlock Text="{Binding ProfileStatus}" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8">
+          <TextBox Width="280" Watermark="Nom du joueur" Text="{Binding ProfileName, Mode=TwoWay}" />
+          <Button Classes="primary" Content="Afficher le profil" Command="{Binding RequestProfileCommand}"
+                  AutomationProperties.Name="Afficher le profil" />
+        </StackPanel>
+        <TabControl Grid.Row="2">
+          <TabItem Header="Général">
+            <ListBox ItemsSource="{Binding Rows}">
+              <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="social:ProfileRow">
+                  <Grid ColumnDefinitions="180,*" Margin="0,2">
+                    <TextBlock Classes="caption" Text="{Binding Label}" />
+                    <TextBlock Grid.Column="1" Text="{Binding Value}" TextWrapping="Wrap" />
+                  </Grid>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+          </TabItem>
+          <TabItem Header="Équipement">
+            <DockPanel>
+              <TextBlock DockPanel.Dock="Top" Margin="0,0,0,8" Text="{Binding EquipmentNote}" TextWrapping="Wrap"
+                         IsVisible="{Binding HasEquipmentNote}" />
+              <ListBox ItemsSource="{Binding Equipment}">
+                <ListBox.ItemTemplate>
+                  <DataTemplate x:DataType="social:EquipmentRow">
+                    <StackPanel Margin="0,6" Spacing="4">
+                      <TextBlock Classes="caption" Text="{Binding Place}" />
+                      <ctrl:ItemCard DataContext="{Binding Card}" />
+                    </StackPanel>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+            </DockPanel>
+          </TabItem>
+        </TabControl>
+      </Grid>
+    </TabItem>
+    <TabItem Header="Discussion">
+      <Grid RowDefinitions="Auto,Auto,Auto,*,Auto" Margin="14" RowSpacing="10">
+        <ItemsControl ItemsSource="{Binding Channels}">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <WrapPanel />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="vm:ChannelFilter">
+              <CheckBox Margin="0,0,12,6" Content="{Binding Label}" IsChecked="{Binding Shown, Mode=TwoWay}" />
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <StackPanel Grid.Row="1" Spacing="8">
+          <CheckBox Content="Autoriser le changement des cases dans le jeu"
+                    IsChecked="{Binding AllowGameChannelCheckboxes, Mode=TwoWay}" />
+          <Button Classes="primary" Content="Lire tous les canaux" Command="{Binding SubscribeAllCommand}"
+                  HorizontalAlignment="Left" AutomationProperties.Name="Lire tous les canaux" />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Spacing="4">
+          <TextBlock Text="{Binding ChannelStatus}" TextWrapping="Wrap" />
+          <TextBlock Classes="caption" Text="{Binding ServerChannels}" TextWrapping="Wrap" />
+          <TextBlock Classes="caption" Text="{Binding LastChannelChange}" TextWrapping="Wrap" />
+        </StackPanel>
+        <ListBox Grid.Row="3" ItemsSource="{Binding Messages}">
+          <ListBox.ItemTemplate>
+            <DataTemplate x:DataType="vm:SocialChatLine">
+              <StackPanel Margin="0,4" Spacing="4">
+                <TextBlock Classes="caption" Text="{Binding Head}" />
+                <TextBlock Text="{Binding Text}" TextWrapping="Wrap" />
+                <Button Content="{Binding SenderLabel}" Command="{Binding OpenSender}" HorizontalAlignment="Left"
+                        IsVisible="{Binding HasSender}" Padding="8,2" />
+                <ItemsControl ItemsSource="{Binding Links}">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <WrapPanel />
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:SocialLinkVm">
+                      <Button Margin="0,0,6,4" Padding="8,2" Content="{Binding Label}" Command="{Binding Open}">
+                        <ToolTip.Tip>
+                          <StackPanel>
+                            <Panel IsVisible="{Binding HasItem}">
+                              <ctrl:ItemCard DataContext="{Binding Item}" />
+                            </Panel>
+                            <Panel IsVisible="{Binding HasMonster}">
+                              <ctrl:ItemCardMonster DataContext="{Binding Monster}" />
+                            </Panel>
+                          </StackPanel>
+                        </ToolTip.Tip>
+                      </Button>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </StackPanel>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Row="4" Spacing="6">
+          <Panel IsVisible="{Binding HasSelectedItem}">
+            <ctrl:ItemCard DataContext="{Binding SelectedItem}" />
+          </Panel>
+          <Panel IsVisible="{Binding HasSelectedMonster}">
+            <ctrl:ItemCardMonster DataContext="{Binding SelectedMonster}" />
+          </Panel>
+        </StackPanel>
+      </Grid>
+    </TabItem>
+  </TabControl>
+</UserControl>

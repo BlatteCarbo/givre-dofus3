@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "exportKind": "partner-map-records",
+  "gameVersion": "3.7.12.12",
+  "maps": [
+    {
+      "mapId": 9001,
+      "worldId": 1,
+      "worldMapId": 1,
+      "subAreaId": 45,
+      "layer": "surface",
+      "floor": 0,
+      "position": {"x": 3, "y": -7},
+      "resources": [{"resourceId": 70, "cellId": 105}],
+      "zaaps": [{"cellId": 110}],
+      "transitions": [
+        {"toMapId": 9002, "kind": "cave-entry", "direction": "down", "fromCellId": 120, "toCellId": 8},
+        {"toMapId": null, "kind": "ordinary", "direction": "west", "fromCellId": null, "toCellId": null}
+      ]
+    },
+    {
+      "mapId": 9002,
+      "worldId": 1,
+      "worldMapId": 1,
+      "subAreaId": 45,
+      "layer": "cave-a",
+      "floor": -1,
+      "position": {"x": 3, "y": -7},
+      "resources": [{"resourceId": 72, "cellId": 203}],
+      "zaaps": [],
+      "transitions": [
+        {"toMapId": 9001, "kind": "cave-exit", "direction": "up", "fromCellId": 8, "toCellId": 120}
+      ]
+    }
+  ]
+}

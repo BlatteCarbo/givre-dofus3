@@ -1,0 +1,14 @@
+{
+  "source_file": "proxy-sync.json",
+  "values_removed": true,
+  "fields": [
+    {
+      "path": "$.license",
+      "type": "str"
+    },
+    {
+      "path": "$.r:8d69b3ff882051dee55be57dcdb8d880d9bf690915d1440e16aed306adec15a9",
+      "type": "str"
+    }
+  ]
+}

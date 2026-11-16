@@ -1,0 +1,39 @@
+# Build
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+.vs/
+
+# Rider / VS
+.idea/
+*.DotSettings.user
+
+# Distribution
+dist/
+publish/
+prod-builds/
+*.nupkg
+*.vmptmp
+
+# Donnees locales / secrets (jamais commitees)
+*.local.json
+secrets/
+# ...sauf le dossier de CODE GivreClone.Engine/Secrets (wrapper DPAPI) : git ignore la casse sous Windows, sans cette
+# ligne `secrets/` l'attrape et un clone neuf ne compile plus.
+!GivreClone.Engine/Secrets/
+
+# Native C++ build output (le GivreKama.dll versionne au niveau du dossier est garde)
+native/**/build/
+
+# Dumps memoire/evidence volumineux (captures ponctuelles, pas du code)
+artifacts/dofus-memory-*/
+# Preuves locales de comparaison Protobuf / Cytrus : binaires et mappings non distribuables.
+artifacts/protocol-review/
+artifacts/protocol-target-review-*/
+artifacts/game-data-review/
+# Dumps crash/hang du processus de tests local : ne pas publier de mémoire.
+**/TestResults/
+.nativestage/

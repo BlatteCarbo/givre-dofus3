@@ -1,0 +1,520 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             xmlns:views="using:GivreClone.App.Views"
+             xmlns:pe="using:GivreClone.Engine.Proxies"
+             xmlns:sys="using:System"
+             x:Class="GivreClone.App.Views.AccountsView"
+             x:DataType="vm:AccountsViewModel"
+             Classes="page">
+    <UserControl.Styles>
+        <!-- Cartes de compte : un bouton DÉSACTIVÉ est atténué quel que soit son style. Seul .primary a une règle :disabled
+             (Controls.axaml) : un Socket .ghost sans le droit, ou un Reconnecter .accent pendant une reconnexion, gardaient
+             l'air actif (et le grisé n'apparaissait que sur la carte dont le mode mémorisé était Socket). -->
+        <Style Selector="Border.acc Button:disabled">
+            <Setter Property="Opacity" Value="0.4" />
+        </Style>
+    </UserControl.Styles>
+    <Grid>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" IsVisible="{Binding !CharacterCreationOpen}">
+            <!-- Stretch (pas Center) : la page se borne a 1200 mais NE se dimensionne PLUS sur son contenu -> la colonne
+                 infos (*) est mesuree en largeur FINIE, donc un statut long ("Lance (pid ...)") ne gonfle plus la carte
+                 et rien ne se decale au lancement. -->
+            <StackPanel Margin="30,26" Spacing="20" MaxWidth="1200" HorizontalAlignment="Stretch">
+
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel Grid.Column="0" Spacing="5">
+                        <TextBlock Classes="h1" Text="{DynamicResource L.Accounts.Title}" />
+                        <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Accounts.Subtitle}" />
+                    </StackPanel>
+                    <Button Grid.Column="1" Classes="accent" VerticalAlignment="Center" Margin="16,0,0,0"
+                            Click="OnCreateCharacterClick" Content="Créer un personnage" ToolTip.Tip="Choisis le compte : son écran de choix Socket s'ouvre sur « Nouveau personnage »." />
+                </Grid>
+
+                <!-- Bandeau licence : sans le droit "multi", un seul compte peut tourner à la fois (les lancements
+                     supplémentaires sont refusés, et un compte en trop est coupé si le droit est retiré en cours). -->
+                <Border Classes="notice" IsVisible="{Binding ShowLegacyMultiLicenseNotice}">
+                    <Grid ColumnDefinitions="Auto,*">
+                        <PathIcon Grid.Column="0" Data="{StaticResource IconLock}" />
+                        <TextBlock Grid.Column="1" Text="{DynamicResource L.Accounts.NoMultiLicense}" />
+                    </Grid>
+                </Border>
+
+                <!-- importer depuis le launcher Ankama -->
+                <Button Classes="ghost" Height="40" HorizontalAlignment="Left" Command="{Binding DetectKeydataCommand}"
+                        ToolTip.Tip="{DynamicResource L.Accounts.DetectKeydataHint}">
+                    <StackPanel Orientation="Horizontal" Spacing="7">
+                        <PathIcon Data="{StaticResource IconDownload}" Width="14" Height="14" />
+                        <TextBlock Text="{DynamicResource L.Accounts.DetectKeydata}" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+
+                <!-- ajouter un compte -->
+                <Border Classes="card" Padding="24,22">
+                    <StackPanel Spacing="16">
+                        <TextBlock Classes="section" Text="{DynamicResource L.Accounts.AddTitle}" />
+                        <Grid ColumnDefinitions="*,16,*" RowDefinitions="Auto,Auto">
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="7">
+                                <TextBlock Classes="label" Text="{DynamicResource L.Accounts.Login}" />
+                                <TextBox Watermark="{DynamicResource L.Accounts.LoginHint}" Text="{Binding NewLogin}" AutomationProperties.Name="{DynamicResource L.Accounts.Login}" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="2" Spacing="7">
+                                <TextBlock Classes="label" Text="{DynamicResource L.Accounts.Password}" />
+                                <TextBox PasswordChar="●" Watermark="{DynamicResource L.Accounts.PasswordHint}" Text="{Binding NewPassword}" AutomationProperties.Name="{DynamicResource L.Accounts.Password}" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Spacing="7" Margin="0,14,0,0">
+                                <TextBlock Classes="label" Text="{DynamicResource L.Accounts.AccountLabel}" />
+                                <TextBox Watermark="{DynamicResource L.Accounts.AccountLabelHint}" Text="{Binding NewAccountLabel}" AutomationProperties.Name="{DynamicResource L.Accounts.AccountLabel}" />
+                            </StackPanel>
+                        </Grid>
+                        <!-- Proxy (optionnel) : le login navigateur (WebAuth) passe PAR ce proxy -> pas de fuite d'IP réelle -->
+                        <StackPanel Spacing="7">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <PathIcon Data="{StaticResource IconRadar}" Width="13" Height="13" VerticalAlignment="Center"
+                                          Foreground="{DynamicResource AccentBrightBrush}" />
+                                <TextBlock Classes="label" Text="{DynamicResource L.Accounts.AddProxy}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <ComboBox HorizontalAlignment="Stretch" MinHeight="42" AutomationProperties.Name="{DynamicResource L.Accounts.AddProxy}"
+                                      ItemsSource="{Binding Proxies}" SelectedItem="{Binding SelectedNewProxy}"
+                                      PlaceholderText="{DynamicResource L.Accounts.AssignProxy}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate x:DataType="pe:ProxyEntry">
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <PathIcon Data="{StaticResource IconNetwork}" Width="12" Height="12" VerticalAlignment="Center" />
+                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Accounts.AddProxyHint}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,2,0,0">
+                            <Button Classes="primary" Height="44" MinWidth="180" Command="{Binding AddAccountCommand}"
+                                    ToolTip.Tip="{DynamicResource L.Accounts.AddHint}">
+                                <StackPanel Orientation="Horizontal" Spacing="7">
+                                    <PathIcon Data="{StaticResource IconPlus}" Width="14" Height="14" />
+                                    <TextBlock Text="{DynamicResource L.Accounts.Add}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                            <Button Classes="accent" Height="44" MinWidth="170" Command="{Binding AddBrowserCommand}"
+                                    ToolTip.Tip="{DynamicResource L.Accounts.AddBrowserHint}">
+                                <StackPanel Orientation="Horizontal" Spacing="7">
+                                    <PathIcon Data="{StaticResource IconShield}" Width="14" Height="14" />
+                                    <TextBlock Text="{DynamicResource L.Accounts.AddBrowser}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- barre d'actions globales -->
+                <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto" ColumnSpacing="10">
+                    <CheckBox Grid.Column="0" IsThreeState="True" IsChecked="{Binding AllSelected, Mode=TwoWay}" IsVisible="{Binding HasAccounts}"
+                              VerticalAlignment="Center" ToolTip.Tip="{DynamicResource L.Accounts.SelectAllTip}"
+                              AutomationProperties.Name="{DynamicResource L.Accounts.SelectAllTip}" />
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                        <TextBlock Classes="section" VerticalAlignment="Center" Text="{DynamicResource L.Accounts.ListTitle}" />
+                        <TextBlock Classes="caption" VerticalAlignment="Center" Text="{Binding SelectionText}" />
+                    </StackPanel>
+                    <!-- Lance UNIQUEMENT les comptes cochés (hors ligne) ; désactivé sans sélection. -->
+                    <Button Grid.Column="2" Classes="ghost" Height="38" Command="{Binding LaunchSelectedCommand}" IsVisible="{Binding HasAccounts}"
+                            ToolTip.Tip="{DynamicResource L.Accounts.LaunchSelectedTip}">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <PathIcon Data="{StaticResource IconPlay}" Width="13" Height="13" />
+                            <TextBlock Text="{Binding LaunchSelectedLabel}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Column="3" Classes="accent" Height="38" Command="{Binding LaunchAllCommand}" IsVisible="{Binding HasAccounts}">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <PathIcon Data="{StaticResource IconPlay}" Width="13" Height="13" />
+                            <TextBlock Text="{DynamicResource L.Accounts.LaunchAll}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Column="4" Classes="ghost" Height="38" Command="{Binding StopAllCommand}" IsVisible="{Binding HasAccounts}">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <PathIcon Data="{StaticResource IconPause}" Width="13" Height="13" />
+                            <TextBlock Text="{DynamicResource L.Accounts.StopAll}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
+
+                <!-- Filtres d'affichage : les actions globales restent sur tous les comptes. -->
+                <StackPanel Spacing="8" IsVisible="{Binding HasAccounts}">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                        <TextBox Grid.Column="0" Text="{Binding AccountSearch, Mode=TwoWay}"
+                                 Watermark="Rechercher : identifiant, libellé, personnage, serveur"
+                                 ToolTip.Tip="Recherche sans distinction de casse ni d'accents dans les comptes."
+                                 AutomationProperties.Name="Rechercher des comptes" />
+                        <ComboBox Grid.Column="1" SelectedIndex="{Binding AccountStateFilter, Mode=TwoWay}"
+                                  MinWidth="130" VerticalAlignment="Center"
+                                  ToolTip.Tip="Filtrer les comptes selon leur état de lancement."
+                                  AutomationProperties.Name="Filtrer les comptes par état">
+                            <ComboBoxItem Content="Tous" />
+                            <ComboBoxItem Content="En cours" />
+                            <ComboBoxItem Content="Arrêtés" />
+                        </ComboBox>
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <StackPanel Grid.Column="0" Spacing="4">
+                            <TextBlock Classes="caption" Text="Serveur" />
+                            <ComboBox ItemsSource="{Binding AccountServerChoices}" HorizontalAlignment="Stretch"
+                                      SelectedItem="{Binding AccountServerFilter, Mode=TwoWay}"
+                                      AutomationProperties.Name="Filtrer les comptes par serveur" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Spacing="4">
+                            <TextBlock Classes="caption" Text="Ordre d'affichage" />
+                            <ComboBox SelectedIndex="{Binding AccountSort, Mode=TwoWay}" HorizontalAlignment="Stretch"
+                                      AutomationProperties.Name="Trier les comptes sans modifier leur sélection">
+                                <ComboBoxItem Content="Ordre des comptes" />
+                                <ComboBoxItem Content="Identité" />
+                                <ComboBoxItem Content="Personnage" />
+                                <ComboBoxItem Content="Serveur" />
+                                <ComboBoxItem Content="En cours d'abord" />
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+                    <WrapPanel Orientation="Horizontal">
+                        <TextBlock Classes="caption" Text="{Binding AccountResultCount}" VerticalAlignment="Center" Margin="0,0,12,0" />
+                        <TextBlock Classes="caption" Text="{Binding AccountRunningCount, StringFormat='En cours : {0}'}"
+                                   VerticalAlignment="Center" Margin="0,0,12,0" />
+                        <TextBlock Classes="caption" Text="{Binding AccountStoppedCount, StringFormat='Arrêtés : {0}'}"
+                                   VerticalAlignment="Center" Margin="0,0,12,0" />
+                        <Button Classes="ghost" Content="Effacer les filtres" Command="{Binding ClearAccountFiltersCommand}"
+                                IsEnabled="{Binding HasAccountFilters}" />
+                    </WrapPanel>
+                    <TextBlock Classes="caption" TextWrapping="Wrap"
+                               Text="Les filtres modifient seulement l'affichage. Lancer tout et Arrêter tout concernent tous les comptes." />
+                </StackPanel>
+
+                <!-- vide -->
+                <Border Classes="card" Padding="26" IsVisible="{Binding !HasAccounts}">
+                    <StackPanel Spacing="10" HorizontalAlignment="Center">
+                        <PathIcon Data="{StaticResource IconKey}" Width="26" Height="26"
+                                  Foreground="{StaticResource TextMutedBrush}" HorizontalAlignment="Center" />
+                        <TextBlock Classes="caption" HorizontalAlignment="Center" Text="{DynamicResource L.Accounts.Empty}" />
+                    </StackPanel>
+                </Border>
+
+                <Border Classes="card" Padding="26" IsVisible="{Binding NoMatchingAccounts}">
+                    <StackPanel Spacing="10" HorizontalAlignment="Center">
+                        <TextBlock Classes="caption" Text="Aucun compte ne correspond aux filtres." TextWrapping="Wrap" />
+                        <Button Classes="ghost" Content="Effacer les filtres" HorizontalAlignment="Center"
+                                Command="{Binding ClearAccountFiltersCommand}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Identité sur sa propre ligne : les actions ne doivent jamais réduire le nom à zéro. -->
+                <ItemsControl Name="AccountsList" ItemsSource="{Binding VisibleAccounts}" IsVisible="{Binding HasVisibleAccounts}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:AccountRow">
+                            <Border Classes="card acc" Padding="16,14" Margin="0,0,0,10">
+                                <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" VerticalAlignment="Center">
+
+                                    <!-- sélection + avatar -->
+                                    <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                        <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" VerticalAlignment="Center" MinWidth="0"
+                                                  ToolTip.Tip="{DynamicResource L.Accounts.SelectTip}"
+                                                  AutomationProperties.Name="{DynamicResource L.Accounts.SelectTip}" />
+                                        <Border Width="42" Height="42" CornerRadius="21"
+                                                Background="{DynamicResource AccentSoftBrush}" VerticalAlignment="Center">
+                                            <PathIcon Data="{StaticResource IconKey}" Width="18" Height="18"
+                                                      Foreground="{DynamicResource AccentBrightBrush}" />
+                                        </Border>
+                                    </StackPanel>
+
+                                    <!-- infos -->
+                                    <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Margin="14,0,12,0" Spacing="5" VerticalAlignment="Center" ClipToBounds="True">
+                                        <!-- Ligne titre : libellé | identifiant | pastilles (source, planning). Grille calée à
+                                             GAUCHE : les pastilles suivent l'identifiant ; si la place manque, c'est l'identifiant
+                                             (colonne *) qui est rogné « … », jamais les pastilles (avant : un e-mail long poussait la
+                                             pastille « Ankama » hors de la colonne, coupée en « A »). -->
+                                        <Grid ColumnDefinitions="Auto,*,Auto" HorizontalAlignment="Left">
+                                            <Border Grid.Column="0" Classes="badge" IsVisible="{Binding HasLabel}" VerticalAlignment="Center"
+                                                    Margin="0,0,8,0" MaxWidth="105" ToolTip.Tip="{Binding Label}">
+                                                <DockPanel>
+                                                    <PathIcon DockPanel.Dock="Left" Data="{StaticResource IconTag}" Width="11" Height="11"
+                                                              Margin="0,0,5,0" Foreground="{DynamicResource AccentBrightBrush}" />
+                                                    <TextBlock Text="{Binding Label}" FontSize="11" TextTrimming="CharacterEllipsis"
+                                                               Foreground="{DynamicResource AccentBrightBrush}" />
+                                                </DockPanel>
+                                            </Border>
+                                            <!-- Identifiant complet en infobulle : un TextBlock .pii (pas une simple chaîne) -> flouté lui
+                                                 aussi en mode Recording/Stream (le style « Window.stream TextBlock.pii » suit l'arbre
+                                                 logique jusque dans la popup). -->
+                                            <TextBlock Grid.Column="1" Text="{Binding DisplayLogin}" Classes="pii" FontSize="14.5" FontWeight="SemiBold"
+                                                       Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center"
+                                                       TextWrapping="NoWrap" TextTrimming="CharacterEllipsis">
+                                                <ToolTip.Tip>
+                                                    <TextBlock Classes="pii" Text="{Binding DisplayLogin}" />
+                                                </ToolTip.Tip>
+                                            </TextBlock>
+                                            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="6" Margin="8,0,0,0" VerticalAlignment="Center">
+                                                <Button Classes="ghost" Width="28" Height="24" MinWidth="0" Padding="0" Content="⧉"
+                                                        Tag="{Binding Login}" Click="OnCopyLogin"
+                                                        ToolTip.Tip="Copier l'identifiant" AutomationProperties.Name="Copier l'identifiant du compte" />
+                                                <Border Classes="badge" Background="{StaticResource Surface2Brush}" VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding SourceLabel}" FontSize="10.5"
+                                                               Foreground="{StaticResource TextSecondaryBrush}" />
+                                                </Border>
+                                                <!-- Géré par la connexion auto du planning (infobulle : prochaine plage, sans nom de perso) -->
+                                                <Border Classes="badge" IsVisible="{Binding PlanningManaged}" VerticalAlignment="Center"
+                                                        ToolTip.Tip="{Binding PlanningTip}">
+                                                    <StackPanel Orientation="Horizontal" Spacing="5">
+                                                        <PathIcon Data="{StaticResource IconClock}" Width="11" Height="11"
+                                                                  Foreground="{DynamicResource AccentBrightBrush}" />
+                                                        <TextBlock Text="{DynamicResource L.Planning.Offline.Badge}" FontSize="10.5"
+                                                                   Foreground="{DynamicResource AccentBrightBrush}" />
+                                                    </StackPanel>
+                                                </Border>
+                                            </StackPanel>
+                                        </Grid>
+
+                                        <!-- Perso | Serveur | IP : intitulés COURTS (intitulé complet en infobulle) pour tenir dans la colonne
+                                             infos d'un bot en jeu ; nom de perso rogné au-delà de 150 px et IP (dernière, colonne *) rognée
+                                             « … », valeurs complètes en infobulle (floutées en mode Stream). Avant : ligne coupée net par
+                                             le ClipToBounds de la colonne, l'IP n'était plus visible dès qu'un bot tournait. -->
+                                        <Grid ColumnDefinitions="Auto,Auto,*">
+                                            <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="4" Margin="0,0,10,0">
+                                                <TextBlock Text="{DynamicResource L.Accounts.CharacterShort}" Classes="caption" VerticalAlignment="Center"
+                                                           ToolTip.Tip="{DynamicResource L.Accounts.Character}" />
+                                                <TextBlock Text="{Binding Character}" Classes="pii" FontSize="11.5" MaxWidth="150"
+                                                           TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"
+                                                           Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center">
+                                                    <ToolTip.Tip>
+                                                        <TextBlock Classes="pii" Text="{Binding Character}" />
+                                                    </ToolTip.Tip>
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4" Margin="0,0,10,0">
+                                                <TextBlock Text="{DynamicResource L.Accounts.Server}" Classes="caption" VerticalAlignment="Center" />
+                                                <TextBlock Text="{Binding Server}" Classes="pii" FontSize="11.5"
+                                                           Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
+                                            </StackPanel>
+                                            <DockPanel Grid.Column="2">
+                                                <TextBlock DockPanel.Dock="Left" Text="{DynamicResource L.Accounts.ExitIpShort}" Classes="caption"
+                                                           Margin="0,0,4,0" VerticalAlignment="Center" ToolTip.Tip="{DynamicResource L.Accounts.ExitIp}" />
+                                                <TextBlock Text="{Binding DisplayExitIp}" Classes="pii" FontSize="11.5" TextWrapping="NoWrap"
+                                                           TextTrimming="CharacterEllipsis" Foreground="{DynamicResource AccentBrightBrush}"
+                                                           VerticalAlignment="Center">
+                                                    <ToolTip.Tip>
+                                                        <TextBlock Classes="pii" Text="{Binding DisplayExitIp}" />
+                                                    </ToolTip.Tip>
+                                                </TextBlock>
+                                            </DockPanel>
+                                        </Grid>
+
+                                        <!-- Ligne statut : pastille du MODE du compte puis statut rogné « … » dans la place restante. La
+                                             pastille vit ICI et plus sur la ligne titre, où elle retirait ~70 px à l'identifiant et
+                                             refaisait déborder les pastilles (avec « Planning »). MinWidth commune aux deux pastilles :
+                                             le statut démarre au même x sur toutes les cartes, quel que soit le mode. -->
+                                        <DockPanel>
+                                            <Panel DockPanel.Dock="Left" Margin="0,0,8,0" VerticalAlignment="Center">
+                                                <!-- MODE MÉMORISÉ du compte (MITM / Socket) : celui que suivent Lancer tout, le planning,
+                                                     l'équipe et la relance auto ; compte lancé : mode de la session. Même icône que le
+                                                     bouton correspondant (▶ Lancer / ⇄ Socket). Remplace l'ancien badge visible seulement
+                                                     en jeu (et la mise en avant du bouton, qui inversait les styles d'une carte à l'autre). -->
+                                                <Border Classes="badge" Background="#1F6FEB" MinWidth="62" IsVisible="{Binding ModeIsSocket}"
+                                                        ToolTip.Tip="{DynamicResource L.Accounts.ModeSocketTip}">
+                                                    <StackPanel Orientation="Horizontal" Spacing="4" HorizontalAlignment="Center">
+                                                        <PathIcon Data="{StaticResource IconNetwork}" Width="10" Height="10" Foreground="White" />
+                                                        <TextBlock Text="{DynamicResource L.Accounts.ModeSocket}" FontSize="10.5" FontWeight="SemiBold"
+                                                                   Foreground="White" VerticalAlignment="Center" />
+                                                    </StackPanel>
+                                                </Border>
+                                                <Border Classes="badge" Background="{StaticResource Surface2Brush}" MinWidth="62"
+                                                        IsVisible="{Binding !ModeIsSocket}" ToolTip.Tip="{DynamicResource L.Accounts.ModeMitmTip}">
+                                                    <StackPanel Orientation="Horizontal" Spacing="4" HorizontalAlignment="Center">
+                                                        <PathIcon Data="{StaticResource IconPlay}" Width="9" Height="9"
+                                                                  Foreground="{StaticResource TextSecondaryBrush}" />
+                                                        <TextBlock Text="{DynamicResource L.Accounts.ModeMitm}" FontSize="10.5" FontWeight="SemiBold"
+                                                                   Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
+                                                    </StackPanel>
+                                                </Border>
+                                            </Panel>
+                                            <!-- Compte marqué BANNI (refus BANNED d'Ankama) : plus de lancement automatique. Clic = lever le marqueur. -->
+                                            <Button DockPanel.Dock="Left" Classes="ghost" Padding="6,1" Margin="0,0,8,0" VerticalAlignment="Center"
+                                                    IsVisible="{Binding IsBanned}"
+                                                    Command="{Binding #AccountsList.((vm:AccountsViewModel)DataContext).UnbanCommand}"
+                                                    CommandParameter="{Binding}"
+                                                    ToolTip.Tip="{DynamicResource L.Accounts.UnbanTip}">
+                                                <TextBlock Text="{Binding BanLabel}" FontSize="10.5" FontWeight="SemiBold" Foreground="#F0785A" />
+                                            </Button>
+                                            <!-- Reprise en attente (backoff socket / reconnexion programmée) : l'annule, plus aucune tentative. -->
+                                            <Button DockPanel.Dock="Right" Classes="ghost" Padding="8,1" MinWidth="0" Margin="8,0,0,0"
+                                                    VerticalAlignment="Center" IsVisible="{Binding CanCancelResume}"
+                                                    Command="{Binding #AccountsList.((vm:AccountsViewModel)DataContext).CancelResumeCommand}"
+                                                    CommandParameter="{Binding}"
+                                                    ToolTip.Tip="{DynamicResource L.Accounts.CancelResumeTip}"
+                                                    AutomationProperties.Name="{DynamicResource L.Accounts.CancelResumeTip}">
+                                                <StackPanel Orientation="Horizontal" Spacing="5">
+                                                    <PathIcon Data="{StaticResource IconClose}" Width="10" Height="10" />
+                                                    <TextBlock Text="{DynamicResource L.Accounts.CancelResume}" FontSize="11" VerticalAlignment="Center" />
+                                                </StackPanel>
+                                            </Button>
+                                            <TextBlock DockPanel.Dock="Right" Text="{Binding UptimeText}" Classes="caption" Margin="8,0,0,0"
+                                                       VerticalAlignment="Center" IsVisible="{Binding Running}"
+                                                       ToolTip.Tip="Durée connectée depuis le lancement (une reconnexion en place la conserve)" />
+                                            <TextBlock Text="{Binding Status}" Classes="caption" TextWrapping="NoWrap" VerticalAlignment="Center"
+                                                       TextTrimming="CharacterEllipsis"
+                                                       Foreground="{DynamicResource AccentBrightBrush}">
+                                                <ToolTip.Tip>
+                                                    <StackPanel Spacing="4" MaxWidth="420">
+                                                        <TextBlock Text="{Binding Status}" TextWrapping="Wrap" />
+                                                        <TextBlock Text="Dernières déconnexions" FontWeight="SemiBold" IsVisible="{Binding HasDisconnectHistory}" />
+                                                        <TextBlock Text="{Binding DisconnectHistoryText}" TextWrapping="Wrap" IsVisible="{Binding HasDisconnectHistory}" />
+                                                    </StackPanel>
+                                                </ToolTip.Tip>
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </StackPanel>
+
+                                    <!-- connexion + proxy + actions : UNE SEULE LIGNE en colonnes de LARGEUR FIXE (752 px au total, comme
+                                         l'ancienne rangée) -> le bloc a la même largeur sur toutes les cartes et dans TOUS les états
+                                         (arrêté, lancé, reconnexion, déconnecté par le serveur) : plus aucun décalage d'une carte à
+                                         l'autre. Aucune colonne Auto / partagée : un seul compte à reconnecter ne doit ni élargir
+                                         toutes les cartes ni faire sauter la liste. Emplacement A = Lancer | Arrêter ; B = Socket |
+                                         Reconnecter. Largeurs calées sur le libellé le plus long (Roboto et Segoe UI, FR/EN/ES) :
+                                         A = 119 (« Launch » en .primary ≈ 112), B = 132 (« Reconnecter » en .accent ≈ 131). Chaque
+                                         bouton porte sa marge gauche (8) : un bouton masqué ne laisse pas d'espacement orphelin. -->
+                                    <ScrollViewer Grid.Row="1" Grid.ColumnSpan="3" Margin="0,12,0,0"
+                                                  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                                    <Grid HorizontalAlignment="Right"
+                                          VerticalAlignment="Center" ColumnDefinitions="205,184,127,140,48,48">
+                                        <!-- type de connexion : 0 = choix serveur, 1 = choix perso, 2 = direct en jeu (SelectedIndex) -->
+                                        <ComboBox Grid.Column="0" Width="205" MinHeight="40" VerticalAlignment="Center"
+                                                  IsEnabled="{Binding !Running}"
+                                                  SelectedIndex="{Binding AutoConnectType, Mode=TwoWay}"
+                                                  AutomationProperties.Name="{DynamicResource L.Accounts.ConnType}"
+                                                  ToolTip.Tip="{DynamicResource L.Accounts.ConnType}">
+                                            <!-- Sélection rognée « … » : un libellé long (« Écran de choix du serveur », « Pantalla de
+                                                 selección de servidor ») passait sous le chevron. La liste déroulante reste complète. -->
+                                            <ComboBox.SelectionBoxItemTemplate>
+                                                <DataTemplate x:DataType="sys:String">
+                                                    <TextBlock Text="{Binding}" TextTrimming="CharacterEllipsis" />
+                                                </DataTemplate>
+                                            </ComboBox.SelectionBoxItemTemplate>
+                                            <ComboBoxItem Content="{DynamicResource L.Accounts.ConnServer}" />
+                                            <ComboBoxItem Content="{DynamicResource L.Accounts.ConnCharacter}" />
+                                            <ComboBoxItem Content="{DynamicResource L.Accounts.ConnGame}" />
+                                        </ComboBox>
+                                        <ComboBox Grid.Column="1" Width="176" MinHeight="40" Margin="8,0,0,0" VerticalAlignment="Center"
+                                                  IsEnabled="{Binding !Running}"
+                                                  ItemsSource="{Binding Proxies}" SelectedItem="{Binding SelectedProxy}"
+                                                  AutomationProperties.Name="{DynamicResource L.Accounts.AssignProxy}"
+                                                  PlaceholderText="{DynamicResource L.Accounts.AssignProxy}">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate x:DataType="pe:ProxyEntry">
+                                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                                        <PathIcon Data="{StaticResource IconNetwork}" Width="12" Height="12" VerticalAlignment="Center" />
+                                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                            <!-- Proxy sélectionné : nom rogné « … » (colonne fixe) au lieu de passer sous le chevron. -->
+                                            <ComboBox.SelectionBoxItemTemplate>
+                                                <DataTemplate x:DataType="pe:ProxyEntry">
+                                                    <DockPanel>
+                                                        <PathIcon DockPanel.Dock="Left" Data="{StaticResource IconNetwork}" Width="12" Height="12"
+                                                                  Margin="0,0,8,0" VerticalAlignment="Center" />
+                                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                                    </DockPanel>
+                                                </DataTemplate>
+                                            </ComboBox.SelectionBoxItemTemplate>
+                                        </ComboBox>
+
+                                        <!-- Emplacement A. Style ET largeur FIXES sur toutes les cartes : Lancer = bouton principal,
+                                             Socket = bouton secondaire. Avant, le bouton du mode mémorisé passait en .primary (padding
+                                             22 figé + police SemiBold -> plus large) : styles « inversés » d'une carte à l'autre et bloc
+                                             décalé d'~20 px. Le mode mémorisé est maintenant affiché par la pastille MITM / Socket. -->
+                                        <Button Grid.Column="2" Classes="primary noscale" Height="40" Width="119" Margin="8,0,0,0"
+                                                IsVisible="{Binding !ShowStop}"
+                                                Command="{Binding #AccountsList.((vm:AccountsViewModel)DataContext).LaunchCommand}"
+                                                CommandParameter="{Binding}"
+                                                ToolTip.Tip="{DynamicResource L.Accounts.LaunchTip}">
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <PathIcon Data="{StaticResource IconPlay}" Width="13" Height="13" />
+                                                <TextBlock Text="{DynamicResource L.Accounts.Launch}" VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </Button>
+                                        <!-- Même place que Lancer. Visible aussi pendant une reconnexion manuelle en attente d'un compte
+                                             hors ligne : l'annule. -->
+                                        <Button Grid.Column="2" Classes="ghost" Height="40" Width="119" Margin="8,0,0,0"
+                                                IsVisible="{Binding ShowStop}"
+                                                Command="{Binding #AccountsList.((vm:AccountsViewModel)DataContext).StopCommand}"
+                                                CommandParameter="{Binding}">
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <PathIcon Data="{StaticResource IconPause}" Width="13" Height="13" />
+                                                <TextBlock Text="{DynamicResource L.Accounts.StopBtn}" VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </Button>
+                                        <!-- Emplacement B. MODE SOCKET : connexion sans Dofus.exe. Gaté par le droit serveur « socket » (le
+                                             MITM reste inclus de base) : grisé sans lui, l'infobulle (visible même grisé) dit pourquoi.
+                                             Cède sa place à « Reconnecter » quand il y a une session à reprendre. -->
+                                        <Button Grid.Column="3" Classes="ghost" Height="40" Width="132" Margin="8,0,0,0"
+                                                IsVisible="{Binding ShowSocketBtn}"
+                                                IsEnabled="{Binding #AccountsList.((vm:AccountsViewModel)DataContext).CanSocket}"
+                                                Command="{Binding #AccountsList.((vm:AccountsViewModel)DataContext).SocketTestCommand}"
+                                                CommandParameter="{Binding}"
+                                                ToolTip.ShowOnDisabled="True"
+                                                ToolTip.Tip="{Binding #AccountsList.((vm:AccountsViewModel)DataContext).SocketButtonTip}">
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <PathIcon Data="{StaticResource IconNetwork}" Width="13" Height="13" />
+                                                <TextBlock Text="{DynamicResource L.Accounts.ModeSocket}" VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </Button>
+                                        <!-- Même place que Socket (emplacement B, largeur fixe). « Reconnecter » : « Déconnecté » (MITM,
+                                             Dofus.exe ouvert ; socket parqué par le serveur) ou socket en attente de reconnexion -> à
+                                             côté d'Arrêter ; compte MITM HORS LIGNE arrêté par le serveur / relance ratée (relance sur le
+                                             dernier perso) -> à côté de Lancer, toujours proposé. Reste à sa place, grisé (atténué),
+                                             pendant une reconnexion en cours. -->
+                                        <Button Grid.Column="3" Classes="accent" Height="40" Width="132" Margin="8,0,0,0"
+                                                IsVisible="{Binding CanReconnect}"
+                                                IsEnabled="{Binding !ReconnectPending}"
+                                                Command="{Binding #AccountsList.((vm:AccountsViewModel)DataContext).ReconnectCommand}"
+                                                CommandParameter="{Binding}"
+                                                ToolTip.Tip="{DynamicResource L.Reconnect.Tip}">
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <PathIcon Data="{StaticResource IconUpdate}" Width="13" Height="13" />
+                                                <TextBlock Text="{DynamicResource L.Reconnect.Button}" VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </Button>
+                                        <Button Grid.Column="4" Classes="ghost" Width="40" Height="40" MinWidth="0" Margin="8,0,0,0"
+                                                Command="{Binding #AccountsList.((vm:AccountsViewModel)DataContext).EditCommand}"
+                                                CommandParameter="{Binding}" ToolTip.Tip="{DynamicResource L.AccountSettings.Title}">
+                                            <PathIcon Data="{StaticResource IconSettings}" Width="15" Height="15" />
+                                        </Button>
+                                        <Button Grid.Column="5" Classes="ghost" Width="40" Height="40" MinWidth="0" Margin="8,0,0,0"
+                                                Command="{Binding #AccountsList.((vm:AccountsViewModel)DataContext).RemoveCommand}"
+                                                CommandParameter="{Binding}" ToolTip.Tip="{DynamicResource L.Accounts.Remove}">
+                                            <PathIcon Data="{StaticResource IconTrash}" Width="14" Height="14" />
+                                        </Button>
+                                    </Grid>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!-- These offline verification tools are useful for troubleshooting, not for adding
+                     or launching a normal account. Keep them accessible without occupying the
+                     everyday screen or competing with the primary call to action. -->
+                <!-- Visible seulement avec la licence développeur (C32) : AccountsViewModel est hors périmètre, on lit MainViewModel via la fenêtre. -->
+                <Expander Header="Diagnostic avancé des connexions" IsExpanded="False"
+                          IsVisible="{Binding $parent[Window].((vm:MainViewModel)DataContext).IsDeveloperLicense}"
+                          Margin="0,12,0,0" HorizontalAlignment="Stretch">
+                    <StackPanel Spacing="12" Margin="8,12,8,8">
+                        <TextBlock Text="À utiliser uniquement pour vérifier des profils de test ou une incompatibilité de version."
+                                   Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap" />
+                        <views:MZP4TestAccountsPanel />
+                        <views:MZP10MappingVerificationPanel />
+                    </StackPanel>
+                </Expander>
+
+            </StackPanel>
+        </ScrollViewer>
+        <Panel IsVisible="{Binding CharacterCreationOpen}">
+            <views:CharacterCreationTabView DataContext="{Binding CharacterCreation}" />
+        </Panel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,18 @@
+<!-- NativeAOT/trim : conserve les types de l'app + des projets Givre (Views/ViewModels/Lang
+     instanciés par réflexion via le ViewLocator + XAML, API Lua exposée par nom, readers de bundles).
+     Large volontairement au 1er passage : on resserre une fois l'AOT vert au runtime. -->
+<linker>
+  <assembly fullname="GivreClone" preserve="all" />
+  <assembly fullname="GivreClone.Engine" preserve="all" />
+  <assembly fullname="GivreClone.Protocol" preserve="all" />
+  <assembly fullname="GivreCore" preserve="all" />
+  <assembly fullname="GivreLauncher.Core" preserve="all" />
+  <!-- MoonSharp : sa STDLIB (type/ipairs/string.format/tostring…) est enregistrée par RÉFLEXION sur ses
+       modules -> le trim les supprime -> "attempt to call a nil value" au 1er ipairs/etc. Préservé -> OK (prouvé). -->
+  <assembly fullname="MoonSharp.Interpreter" preserve="all" />
+  <!-- AssetsTools : lecture des bundles Unity (icônes/carte) par réflexion sur le type-tree -> préservé par prudence. -->
+  <assembly fullname="AssetsTools.NET" preserve="all" />
+  <assembly fullname="AssetsTools.NET.Texture" preserve="all" />
+  <!-- AvaloniaEdit : validé AOT sans racine ; préservé par prudence (chargeur xshd, fenêtres de complétion). -->
+  <assembly fullname="AvaloniaEdit" preserve="all" />
+</linker>

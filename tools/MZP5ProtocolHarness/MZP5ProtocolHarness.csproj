@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Production source files, compiled verbatim; no GivreCore shims. -->
+    <Compile Include="../../GivreClone.Protocol/MZP0ProtocolAdmission.cs" Link="Product/MZP0ProtocolAdmission.cs" />
+    <Compile Include="../../GivreClone.Protocol/MZP3RawProtobuf.cs" Link="Product/MZP3RawProtobuf.cs" />
+    <Compile Include="../../GivreClone.Protocol/MZP3FrameAndEnvelope.cs" Link="Product/MZP3FrameAndEnvelope.cs" />
+    <Compile Include="../../GivreClone.Protocol/MZP4ProtocolAdapter.cs" Link="Product/MZP4ProtocolAdapter.cs" />
+    <Compile Include="../../GivreClone.Protocol/MZP5InboundProtocol.cs" Link="Product/MZP5InboundProtocol.cs" />
+  </ItemGroup>
+</Project>

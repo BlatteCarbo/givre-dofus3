@@ -1,0 +1,163 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             xmlns:pe="using:GivreClone.Engine.Proxies"
+             x:Class="GivreClone.App.Views.AccountOverlays"
+             x:DataType="vm:AccountsViewModel">
+    <!-- Overlays au niveau fenetre (couvrent toute la fenetre : sidebar + barre de titre comprises). -->
+    <Grid>
+
+        <!-- Modal de lancement : progression (passage par le proxy, auth, injection...) -->
+        <Grid Classes.modalOpen="{Binding LaunchModalVisible}" IsHitTestVisible="{Binding LaunchModalVisible}">
+            <Border Classes="modalScrim" />
+            <Border Classes="modalCard" Width="470" Padding="26,24" CornerRadius="16"
+                    Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Spacing="14">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Ellipse Classes="spinner" Width="22" Height="22" IsVisible="{Binding LaunchModalBusy}" />
+                        <PathIcon Data="{StaticResource IconCheckCircle}" Width="22" Height="22"
+                                  Foreground="{DynamicResource AccentBrightBrush}" IsVisible="{Binding LaunchModalOk}" />
+                        <PathIcon Data="{StaticResource IconInfo}" Width="22" Height="22"
+                                  Foreground="#F0616D" IsVisible="{Binding LaunchModalFailed}" />
+                        <TextBlock Text="{DynamicResource L.Accounts.LaunchModalTitle}" FontSize="16" FontWeight="SemiBold"
+                                   VerticalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding LaunchModalLogin}" FontWeight="SemiBold" Foreground="{DynamicResource AccentBrightBrush}" />
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <PathIcon Data="{StaticResource IconNetwork}" Width="13" Height="13"
+                                  Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding LaunchModalProxy}" Classes="caption" VerticalAlignment="Center" TextWrapping="Wrap" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding LaunchModalStep}" TextWrapping="Wrap" FontSize="13.5"
+                               Foreground="{StaticResource TextSecondaryBrush}" />
+                    <Button Classes="ghost" Height="38" MinWidth="104" HorizontalAlignment="Right"
+                            IsVisible="{Binding LaunchModalFailed}" Command="{Binding CloseLaunchModalCommand}">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <PathIcon Data="{StaticResource IconClose}" Width="13" Height="13" />
+                            <TextBlock Text="{DynamicResource L.Common.Close}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Modal code Shield (2FA) -->
+        <Grid Classes.modalOpen="{Binding ShieldVisible}" IsHitTestVisible="{Binding ShieldVisible}"
+              IsEnabled="{Binding ShieldVisible}">
+            <Border Classes="modalScrim" />
+            <Border Classes="modalCard" Width="410" Padding="28,26" CornerRadius="16"
+                    Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Spacing="16">
+                    <PathIcon Data="{StaticResource IconShield}" Width="28" Height="28" HorizontalAlignment="Center"
+                              Foreground="{DynamicResource AccentBrightBrush}" />
+                    <TextBlock Text="{DynamicResource L.Accounts.ShieldTitle}" FontSize="17" FontWeight="SemiBold"
+                               HorizontalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}" />
+                    <TextBlock Text="{DynamicResource L.Accounts.ShieldBody}" TextWrapping="Wrap" TextAlignment="Center" FontSize="13"
+                               LineHeight="19" Foreground="{StaticResource TextSecondaryBrush}" />
+                    <TextBlock Text="{Binding ShieldLogin}" HorizontalAlignment="Center" FontWeight="SemiBold"
+                               Foreground="{DynamicResource AccentBrightBrush}" />
+                    <TextBox Text="{Binding ShieldCode}" Watermark="{DynamicResource L.Accounts.ShieldCode}" MaxLength="12"
+                             HorizontalContentAlignment="Center" FontSize="18" FontWeight="SemiBold" Height="48" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                        <Button Classes="ghost" Height="40" MinWidth="110" Command="{Binding CancelShieldCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <PathIcon Data="{StaticResource IconClose}" Width="13" Height="13" />
+                                <TextBlock Text="{DynamicResource L.Common.Cancel}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button Classes="primary" Height="40" MinWidth="130" Command="{Binding ConfirmShieldCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <PathIcon Data="{StaticResource IconCheck}" Width="14" Height="14" />
+                                <TextBlock Text="{DynamicResource L.Common.Confirm}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Paramètres d'un compte (engrenage de la carte) : identité, proxy du serveur de jeu, démarrage automatique du script -->
+        <Grid Classes.modalOpen="{Binding EditVisible}" IsHitTestVisible="{Binding EditVisible}"
+              IsEnabled="{Binding EditVisible}">
+            <Border Classes="modalScrim" />
+            <Border Classes="modalCard" Width="500" Padding="28,26" CornerRadius="16"
+                    Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Spacing="16">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <PathIcon Data="{StaticResource IconSettings}" Width="22" Height="22"
+                                  Foreground="{DynamicResource AccentBrightBrush}" VerticalAlignment="Center" />
+                        <StackPanel Spacing="1" VerticalAlignment="Center">
+                            <TextBlock Text="{DynamicResource L.AccountSettings.Title}" FontSize="17" FontWeight="SemiBold"
+                                       Foreground="{StaticResource TextPrimaryBrush}" />
+                            <TextBlock Text="{Binding EditTitleLogin}" Classes="caption pii" TextTrimming="CharacterEllipsis" MaxWidth="400" />
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBlock Text="{DynamicResource L.AccountSettings.Identity}" Classes="label" Margin="0,2,0,-8" />
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="{DynamicResource L.Accounts.EditLogin}" Classes="caption" />
+                        <TextBox Text="{Binding EditLogin}" Height="42" VerticalContentAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="{DynamicResource L.Accounts.EditLabel}" Classes="caption" />
+                        <TextBox Text="{Binding EditLabel}" Height="42" VerticalContentAlignment="Center"
+                                 Watermark="{DynamicResource L.Accounts.LabelOptional}" />
+                    </StackPanel>
+                    <StackPanel Spacing="6" IsVisible="{Binding EditIsKeyData}">
+                        <TextBlock Text="{DynamicResource L.Accounts.EditPassword}" Classes="caption" />
+                        <TextBox Text="{Binding EditPassword}" Height="42" VerticalContentAlignment="Center"
+                                 PasswordChar="●" Watermark="{DynamicResource L.Accounts.PasswordKeep}" />
+                    </StackPanel>
+
+                    <!-- Proxy du SERVEUR DE JEU : le proxy de la carte sert au lancement, à la connexion Ankama et au serveur de
+                         connexion ; celui-ci prend le relais à l'ouverture de la connexion au serveur de jeu (rotatif -> statique). -->
+                    <Border Height="1" Background="{StaticResource StrokeSoftBrush}" Margin="0,2" />
+                    <TextBlock Text="{DynamicResource L.AccountSettings.Connection}" Classes="label" Margin="0,0,0,-8" />
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="{DynamicResource L.AccountSettings.GameProxy}" Classes="caption" />
+                        <ComboBox HorizontalAlignment="Stretch" MinHeight="42" ItemsSource="{Binding GameProxyChoices}"
+                                  SelectedItem="{Binding EditGameProxy}" PlaceholderText="{DynamicResource L.AccountSettings.GameProxyMissing}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="pe:ProxyEntry">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <PathIcon Data="{StaticResource IconNetwork}" Width="12" Height="12" VerticalAlignment="Center" />
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <TextBlock Text="{DynamicResource L.AccountSettings.GameProxyHint}" Classes="caption" TextWrapping="Wrap" />
+                    </StackPanel>
+
+                    <Border Height="1" Background="{StaticResource StrokeSoftBrush}" Margin="0,2" />
+                    <TextBlock Text="{DynamicResource L.AccountSettings.Script}" Classes="label" Margin="0,0,0,-8" />
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                        <StackPanel Grid.Column="0" Spacing="3" VerticalAlignment="Center">
+                            <TextBlock Text="{DynamicResource L.AccountSettings.AutoStart}" Foreground="{StaticResource TextPrimaryBrush}"
+                                       TextWrapping="Wrap" />
+                            <TextBlock Text="{DynamicResource L.AccountSettings.AutoStartHint}" Classes="caption" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <ToggleSwitch Grid.Column="1" VerticalAlignment="Center" OnContent="" OffContent=""
+                                      IsChecked="{Binding EditAutoStartScript}" />
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                        <Button Classes="ghost" Height="40" MinWidth="110" Command="{Binding CancelEditCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <PathIcon Data="{StaticResource IconClose}" Width="13" Height="13" />
+                                <TextBlock Text="{DynamicResource L.Common.Cancel}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button Classes="primary" Height="40" MinWidth="130" Command="{Binding ConfirmEditCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <PathIcon Data="{StaticResource IconCheck}" Width="14" Height="14" />
+                                <TextBlock Text="{DynamicResource L.Common.Save}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

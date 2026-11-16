@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Real GivreClone.App production source, compiled unchanged; no GivreLauncher.Core shim. -->
+    <Compile Include="../../GivreClone.App/Services/MZP4LauncherPreflight.cs" Link="Production/MZP4LauncherPreflight.cs" />
+    <Compile Include="../../GivreClone.Protocol/MZP0ProtocolAdmission.cs" Link="Production/MZP0ProtocolAdmission.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,110 @@
+{
+  "source_file": "bot-settings.json",
+  "values_removed": true,
+  "fields": [
+    {
+      "path": "$.Settings",
+      "type": "dict"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe",
+      "type": "dict"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.Speed",
+      "type": "str"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.LegitSettleMinMs",
+      "type": "int"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.LegitSettleMaxMs",
+      "type": "int"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.AntiStuckEnabled",
+      "type": "bool"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.AntiStuckRestartScript",
+      "type": "bool"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.AntiStuckTimeoutSeconds",
+      "type": "int"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.AchievementAutoClaim",
+      "type": "bool"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.AutoReplyEnabled",
+      "type": "bool"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.ReplyMode",
+      "type": "str"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.Rules",
+      "type": "list"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.ReplyDelayMinMs",
+      "type": "int"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.ReplyDelayMaxMs",
+      "type": "int"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.ReplyCooldownSec",
+      "type": "int"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.LlmDirect",
+      "type": "bool"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.LlmProvider",
+      "type": "str"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.LlmModel",
+      "type": "str"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.LlmBaseUrl",
+      "type": "str"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.LlmApiKeyProtected",
+      "type": "str"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.AnthropicModel",
+      "type": "str"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.AnthropicApiKeyProtected",
+      "type": "str"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.LlmSystemPrompt",
+      "type": "str"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.DiscordRelay",
+      "type": "bool"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.ManualReplyWindowSec",
+      "type": "int"
+    },
+    {
+      "path": "$.Settings.Rey-mashinthe.AutoReplyIfNoManual",
+      "type": "bool"
+    }
+  ]
+}

@@ -1,0 +1,598 @@
+{
+  "schemaVersion": 1,
+  "mission": "P02",
+  "date": "2026-11-04",
+  "status": "synthetic_not_executed",
+  "clientReferenceVersion": "3.7.13.17",
+  "provenance": {
+    "localClientEffectCsv": "docs/cos-dofus-video/rapports-v2/N01/EFFECTS_3.7.13.17.csv",
+    "localClientEffectCsvSha256": "cbd685e8852966961a7d155c17d7a21dd23ec8e45cac70aa31be06300f89384b",
+    "previousAudit": "docs/cos-dofus-video/rapports-v2/N08/PREUVES.md",
+    "historicalConvention": {
+      "url": "https://dofus.jeuxonline.info/actualite/32814/modifications-apportees-version-240",
+      "publicationDate": "2011-09-26",
+      "release": "DOFUS 2.4.0",
+      "claim": "durations of spell effects decremented at the beginning of the caster turn",
+      "currentReleaseStatus": "Unknown"
+    }
+  },
+  "roles": {
+    "S": "support caster, distinct actor ID",
+    "B": "beneficiary, distinct actor ID",
+    "E": "opponent, distinct actor ID",
+    "n": "round of the hypothetical cast",
+    "n+1": "next round"
+  },
+  "hypotheses": [
+    {
+      "id": "H_CASTER_START",
+      "expiryForSyntheticOneTurnBuff": "S.(n+1).start",
+      "basis": "historical rule documented for 2.4",
+      "verifiedOnClient3_7_13_17Server": false
+    },
+    {
+      "id": "H_BENEFICIARY_END",
+      "expiryForSyntheticOneTurnBuff": "B.n.end if S precedes B",
+      "basis": "pre-2.4 historical rule, competing counterexample",
+      "verifiedOnClient3_7_13_17Server": false
+    },
+    {
+      "id": "H_BENEFICIARY_START",
+      "expiryForSyntheticOneTurnBuff": "B.(n+1).start",
+      "basis": "synthetic alternative to distinguish",
+      "verifiedOnClient3_7_13_17Server": false
+    },
+    {
+      "id": "H_CASTER_END",
+      "expiryForSyntheticOneTurnBuff": "S.(n+1).end",
+      "basis": "synthetic alternative to distinguish",
+      "verifiedOnClient3_7_13_17Server": false
+    }
+  ],
+  "commonMeasurementContract": {
+    "allIds": "anonymized stable per combat, no account identifiers",
+    "requiredForTiming": [
+      "combatVersion",
+      "round",
+      "turnIndex",
+      "turnStartActorId",
+      "turnEndActorId",
+      "sourceActorId",
+      "targetActorId",
+      "spellId",
+      "grade",
+      "effectUid or explicit null",
+      "actionId",
+      "serverCastResult",
+      "serverEffectApplyOrStateChange",
+      "serverEffectRemoveOrDurationChange",
+      "removalCause",
+      "statsBeforeAfterWhenRelevant"
+    ],
+    "serverCastResultPossibleValues": [
+      "Confirmed",
+      "Refused",
+      "Unknown"
+    ],
+    "defaultServerOracle": "Unknown",
+    "replayExecuted": false,
+    "genericDurationAndActivation": "synthetic illustrative values, not an assertion about a specific spell",
+    "clockClassification": {
+      "cast": "after cast request; accept/effect receipt still absent",
+      "beneficiary_turn": "after observed FightTurnEvent for B; ability or movement must be independently confirmed",
+      "enemy_hit": "after observed combat action with attributable damage and before/after shield/reduction",
+      "next_caster_start": "on observed S turn boundary, test presence or natural removal independently"
+    }
+  },
+  "clientRowControls": [
+    {
+      "spellId": 13246,
+      "grade": 1,
+      "effectUid": 210099,
+      "actionId": 111,
+      "csvLine": 1013,
+      "duration": 1,
+      "delay": 1,
+      "triggers": "I",
+      "note": "Flou Temporel: action associated with AP; activation delayed; not a proven generic immediate AP support scenario"
+    },
+    {
+      "spellId": 12915,
+      "grade": 1,
+      "effectUid": 405000,
+      "actionId": 128,
+      "csvLine": 110,
+      "duration": 1,
+      "delay": 2,
+      "triggers": "I",
+      "note": "Double: PM action with delay; meaning of the delay boundary remains Unknown"
+    },
+    {
+      "spellId": 13432,
+      "grade": 1,
+      "effectUid": 259140,
+      "actionId": 120,
+      "csvLine": 374,
+      "duration": 0,
+      "delay": 0,
+      "triggers": "I",
+      "note": "Détonateur: zero-duration control; self target mask C, no B application is established"
+    },
+    {
+      "spellId": 12902,
+      "grade": 1,
+      "effectUid": 371825,
+      "actionId": 138,
+      "csvLine": 3,
+      "duration": 3,
+      "delay": 0,
+      "triggers": "I",
+      "note": "Truanderie: damage-percent buff action, mask C; not an ally B buff"
+    },
+    {
+      "spellId": 13431,
+      "grade": 1,
+      "effectUid": 259838,
+      "actionId": 1020,
+      "csvLine": 354,
+      "duration": 1,
+      "delay": 0,
+      "triggers": "I",
+      "note": "Roublardise: shield action, mask a,P,F3112,F3113,F3114,F5161,F5163,F5162; target semantics unproven"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "P02-01",
+      "family": "PA",
+      "order": "S->B",
+      "applicationModel": "immediate_candidate",
+      "spellCandidate": "Mot Stimulant, third-party Eniripsa 3.7.12; no 3.7.13.17 spell ID asserted",
+      "events": [
+        {
+          "step": 1,
+          "boundary": "S.n.cast",
+          "event": "S requests ally AP buff on B",
+          "expected": "No applied effect can be certified before a server receipt",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 2,
+          "boundary": "after_cast",
+          "event": "capture effect receipt and B AP before/after",
+          "expected": "AP boost only conditionally active if same target/effect accepted",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 3,
+          "boundary": "B.n.start",
+          "event": "capture current AP and whether B can perform added legal action",
+          "expected": "Incremental benefit only if AP present and a legal action exists",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 4,
+          "boundary": "B.n.end",
+          "event": "check buff after beneficiary turn",
+          "expected": "Compare H_CASTER_START with H_BENEFICIARY_END",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 5,
+          "boundary": "S.(n+1).start",
+          "event": "capture natural removal or persistent effect",
+          "expected": "H_CASTER_START predicts expiry here if standard immediate one-turn effect; not asserted",
+          "serverOracle": "Unknown"
+        }
+      ],
+      "unresolved": ["buff activation phase", "remaining duration", "AP reset on B turn", "expiry cause"]
+    },
+    {
+      "id": "P02-02",
+      "family": "PA",
+      "order": "B->S",
+      "applicationModel": "immediate_candidate",
+      "spellCandidate": "Mot Stimulant, third-party Eniripsa 3.7.12",
+      "events": [
+        {
+          "step": 1,
+          "boundary": "B.n.end",
+          "event": "B completed its current turn",
+          "expected": "B.n cannot later spend AP obtained after this boundary",
+          "serverOracle": "causal_invariant_only"
+        },
+        {
+          "step": 2,
+          "boundary": "S.n.cast",
+          "event": "S attempts buff on B; capture result and observed AP change",
+          "expected": "Effect application is pending independent receipt",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 3,
+          "boundary": "E.n",
+          "event": "enemy turn; detect dispel or loss before next B turn",
+          "expected": "No AP value inferred from silence",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 4,
+          "boundary": "B.(n+1).start",
+          "event": "observe AP available to beneficiary",
+          "expected": "Only count marginal use if actual AP and legal action confirmed",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 5,
+          "boundary": "S.(n+1).start",
+          "event": "check natural expiration at caster turn",
+          "expected": "Compare predicted removal under H_CASTER_START",
+          "serverOracle": "Unknown"
+        }
+      ],
+      "unresolved": ["AP availability before B.(n+1)", "effect replaced or dispelled", "expiry phase"]
+    },
+    {
+      "id": "P02-03",
+      "family": "PM",
+      "order": "S->B",
+      "applicationModel": "immediate_candidate",
+      "spellCandidate": "Mot Vivifiant, third-party Eniripsa 3.7.12",
+      "events": [
+        {
+          "step": 1,
+          "boundary": "S.n.cast",
+          "event": "S requests ally PM boost on B",
+          "expected": "Command intent alone does not change B movement budget",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 2,
+          "boundary": "after_cast",
+          "event": "observe B PM delta and encouragement replacement if any",
+          "expected": "PM active only if applied on B",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 3,
+          "boundary": "B.n.start",
+          "event": "observe budget and movement choices",
+          "expected": "Movement utility only if reachable path and PM actually available",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 4,
+          "boundary": "B.n.end",
+          "event": "observe remaining buff and PM after movement",
+          "expected": "Compare beneficiary-end versus caster-start hypotheses",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 5,
+          "boundary": "S.(n+1).start",
+          "event": "inspect effect removal",
+          "expected": "No expiry claim until matched removal or state change",
+          "serverOracle": "Unknown"
+        }
+      ],
+      "unresolved": ["PM reset", "tackle/dodge", "encouragement mutual exclusivity", "expiration"]
+    },
+    {
+      "id": "P02-04",
+      "family": "PM",
+      "order": "B->S",
+      "applicationModel": "immediate_candidate",
+      "spellCandidate": "Mot Vivifiant, third-party Eniripsa 3.7.12",
+      "events": [
+        {
+          "step": 1,
+          "boundary": "B.n.end",
+          "event": "B has already moved or passed",
+          "expected": "No future buff changes movement already completed",
+          "serverOracle": "causal_invariant_only"
+        },
+        {
+          "step": 2,
+          "boundary": "S.n.cast",
+          "event": "record cast and independent target PM receipt",
+          "expected": "No unconfirmed PM gain",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 3,
+          "boundary": "E.n",
+          "event": "record intervening enemy dispel or debuff",
+          "expected": "No disappearance cause inferred from missing buff icon",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 4,
+          "boundary": "B.(n+1).start",
+          "event": "observe B PM budget and potential route",
+          "expected": "Beneficiary next-turn utility conditional on received current PM and a traversable path",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 5,
+          "boundary": "S.(n+1).start",
+          "event": "inspect expiration",
+          "expected": "Compare observed outcome with H_CASTER_START",
+          "serverOracle": "Unknown"
+        }
+      ],
+      "unresolved": ["buff or replacement before next B", "server path/tackle", "expiry cause"]
+    },
+    {
+      "id": "P02-05",
+      "family": "puissance",
+      "order": "S->B",
+      "applicationModel": "immediate_candidate",
+      "spellCandidate": null,
+      "clientControl": "Truanderie action 138 duration 3 targetMask C is a self-buff control only, not the proposed ally buff",
+      "events": [
+        {
+          "step": 1,
+          "boundary": "S.n.cast",
+          "event": "S attempts a hypothetical legal power buff on B",
+          "expected": "Must first identify real 3.7.13.17 ally-target spell/grade",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 2,
+          "boundary": "after_cast",
+          "event": "observe B damage-percent characteristic",
+          "expected": "Only verified characteristic change can enter calculation",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 3,
+          "boundary": "B.n.hit",
+          "event": "observe hit versus same target and resistance baseline",
+          "expected": "Benefit only if buff active before hit; critical and other modifiers controlled",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 4,
+          "boundary": "B.n.end",
+          "event": "observe buff presence",
+          "expected": "Compare possible expiry boundary at B end",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 5,
+          "boundary": "S.(n+1).start",
+          "event": "inspect natural expiry",
+          "expected": "Do not use nominal duration as a server removal oracle",
+          "serverOracle": "Unknown"
+        }
+      ],
+      "unresolved": ["actual ally-target spell", "effective damage formula", "expiry phase"]
+    },
+    {
+      "id": "P02-06",
+      "family": "puissance",
+      "order": "B->S",
+      "applicationModel": "immediate_candidate",
+      "spellCandidate": null,
+      "events": [
+        {
+          "step": 1,
+          "boundary": "B.n.hit",
+          "event": "record completed B damage and end of turn",
+          "expected": "Past hit cannot be modified by later cast",
+          "serverOracle": "causal_invariant_only"
+        },
+        {
+          "step": 2,
+          "boundary": "S.n.cast",
+          "event": "record attempted buff and effect on B",
+          "expected": "No assumed damage increase without server stat receipt",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 3,
+          "boundary": "E.n",
+          "event": "observe intervening dispel or removal",
+          "expected": "Potential buff state remains Unknown",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 4,
+          "boundary": "B.(n+1).hit",
+          "event": "observe power and next hit",
+          "expected": "Only a confirmed active effect before hit allows conditional comparison",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 5,
+          "boundary": "S.(n+1).start",
+          "event": "inspect expiry",
+          "expected": "Compare caster-start hypothesis, including duration >1 if actual spell differs",
+          "serverOracle": "Unknown"
+        }
+      ],
+      "unresolved": ["legal S->B power spell", "actual duration and expiration", "random effects/critical"]
+    },
+    {
+      "id": "P02-07",
+      "family": "bouclier",
+      "order": "S->B",
+      "applicationModel": "immediate_candidate",
+      "spellCandidate": null,
+      "clientControl": "Roublardise action 1020 duration 1 has complex target mask, not verified to apply shield to B",
+      "events": [
+        {
+          "step": 1,
+          "boundary": "S.n.cast",
+          "event": "S attempts legal shield on B and records cast",
+          "expected": "No shield without target-specific server application",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 2,
+          "boundary": "after_cast",
+          "event": "record B shield amount",
+          "expected": "If shield confirmed, it may cover subsequent hits",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 3,
+          "boundary": "B.n.end",
+          "event": "observe shield immediately after beneficiary's turn",
+          "expected": "Presence discriminates against H_BENEFICIARY_END if no refresh",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 4,
+          "boundary": "E.n.hit",
+          "event": "record shieldBefore, shieldLoss, lifeLoss, shieldAfter",
+          "expected": "Shield absorption only if actual shield present at E hit",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 5,
+          "boundary": "S.(n+1).start",
+          "event": "record remaining shield and reason for reduction",
+          "expected": "Distinguish natural expiry from consumption at E hit",
+          "serverOracle": "Unknown"
+        }
+      ],
+      "unresolved": ["ally B target legality", "shield magnitude and lifecycle", "natural expiry vs consumption"]
+    },
+    {
+      "id": "P02-08",
+      "family": "bouclier",
+      "order": "B->S",
+      "applicationModel": "immediate_candidate",
+      "spellCandidate": null,
+      "events": [
+        {
+          "step": 1,
+          "boundary": "B.n.end",
+          "event": "B has finished",
+          "expected": "No shield can retroactively absorb previous life loss",
+          "serverOracle": "causal_invariant_only"
+        },
+        {
+          "step": 2,
+          "boundary": "S.n.cast",
+          "event": "request legal shield on B; obtain receipt",
+          "expected": "Protection only after receipt",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 3,
+          "boundary": "E.n.hit",
+          "event": "measure shield and life before and after first hostile hit",
+          "expected": "Only observed absorption permits survival score",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 4,
+          "boundary": "B.(n+1).start",
+          "event": "capture shield after enemy and at beneficiary turn",
+          "expected": "Remaining shield value may be lower due to consumption",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 5,
+          "boundary": "S.(n+1).start",
+          "event": "inspect removal or ongoing shield",
+          "expected": "Only attributable removal can verify natural expiry",
+          "serverOracle": "Unknown"
+        }
+      ],
+      "unresolved": ["actual shield spell", "hit and absorption receipts", "removal cause"]
+    },
+    {
+      "id": "P02-09",
+      "family": "reduction_degats",
+      "order": "S->B",
+      "applicationModel": "immediate_candidate",
+      "spellCandidate": "Rempart or Fortification, community Feca page; precise 3.7.13.17 spell ID and duration absent",
+      "events": [
+        {
+          "step": 1,
+          "boundary": "S.n.cast",
+          "event": "attempt damage-reduction buff on B",
+          "expected": "No inferred mitigation from cast request",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 2,
+          "boundary": "after_cast",
+          "event": "observe reduction effect and target B",
+          "expected": "Must separate shield points from damage reduction",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 3,
+          "boundary": "B.n.end",
+          "event": "record effect after target's own turn",
+          "expected": "Comparator for caster-start against beneficiary-end",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 4,
+          "boundary": "E.n.hit",
+          "event": "capture pre-mitigation hit terms, resulting life/shield loss and reduction event if available",
+          "expected": "Measured reduction only after matched authoritative hit",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 5,
+          "boundary": "S.(n+1).start",
+          "event": "observe effect removed or still present",
+          "expected": "Natural expiry must be distinguished from dispel",
+          "serverOracle": "Unknown"
+        }
+      ],
+      "unresolved": ["damage reduction type/formula", "effect identity", "expiration"]
+    },
+    {
+      "id": "P02-10",
+      "family": "reduction_degats",
+      "order": "B->S",
+      "applicationModel": "immediate_candidate",
+      "spellCandidate": "Rempart or Fortification, third-party version only",
+      "events": [
+        {
+          "step": 1,
+          "boundary": "B.n.end",
+          "event": "record previous life/shield losses and end of B turn",
+          "expected": "Future mitigation cannot alter damage already resolved",
+          "serverOracle": "causal_invariant_only"
+        },
+        {
+          "step": 2,
+          "boundary": "S.n.cast",
+          "event": "request reduction buff and record server effect identity",
+          "expected": "No mitigation assumed before actual receipt",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 3,
+          "boundary": "E.n.hit",
+          "event": "measure damage received and reduction evidence",
+          "expected": "Potential post-B protection conditional on effect active before hit",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 4,
+          "boundary": "B.(n+1).start",
+          "event": "record effect presence and any incoming passive damage",
+          "expected": "No assumed persistence absent effect state",
+          "serverOracle": "Unknown"
+        },
+        {
+          "step": 5,
+          "boundary": "S.(n+1).start",
+          "event": "record expiration or duration adjustment",
+          "expected": "Compare exact moment with historical caster-start hypothesis",
+          "serverOracle": "Unknown"
+        }
+      ],
+      "unresolved": ["target effect from confirmed Feca spell", "shield-versus-reduction damage split", "expiration cause"]
+    }
+  ]
+}

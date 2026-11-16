@@ -1,0 +1,5 @@
+/target/
+/dist/
+/NativeMods/
+*.log
+/installer/output/

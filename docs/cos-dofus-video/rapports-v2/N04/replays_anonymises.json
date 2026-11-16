@@ -1,0 +1,255 @@
+{
+  "schema": "givre-v2-replay-minimal-1",
+  "caution": "Anonymized journal summaries, not full packet replays; synthetic negative explicitly marked.",
+  "replays": [
+    {
+      "source_kind": "historical_journal_summary",
+      "source_sha256": "4768ae7738df2098ba3901e61f6cc0199fb1a970a68b7baf7c95f3069d3d6e9f",
+      "date_only": "2026-11-04",
+      "event_count": 11,
+      "events": [
+        {
+          "seq": 1,
+          "line": 27,
+          "t_sec": 0.323,
+          "kind": "server_control_reported",
+          "actor": "actor_1",
+          "evidence": "journal_server_control"
+        },
+        {
+          "seq": 2,
+          "line": 28,
+          "t_sec": 0.345,
+          "kind": "server_control_reported",
+          "actor": "actor_1",
+          "evidence": "journal_server_control"
+        },
+        {
+          "seq": 3,
+          "line": 30,
+          "t_sec": 0.449,
+          "kind": "position_change_seen",
+          "actor": "actor_2",
+          "evidence": "journal_observed_movement",
+          "cell": 388,
+          "previous_known_cell": null
+        },
+        {
+          "seq": 4,
+          "line": 31,
+          "t_sec": 0.46,
+          "kind": "position_change_seen",
+          "actor": "actor_2",
+          "evidence": "journal_observed_movement",
+          "cell": 403,
+          "previous_known_cell": 388
+        },
+        {
+          "seq": 5,
+          "line": 72,
+          "t_sec": 10.967,
+          "kind": "companion_turn_started",
+          "actor": "actor_1",
+          "evidence": "journal_turn_start"
+        },
+        {
+          "seq": 6,
+          "line": 81,
+          "t_sec": 11.398,
+          "kind": "position_change_seen",
+          "actor": "actor_1",
+          "evidence": "journal_observed_movement",
+          "cell": 289,
+          "previous_known_cell": null
+        },
+        {
+          "seq": 7,
+          "line": 95,
+          "t_sec": 11.762,
+          "kind": "position_change_seen",
+          "actor": "actor_1",
+          "evidence": "journal_observed_movement",
+          "cell": 302,
+          "previous_known_cell": 289
+        },
+        {
+          "seq": 8,
+          "line": 105,
+          "t_sec": 11.895,
+          "kind": "position_change_seen",
+          "actor": "actor_1",
+          "evidence": "journal_observed_movement",
+          "cell": 330,
+          "previous_known_cell": 302
+        },
+        {
+          "seq": 9,
+          "line": 111,
+          "t_sec": 12.214,
+          "kind": "turn_end_reported",
+          "actor": null,
+          "evidence": "journal_turn_end"
+        },
+        {
+          "seq": 10,
+          "line": 119,
+          "t_sec": 13.105,
+          "kind": "position_change_seen",
+          "actor": "actor_2",
+          "evidence": "journal_observed_movement",
+          "cell": 430,
+          "previous_known_cell": 403
+        },
+        {
+          "seq": 11,
+          "line": 120,
+          "t_sec": 13.142,
+          "kind": "position_change_seen",
+          "actor": "actor_2",
+          "evidence": "journal_observed_movement",
+          "cell": 444,
+          "previous_known_cell": 430
+        }
+      ],
+      "initial_state": {
+        "actor_cells": "unknown_until_first_seen"
+      },
+      "final_known_cells": {
+        "actor_2": 444,
+        "actor_1": 330
+      },
+      "not_present_or_unproven": [
+        "raw_packet_bytes",
+        "authoritative_server_receipt_per_event",
+        "actor_account_id",
+        "full_stable_entity_id",
+        "exact_companion_owner",
+        "complete_initial_fight_state"
+      ]
+    },
+    {
+      "source_kind": "historical_journal_summary",
+      "source_sha256": "a89908f8a1b6fbd47ed0c25f89c8d2119e9499c619635b8a4d6b54e8052f33fd",
+      "date_only": "2026-11-04",
+      "event_count": 11,
+      "events": [
+        {
+          "seq": 1,
+          "line": 20,
+          "t_sec": 3.862,
+          "kind": "fighter_cell_seen",
+          "actor": "actor_1",
+          "evidence": "journal_observed_fighter",
+          "cell": 107,
+          "previous_known_cell": null
+        },
+        {
+          "seq": 2,
+          "line": 21,
+          "t_sec": 3.863,
+          "kind": "fighter_cell_seen",
+          "actor": "actor_2",
+          "evidence": "journal_observed_fighter",
+          "cell": 123,
+          "previous_known_cell": null
+        },
+        {
+          "seq": 3,
+          "line": 22,
+          "t_sec": 3.863,
+          "kind": "fighter_cell_seen",
+          "actor": "actor_3",
+          "evidence": "journal_observed_fighter",
+          "cell": 230,
+          "previous_known_cell": null
+        },
+        {
+          "seq": 4,
+          "line": 40,
+          "t_sec": 4.006,
+          "kind": "server_control_reported",
+          "actor": "actor_1",
+          "evidence": "journal_server_control"
+        },
+        {
+          "seq": 5,
+          "line": 41,
+          "t_sec": 4.006,
+          "kind": "server_control_reported",
+          "actor": "actor_1",
+          "evidence": "journal_server_control"
+        },
+        {
+          "seq": 6,
+          "line": 43,
+          "t_sec": 4.036,
+          "kind": "position_change_seen",
+          "actor": "actor_3",
+          "evidence": "journal_observed_movement",
+          "cell": 176,
+          "previous_known_cell": 230
+        },
+        {
+          "seq": 7,
+          "line": 53,
+          "t_sec": 6.138,
+          "kind": "turn_end_reported",
+          "actor": null,
+          "evidence": "journal_turn_end"
+        },
+        {
+          "seq": 8,
+          "line": 57,
+          "t_sec": 6.16,
+          "kind": "movement_refusal_reported",
+          "actor": null,
+          "evidence": "journal_problem_text"
+        },
+        {
+          "seq": 9,
+          "line": 63,
+          "t_sec": 6.243,
+          "kind": "companion_turn_started",
+          "actor": "actor_1",
+          "evidence": "journal_turn_start"
+        },
+        {
+          "seq": 10,
+          "line": 70,
+          "t_sec": 6.327,
+          "kind": "position_change_seen",
+          "actor": "actor_1",
+          "evidence": "journal_observed_movement",
+          "cell": 104,
+          "previous_known_cell": 107
+        },
+        {
+          "seq": 11,
+          "line": 87,
+          "t_sec": 6.487,
+          "kind": "position_change_seen",
+          "actor": "actor_1",
+          "evidence": "journal_observed_movement",
+          "cell": 118,
+          "previous_known_cell": 104
+        }
+      ],
+      "initial_state": {
+        "actor_cells": "unknown_until_first_seen"
+      },
+      "final_known_cells": {
+        "actor_1": 118,
+        "actor_2": 123,
+        "actor_3": 176
+      },
+      "not_present_or_unproven": [
+        "raw_packet_bytes",
+        "authoritative_server_receipt_per_event",
+        "actor_account_id",
+        "full_stable_entity_id",
+        "exact_companion_owner",
+        "complete_initial_fight_state"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             xmlns:mm="using:GivreClone.App.Services.Metamob"
+             x:Class="GivreClone.App.Views.SoulSyncView"
+             x:DataType="vm:SoulSyncViewModel">
+  <Grid RowDefinitions="Auto,Auto,Auto,*,Auto" Margin="14" RowSpacing="12">
+    <StackPanel Spacing="6">
+      <TextBlock Text="Pierres d'âme · Metamob" FontSize="20" FontWeight="SemiBold" />
+      <TextBlock Text="{Binding Status}" TextWrapping="Wrap" />
+      <TextBlock Text="{Binding CaptureNeeded}" TextWrapping="Wrap" IsVisible="{Binding HasCapture}" />
+    </StackPanel>
+    <WrapPanel Grid.Row="1">
+      <StackPanel Width="280" Margin="0,0,12,8" Spacing="4">
+        <TextBlock Classes="caption" Text="Serveur" />
+        <ComboBox ItemsSource="{Binding Servers}" SelectedItem="{Binding SelectedServer, Mode=TwoWay}" HorizontalAlignment="Stretch">
+          <ComboBox.ItemTemplate>
+            <DataTemplate x:DataType="mm:MetamobServer">
+              <TextBlock Text="{Binding Label}" />
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+      </StackPanel>
+      <StackPanel Width="360" Margin="0,0,12,8" Spacing="4">
+        <TextBlock Classes="caption" Text="Quête" />
+        <ComboBox ItemsSource="{Binding Quests}" SelectedItem="{Binding SelectedQuest, Mode=TwoWay}" HorizontalAlignment="Stretch">
+          <ComboBox.ItemTemplate>
+            <DataTemplate x:DataType="mm:MetamobQuest">
+              <TextBlock Text="{Binding Label}" />
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+      </StackPanel>
+      <StackPanel Width="200" Margin="0,0,12,8" Spacing="4">
+        <TextBlock Classes="caption" Text="Périmètre" />
+        <ComboBox ItemsSource="{Binding Scopes}" SelectedItem="{Binding SelectedScope, Mode=TwoWay}" HorizontalAlignment="Stretch">
+          <ComboBox.ItemTemplate>
+            <DataTemplate x:DataType="vm:ScopeOption">
+              <TextBlock Text="{Binding Label}" />
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+      </StackPanel>
+    </WrapPanel>
+    <StackPanel Grid.Row="2" Spacing="8">
+      <StackPanel Orientation="Horizontal" Spacing="8">
+        <Button Classes="primary" Content="Synchroniser" Command="{Binding SynchronizeCommand}"
+                AutomationProperties.Name="Synchroniser les quantités Metamob"
+                ToolTip.Tip="Envoie les quantités absolues qui diffèrent, par lots de 200." />
+        <Button Content="Arrêter" Command="{Binding StopCommand}"
+                AutomationProperties.Name="Arrêter avant le prochain lot"
+                ToolTip.Tip="Le lot déjà parti se termine. Aucun lot suivant ne part." />
+        <Button Content="Actualiser" Command="{Binding RefreshListsCommand}"
+                AutomationProperties.Name="Actualiser les serveurs et les quêtes"
+                ToolTip.Tip="Relit les serveurs et les quêtes. N'écrit aucune quantité." />
+      </StackPanel>
+      <TextBlock Classes="caption" TextWrapping="Wrap"
+                 Text="Le sac compte aussi les pierres équipées. Le sac et le coffre doivent avoir été reçus. Une pierre hors du périmètre, un stock incomplet ou un contenu illisible bloque tout envoi. Si le périmètre reçu ne contient aucune pierre, les quantités distantes différentes sont remises à 0. Les réglages de la quête et les messages ne sont pas modifiés. La clé API est lue au moment de l'appel et n'est pas affichée." />
+    </StackPanel>
+    <ListBox Grid.Row="3" ItemsSource="{Binding Rows}">
+      <ListBox.ItemTemplate>
+        <DataTemplate x:DataType="mm:MetamobSyncRow">
+          <StackPanel Margin="0,4" Spacing="2">
+            <TextBlock Text="{Binding Line}" FontWeight="SemiBold" />
+            <TextBlock Text="{Binding Detail}" Classes="caption" TextWrapping="Wrap" />
+          </StackPanel>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+    <TextBlock Grid.Row="4" Classes="caption" Text="Mis à jour, ignoré ou échec. Arrêter agit avant le lot suivant." />
+  </Grid>
+</UserControl>

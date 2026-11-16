@@ -1,0 +1,337 @@
+﻿{
+    "schema":  "givre-v3-p03-cross-export-1",
+    "provenance":  "historical_journal_summary_join",
+    "source_log_sha256":  "4768ae7738df2098ba3901e61f6cc0199fb1a970a68b7baf7c95f3069d3d6e9f",
+    "source_date_only":  "2026-11-04",
+    "source_exports":  [
+                           {
+                               "file":  "rapports-v2/N04/replays_anonymises.json",
+                               "sha256":  "3b18c42e9128d484eb047c1f1bbd67ddfcffc3370dc1be6b1e8e849e8207b58b"
+                           },
+                           {
+                               "file":  "rapports-v2/N10/turbo_chronologie_anonymisee.json",
+                               "sha256":  "153f24c529b4ddabcfc8b4e19d3f90c80790969d82d960600155bbba32aeb40d"
+                           }
+                       ],
+    "window_t_sec":  [
+                         10.9,
+                         12.4
+                     ],
+    "timeline":  [
+                     {
+                         "export":  "N10",
+                         "source_line":  70,
+                         "t_sec":  10.932,
+                         "kind":  "sequence_end_self",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  71,
+                         "t_sec":  10.933,
+                         "kind":  "sequence_end_self",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N04",
+                         "source_line":  72,
+                         "t_sec":  10.967,
+                         "kind":  "companion_turn_started",
+                         "actor_alias":  "actor_1",
+                         "cell":  null,
+                         "evidence":  "journal_turn_start"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  72,
+                         "t_sec":  10.967,
+                         "kind":  "companion_turn",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  77,
+                         "t_sec":  11.01,
+                         "kind":  "ack_tx",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  78,
+                         "t_sec":  11.032,
+                         "kind":  "ack_tx",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  79,
+                         "t_sec":  11.033,
+                         "kind":  "ack_tx",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  80,
+                         "t_sec":  11.268,
+                         "kind":  "request_tx",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N04",
+                         "source_line":  81,
+                         "t_sec":  11.398,
+                         "kind":  "position_change_seen",
+                         "actor_alias":  "actor_1",
+                         "cell":  289,
+                         "evidence":  "journal_observed_movement"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  82,
+                         "t_sec":  11.399,
+                         "kind":  "sequence_end_self",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  84,
+                         "t_sec":  11.401,
+                         "kind":  "barrier_closed",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  85,
+                         "t_sec":  11.442,
+                         "kind":  "request_tx",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  87,
+                         "t_sec":  11.465,
+                         "kind":  "sequence_end_self",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  88,
+                         "t_sec":  11.465,
+                         "kind":  "barrier_closed",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  89,
+                         "t_sec":  11.62,
+                         "kind":  "ack_tx",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  90,
+                         "t_sec":  11.657,
+                         "kind":  "request_tx",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  92,
+                         "t_sec":  11.681,
+                         "kind":  "sequence_end_self",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  93,
+                         "t_sec":  11.681,
+                         "kind":  "barrier_closed",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  94,
+                         "t_sec":  11.74,
+                         "kind":  "request_tx",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N04",
+                         "source_line":  95,
+                         "t_sec":  11.762,
+                         "kind":  "position_change_seen",
+                         "actor_alias":  "actor_1",
+                         "cell":  302,
+                         "evidence":  "journal_observed_movement"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  96,
+                         "t_sec":  11.763,
+                         "kind":  "sequence_end_self",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  98,
+                         "t_sec":  11.764,
+                         "kind":  "barrier_closed",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  99,
+                         "t_sec":  11.807,
+                         "kind":  "request_tx",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  101,
+                         "t_sec":  11.823,
+                         "kind":  "ack_tx",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  102,
+                         "t_sec":  11.843,
+                         "kind":  "sequence_end_self",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  103,
+                         "t_sec":  11.844,
+                         "kind":  "barrier_closed",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  104,
+                         "t_sec":  11.871,
+                         "kind":  "request_tx",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N04",
+                         "source_line":  105,
+                         "t_sec":  11.895,
+                         "kind":  "position_change_seen",
+                         "actor_alias":  "actor_1",
+                         "cell":  330,
+                         "evidence":  "journal_observed_movement"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  106,
+                         "t_sec":  11.895,
+                         "kind":  "sequence_end_self",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  108,
+                         "t_sec":  11.896,
+                         "kind":  "barrier_closed",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  109,
+                         "t_sec":  11.932,
+                         "kind":  "ack_tx",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  110,
+                         "t_sec":  12.097,
+                         "kind":  "ack_tx",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     },
+                     {
+                         "export":  "N04",
+                         "source_line":  111,
+                         "t_sec":  12.214,
+                         "kind":  "turn_end_reported",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_turn_end"
+                     },
+                     {
+                         "export":  "N10",
+                         "source_line":  112,
+                         "t_sec":  12.381,
+                         "kind":  "ack_tx",
+                         "actor_alias":  null,
+                         "cell":  null,
+                         "evidence":  "journal_instrumentation"
+                     }
+                 ],
+    "unproven":  [
+                     "N10 request_tx actor identity, verb and target",
+                     "send/ack/sequence server actionId joint keys",
+                     "movement command-to-position exact correlation",
+                     "source ownerUid and companion fighterId",
+                     "AP/MP before/after and per-action debit",
+                     "spell cast confirmed for this window",
+                     "challengeId, challengeResult and challenge failure actor"
+                 ]
+}

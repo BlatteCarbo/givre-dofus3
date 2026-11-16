@@ -1,0 +1,1 @@
+{"bot": "Valrianess", "code": "function move() print(\"RETOUR \"..tostring(goUseInteractive(313))) return false end"}

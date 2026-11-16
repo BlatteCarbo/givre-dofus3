@@ -1,0 +1,182 @@
+{
+  "source_file": "settings.json",
+  "values_removed": true,
+  "fields": [
+    {
+      "path": "$.Language",
+      "type": "str"
+    },
+    {
+      "path": "$.Configured",
+      "type": "bool"
+    },
+    {
+      "path": "$.Theme",
+      "type": "str"
+    },
+    {
+      "path": "$.Sfx",
+      "type": "bool"
+    },
+    {
+      "path": "$.SfxVolume",
+      "type": "int"
+    },
+    {
+      "path": "$.Ambient",
+      "type": "bool"
+    },
+    {
+      "path": "$.Density",
+      "type": "str"
+    },
+    {
+      "path": "$.UiSkin",
+      "type": "str"
+    },
+    {
+      "path": "$.WebSkinIntroduced",
+      "type": "bool"
+    },
+    {
+      "path": "$.Particles",
+      "type": "bool"
+    },
+    {
+      "path": "$.LowMemoryRendering",
+      "type": "bool"
+    },
+    {
+      "path": "$.SeasonalTheme",
+      "type": "str"
+    },
+    {
+      "path": "$.SeasonalOff",
+      "type": "str"
+    },
+    {
+      "path": "$.ModsEnabled",
+      "type": "bool"
+    },
+    {
+      "path": "$.AutoRelaunch",
+      "type": "bool"
+    },
+    {
+      "path": "$.StuckReconnect",
+      "type": "bool"
+    },
+    {
+      "path": "$.ModeratorDisconnect",
+      "type": "bool"
+    },
+    {
+      "path": "$.ModeratorPauseMinutes",
+      "type": "int"
+    },
+    {
+      "path": "$.MaxRelaunches",
+      "type": "int"
+    },
+    {
+      "path": "$.McpEnabled",
+      "type": "bool"
+    },
+    {
+      "path": "$.McpAllowRun",
+      "type": "bool"
+    },
+    {
+      "path": "$.ScriptsBackfilled",
+      "type": "bool"
+    },
+    {
+      "path": "$.ArchDiscordDm",
+      "type": "bool"
+    },
+    {
+      "path": "$.ArchNotify",
+      "type": "bool"
+    },
+    {
+      "path": "$.OverviewSort",
+      "type": "int"
+    },
+    {
+      "path": "$.OverviewSortReverse",
+      "type": "bool"
+    },
+    {
+      "path": "$.RichPresence",
+      "type": "bool"
+    },
+    {
+      "path": "$.StreamMode",
+      "type": "bool"
+    },
+    {
+      "path": "$.ConsoleHiddenGroups",
+      "type": "list"
+    },
+    {
+      "path": "$.AccountCategories",
+      "type": "list"
+    },
+    {
+      "path": "$.PacketDump",
+      "type": "bool"
+    },
+    {
+      "path": "$.PacketDumpAll",
+      "type": "bool"
+    },
+    {
+      "path": "$.DofusExePath",
+      "type": "str"
+    },
+    {
+      "path": "$.BankDeposit",
+      "type": "str"
+    },
+    {
+      "path": "$.RecentLuaScripts",
+      "type": "list"
+    },
+    {
+      "path": "$.LuaEditorHeight",
+      "type": "int"
+    },
+    {
+      "path": "$.SupervisorEditorHeight",
+      "type": "int"
+    },
+    {
+      "path": "$.QuickActions",
+      "type": "list"
+    },
+    {
+      "path": "$.TradeListenIds",
+      "type": "list"
+    },
+    {
+      "path": "$.ConsoleTechnical",
+      "type": "bool"
+    },
+    {
+      "path": "$.LicenseProtected",
+      "type": "str"
+    },
+    {
+      "path": "$.AutoLogin",
+      "type": "bool"
+    },
+    {
+      "path": "$.ClientSigningKey",
+      "type": "str"
+    },
+    {
+      "path": "$.DensityScale",
+      "type": "int"
+    }
+  ]
+}

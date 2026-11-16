@@ -1,0 +1,8 @@
+#include <windows.h>
+#include "resource.h"
+
+// Icone de l'exe + de la fenetre.
+IDI_APPICON ICON "GivreClone.ico"
+
+// Manifeste applicatif (RT_MANIFEST = 24, id 1 = exe).
+1 24 "app.manifest"

@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "oldVersion": "3.7.12.12",
+  "newVersion": "3.7.13.17",
+  "oldRelease": "https://github.com/ledouxm/dofus-sqlite/releases/tag/v6.0_3.7.12.12",
+  "oldReleasePublishedAt": "2026-10-20T11:15:37Z",
+  "oldAssets": {
+    "variant": {
+      "status": "verified",
+      "expectedSha256": "c0e3b8b48bcf8dbe06349019c5169f0b41e7ffa4c5d5eaa24f92a304dcc17029",
+      "actualSha256": "c0e3b8b48bcf8dbe06349019c5169f0b41e7ffa4c5d5eaa24f92a304dcc17029",
+      "bytes": 214736,
+      "url": "https://github.com/ledouxm/dofus-sqlite/releases/download/v6.0_3.7.12.12/spellvariantsdata.json"
+    },
+    "spell": {
+      "status": "verified",
+      "expectedSha256": "a44a36651903652bd26c5acb83f7aed78e1d18e29c5b742151474458d2b37a0f",
+      "actualSha256": "a44a36651903652bd26c5acb83f7aed78e1d18e29c5b742151474458d2b37a0f",
+      "bytes": 39766555,
+      "url": "https://github.com/ledouxm/dofus-sqlite/releases/download/v6.0_3.7.12.12/spellsdata.json"
+    },
+    "level": {
+      "status": "verified",
+      "expectedSha256": "55301a2dc6580a8389ef09f7f861a8ed5618e818aa3715a1dac746b340775dbe",
+      "actualSha256": "55301a2dc6580a8389ef09f7f861a8ed5618e818aa3715a1dac746b340775dbe",
+      "bytes": 200736289,
+      "url": "https://github.com/ledouxm/dofus-sqlite/releases/download/v6.0_3.7.12.12/spelllevelsdata.json"
+    }
+  },
+  "newSources": {
+    "breeds": {
+      "file": "data_assets_breedsdataroot.asset.bundle",
+      "bytes": 3950,
+      "sha256": "3d5332b763b7319e616f3220f2d1a23ff9cf9db2a5ccb6236715973e6ced2f0f",
+      "records": 19,
+      "managedReferenceRoot": "BreedsDataRoot",
+      "class": {
+        "class": "BreedData",
+        "ns": "Core.DataCenter.Metadata.Breed",
+        "asm": "Ankama.Dofus.Core.DataCenter"
+      }
+    },
+    "spells": {
+      "file": "data_assets_spellsdataroot.asset.bundle",
+      "bytes": 320298,
+      "sha256": "96c830cd1add89cb0af1c613886a7f193fd38706d1cd27e51556bfad9b330e26",
+      "records": 17006,
+      "managedReferenceRoot": "SpellsDataRoot",
+      "class": {
+        "class": "SpellData",
+        "ns": "Core.DataCenter.Metadata.Spell",
+        "asm": "Ankama.Dofus.Core.DataCenter"
+      }
+    },
+    "spelllevels": {
+      "file": "data_assets_spelllevelsdataroot.asset.bundle",
+      "bytes": 1097950,
+      "sha256": "525048d9a4406720ba79fb6a23826b9ac5e40d4a87dcd3c452e1a0ccc27b2a30",
+      "records": 34318,
+      "managedReferenceRoot": "SpellLevelsDataRoot",
+      "class": {
+        "class": "SpellLevelData",
+        "ns": "Core.DataCenter.Metadata.Spell",
+        "asm": "Ankama.Dofus.Core.DataCenter"
+      }
+    },
+    "spellvariants": {
+      "file": "data_assets_spellvariantsdataroot.asset.bundle",
+      "bytes": 4216,
+      "sha256": "9cff1a5aafd46d3ebcc3a2a4d6c4f793d1c27427a9c35e8f8cd092ec0e8c170a",
+      "records": 431,
+      "managedReferenceRoot": "SpellVariantsDataRoot",
+      "class": {
+        "class": "SpellVariantData",
+        "ns": "Core.DataCenter.Metadata.Spell",
+        "asm": "Ankama.Dofus.Core.DataCenter"
+      }
+    },
+    "version": {
+      "file": "Dofus_Data/StreamingAssets/version",
+      "sha256": "302ebf852253f99af779869ae5987a05e19e45e9113f52b30468ca1115a6753d",
+      "bytes": 113
+    },
+    "i18nFr": {
+      "file": "Dofus_Data/StreamingAssets/Content/I18n/fr.bin",
+      "sha256": "40fb0c50526fdf084b2b8e16fd32f874a7ed633edc430f821f050b70dc7bb0ad",
+      "bytes": 28047670
+    },
+    "gameAssembly": {
+      "file": "GameAssembly.dll",
+      "sha256": "ad013415455d93bd865aef70fcf1b7c6f704c799f85e2ef301aa7fa610ef2591",
+      "bytes": 125827584
+    },
+    "globalMetadata": {
+      "file": "Dofus_Data/il2cpp_data/Metadata/global-metadata.dat",
+      "sha256": "ad2880162d7e0aee219fdc81e4a3817cc86cca4aba3df3ce86fd470c1bb9a6af",
+      "bytes": 43768684
+    }
+  },
+  "comparison": {
+    "variant": {
+      "status": "compared",
+      "oldRecords": 88,
+      "newRecords": 88,
+      "differences": 0,
+      "differencesByClass": {}
+    },
+    "spell": {
+      "status": "compared",
+      "oldRecords": 176,
+      "newRecords": 176,
+      "differences": 0,
+      "differencesByClass": {}
+    },
+    "level": {
+      "status": "compared",
+      "oldRecords": 364,
+      "newRecords": 364,
+      "differences": 0,
+      "differencesByClass": {}
+    },
+    "effect": {
+      "status": "compared",
+      "oldRecords": 2040,
+      "newRecords": 2040,
+      "differences": 0,
+      "differencesByClass": {}
+    }
+  },
+  "stableKeys": {
+    "variant": "breedId,variantId",
+    "spell": "spellId",
+    "level": "spellId,grade",
+    "effect": "spellId,grade,branch,effectUid (fallback slot:index only when uid missing)"
+  },
+  "scope": "Sram, Roublard, Xelor, Eliotrope; old set includes identifiers from both old and new variants",
+  "caution": "A field delta is not a proved change in combat behavior. effectUid may be renumbered across builds; a replacement is not automatically a changed mechanic. Display names excluded from keys. Missing assets are blocked."
+}

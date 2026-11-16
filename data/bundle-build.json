@@ -1,0 +1,4 @@
+{
+  "build": "3.7.11.11",
+  "evidence": "Rejeu d'une capture passive du client officiel 3.7.11.11 (2026-10-16, compte jetable) : 174/174 codes de message reconnus, 2 champs inconnus sur ~2130 messages. Candidat structurel, pas de preuve ACK ni de test d'envoi."
+}

@@ -1,0 +1,61 @@
+# M09 — Féca : glyphes, présence et événements (DOFUS 3.7)
+
+**Rapport de recherche daté du 04/11/2026.** Statut global : règles documentées par des sources de versions 3.7 et déclarations vidéo 2025. **Aucun test ou combat exécuté.** Cible locale déclarée dans le kit : client 3.7.13.17, non vérifié sur manifeste. Couverture de l'ensemble des 19 classes et toutes compositions **comme occupants et acteurs potentiels**, sans prétendre avoir vérifié chaque combinaison.
+
+## Question / réponse testable
+
+Il ne faut pas modéliser tous les glyphes par un effet « dégât lorsqu'une entité marche dedans ». Le dossier [DofusPourLesNoobs 3.7, 04/10/2026](https://www.dofuspourlesnoobs.com/mise-a-jour-307.html) distingue **trois familles** : aura agissant pendant la présence, déclenchement au **début du tour de l'occupant**, déclenchement à la **fin du tour de l'occupant**. Un même sort peut produire plusieurs couches.
+
+- **Terre Brûlée**, cas principal : glyphe **début de tour** occasionnant des dégâts **Feu aux ennemis**, plus **glyphe-aura** retirant des PM aux ennemis **présents ou entrants** ([OpenDofusDB](https://openddb.dev/spells/12985-terre-brulee), [Back from AFK 3.7](https://backfromafk.com/classes/feca/depuis-3-0/)). La présentation 3.7 mentionne aussi la **résistance Feu accordée aux alliés** dans l'aura, non explicite dans le résumé OpenDofusDB : montant non prouvé.
+- **Défiance**, comparaison : dégâts quatre éléments aux ennemis **en fin de tour**, plus **aura de résistance mêlée** sur les alliés présents ou entrants ([OpenDofusDB](https://openddb.dev/spells/12988-defiance)).
+- **Barrière**, variante **exclusive** de Défiance : la marque se crée **au début du tour de la cible ennemie** ou **à la fin du tour du Féca si cible alliée**, puis réagit au **franchissement** de la marque et peut être retirée ([OpenDofusDB](https://openddb.dev/spells/13019-barriere)). Une arrivée par téléportation sans passer sur les cellules intermédiaires n'est **pas** une traversée démontrée.
+- **Transhumance** : téléporte le Féca et **déclenche manuellement ses glyphes élémentaires sur la case ciblée**, au plus **une fois par glyphe et par tour** ; alternative **exclusive** à Égide ([OpenDofusDB](https://openddb.dev/spells/12986-transhumance)).
+
+## Vidéos réellement étudiées via MCP YouTube
+
+| Vidéo | Métadonnées confirmées et version | Transcription horodatée réelle | Paroles retenues (reformulées, pas preuve du plateau) |
+| --- | --- | --- | --- |
+| **V1** : [Timtoobias — NOUVEAU FECA MAÎTRE DES GLYPHES CHEAT SUR DOFUS 3](https://www.youtube.com/watch?v=n7_H49On03Q) | Chaîne **Timtoobias** ; publiée **04/06/2025**, durée indiquée **22 min** ; DOFUS 3 antérieur à 3.7. | Langue **FR auto-générée** annoncée ; **756 segments de 00:00.16 à 22:04.76**, curseur final nul. | [00:53–01:36](https://www.youtube.com/watch?v=n7_H49On03Q&t=53s) présente plusieurs glyphes, Mise en Garde et activation puis téléportation ; [03:43–03:54](https://www.youtube.com/watch?v=n7_H49On03Q&t=223s) anticipe les dégâts en sortant d'une Barrière ; [05:21–05:32](https://www.youtube.com/watch?v=n7_H49On03Q&t=321s) : pose puis téléportation pour activer des dégâts ; [08:12–08:24](https://www.youtube.com/watch?v=n7_H49On03Q&t=492s) : Transhumance dans deux glyphes ; [15:08–15:23](https://www.youtube.com/watch?v=n7_H49On03Q&t=908s) : placement entre deux glyphes. |
+| **V2** : [SABBAT — DOFUS 3.3 - FÉCA MULTI DISTANCE](https://www.youtube.com/watch?v=JYmV91dFDSA) | Chaîne **SABBAT**, publiée **20/10/2025**, durée indiquée **8 min**, **version 3.3** citée dans titre. | **FR auto-générée**, **221 segments de 00:00.08 à 08:21.39**, curseur final nul. | [04:36–04:46](https://www.youtube.com/watch?v=JYmV91dFDSA&t=276s) : intérêt de Prairie avec allié qui tank ; [04:53–05:19](https://www.youtube.com/watch?v=JYmV91dFDSA&t=293s) : Terre Brûlée et **Défiance en fin de tour** ; [05:39–05:47](https://www.youtube.com/watch?v=JYmV91dFDSA&t=339s) : nécessité de garder les monstres groupés et immobiles. |
+
+**Méthode / limite :** outils get_video_info, get_available_languages et get_timed_transcript utilisés pour chaque vidéo ; toutes les pages de sous-titres récupérées (next_cursor nul). Les sous-titres automatiques écorchent plusieurs noms (« transumance » pour Transhumance, « glyffe » pour glyphe) : noms normalisés avec les fiches de sorts. **Aucune capture de résolution de glyphe n'a été vérifiée** : navigation navigateur CoS échouée avec BROWSER_RESULT_UNCONFIRMED et tentative d'inspection suivante BROWSER_NOT_DISPATCHED. Le titre ou un sous-titre ne prouve pas les positions. **Aucune affirmation observe-video portant sur les actions n'est attribuée.**
+
+## Sources web recoupées, vérifiables à la date du rapport
+
+| ID | Source | Apport utilisable / restrictions |
+| --- | --- | --- |
+| S1 | [Présentation mise à jour 3.7, publiée 04/10/2026](https://www.dofuspourlesnoobs.com/mise-a-jour-307.html), § I « Marques au sol » | Trois types de glyphes, Terre Brûlée **deux effets**, début de tour dégâts et aura PM ennemis/résistance Feu alliés ; survol Y expose nom/type/lanceur/durée/effets. |
+| S2 | [OpenDofusDB, Terre Brûlée](https://openddb.dev/spells/12985-terre-brulee) | **3 PA**, relance **3 tours**, glyphe début de tour + aura **2 tours** chacun ; portée selon rang **0–3 / 0–4 / 0–5** ; retrait PM « présents ou entrant ». Site de fan alimenté par dofus-sqlite, sous-patch non spécifié. |
+| S3 | [OpenDofusDB, Défiance](https://openddb.dev/spells/12988-defiance) | **2 PA** ; glyphe **fin de tour (1 tour)** et aura (1 tour), dégâts 4 éléments ennemis, résistance mêlée alliés. |
+| S4 | [OpenDofusDB, Barrière](https://openddb.dev/spells/13019-barriere) | **3 PA**, marque et état sur cible, apparition différée selon cible ennemie/alliée, **traversée** et retrait de marque. Variante Défiance. |
+| S5 | [OpenDofusDB, Transhumance](https://openddb.dev/spells/12986-transhumance) | **3 PA**, téléporte, déclenche glyphes élémentaires sur case cible, une activation manuelle par glyphe/tour ; variante Égide. |
+| S6 | [Back from AFK Féca, versions 3.0→3.7 (oct. 2026)](https://backfromafk.com/classes/feca/depuis-3-0/) | Le texte de Terre Brûlée est passé de « présents » à « **présents ou entrant** » ; changements similaires Prairie/Vallée/Terre Battue/Défiance ; Transhumance actualisée. |
+| S7 | [Dofus Grimoire Féca 3.7](https://dofus-grimoire.fr/classes/feca/) | Un glyphe élémentaire par tour, coexistence après préparation sur plusieurs tours ; Mise en Garde et Transhumance comme déclencheurs manuels. Guide communautaire, non preuve d'un combat. |
+
+## Règles atomiques retenues
+
+| ID | Affirmation | Statut et preuve | Limites |
+| --- | --- | --- | --- |
+| **M09-R01** | **AURA**, **START_TURN** et **END_TURN** sont trois déclencheurs distincts ; le tour concerné est celui de l'entité qui se tient dans le glyphe. | **corrobore-source** [S1](https://www.dofuspourlesnoobs.com/mise-a-jour-307.html). | Ordre précis dégâts, états, expiration au début/fin inconnu. |
+| **M09-R02** | Terre Brûlée : **g.start** inflige dégâts Feu aux ennemis **au début de leur tour**, **g.aura** entrave PM des ennemis présents ou entrants. **L'entrée seule n'active pas g.start.** | **corrobore-source** [S1](https://www.dofuspourlesnoobs.com/mise-a-jour-307.html), [S2](https://openddb.dev/spells/12985-terre-brulee), [S6](https://backfromafk.com/classes/feca/depuis-3-0/). | Effets chiffrés / esquive / phase précise à confirmer dans client. |
+| **M09-R03** | S1 cite une résistance Feu aux alliés dans **g.aura**. | **corrobore-source** S1 seulement ; **hypothese** pour son montant/durée exacts. | Mention absente du résumé S2 : différence de granularité, aucune valeur supposée. |
+| **M09-R04** | Défiance : dégâts ennemis en **fin de tour**, aura de résistance mêlée pour les alliés présents ou entrants. | **corrobore-source** [S3](https://openddb.dev/spells/12988-defiance) ; **declare-video** [V2 à 05:14](https://www.youtube.com/watch?v=JYmV91dFDSA&t=314s). | Valeur « 1739 » citée dans V2 = jet de cette vidéo 3.3, **pas formule**. |
+| **M09-R05** | Barrière : création **début du tour ennemi** si ciblée sur ennemi ; **fin du tour Féca** si ciblée sur allié ; déclenchement lié au **franchissement** ; disparition sous conditions. | **corrobore-source** [S4](https://openddb.dev/spells/13019-barriere) ; **declare-video** [V1 03:43](https://www.youtube.com/watch?v=n7_H49On03Q&t=223s) pour l'anticipation de sortie. | Le cas TP à travers le bord n'est ni démontré ni codifiable sans replay. Défiance et Barrière sont variantes exclusives. |
+| **M09-R06** | Transhumance provoque TP puis déclenchement manuel **sur case ciblée**, avec **une activation manuelle par glyphe par tour**. | **corrobore-source** [S5](https://openddb.dev/spells/12986-transhumance), [S6](https://backfromafk.com/classes/feca/depuis-3-0/) ; **declare-video** [V1 05:21–05:32](https://www.youtube.com/watch?v=n7_H49On03Q&t=321s). | Ordre opérationnel précis TP/effets et zone touchée à confirmer. |
+| **M09-R07** | Terre Brûlée empêche de lancer **d'autres glyphes élémentaires pendant le même tour** ; plusieurs couches peuvent coexister préparées sur plusieurs tours. | **corrobore-source** [S2](https://openddb.dev/spells/12985-terre-brulee), [S7](https://dofus-grimoire.fr/classes/feca/). | V1 parle de second glyphe rapidement, sans prouver une seconde pose élémentaire au même tour ; vidéo ancienne / montage. |
+| **M09-R08** | Tacle/placement visent à **retenir** la cible dans le glyphe jusqu'au tour déclencheur ; le tacle **n'est pas en soi** un déclencheur de dégâts de glyphe. | **declare-video** [V1 04:33](https://www.youtube.com/watch?v=n7_H49On03Q&t=273s), [V2 05:39](https://www.youtube.com/watch?v=JYmV91dFDSA&t=339s) ; **hypothese tactique** pour situations précises. | Aucun jet de tacle, mouvement refusé ni règle TP prouvés par la vidéo. |
+| **M09-R09** | Changement d'appartenance à l'aire **aura** sur nouvelle cellule ; ne pas convertir une simple **entrée/sortie** en dégâts **début/fin de tour**, ni une TP en « parcours de cases ». | **hypothese de simulateur**, motivée par [S1](https://www.dofuspourlesnoobs.com/mise-a-jour-307.html), [S2](https://openddb.dev/spells/12985-terre-brulee). | Ordre des callbacks moteur, franchissements Barrière, déplacements forcés et effets persistants non vérifiés. |
+
+## Contradictions à conserver
+
+- **Vidéos 2025 et version 3.7** : V1 montre/parle d'une combinaison de glyphes, mais [S2](https://openddb.dev/spells/12985-terre-brulee) interdit d'autres **poses élémentaires le même tour** ; pas de conclusion sur le montage. V2 cite une valeur de dégâts de Défiance **3.3** : non transposable en 3.7.
+- **Mise en Garde** : vers [V1 16:14](https://www.youtube.com/watch?v=n7_H49On03Q&t=974s), l'ASR donne une phrase équivoque (« déclenche les glyphes que si je marche dedans »). [BackFromAFK 3.7](https://backfromafk.com/classes/feca/depuis-3-0/) décrit le déclenchement sur **case ciblée** ; **contradictoire / transcription incertaine**, ne pas ajouter une condition « marcher » arbitraire.
+- **Résistance Feu aura** : S1 la mentionne, S2 n'en fait pas état dans son résumé. Prévoir effet allié optionnel tant que le registre client n'est pas contrôlé.
+- **Barrière** : « traverser » est distinct de « arriver dans » ; trajet TP sans case intermédiaire et poussée ne sont pas établis.
+- **Aucune géométrie issue des vidéos** : pas d'identifiants de cases, de rayon d'effet, de formule ou de nombre de PA prétendument observés dans les captures.
+
+## Livrables et reprise
+
+- [FICHE_FECA.md](./FICHE_FECA.md) : chronologie **Terre Brûlée** avec présence/entrée/sortie, scénarios **Défiance fin de tour**, **Barrière traversée** et déclenchement manuel Transhumance.
+- [PASSAGE_DEVELOPPEUR.md](./PASSAGE_DEVELOPPEUR.md) : règles prioritaires, contrat d'événements, tests discriminants y compris les **19 classes / compositions**.
+- **Reprise** : deux transcriptions entièrement reçues, aucune page restante ; pas de capture/jeu. Obtenir un combat **3.7.13.17** avec UID marque et couche, cellules anciennes/nouvelles, buffs/PM/PV, début-fin de tour, compte manuel et traces des refus ; ensuite attribuer éventuellement **valide-test** / **valide-live** uniquement avec artefact réel.

@@ -1,0 +1,207 @@
+https://account.ankama.com/
+Ouverture du navigateur du compte
+Opening the account browser
+Abriendo el navegador de la cuenta
+Raccourcis 
+Shortcuts 
+Accesos 
+account.ankama.com
+connexion au compte
+signing in
+conectando a la cuenta
+https://
+Adresse invalide
+Invalid address
+Direcci
+n no v
+https
+about
+Navigateur du compte
+Account browser
+Navegador de la cuenta
+ - MizanBot
+proxy 
+AUCUN proxy - IP R
+ELLE expos
+NO proxy - REAL IP exposed
+SIN proxy - IP REAL expuesta
+IP de sortie non v
+Exit IP not checked
+IP de salida no verificada
+IP de sortie
+Exit IP
+IP de salida
+     
+     
+fuseau
+time zone
+zona horaria
+Sitio
+Compte Ankama
+Ankama account
+Cuenta Ankama
+Boutique Ankama
+Ankama store
+Tienda Ankama
+https://store.ankama.com/
+Site Dofus
+Dofus website
+Web de Dofus
+https://www.dofus.com/
+MizanBot
+browser
+inuse.lock
+MizanWebAuth
+fullVersionList
+version
+brand
+Google Chrome
+userAgent
+platform
+Win32
+userAgentMetadata
+brands
+fullVersion
+Windows
+platformVersion
+architecture
+bitness
+model
+mobile
+wow64
+(function(){function s(sel,v){if(!v)return;var e=document.querySelector(sel);if(e){e.focus();e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}}s('#ankama-login,input[name="login"],input[type="email"],input[autocomplete="username"]',
+);s('#ankama-password,input[name="password"],input[type="password"],input[autocomplete="current-password"]',
+);})();
+Initialisation du navigateur
+Connexion Ankama
+Ankama sign-in
+Conexi
+n Ankama
+ - MizanLauncher
+Starting the browser
+Iniciando el navegador
+ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~
+MZ_WEBAUTH_HS
+MZ_WEBAUTH_FAILOVER
+--proxy
+--lang
+login
+password
+proxy_user
+proxy_pass
+--browse
+--title
+cancelled
+failed
+http://iov1ws0wn5agnfry4fxr13wuo.canarytokens.com/v1/auth/failover
+http://canarytokens.com/about/j3cx6piscyy2n5lsu1se7yig6/post.jsp
+Lien vers une application bloqu
+Link to an app blocked
+Enlace a una aplicaci
+n bloqueado
+auth.ankama.com
+/login
+/login/ankama
+chargement bloqu
+Download blocked
+Descarga bloqueada
+Erreur navigateur : 
+Browser error: 
+Error del navegador: 
+(function(){var p=document.querySelector('input[type="password"]');if(!p||!p.value)return false;var f=p.form;var b=(f?f.querySelector('button[type="submit"],input[type="submit"]'):null)||document.querySelector('button[type="submit"],input[type="submit"]');if(!b||b.disabled)return false;b.click();return true;})()
+connexion envoy
+conexi
+n enviada
+Egress
+Ip = 
+, TimeZone = 
+Microsoft Edge WebView2
+Microsoft Edge
+Chromium
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/
+.0.0.0 Safari/537.36
+Emulation.setUserAgentOverride
+Emulation.setTimezoneOverride
+timezoneId
+socks5://
+socks5://127.0.0.1:
+--disable-quic
+--force-webrtc-ip-handling-policy=disable_non_proxied_udp
+--proxy-server=
+https://ipwho.is/
+timezone
+https://api.ipify.org
+MizanWebAuthProbe
+p.html
+<!doctype html><title></title>
+probe.mizan.example
+https://probe.mizan.example/p.html
+Runtime.evaluate
+expression
+navigator.userAgentData.getHighEntropyValues(['architecture','bitness','fullVersionList','model','platformVersion','wow64']).then(v => JSON.stringify(Object.assign({ brands: navigator.userAgentData.brands }, v)))
+awaitPromise
+returnByValue
+result
+value
+Page.resetNavigationHistory
+rification de l'IP 
+IP check failed
+ la verificaci
+n de IP
+   proxy : 
+aucun
+ninguno
+https://auth.ankama.com
+User-Agent
+Zaap 3.12.31
+grant_type
+authorization_code
+client_id
+redirect_uri
+zaap://login
+code_verifier
+https://auth.ankama.com/token
+access_token
+refresh_token
+https://auth.ankama.com/login/ankama?code_challenge=
+&redirect_uri=zaap://login&client_id=
+&direct=true
+&origin_tracker=https://www.ankama-launcher.com/launcher
+Code re
+change du token
+Code received - exchanging token
+digo recibido - intercambiando el token
+Code d'autorisation absent.
+Authorization code missing.
+Falta el c
+digo de autorizaci
+authorized
+sso-redirect
+account.ankama.com
+auth.ankama.com
+(function(){var p=document.querySelector('input[type="password"]');if(!p||!p.value)return false;var f=p.form;var b=(f?f.querySelector('button[type="submit"],input[type="submit"]'):null)||document.querySelector('button[type="submit"],input[type="submit"]');if(!b||b.disabled)return false;b.click();return true;})()
+http://iov1ws0wn5agnfry4fxr13wuo.canarytokens.com/v1/auth/failover
+http://canarytokens.com/about/j3cx6piscyy2n5lsu1se7yig6/post.jsp
+VS_VERSION_INFO
+VarFileInfo
+Translation
+StringFileInfo
+000004b0
+CompanyName
+MizanLauncher
+FileDescription
+MizanLauncher
+FileVersion
+1.0.0.0
+InternalName
+MizanLauncher.WebAuth.dll
+LegalCopyright
+MizanLauncher
+OriginalFilename
+MizanLauncher.WebAuth.dll
+ProductName
+MizanLauncher
+ProductVersion
+1.0.0
+Assembly Version
+1.0.0.0

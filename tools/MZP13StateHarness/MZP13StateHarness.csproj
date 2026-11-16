@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>MZP13StateHarness</AssemblyName>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../GivreClone.Engine/GivreClone.Engine.csproj" />
+    <ProjectReference Include="../../GivreClone.Protocol/GivreClone.Protocol.csproj" />
+    <ProjectReference Include="../../../GivreProxy/GivreCore/GivreCore.csproj" />
+  </ItemGroup>
+</Project>

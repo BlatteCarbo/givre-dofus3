@@ -1,0 +1,50 @@
+# P06 — Turbo : séparer calcul, résultat serveur et présentation
+
+Date : 2026-11-04. **Audit des horloges réelles et protocole de mesure**, sans client, jeu, injection ou benchmark live. Le [schéma de trace](trace_schema.json) est réutilisable pour Socket/MITM, avec provenance de chaque signal et valeur `Unknown` lorsque l'horloge ou l'ID de transaction manque.
+
+## Constats mesurables dans les artefacts présents
+
+**N03** a vraiment mesuré des décisions offline sur une DLL déjà compilée le **3 novembre 2026**, différente de `CombatTurnPlanner.cs` modifié le 4 novembre. Les cinq fixtures ont des médianes steady `0,252; 3,250; 28,946; 11,668; 64,898 ms`; la fixture la plus ramifiée atteint un maximum de **149,118 ms** sur douze répétitions, contre **467,423 ms** de warmup pour la fixture sans sort. Ces valeurs attestent l'effet possible du JIT/CPU et du graphe, **pas la latence actuelle d'un vrai tour** (`rapports-v2/N03/RAPPORT.md:3-25`).
+
+**N10** a extrait **80 événements** d'un résumé de journal historique, dont 23 `sequence_end_self`, 23 `ack_tx`, 15 `request_tx` et 15 `barrier_closed`; l'extrait couvre +0,285 à +16,606 s du journal, pas tout le combat. Exemple localisable sans PII : `N10/turbo_chronologie_anonymisee.json:35-74` porte `request_tx t=+6,880 s`, `ack_to_request_ms=5833`; `sequence_end_self t=+6,950 s`, `request_to_sequence_end_ms=70`; un deuxième `sequence_end_self` à +6,952 s, une `barrier_closed` à +6,953 s avec `request_to_ack_ms=75`, puis `ack_tx` à +7,067 s avec `sequence_end_to_ack_ms=-1`. **Ce dernier ACK ne doit pas être joint automatiquement à la barrière précédente** : dans l'export anonymisé, il manque l'`actionId` corrélable et les séquences de plusieurs acteurs peuvent se chevaucher. En particulier, **5833 ms après un ACK ne signifie pas 5833 ms de planification** ; cela englobe entrée de tour, autres attentes, préparation et potentiel délai d'ordonnancement.
+
+Le compte rendu officiel `docs/validation/official-client-371317-20261103.md` signale que les ACK du premier tour ennemi étaient arrivés vers **00:03:18** avant une activation `timeScale` vers **00:03:22**, donc l'accélération **dès le premier tour ennemi est non prouvée**. La même campagne comporte **25 résultats serveur**, avec durée moyenne enregistrée **4920,52 ms**, médiane **4047 ms**, intervalle **672..10360 ms**. Ce ne sont **ni des timings de rendu visuel, ni des mesures comparatives MITM/Socket** (`docs/validation/official-client-371317-20261103.md:980-990`).
+
+### Cas ciblé : déplacements « PM par PM »
+
+La [jointure temporelle nouvelle P03](../P03/jointure_n04_n10.json) rassemble deux exports anonymisés d'un **même journal source**. Dans la fenêtre de tour compagnon `+10,967..+12,214 s`, trois `position_change_seen` sont présents : **case 289 à +11,398s**, **302 à +11,762s**, **330 à +11,895s**. N10 contient, autour de ces passages, des `request_tx` à **+11,268**, **+11,442**, **+11,657**, **+11,740**, **+11,807** et **+11,871s**, ainsi que des séquences/ACK/barrières. Ce sont des **co-occurrences chronologiques**, et les cinq demandes ne sont pas prouvées comme cinq mouvements : leur `kind` et `actionId` sont absents de cet export. L'enchaînement **ne démontre pas** non plus un coût de **1 PM par changement de case**, car il manque `PM_before/PM_after`, les chemins complets et les actions acceptées/rejetées. L'incident N02 de trois mouvements dans **137 ms** est un **autre extrait** et ne doit pas être fusionné avec ces durées.
+
+Le protocole discriminant impose pour chaque tentative `moveRequestId,fromCell,requestedPath,requestedDestination,actorId,turnEpoch,MP_before` puis `serverMoveResult,observedPath,observedCell,MP_after,ackActionId` et `presentationEnd`. Comparer **un trajet légal de plusieurs cases envoyé en une commande** et le même trajet découpé en plusieurs commandes dans des replays indépendamment confirmés. Diagnostiquer séparément : (a) **replanification** entre deux requêtes, (b) **requête refusée ou position serveur incohérente**, (c) **animation/ACK qui bloque la commande suivante**. Sans le delta MP reçu du serveur, conserver `UnknownPerStepMp`.
+
+## Inventaire des horloges et trous de trace
+
+| Segment / point d'instrumentation | Existe dans le code lu | Signal supplémentaire nécessaire |
+| --- | --- | --- |
+| Entrée tour et identité | `FightTurnEvent` de `LaunchService.Packets.cs:1128-1133` ; `CombatJournal` reçoit tour/résumé | `fightKey,epoch,actorId,turnNo` partagés avec plan/request |
+| **Calcul** planificateur | `LaunchService.Combat.Turn.cs:1093-1109` encadre `CombatTurnPlanner.Choose(snapshot,maxWork:60000)` par `Stopwatch` et log `plan_ms,work,bounded` | `planStartMono` et `planEndMono`, version DLL, GC/allocations; aligner le `turnNo` et la cause de recalcul |
+| Préparation → émission commande | `LaunchService.Combat.cs:435-451` `TurboNow` monotone et `request_tx kind,t,ack_to_request_ms` | `requestId`, `actionId` quand attribué, type move/cast, transport Socket/MITM, queue/durée d'encodage |
+| Mouvement PM par PM | `LaunchService.Packets.cs:1076-1090` observe une relocalisation et son cellId; P03 joint ses traces aux demandes historiques | `requestKind=move` et `requestId`, chemin accepté, `PM_before/after`, source de position et animation du même déplacement |
+| Début de séquence serveur | `_turboSeqOuterStartAt` utilisé en `Combat.cs:443-445,531-533` | Message reçu, timestamp rx, auteur, `actionId` et ID du request valide |
+| Fin de séquence | `LaunchService.Packets.cs:1276-1291` `sequence_end_self action,t,request_to_sequence_end_ms` | Dédoublonnage par `actionId`, epoque; ne pas assigner une séquence étrangère au joueur |
+| ACK et barrière | `LaunchService.Packets.cs:202-215` `ack_tx action,t,sequence_end_to_ack_ms`; `LaunchService.Combat.cs:535-556` `barrier_closed request_to_ack_ms` ou délai | ACK **≠ résolution de l'effet**; associer changement de position/PV/PA/PM et réponse serveur, rejet et écho certifié |
+| Premier tour ennemi | `TurboAckAllOwned` et accusé de séquence étrangère `Packets.cs:1293-1299` | première commande et action ennemie **reçues**, sans confondre ACK client et exécution serveur |
+| Bail / accélération native | `NativeTurboRuntime.cs:88-104` `combat owner accepted utc,monotonic`; `:450-469` `combat lease published utc,monotonic,generation` | Premier cycle **natif** lisant ce bail, horodatage d'activation réelle, `Time.timeScale` effectif par frame/version, retour baseline |
+| **Présentation visuelle** | **Non représentée** par le JSON N10 ni un témoin apparié dans les sources de cette mission | `presentationStartMono,presentationEndMono,frameCount,clientFrameTime`, même `actionId` et source client explicitement datée |
+| Sortie et restauration | `NativeTurboRuntime.cs:390-445` protocole request/ACK de restauration; :950-966 garde d'échec | `combatEnded`, révocation propriétaire, `restoreAck`, **baseline timescale confirmée** avec preuve native |
+
+Le constat de la campagne `docs/validation/official-client-371317-20261103.md:949-955` documente **une instrumentation managed ajoutée au source, testée dans une suite séparée**, non une activation native prouvée. Une **publication de bail** n'est pas un changement constaté de `Time.timeScale`.
+
+## Protocole reproductible et discriminants
+
+Pour chacun des **mêmes snapshots historiques anonymisés** et d'un couple de transports *Socket/MITM* comparables, conserver `buildHash`, version 3.7.13.17, empreinte DLL, hardware/runtime, durée depuis démarrage JIT, `maxWork`, nombre de nœuds, allocation, état des compagnons, politique de défis et capture des messages **déjà accessibles**. Mesurer plusieurs tours homogènes de chaque catégorie. Le protocole ci-dessous est **proposé** ; aucune session ne doit être relancée ou modifiée par cette mission.
+
+1. Corréler `turnOpen→planStart→planEnd→requestTx→sequenceStart→sequenceEnd→ackTx→effectApplied→visualStart→visualEnd→nextTurn` avec **clock monotone de même origine** si possible. Pour systèmes séparés, rapporter domaine d'horloge et synchronisation/offset mesurés; ne jamais soustraire naïvement UTC du monotone ou horloges de processus différents. Conserver `null` pour tout témoin manquant.
+2. Séparer un **premier warmup** du temps de décision steady, et mesurer `replanCount`, `plan_ms`, `work`, `bounded`. Si le délai `turnOpen→requestTx` est haut **et** le cumul `plan_ms` est haut, examiner recalcul/budget/GC ; s'il est haut avec `plan_ms` faible, examiner préparation, mouvement et attente d'ordonnancement.
+3. Si `requestTx→firstServerSequence` est haut avec reçu de commande et les horloges fiables, suspecter délai de transit/exécution serveur ; si `sequenceEnd→ackTx` est haut, examiner stratégie d'accusé/barrière. **Sans `effectApplied`**, la lenteur d'une confirmation reste `Unknown` ; un `barrier_closed` local ne mesure pas la logique du serveur.
+4. Si `effectApplied→visualEnd` est haut alors que `requestTx→effectApplied` est bas, isoler la présentation/animation, et confronter au moment d'**activation native réellement observée**. Un rendu absent du log ne justifie aucune conclusion « animation lente ».
+5. Pour premier ennemi, conserver `enemyActionReceipt`, `nativeLeasePublished`, `nativeTimescaleFirstObserved` sur une base commune, afin de tester le cas **ACK antérieur à l'activation** déjà signalé. Répéter à conditions similaires avec/sans statut natif confirmé, sans inférer un ratio x8 de la durée globale.
+6. À sortie de combat, exiger `restoreRequested→restoreAck→baselineConfirmed` avec la même génération/epoch; ne conclure à la restauration que si son témoin natif concorde.
+
+Un cas qui manque `commandId`, `rx server result` ou `visualEnd` conserve séparément `UnknownServer` ou `UnknownPresentation`, même si `plan_ms` est mesuré. **Aucune comparaison de vitesse réelle Socket/MITM ni d'animation x2/x8 n'est valide avec les données actuellement disponibles.**
+
+Livrables : inventaire de symboles/mesures existants, nouvel oracle à trois segments, schéma JSON rejouable et liste des témoins précisément manquants. Aucune installation, compilation, redémarrage, injection ni mesure en jeu effectuée.

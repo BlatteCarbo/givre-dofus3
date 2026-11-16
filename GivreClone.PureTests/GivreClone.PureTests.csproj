@@ -1,0 +1,90 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Tests de la logique PURE (trajets, expédition / donjon, fenêtre d'interaction, panoplies, achats HDV) : aucun projet voisin requis
+       (GivreCore / GivreLauncher), donc compilables partout, y compris sur GitHub Actions. Les fichiers sont liés, pas copiés :
+       le projet de tests complet (GivreClone.Tests) reste la référence locale. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>GivreClone.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Compatibilité versions/protos : fixtures indépendantes d'Avalonia et du client Dofus,
+         vérifiées également dans la CI publique du dépôt privé. -->
+    <Compile Include="..\GivreClone.App\Services\ProtocolUpdates\*.cs" Link="Linked\ProtocolUpdates\%(Filename)%(Extension)" />
+    <Compile Include="..\GivreClone.App\Services\ProtocolObservedDrift.cs" Link="Linked\ProtocolObservedDrift.cs" />
+    <Compile Include="..\GivreClone.App\Services\AtomicJson.cs" Link="Linked\AtomicJson.cs" />
+    <Compile Include="..\GivreClone.App\Services\VisualMods\*.cs" Link="Linked\VisualMods\%(Filename)%(Extension)" />
+    <Compile Include="..\GivreClone.App\Services\CombatVisualModPolicy.cs" Link="Linked\CombatVisualModPolicy.cs" />
+    <!-- Native distribution preflight belongs to the full test project (binary bundle and profile dependencies). -->
+    <Compile Include="..\GivreClone.Tests\VisualModsCarnetTests.cs" Link="Tests\VisualModsCarnetTests.cs" />
+    <Compile Include="..\GivreClone.Tests\ProtocolUpdateProbeTests.cs" Link="Tests\ProtocolUpdateProbeTests.cs" />
+    <Compile Include="..\GivreClone.Tests\OfficialDofusReleaseProbeTests.cs" Link="Tests\OfficialDofusReleaseProbeTests.cs" />
+    <Compile Include="..\GivreClone.Tests\Protocol371212CompatibilityTests.cs" Link="Tests\Protocol371212CompatibilityTests.cs" />
+    <Compile Include="..\GivreClone.Tests\ProtocolUpdateIndexerTests.cs" Link="Tests\ProtocolUpdateIndexerTests.cs" />
+    <Compile Include="..\GivreClone.Tests\ProtocolObservedDriftTests.cs" Link="Tests\ProtocolObservedDriftTests.cs" />
+    <Compile Include="..\GivreClone.Tests\SocketPilotPolicyTests.cs" Link="Tests\SocketPilotPolicyTests.cs" />
+    <Compile Include="..\GivreClone.App\Services\LotM\HdvCraftScanner.cs" Link="Linked\HdvCraftScanner.cs" />
+    <Compile Include="..\GivreClone.Tests\HdvCraftScannerTests.cs" Link="Tests\HdvCraftScannerTests.cs" />
+    <Compile Include="..\GivreClone.App\Services\Expedition\ZoneValue.cs" Link="Linked\ZoneValue.cs" />
+    <Compile Include="..\GivreClone.Tests\ZoneValueTests.cs" Link="Tests\ZoneValueTests.cs" />
+    <!-- Protocol-backed adapter and networked data cache are tested by the full app suite. -->
+    <Compile Include="..\GivreClone.App\Services\Eco\*.cs" Exclude="..\GivreClone.App\Services\Eco\ForgeState.cs;..\GivreClone.App\Services\Eco\ItemEffectRanges.cs" Link="Linked\Eco\%(Filename)%(Extension)" />
+    <Compile Include="..\GivreClone.Protocol\MapInteractive.cs" Link="Linked\MapInteractive.cs" />
+    <Compile Include="..\GivreClone.Protocol\MZP3RawProtobuf.cs" Link="Linked\MZP3RawProtobuf.cs" />
+    <Compile Include="..\GivreClone.Protocol\MZP3FrameAndEnvelope.cs" Link="Linked\MZP3FrameAndEnvelope.cs" />
+    <Compile Include="..\GivreClone.Tests\CraftAdvisorTests.cs" Link="Tests\CraftAdvisorTests.cs" />
+    <Compile Include="..\GivreClone.Tests\EcoToolsTests.cs" Link="Tests\EcoToolsTests.cs" />
+    <Compile Include="..\GivreClone.App\Services\CharacterDeletionEncoder.cs" Link="Linked\CharacterDeletionEncoder.cs" />
+    <Compile Include="..\GivreClone.App\Services\SeasonalCalendar.cs" Link="Linked\SeasonalCalendar.cs" />
+    <Compile Include="..\GivreClone.App\Services\CharacterCreationEncoder.cs" Link="Linked\CharacterCreationEncoder.cs" />
+    <Compile Include="..\GivreClone.Tests\CharacterCreationEncoderTests.cs" Link="Tests\CharacterCreationEncoderTests.cs" />
+    <Compile Include="..\GivreClone.App\Services\StuckReconnectPolicy.cs" Link="Linked\StuckReconnectPolicy.cs" />
+    <Compile Include="..\GivreClone.Tests\StuckReconnectPolicyTests.cs" Link="Tests\StuckReconnectPolicyTests.cs" />
+    <Compile Include="..\GivreClone.App\Services\ResaleOpportunity.cs" Link="Linked\ResaleOpportunity.cs" />
+    <Compile Include="..\GivreClone.Tests\ResaleOpportunityTests.cs" Link="Tests\ResaleOpportunityTests.cs" />
+    <Compile Include="..\GivreClone.Protocol\QuestCriteria.cs" Link="Linked\QuestCriteria.cs" />
+    <Compile Include="..\GivreClone.Tests\QuestCriteriaParserSecurityTests.cs" Link="Tests\QuestCriteriaParserSecurityTests.cs" />
+    <Compile Include="..\GivreClone.App\Services\QuestProgression\*.cs" Link="Linked\QuestProgression\%(Filename)%(Extension)" />
+    <Compile Include="..\GivreClone.Tests\QuestProgressionTrackerTests.cs" Link="Tests\QuestProgressionTrackerTests.cs" />
+    <Compile Include="..\GivreClone.App\Services\Diagnostics\BotReadiness.cs" Link="Linked\BotReadiness.cs" />
+    <Compile Include="..\GivreClone.Tests\BotReadinessTests.cs" Link="Tests\BotReadinessTests.cs" />
+    <Compile Include="..\GivreClone.App\Services\Equipment\GearComparison.cs" Link="Linked\GearComparison.cs" />
+    <Compile Include="..\GivreClone.Tests\GearComparisonTests.cs" Link="Tests\GearComparisonTests.cs" />
+    <Compile Include="..\GivreClone.App\Services\LuaEditor\RuntimeTraceProjection.cs" Link="Linked\RuntimeTraceProjection.cs" />
+    <Compile Include="..\GivreClone.Tests\LuaRuntimeTraceProjectionTests.cs" Link="Tests\LuaRuntimeTraceProjectionTests.cs" />
+    <Compile Include="..\GivreClone.App\Services\Expedition\ExpeditionBudget.cs" Link="Linked\ExpeditionBudget.cs" />
+    <Compile Include="..\GivreClone.Tests\ExpeditionBudgetTests.cs" Link="Tests\ExpeditionBudgetTests.cs" />
+    <Compile Include="..\GivreClone.App\Services\TeleportActionPolicy.cs" Link="Linked\TeleportActionPolicy.cs" />
+    <Compile Include="..\GivreClone.Tests\TeleportActionPolicyTests.cs" Link="Tests\TeleportActionPolicyTests.cs" />
+    <Compile Include="..\GivreClone.App\Services\InventoryStore.cs" Link="Linked\InventoryStore.cs" />
+    <Compile Include="..\GivreClone.Tests\InventorySessionLifecycleTests.cs" Link="Tests\InventorySessionLifecycleTests.cs" />
+    <Compile Include="..\GivreClone.Tests\MappingScan.cs" Link="Tests\MappingScan.cs" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="MoonSharp" Version="2.0.0" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\GivreClone.App\Services\InteractionLogic.cs" Link="Linked\InteractionLogic.cs" />
+    <Compile Include="..\GivreClone.App\Services\RoadDesign.cs" Link="Linked\RoadDesign.cs" />
+    <Compile Include="..\GivreClone.App\Services\ExpeditionScript.cs" Link="Linked\ExpeditionScript.cs" />
+    <Compile Include="..\GivreClone.Tests\InteractionLogicTests.cs" Link="Tests\InteractionLogicTests.cs" />
+    <Compile Include="..\GivreClone.Tests\RoadDesignTests.cs" Link="Tests\RoadDesignTests.cs" />
+    <Compile Include="..\GivreClone.Tests\ExpeditionScriptTests.cs" Link="Tests\ExpeditionScriptTests.cs" />
+    <Compile Include="..\GivreClone.App\ViewModels\HdvTradeLogic.cs" Link="Linked\HdvTradeLogic.cs" />
+    <Compile Include="..\GivreClone.App\ViewModels\HdvRowLogic.cs" Link="Linked\HdvRowLogic.cs" />
+    <Compile Include="..\GivreClone.Tests\HdvTradeLogicTests.cs" Link="Tests\HdvTradeLogicTests.cs" />
+    <Compile Include="..\GivreClone.App\Services\TurboFightPolicy.cs" Link="Linked\TurboFightPolicy.cs" />
+    <Compile Include="..\GivreClone.Tests\TurboFightPolicyTests.cs" Link="Tests\TurboFightPolicyTests.cs" />
+    <Compile Include="..\GivreClone.App\Services\TravelPolicy.cs" Link="Linked\TravelPolicy.cs" />
+    <Compile Include="..\GivreClone.Tests\TravelPolicyTests.cs" Link="Tests\TravelPolicyTests.cs" />
+    <Compile Include="..\GivreClone.App\Services\ItemEffectText.cs" Link="Linked\ItemEffectText.cs" />
+    <Compile Include="..\GivreClone.Tests\ItemEffectTextTests.cs" Link="Tests\ItemEffectTextTests.cs" />
+  </ItemGroup>
+
+</Project>

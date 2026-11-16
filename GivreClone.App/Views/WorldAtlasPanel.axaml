@@ -1,0 +1,311 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             x:Class="GivreClone.App.Views.WorldAtlasPanel"
+             x:DataType="vm:WorldAtlasViewModel">
+    <UserControl.Styles>
+        <Style Selector="Border.atlasCard">
+            <Setter Property="Background" Value="#1F283A" />
+            <Setter Property="BorderBrush" Value="#374861" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Padding" Value="16" />
+        </Style>
+        <Style Selector="TextBlock.atlasMuted">
+            <Setter Property="Foreground" Value="#9FADC3" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style Selector="TextBlock.atlasHeading">
+            <Setter Property="Foreground" Value="#F2F6FF" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style Selector="TextBox.atlasInput">
+            <Setter Property="Background" Value="#111B2B" />
+            <Setter Property="Foreground" Value="#ECF3FD" />
+            <Setter Property="BorderBrush" Value="#405571" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="MinHeight" Value="35" />
+        </Style>
+        <Style Selector="Button.atlasAction">
+            <Setter Property="Background" Value="#337AB2" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="CornerRadius" Value="7" />
+            <Setter Property="Padding" Value="12,8" />
+        </Style>
+        <Style Selector="Button.atlasSoft">
+            <Setter Property="Background" Value="#2B3951" />
+            <Setter Property="Foreground" Value="#E5EDF9" />
+            <Setter Property="CornerRadius" Value="7" />
+            <Setter Property="Padding" Value="10,7" />
+        </Style>
+        <Style Selector="ListBox.atlasList">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+        <Style Selector="ListBox.atlasList ListBoxItem">
+            <Setter Property="Padding" Value="1" />
+            <Setter Property="Margin" Value="0,0,0,7" />
+            <Setter Property="CornerRadius" Value="8" />
+        </Style>
+    </UserControl.Styles>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel Margin="22,18,22,28" Spacing="14" MinWidth="825" MaxWidth="1200"
+                    HorizontalAlignment="Center">
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="14">
+                <StackPanel Grid.Column="0" Spacing="4">
+                    <TextBlock Text="Atlas du monde · sous-sols" FontSize="25" FontWeight="Bold" Foreground="#F2F6FF" />
+                    <TextBlock Text="Explorer les fiches connues de surface, mines, grottes et zaaps avec leurs preuves"
+                               Classes="atlasMuted" TextWrapping="Wrap" />
+                </StackPanel>
+                <Border Grid.Column="1" Padding="11,7" CornerRadius="9" Background="#3D3440"
+                        BorderBrush="#9C7A5A" BorderThickness="1" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Ellipse Width="8" Height="8" Fill="#F9C977" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding SnapshotProof}" Foreground="#F9C977"
+                                   FontSize="12" FontWeight="Bold"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Border Classes="atlasCard">
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
+                    <StackPanel Spacing="7">
+                        <TextBlock Text="{Binding SnapshotTitle}" Classes="atlasHeading"/>
+                        <TextBlock Text="{Binding StatusText}" Foreground="#F9C977" TextWrapping="Wrap" FontSize="12"/>
+                        <TextBlock Text="{Binding DatasetCounts}" Classes="atlasMuted"/>
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <TextBlock Text="{Binding SnapshotSource}" Foreground="#75D7C9" FontSize="12"/>
+                            <TextBlock Text="{Binding SnapshotVersion}" Classes="atlasMuted"/>
+                            <TextBlock Text="{Binding SnapshotFingerprint}" Classes="atlasMuted"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding SnapshotReference}" Classes="atlasMuted" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="5">
+                        <Button Content="Actualiser la source locale" Classes="atlasSoft"
+                                Command="{Binding RefreshSnapshotCommand}"
+                                ToolTip.Tip="Relit uniquement le fournisseur de snapshot injecté, sans accès au jeu"/>
+                        <TextBlock Text="Lecture seule · aucune capture du client" Classes="atlasMuted" TextAlignment="Right"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border Classes="atlasCard">
+                <StackPanel Spacing="11">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <TextBlock Text="Explorer par couche" Classes="atlasHeading"/>
+                        <Button Grid.Column="1" Content="Effacer la recherche" Classes="atlasSoft" Command="{Binding ClearSearchCommand}"/>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" Spacing="18">
+                        <CheckBox Content="Surface" IsChecked="{Binding ShowSurface}" Foreground="#D4E1F7"/>
+                        <CheckBox Content="Mines" IsChecked="{Binding ShowMines}" Foreground="#D4E1F7"/>
+                        <CheckBox Content="Grottes" IsChecked="{Binding ShowCaves}" Foreground="#D4E1F7"/>
+                        <CheckBox Content="Zaaps" IsChecked="{Binding ShowZaaps}" Foreground="#D4E1F7"/>
+                        <CheckBox Content="Inconnue" IsChecked="{Binding ShowUnknown}" Foreground="#D4E1F7"/>
+                    </StackPanel>
+                    <Grid ColumnDefinitions="1.3*,90,90,1.5*" ColumnSpacing="9">
+                        <StackPanel Grid.Column="0" Spacing="5">
+                            <TextBlock Text="Identifiant mapId" Classes="atlasMuted"/>
+                            <TextBox Classes="atlasInput" PlaceholderText="Identifiant entier"
+                                     AutomationProperties.Name="Rechercher l'identifiant de carte"
+                                     Text="{Binding SearchMapId}" MaxLength="19"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Spacing="5">
+                            <TextBlock Text="X" Classes="atlasMuted"/>
+                            <TextBox Classes="atlasInput" PlaceholderText="X" Text="{Binding SearchX}"
+                                     AutomationProperties.Name="Filtrer les coordonnées X"
+                                     MaxLength="7"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Spacing="5">
+                            <TextBlock Text="Y" Classes="atlasMuted"/>
+                            <TextBox Classes="atlasInput" PlaceholderText="Y" Text="{Binding SearchY}"
+                                     AutomationProperties.Name="Filtrer les coordonnées Y"
+                                     MaxLength="7"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3" Spacing="5">
+                            <TextBlock Text="Zone" Classes="atlasMuted"/>
+                            <TextBox Classes="atlasInput" PlaceholderText="Nom de zone connu"
+                                     AutomationProperties.Name="Rechercher une zone par nom"
+                                     Text="{Binding SearchZone}" MaxLength="120"/>
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock Text="{Binding SearchStatus}" Classes="atlasMuted"/>
+                </StackPanel>
+            </Border>
+
+            <Grid ColumnDefinitions="1.03*,0.97*" ColumnSpacing="14">
+                <Border Grid.Column="0" Classes="atlasCard">
+                    <StackPanel Spacing="11">
+                        <TextBlock Text="Fiches de cartes" Classes="atlasHeading"/>
+                        <TextBlock Text="Aucun résultat. Sans snapshot, seules tes fiches manuelles apparaissent."
+                                   IsVisible="{Binding !HasResults}" Classes="atlasMuted" TextWrapping="Wrap"/>
+                        <ListBox Classes="atlasList" ItemsSource="{Binding Results}" SelectedItem="{Binding SelectedMap, Mode=TwoWay}"
+                                 MinHeight="160" MaxHeight="445" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate x:DataType="vm:WorldAtlasMapRecord">
+                                    <Border Background="#172135" CornerRadius="9" Padding="11,9"
+                                            BorderBrush="#30435F" BorderThickness="1">
+                                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                                            <StackPanel Spacing="4">
+                                                <StackPanel Orientation="Horizontal" Spacing="7">
+                                                    <TextBlock Text="{Binding MapId}" FontWeight="Bold" Foreground="#F2F6FF"/>
+                                                    <TextBlock Text="{Binding KindLabel}" Foreground="#77CCEF" FontSize="12"/>
+                                                    <TextBlock Text="{Binding PositionLabel}" Classes="atlasMuted"/>
+                                                </StackPanel>
+                                                <TextBlock Text="{Binding Title}" Foreground="#EAF0FA" TextTrimming="CharacterEllipsis"/>
+                                                <TextBlock Text="{Binding ZoneLabel}" Classes="atlasMuted" TextTrimming="CharacterEllipsis"/>
+                                                <TextBlock Text="{Binding SourceLabel}" FontSize="11"
+                                                           Foreground="#8FC1C0" TextTrimming="CharacterEllipsis"/>
+                                            </StackPanel>
+                                            <TextBlock Grid.Column="1" Text="{Binding EvidenceLabel}"
+                                                       Foreground="#F9C977" FontWeight="SemiBold" FontSize="11"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <TextBlock Text="Liste bornée à 140 fiches : affine la recherche pour voir les autres."
+                                   Classes="atlasMuted" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>
+                <StackPanel Grid.Column="1" Spacing="14">
+                    <Border Classes="atlasCard">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Inspecteur de carte" Classes="atlasHeading"/>
+                            <TextBlock Text="{Binding SelectedExplanation}" Classes="atlasMuted" TextWrapping="Wrap"/>
+                            <StackPanel IsVisible="{Binding HasSelectedMap}" Spacing="8">
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                                    <TextBlock Text="{Binding SelectedMapId}" FontSize="21" FontWeight="Bold" Foreground="#FFFFFF"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding SelectedMap.EvidenceLabel}"
+                                               Foreground="#F9C977" FontWeight="Bold" FontSize="11"/>
+                                </Grid>
+                                <TextBlock Text="{Binding SelectedMap.Title}" Foreground="#E8F0FC"/>
+                                <StackPanel Orientation="Horizontal" Spacing="12">
+                                    <TextBlock Text="{Binding SelectedMap.KindLabel}" Foreground="#7DBFE4"/>
+                                    <TextBlock Text="{Binding SelectedMap.PositionLabel}" Classes="atlasMuted"/>
+                                    <TextBlock Text="{Binding SelectedMap.ZoneLabel}" Classes="atlasMuted"/>
+                                </StackPanel>
+                                <TextBlock Text="PROVENANCE" FontSize="11" FontWeight="Bold" Foreground="#7DE0C8"/>
+                                <TextBlock Text="{Binding SelectedMap.SourceLabel}" Classes="atlasMuted" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding SelectedMap.FingerprintLabel}" Classes="atlasMuted"/>
+                                <TextBlock Text="{Binding SelectedMap.EvidenceReference}" Classes="atlasMuted" TextWrapping="Wrap"/>
+                                <StackPanel Orientation="Horizontal" Spacing="7">
+                                    <Button Content="Comme départ" Classes="atlasSoft" Command="{Binding SetRouteStartCommand}"/>
+                                    <Button Content="Comme arrivée" Classes="atlasSoft" Command="{Binding SetRouteEndCommand}"/>
+                                    <Button Content="Retirer ma fiche" Classes="atlasSoft"
+                                            IsVisible="{Binding SelectedMap.IsManual}"
+                                            Command="{Binding RemoveManualCommand}" CommandParameter="{Binding SelectedMap}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border Classes="atlasCard">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Transitions observées dans la source" Classes="atlasHeading"/>
+                            <TextBlock Text="Sens déclaré uniquement · aucune liaison géographique déduite."
+                                       Classes="atlasMuted" TextWrapping="Wrap"/>
+                            <TextBlock Text="Aucune transition documentée sur cette carte."
+                                       Classes="atlasMuted" IsVisible="{Binding !HasSelectedTransitions}"/>
+                            <ItemsControl ItemsSource="{Binding SelectedTransitions}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="vm:WorldAtlasTransitionRow">
+                                        <Border Background="#172135" CornerRadius="8" Padding="10" Margin="0,0,0,6">
+                                            <StackPanel Spacing="5">
+                                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                                                    <TextBlock Text="{Binding TargetLabel}" Foreground="#EEF5FD" FontWeight="Bold"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding EvidenceLabel}" Foreground="#F9C977"
+                                                               FontWeight="Bold" FontSize="11"/>
+                                                </Grid>
+                                                <TextBlock Text="{Binding KindLabel}" Foreground="#CCD8EB" TextWrapping="Wrap"/>
+                                                <TextBlock Text="{Binding DirectionText}" Classes="atlasMuted"/>
+                                                <TextBlock Text="{Binding SourceLabel}" Classes="atlasMuted" TextWrapping="Wrap"/>
+                                                <TextBlock Text="{Binding FingerprintLabel}" Classes="atlasMuted"/>
+                                                <TextBlock Text="{Binding EvidenceReference}" Classes="atlasMuted" TextWrapping="Wrap"/>
+                                                <Button Content="Inspecter la destination" Classes="atlasSoft"
+                                                        HorizontalAlignment="Left" FontSize="11"
+                                                        Command="{Binding $parent[ItemsControl].((vm:WorldAtlasViewModel)DataContext).InspectDestinationCommand}"
+                                                        CommandParameter="{Binding}"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="14">
+                <Border Grid.Column="0" Classes="atlasCard">
+                    <StackPanel Spacing="10">
+                        <TextBlock Text="Parcours uniquement prouvés" Classes="atlasHeading"/>
+                        <TextBlock Text="Chaque carte et chaque transition doit être certifiée dans une même version."
+                                   Classes="atlasMuted" TextWrapping="Wrap"/>
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                            <StackPanel Spacing="5">
+                                <TextBlock Text="mapId départ" Classes="atlasMuted"/>
+                                <TextBox Classes="atlasInput" Text="{Binding RouteStartMapId}"
+                                         PlaceholderText="Départ" MaxLength="19"
+                                         AutomationProperties.Name="Identifiant de carte de départ"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Spacing="5">
+                                <TextBlock Text="mapId arrivée" Classes="atlasMuted"/>
+                                <TextBox Classes="atlasInput" Text="{Binding RouteEndMapId}"
+                                         PlaceholderText="Arrivée" MaxLength="19"
+                                         AutomationProperties.Name="Identifiant de carte d'arrivée"/>
+                            </StackPanel>
+                        </Grid>
+                        <Button Content="Vérifier les transitions" Classes="atlasAction"
+                                Command="{Binding BuildRouteCommand}" HorizontalAlignment="Left"/>
+                        <TextBlock Text="{Binding RouteStatus}" Foreground="#F9C977" TextWrapping="Wrap" FontSize="12"/>
+                        <ItemsControl ItemsSource="{Binding RouteSteps}" IsVisible="{Binding HasRoute}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="x:String">
+                                    <Border Background="#18253B" CornerRadius="7" Margin="0,0,0,5" Padding="9,7">
+                                        <TextBlock Text="{Binding}" Foreground="#7DDCC4"/>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="1" Classes="atlasCard">
+                    <StackPanel Spacing="9">
+                        <TextBlock Text="Ajouter une fiche manuelle" Classes="atlasHeading"/>
+                        <TextBlock Text="Saisie temporaire pour préparer tes recherches · toujours UNVERIFIED."
+                                   Classes="atlasMuted" TextWrapping="Wrap"/>
+                        <Grid ColumnDefinitions="1.2*,*,*" ColumnSpacing="7">
+                            <TextBox Classes="atlasInput" Text="{Binding ManualMapId}"
+                                     PlaceholderText="mapId" MaxLength="19"
+                                     AutomationProperties.Name="mapId manuel"/>
+                            <TextBox Grid.Column="1" Classes="atlasInput" Text="{Binding ManualX}"
+                                     PlaceholderText="X (optionnel)" MaxLength="7"
+                                     AutomationProperties.Name="Coordonnée X manuelle"/>
+                            <TextBox Grid.Column="2" Classes="atlasInput" Text="{Binding ManualY}"
+                                     PlaceholderText="Y (optionnel)" MaxLength="7"
+                                     AutomationProperties.Name="Coordonnée Y manuelle"/>
+                        </Grid>
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="7">
+                            <TextBox Grid.Column="0" Classes="atlasInput" Text="{Binding ManualZone}"
+                                     PlaceholderText="Zone (facultatif)" MaxLength="120"
+                                     AutomationProperties.Name="Nom de zone manuel"/>
+                            <ComboBox Grid.Column="1" ItemsSource="{Binding ManualLayers}"
+                                      SelectedIndex="{Binding ManualLayerIndex}"
+                                      AutomationProperties.Name="Couche de la carte manuelle"/>
+                        </Grid>
+                        <TextBox Classes="atlasInput" Text="{Binding ManualLabel}"
+                                 PlaceholderText="Note ou désignation (facultatif)" MaxLength="120"
+                                 AutomationProperties.Name="Libellé de la carte manuelle"/>
+                        <Button Content="Ajouter pour cette session" Classes="atlasAction"
+                                HorizontalAlignment="Left" Command="{Binding AddManualCommand}"/>
+                        <TextBlock Text="Les fiches manuelles n'ajoutent aucune liaison ni chemin et ne sont pas sauvegardées."
+                                   Classes="atlasMuted" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <TextBlock Text="Consultation documentaire uniquement · aucune injection, navigation ou client Dofus."
+                       HorizontalAlignment="Center" Classes="atlasMuted" TextWrapping="Wrap"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

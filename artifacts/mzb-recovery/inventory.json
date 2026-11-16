@@ -1,0 +1,356 @@
+[
+  {
+    "source": "%USERPROFILE%\\AppData\\Local\\Mizan\\app\\MizanBot.exe",
+    "sha256": "c88ce04cde1e823662232b0f04aec89dad6e234cfd615f7bbae488ad635ebc50",
+    "size": 58519552,
+    "clr_directory": [
+      0,
+      0
+    ],
+    "sections": [
+      {
+        "name": ".text",
+        "virtual_size": 36412680,
+        "virtual_address": 4096,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".rdata",
+        "virtual_size": 61740278,
+        "virtual_address": 36417536,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".data",
+        "virtual_size": 6234952,
+        "virtual_address": 98160640,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".pdata",
+        "virtual_size": 2489400,
+        "virtual_address": 104398848,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".Xah",
+        "virtual_size": 20465273,
+        "virtual_address": 106889216,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".33(",
+        "virtual_size": 648,
+        "virtual_address": 127356928,
+        "raw_size": 1024,
+        "raw_offset": 1024
+      },
+      {
+        "name": ".,$h",
+        "virtual_size": 58403016,
+        "virtual_address": 127361024,
+        "raw_size": 58403328,
+        "raw_offset": 2048
+      },
+      {
+        "name": ".rsrc",
+        "virtual_size": 113540,
+        "virtual_address": 185765888,
+        "raw_size": 113664,
+        "raw_offset": 58405376
+      },
+      {
+        "name": ".reloc",
+        "virtual_size": 188,
+        "virtual_address": 185880576,
+        "raw_size": 512,
+        "raw_offset": 58519040
+      }
+    ],
+    "bundle_marker": -1
+  },
+  {
+    "source": "%USERPROFILE%\\AppData\\Local\\Mizan\\app\\MizanKama.dll",
+    "sha256": "6d32e460a1f5e066fe83ab8849e4f2ea54566139ea992fd99b9ed342f76e2867",
+    "size": 12458496,
+    "clr_directory": [
+      0,
+      0
+    ],
+    "sections": [
+      {
+        "name": ".text",
+        "virtual_size": 122256,
+        "virtual_address": 4096,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".rdata",
+        "virtual_size": 48042,
+        "virtual_address": 126976,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".data",
+        "virtual_size": 7384,
+        "virtual_address": 176128,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".pdata",
+        "virtual_size": 6408,
+        "virtual_address": 184320,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".detourc",
+        "virtual_size": 8720,
+        "virtual_address": 192512,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".detourd",
+        "virtual_size": 24,
+        "virtual_address": 204800,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".fptable",
+        "virtual_size": 256,
+        "virtual_address": 208896,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".A\\X",
+        "virtual_size": 7653508,
+        "virtual_address": 212992,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".y5~",
+        "virtual_size": 120,
+        "virtual_address": 7868416,
+        "raw_size": 512,
+        "raw_offset": 1024
+      },
+      {
+        "name": ".nc<",
+        "virtual_size": 12455508,
+        "virtual_address": 7872512,
+        "raw_size": 12455936,
+        "raw_offset": 1536
+      },
+      {
+        "name": ".rsrc",
+        "virtual_size": 469,
+        "virtual_address": 20328448,
+        "raw_size": 512,
+        "raw_offset": 12457472
+      },
+      {
+        "name": ".reloc",
+        "virtual_size": 160,
+        "virtual_address": 20332544,
+        "raw_size": 512,
+        "raw_offset": 12457984
+      }
+    ],
+    "bundle_marker": -1
+  },
+  {
+    "source": "%USERPROFILE%\\AppData\\Local\\Mizan\\app\\MizanMcp.exe",
+    "sha256": "0de63ef10a699b452cf920b50cc558c506bae960eb030422181d1a6c02d05d36",
+    "size": 1863168,
+    "clr_directory": [
+      0,
+      0
+    ],
+    "sections": [
+      {
+        "name": ".text",
+        "virtual_size": 1156856,
+        "virtual_address": 4096,
+        "raw_size": 1157120,
+        "raw_offset": 1024
+      },
+      {
+        "name": ".rdata",
+        "virtual_size": 497156,
+        "virtual_address": 1163264,
+        "raw_size": 497664,
+        "raw_offset": 1158144
+      },
+      {
+        "name": ".data",
+        "virtual_size": 334296,
+        "virtual_address": 1662976,
+        "raw_size": 7168,
+        "raw_offset": 1655808
+      },
+      {
+        "name": ".pdata",
+        "virtual_size": 76020,
+        "virtual_address": 1998848,
+        "raw_size": 76288,
+        "raw_offset": 1662976
+      },
+      {
+        "name": ".rsrc",
+        "virtual_size": 121414,
+        "virtual_address": 2076672,
+        "raw_size": 121856,
+        "raw_offset": 1739264
+      },
+      {
+        "name": ".reloc",
+        "virtual_size": 1568,
+        "virtual_address": 2199552,
+        "raw_size": 2048,
+        "raw_offset": 1861120
+      }
+    ],
+    "bundle_marker": -1
+  },
+  {
+    "source": "%USERPROFILE%\\AppData\\Local\\Mizan\\app\\MizanMods.dll",
+    "sha256": "706d979fc5434cef58ad554ac7400d3b0ace66b2a674d46aa153d04ea21792c7",
+    "size": 12512768,
+    "clr_directory": [
+      0,
+      0
+    ],
+    "sections": [
+      {
+        "name": ".text",
+        "virtual_size": 250122,
+        "virtual_address": 4096,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".rdata",
+        "virtual_size": 88762,
+        "virtual_address": 258048,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".data",
+        "virtual_size": 10484,
+        "virtual_address": 348160,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".pdata",
+        "virtual_size": 12348,
+        "virtual_address": 360448,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".detourc",
+        "virtual_size": 8720,
+        "virtual_address": 376832,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".detourd",
+        "virtual_size": 24,
+        "virtual_address": 389120,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".fptable",
+        "virtual_size": 256,
+        "virtual_address": 393216,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".1U^",
+        "virtual_size": 7645993,
+        "virtual_address": 397312,
+        "raw_size": 0,
+        "raw_offset": 0
+      },
+      {
+        "name": ".[`-",
+        "virtual_size": 96,
+        "virtual_address": 8044544,
+        "raw_size": 512,
+        "raw_offset": 1024
+      },
+      {
+        "name": ".x}9",
+        "virtual_size": 12509844,
+        "virtual_address": 8048640,
+        "raw_size": 12510208,
+        "raw_offset": 1536
+      },
+      {
+        "name": ".rsrc",
+        "virtual_size": 469,
+        "virtual_address": 20561920,
+        "raw_size": 512,
+        "raw_offset": 12511744
+      },
+      {
+        "name": ".reloc",
+        "virtual_size": 188,
+        "virtual_address": 20566016,
+        "raw_size": 512,
+        "raw_offset": 12512256
+      }
+    ],
+    "bundle_marker": -1
+  },
+  {
+    "source": "%USERPROFILE%\\AppData\\Local\\Mizan\\app\\WebAuth\\MizanLauncher.WebAuth.dll",
+    "sha256": "040d9af63b2ed1fb0fcc3b7feef9730a1a60a330778dc7f8b225fc9dcb875377",
+    "size": 82944,
+    "clr_directory": [
+      8200,
+      72
+    ],
+    "sections": [
+      {
+        "name": ".text",
+        "virtual_size": 60632,
+        "virtual_address": 8192,
+        "raw_size": 60928,
+        "raw_offset": 512
+      },
+      {
+        "name": ".rsrc",
+        "virtual_size": 20484,
+        "virtual_address": 73728,
+        "raw_size": 20992,
+        "raw_offset": 61440
+      },
+      {
+        "name": ".reloc",
+        "virtual_size": 12,
+        "virtual_address": 98304,
+        "raw_size": 512,
+        "raw_offset": 82432
+      }
+    ],
+    "bundle_marker": -1
+  }
+]

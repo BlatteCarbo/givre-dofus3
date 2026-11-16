@@ -1,0 +1,250 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             x:Class="GivreClone.App.Controls.MZP0OperatorPanel"
+             x:DataType="vm:MZP0OperatorViewModel"
+             Classes="page" Background="{StaticResource Bg1Brush}"
+             d:DesignWidth="1100" d:DesignHeight="800"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008">
+
+    <!-- Read-only operator page mounted by MainWindow. Without a host-provided
+         source + independent authority, session and ACK remain unknown. -->
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="26,22,26,28" Spacing="17" MaxWidth="1120" HorizontalAlignment="Stretch">
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
+                <StackPanel Grid.Column="0" Spacing="5">
+                    <TextBlock Text="Observateur · Opérateur" FontSize="28" FontWeight="SemiBold"
+                               Foreground="{StaticResource TextPrimaryBrush}" />
+                    <TextBlock Text="Diagnostic de provenance · lecture seule"
+                               FontSize="12.5" Foreground="{StaticResource TextSecondaryBrush}" />
+                </StackPanel>
+                <Border Grid.Column="1" CornerRadius="8" VerticalAlignment="Center"
+                        Padding="10,6" Background="#202E4D" BorderThickness="1" BorderBrush="#334A70">
+                    <TextBlock Text="MZP0 · SOURCE EXTERNE" FontSize="10.5" FontWeight="SemiBold"
+                               Foreground="#9DC3F2" />
+                </Border>
+            </Grid>
+
+            <!-- A non-connected view must visibly explain why nothing has been promoted. -->
+            <Border CornerRadius="11" Padding="14,12" Background="#302719" BorderThickness="1" BorderBrush="#59462B">
+                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                    <Border Width="4" CornerRadius="2" Background="{StaticResource AmberBrush}" />
+                    <StackPanel Grid.Column="1" Spacing="4">
+                        <TextBlock Text="Confiance externe requise" FontWeight="SemiBold" FontSize="12.5"
+                                   Foreground="#E6BE75" />
+                        <TextBlock Text="Aucun signal candidat ne vaut session, carte active ou ACK sans preuve attribuée."
+                                   FontSize="12" TextWrapping="Wrap" Foreground="{StaticResource TextSecondaryBrush}" />
+                        <TextBlock Text="{Binding Diagnostic}" FontSize="11.5" TextWrapping="Wrap"
+                                   Foreground="#E6BE75" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Lecture locale déclenchée par l'opérateur, sans état réseau ni preuve fabriquée. -->
+            <Border CornerRadius="12" Background="{StaticResource Surface1Brush}"
+                    BorderThickness="1" BorderBrush="{StaticResource StrokeMedBrush}" Padding="18,17">
+                <StackPanel Spacing="9">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <TextBlock Text="Diagnostic Dofus · environnement local" FontSize="18" FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryBrush}" />
+                        <Button Grid.Column="1" Content="Actualiser" Click="OnRefreshLocal"
+                                AutomationProperties.Name="Actualiser le diagnostic local" />
+                    </Grid>
+                    <TextBlock x:Name="LocalVersion" Text="Client : inconnu · version non attestée"
+                               Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap" />
+                    <TextBlock x:Name="LocalProtocol" Text="Protocole : aucune admission runtime certifiée"
+                               Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap" />
+                    <TextBlock x:Name="LocalGameDb" Text="GameDb : non consultée"
+                               Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap" />
+                    <TextBlock x:Name="LocalMaps" Text="Cartes : cache non consulté"
+                               Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap" />
+                    <TextBlock x:Name="LocalTransport" Text="Transport : connexion / messages / ACK non attestés"
+                               Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap" />
+                    <TextBlock Text="Les événements et ACK sont attestés uniquement dans les cartes de provenance ci-dessus."
+                               FontSize="11" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap" />
+                    <Border Height="1" Background="{StaticResource StrokeSoftBrush}" Margin="0,5" />
+                    <TextBlock Text="Inspecteur des prix HDV en cache (lecture seule)" FontSize="14" FontWeight="SemiBold"
+                               Foreground="{StaticResource TextPrimaryBrush}" />
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBox x:Name="HdvPid" Width="115" Watermark="PID bot" MaxLength="10"
+                                 AutomationProperties.Name="PID du bot pour le relevé HDV" />
+                        <TextBox x:Name="HdvGid" Width="125" Watermark="GID objet" MaxLength="16"
+                                 AutomationProperties.Name="GID de l'objet HDV" />
+                        <Button Content="Inspecter le relevé" Click="OnInspectHdv" />
+                    </StackPanel>
+                    <TextBlock x:Name="HdvResult" Text="Sélectionner PID + GID pour lire les derniers prix mémorisés."
+                               FontFamily="Consolas" FontSize="11.5" Foreground="{StaticResource TextSecondaryBrush}"
+                               TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+
+            <WrapPanel Orientation="Horizontal" ItemWidth="322" ItemHeight="158">
+                <!-- Session -->
+                <Border Width="310" Height="148" Margin="0,0,12,10" Background="{StaticResource Surface1Brush}"
+                        CornerRadius="12" BorderThickness="1" BorderBrush="{StaticResource StrokeMedBrush}" Padding="17,15">
+                    <Grid RowDefinitions="Auto,Auto,*,Auto">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <TextBlock Text="SESSION" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource TextMutedBrush}" />
+                            <Ellipse Grid.Column="1" Width="7" Height="7" Fill="#E0A53F" VerticalAlignment="Center" />
+                        </Grid>
+                        <TextBlock Grid.Row="1" Text="{Binding SessionStatus}" FontSize="18" FontWeight="SemiBold"
+                                   Margin="0,12,0,0" TextTrimming="CharacterEllipsis" Foreground="{StaticResource TextPrimaryBrush}" />
+                        <TextBlock Grid.Row="2" Text="{Binding SessionDetail}" FontSize="11.5" TextWrapping="Wrap"
+                                   Margin="0,5,0,0" Foreground="{StaticResource TextSecondaryBrush}" />
+                        <TextBlock Grid.Row="3" Text="{Binding BuildLabel}" FontSize="10.5" TextTrimming="CharacterEllipsis"
+                                   Foreground="{DynamicResource AccentBrightBrush}" />
+                    </Grid>
+                </Border>
+
+                <!-- Evidence -->
+                <Border Width="310" Height="148" Margin="0,0,12,10" Background="{StaticResource Surface1Brush}"
+                        CornerRadius="12" BorderThickness="1" BorderBrush="{StaticResource StrokeMedBrush}" Padding="17,15">
+                    <Grid RowDefinitions="Auto,Auto,*,Auto">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <TextBlock Text="PROVENANCE" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource TextMutedBrush}" />
+                            <Ellipse Grid.Column="1" Width="7" Height="7" Fill="#82A8EE" VerticalAlignment="Center" />
+                        </Grid>
+                        <TextBlock Grid.Row="1" Text="{Binding EvidenceStatus}" FontSize="18" FontWeight="SemiBold"
+                                   Margin="0,12,0,0" TextTrimming="CharacterEllipsis" Foreground="{StaticResource TextPrimaryBrush}" />
+                        <TextBlock Grid.Row="2" Text="{Binding EvidenceDetail}" FontSize="11.5" TextWrapping="Wrap"
+                                   Margin="0,5,0,0" Foreground="{StaticResource TextSecondaryBrush}" />
+                        <TextBlock Grid.Row="3" Text="{Binding LastObservation, StringFormat='Dernière preuve : {0}'}"
+                                   FontSize="10.5" Foreground="#9DBCE6" />
+                    </Grid>
+                </Border>
+
+                <!-- ACK -->
+                <Border Width="310" Height="148" Margin="0,0,12,10" Background="{StaticResource Surface1Brush}"
+                        CornerRadius="12" BorderThickness="1" BorderBrush="{StaticResource StrokeMedBrush}" Padding="17,15">
+                    <Grid RowDefinitions="Auto,Auto,*">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <TextBlock Text="ACK SERVEUR" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource TextMutedBrush}" />
+                            <Ellipse Grid.Column="1" Width="7" Height="7" Fill="#AF9DE0" VerticalAlignment="Center" />
+                        </Grid>
+                        <TextBlock Grid.Row="1" Text="{Binding AckStatus}" FontSize="18" FontWeight="SemiBold"
+                                   Margin="0,12,0,0" TextTrimming="CharacterEllipsis" Foreground="{StaticResource TextPrimaryBrush}" />
+                        <TextBlock Grid.Row="2" Text="{Binding AckDetail}" FontSize="11.5" TextWrapping="Wrap"
+                                   Margin="0,5,0,0" Foreground="{StaticResource TextSecondaryBrush}" />
+                    </Grid>
+                </Border>
+            </WrapPanel>
+
+            <!-- Same compact dark card language as the existing GivreClone shell. -->
+            <Border CornerRadius="12" Background="{StaticResource Surface1Brush}"
+                    BorderThickness="1" BorderBrush="{StaticResource StrokeMedBrush}" Padding="18,17">
+                <StackPanel Spacing="13">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                        <StackPanel Grid.Column="0" Spacing="4">
+                            <TextBlock Text="Journal d'observations" FontSize="18" FontWeight="SemiBold"
+                                       Foreground="{StaticResource TextPrimaryBrush}" />
+                            <TextBlock Text="Codes diagnostiques uniquement · 200 dernières lignes maximum"
+                                       FontSize="11.5" Foreground="{StaticResource TextMutedBrush}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="14" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <Ellipse Width="7" Height="7" Fill="#6BCDA5" VerticalAlignment="Center" />
+                                <TextBlock Text="{Binding AttributedCount}" FontWeight="SemiBold" FontSize="12"
+                                           Foreground="{StaticResource TextSecondaryBrush}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <Ellipse Width="7" Height="7" Fill="#E6B65C" VerticalAlignment="Center" />
+                                <TextBlock Text="{Binding RejectedCount}" FontWeight="SemiBold" FontSize="12"
+                                           Foreground="{StaticResource TextSecondaryBrush}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <Grid ColumnDefinitions="*,176" ColumnSpacing="10">
+                        <TextBox Grid.Column="0" Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 PlaceholderText="Filtrer par code ou motif…" MinHeight="38" FontSize="12.5"
+                                 AutomationProperties.Name="Recherche dans le journal" />
+                        <ComboBox Grid.Column="1" SelectedIndex="{Binding JournalFilterIndex, Mode=TwoWay}"
+                                  MinHeight="38" FontSize="12.5" AutomationProperties.Name="Filtre du journal">
+                            <ComboBoxItem Content="Tout" />
+                            <ComboBoxItem Content="Attribuées" />
+                            <ComboBoxItem Content="Refusées" />
+                            <ComboBoxItem Content="Système" />
+                        </ComboBox>
+                    </Grid>
+                    <Border Background="#0B0E14" BorderThickness="1" BorderBrush="{StaticResource StrokeSoftBrush}"
+                            CornerRadius="9" Padding="8">
+                        <Grid RowDefinitions="Auto,*">
+                            <Grid ColumnDefinitions="74,86,156,*" Margin="7,3,7,9">
+                                <TextBlock Grid.Column="0" Text="HEURE" FontSize="10" FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextMutedBrush}" />
+                                <TextBlock Grid.Column="1" Text="ÉTAT" FontSize="10" FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextMutedBrush}" />
+                                <TextBlock Grid.Column="2" Text="CODE" FontSize="10" FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextMutedBrush}" />
+                                <TextBlock Grid.Column="3" Text="DIAGNOSTIC" FontSize="10" FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextMutedBrush}" />
+                            </Grid>
+                            <Grid Grid.Row="1" Height="236">
+                                <ListBox ItemsSource="{Binding VisibleJournal}" Background="Transparent"
+                                         BorderThickness="0" Padding="0" SelectionMode="Single"
+                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         AutomationProperties.Name="Observations et refus filtrés">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:MZP0OperatorJournalLine">
+                                            <Border Padding="7,8" CornerRadius="5" BorderThickness="0,0,0,1"
+                                                    BorderBrush="{StaticResource StrokeSoftBrush}">
+                                                <Grid ColumnDefinitions="74,86,156,*">
+                                                    <TextBlock Grid.Column="0" Text="{Binding Time}" FontSize="11"
+                                                               Foreground="{StaticResource TextMutedBrush}" />
+                                                    <TextBlock Grid.Column="1" Text="{Binding Label}" FontSize="10" FontWeight="SemiBold"
+                                                               Foreground="{Binding Accent}" />
+                                                    <TextBlock Grid.Column="2" Text="{Binding Code}" FontSize="10.5"
+                                                               TextTrimming="CharacterEllipsis" Foreground="{StaticResource TextPrimaryBrush}" />
+                                                    <TextBlock Grid.Column="3" Text="{Binding Detail}" FontSize="11"
+                                                               TextTrimming="CharacterEllipsis" Foreground="{StaticResource TextSecondaryBrush}"
+                                                               ToolTip.Tip="{Binding Detail}" />
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <TextBlock Text="Aucune observation pour ce filtre." FontSize="12"
+                                           Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" IsVisible="{Binding !HasVisibleJournal}" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <!-- Refus identiques regroupés : une ligne par (code, diagnostic), occurrences + première / dernière. -->
+                    <StackPanel Spacing="6" IsVisible="{Binding HasErrorGroups}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="{DynamicResource L.Diag.GroupedTitle}" FontSize="14" FontWeight="SemiBold"
+                                       Foreground="{StaticResource TextPrimaryBrush}" />
+                            <TextBlock Text="{Binding ErrorOccurrenceCount}" FontSize="11" VerticalAlignment="Center"
+                                       Foreground="{StaticResource TextMutedBrush}" />
+                        </StackPanel>
+                        <Grid ColumnDefinitions="56,156,*,74,74" Margin="7,0">
+                            <TextBlock Grid.Column="0" Text="{DynamicResource L.Diag.Count}" FontSize="10" FontWeight="SemiBold" Foreground="{StaticResource TextMutedBrush}" />
+                            <TextBlock Grid.Column="1" Text="CODE" FontSize="10" FontWeight="SemiBold" Foreground="{StaticResource TextMutedBrush}" />
+                            <TextBlock Grid.Column="2" Text="DIAGNOSTIC" FontSize="10" FontWeight="SemiBold" Foreground="{StaticResource TextMutedBrush}" />
+                            <TextBlock Grid.Column="3" Text="{DynamicResource L.Diag.First}" FontSize="10" FontWeight="SemiBold" Foreground="{StaticResource TextMutedBrush}" />
+                            <TextBlock Grid.Column="4" Text="{DynamicResource L.Diag.Last}" FontSize="10" FontWeight="SemiBold" Foreground="{StaticResource TextMutedBrush}" />
+                        </Grid>
+                        <ItemsControl ItemsSource="{Binding ErrorGroups}" MaxHeight="200">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:MZP0ErrorGroup">
+                                    <Border Padding="7,6" BorderThickness="0,0,0,1" BorderBrush="{StaticResource StrokeSoftBrush}">
+                                        <Grid ColumnDefinitions="56,156,*,74,74">
+                                            <TextBlock Grid.Column="0" Text="{Binding CountText}" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource AmberBrush}" />
+                                            <TextBlock Grid.Column="1" Text="{Binding Code}" FontSize="10.5" TextTrimming="CharacterEllipsis" Foreground="{StaticResource TextPrimaryBrush}" />
+                                            <TextBlock Grid.Column="2" Text="{Binding Detail}" FontSize="11" TextTrimming="CharacterEllipsis"
+                                                       Foreground="{StaticResource TextSecondaryBrush}" ToolTip.Tip="{Binding Detail}" />
+                                            <TextBlock Grid.Column="3" Text="{Binding FirstText}" FontSize="11" Foreground="{StaticResource TextMutedBrush}" />
+                                            <TextBlock Grid.Column="4" Text="{Binding LastText}" FontSize="11" Foreground="{StaticResource TextMutedBrush}" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                    <TextBlock Text="Lecture seule · pas de commandes de jeu · une origine candidate n'active jamais un bot."
+                               FontSize="11" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,480 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             xmlns:lua="using:GivreClone.App.Controls.LuaEditor"
+             xmlns:tool="using:GivreClone.Engine.LuaTooling"
+             xmlns:conv="using:GivreClone.App.Converters"
+             x:Class="GivreClone.App.Views.LuaEditorOverlays"
+             x:DataType="vm:BotsViewModel">
+    <!-- Modales de l'éditeur Lua, au niveau FENÊTRE (convention : jamais de modale inline). Ordre = empilement : le plein
+         écran en dessous, les modales d'appoint (modèles, récents, API, aller à la ligne, non enregistré) par-dessus. -->
+    <UserControl.Resources>
+        <conv:AllTrueConverter x:Key="AllTrue" />
+    </UserControl.Resources>
+    <UserControl.Styles>
+        <Style Selector="Button.iconbtn.lua">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="32" />
+        </Style>
+        <Style Selector="Border.luasep">
+            <Setter Property="Width" Value="1" />
+            <Setter Property="Height" Value="18" />
+            <Setter Property="Margin" Value="3,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="{StaticResource StrokeSoftBrush}" />
+        </Style>
+        <Style Selector="TextBlock.mtitle">
+            <Setter Property="FontSize" Value="17" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="ListBox.luapick ListBoxItem">
+            <Setter Property="Padding" Value="10,8" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Margin" Value="0,1" />
+        </Style>
+    </UserControl.Styles>
+    <Grid>
+        <!-- ===================== Plein écran ===================== -->
+        <Grid Classes.modalOpen="{Binding LuaFullscreenOpen}" IsHitTestVisible="{Binding LuaFullscreenOpen}">
+            <Border Classes="modalScrim" />
+            <Border Classes="modalCard" Margin="26" Padding="14,12" CornerRadius="14"
+                    Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1">
+                <!-- Contenu construit seulement à l'ouverture : aucun second éditeur actif en arrière-plan. -->
+                <Grid RowDefinitions="Auto,*,Auto,Auto,Auto" IsVisible="{Binding LuaFullscreenOpen}" KeyDown="OnFullscreenKeyDown">
+                    <Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="10" Margin="0,0,0,10">
+                        <StackPanel Orientation="Horizontal" Spacing="5" VerticalAlignment="Center">
+                            <PathIcon Data="{StaticResource IconScript}" Width="16" Height="16" Foreground="{DynamicResource AccentBrightBrush}" Margin="2,0,6,0" />
+                            <TextBlock Classes="pii" Text="{Binding LuaDocTitle}" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"
+                                       Foreground="{StaticResource TextPrimaryBrush}" MaxWidth="320" TextTrimming="CharacterEllipsis"
+                                       ToolTip.Tip="{Binding LuaChunkName}" />
+                            <Ellipse Width="7" Height="7" Fill="#E8B339" VerticalAlignment="Center" Margin="4,0" IsVisible="{Binding LuaFileModified}"
+                                     ToolTip.Tip="{DynamicResource L.Lua.Editor.Modified}" />
+                            <Border Classes="luasep" />
+                            <Button Classes="iconbtn lua" Command="{Binding LuaShowTemplatesCommand}" ToolTip.Tip="{DynamicResource L.Lua.Editor.TemplatesTip}">
+                                <PathIcon Data="{StaticResource IconSparkle}" Width="14" Height="14" />
+                            </Button>
+                            <Button Classes="iconbtn lua" Command="{Binding LuaOpenCommand}" ToolTip.Tip="{DynamicResource L.Lua.Editor.OpenTip}">
+                                <PathIcon Data="{StaticResource IconFolder}" Width="14" Height="14" />
+                            </Button>
+                            <Button Classes="iconbtn lua" Command="{Binding LuaShowRecentCommand}" ToolTip.Tip="{DynamicResource L.Lua.Editor.RecentTip}">
+                                <PathIcon Data="{StaticResource IconClock}" Width="14" Height="14" />
+                            </Button>
+                            <Button Classes="iconbtn lua" Command="{Binding LuaSaveNowCommand}" ToolTip.Tip="{DynamicResource L.Lua.Editor.SaveTip}">
+                                <PathIcon Data="{StaticResource IconSave}" Width="14" Height="14" />
+                            </Button>
+                            <Button Classes="iconbtn lua" Command="{Binding LuaSaveAsCommand}" ToolTip.Tip="{DynamicResource L.Lua.Editor.SaveAsTip}">
+                                <PathIcon Data="{StaticResource IconDownload}" Width="14" Height="14" />
+                            </Button>
+                            <Border Classes="luasep" />
+                            <Button Classes="iconbtn lua" Command="{Binding LuaFormatCommand}" ToolTip.Tip="{DynamicResource L.Lua.Editor.FormatTip}">
+                                <PathIcon Data="{StaticResource IconWrench}" Width="14" Height="14" />
+                            </Button>
+                            <Button Classes="iconbtn lua" Command="{Binding LuaFindCommand}" ToolTip.Tip="{DynamicResource L.Lua.Editor.FindTip}">
+                                <PathIcon Data="{StaticResource IconSearch}" Width="14" Height="14" />
+                            </Button>
+                            <Button Classes="iconbtn lua" Command="{Binding LuaCheckCommand}" ToolTip.Tip="{DynamicResource L.Lua.Editor.CheckTip}">
+                                <PathIcon Data="{StaticResource IconCheckCircle}" Width="14" Height="14" />
+                            </Button>
+                            <Button Classes="iconbtn lua" Command="{Binding LuaShowApiRefCommand}" ToolTip.Tip="{DynamicResource L.Lua.Editor.ApiTip}">
+                                <PathIcon Data="{StaticResource IconBook}" Width="14" Height="14" />
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                            <Button Classes="ghost" Height="30" MinWidth="0" Padding="12,0" Command="{Binding LuaRestartCommand}"
+                                    IsVisible="{Binding LuaRunning}" IsEnabled="{Binding !SelectedBot.FollowerLocked}" ToolTip.Tip="{DynamicResource L.Lua.Editor.RestartTip}">
+                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                    <PathIcon Data="{StaticResource IconUpdate}" Width="12" Height="12" />
+                                    <TextBlock Text="{DynamicResource L.Lua.Editor.Restart}" FontSize="12" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                            <Button Classes="accent" Height="30" MinWidth="110" Padding="14,0" Command="{Binding ToggleLuaCommand}"
+                                    ToolTip.Tip="{DynamicResource L.Bots.Lua.ToggleTip}">
+                                <Button.IsEnabled>
+                                    <MultiBinding Converter="{StaticResource AllTrue}">
+                                        <Binding Path="!SelectedBot.FollowerLocked" />
+                                        <Binding Path="CanRunLua" />
+                                    </MultiBinding>
+                                </Button.IsEnabled>
+                                <Panel>
+                                    <StackPanel Orientation="Horizontal" Spacing="6" IsVisible="{Binding !LuaRunning}">
+                                        <PathIcon Data="{StaticResource IconPlay}" Width="12" Height="12" />
+                                        <TextBlock Text="{DynamicResource L.Bots.Lua.Run}" FontSize="12" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="6" IsVisible="{Binding LuaRunning}">
+                                        <PathIcon Data="{StaticResource IconStop}" Width="12" Height="12" />
+                                        <TextBlock Text="{DynamicResource L.Bots.Lua.Stop}" FontSize="12" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </Panel>
+                            </Button>
+                            <Button Classes="ghost" Height="30" MinWidth="0" Padding="12,0" Command="{Binding LuaCloseFullscreenCommand}"
+                                    ToolTip.Tip="{DynamicResource L.Lua.Editor.ReduceTip}">
+                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                    <PathIcon Data="{StaticResource IconCollapse}" Width="12" Height="12" />
+                                    <TextBlock Text="{DynamicResource L.Lua.Editor.Reduce}" FontSize="12" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                    <Border Grid.Row="1" CornerRadius="10" ClipToBounds="True" Background="{DynamicResource ConsolePanelBrush}"
+                            BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1">
+                        <!-- Éditeur plein écran créé à l'ouverture et retiré à la fermeture (code-behind) : aucun second éditeur actif. -->
+                        <ContentControl x:Name="FsEditorHost" />
+                    </Border>
+                    <Grid Grid.Row="2" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10" Margin="2,6,2,0">
+                        <Button Grid.Column="0" Classes="ghost" Height="24" MinWidth="0" Padding="9,0" Command="{Binding LuaNextProblemCommand}"
+                                ToolTip.Tip="{DynamicResource L.Lua.Editor.ProblemTip}">
+                            <TextBlock Text="{Binding LuaStatusText}" Foreground="{Binding LuaStatusBrush}" FontSize="11.5" FontWeight="SemiBold" VerticalAlignment="Center" />
+                        </Button>
+                        <Button Grid.Column="1" Classes="ghost" Height="24" MinWidth="0" Padding="8,0" HorizontalAlignment="Left"
+                                HorizontalContentAlignment="Left" Background="Transparent" BorderThickness="0"
+                                IsVisible="{Binding LuaHasProblem}" Command="{Binding LuaJumpToFirstProblemCommand}" ToolTip.Tip="{Binding LuaFirstProblemText}">
+                            <TextBlock Text="{Binding LuaFirstProblemText}" FontSize="11.5" TextTrimming="CharacterEllipsis"
+                                       Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
+                        </Button>
+                        <TextBlock Grid.Column="2" x:Name="FsCaret" FontSize="11" VerticalAlignment="Center"
+                                   Foreground="{StaticResource TextMutedBrush}" ToolTip.Tip="{DynamicResource L.Lua.Editor.Shortcuts}" />
+                    </Grid>
+                    <TextBlock Grid.Row="3" Classes="caption" Margin="4,8,0,4" Foreground="{StaticResource TextMutedBrush}"
+                               Text="{DynamicResource L.Bots.Lua.ConsoleTitle}" />
+                    <Border Grid.Row="4" CornerRadius="10" Height="190" Background="{StaticResource Surface1Brush}"
+                            BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1" ClipToBounds="True">
+                        <ListBox x:Name="FsConsole" ItemsSource="{Binding LuaOutput}" Background="Transparent" BorderThickness="0"
+                                 Padding="6,4" FontFamily="Cascadia Code,Consolas,Menlo,monospace" FontSize="11.5" DoubleTapped="OnConsoleDoubleTapped">
+                            <ListBox.Styles>
+                                <Style Selector="ListBoxItem">
+                                    <Setter Property="Padding" Value="4,0" />
+                                    <Setter Property="MinHeight" Value="20" />
+                                    <Setter Property="Height" Value="20" />
+                                </Style>
+                            </ListBox.Styles>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate x:DataType="vm:LuaLogRow">
+                                    <Grid ColumnDefinitions="10,Auto,90,Auto,*" ColumnSpacing="8" VerticalAlignment="Center">
+                                        <Ellipse Grid.Column="0" Width="7" Height="7" Fill="{Binding DotBrush}" VerticalAlignment="Center" />
+                                        <TextBlock Grid.Column="1" Text="{Binding Time}" Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center" />
+                                        <TextBlock Grid.Column="2" Text="{Binding Category}" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
+                                        <Button Grid.Column="3" IsVisible="{Binding HasLocation}" Padding="6,0" Height="17" MinWidth="0" Cursor="Hand"
+                                                Background="#33FF6B7A" BorderThickness="0" CornerRadius="5" VerticalAlignment="Center"
+                                                Command="{Binding $parent[ListBox].((vm:BotsViewModel)DataContext).LuaJumpToLogCommand}"
+                                                CommandParameter="{Binding}" ToolTip.Tip="{Binding LocationTip}">
+                                            <TextBlock Text="{Binding LocationLabel}" FontSize="10.5" FontWeight="SemiBold" Foreground="#FFB4BC" VerticalAlignment="Center" />
+                                        </Button>
+                                        <TextBlock Grid.Column="4" Text="{Binding Message}" Foreground="{Binding Brush}" FontWeight="{Binding Weight}"
+                                                   VerticalAlignment="Center" TextTrimming="CharacterEllipsis" ToolTip.Tip="{Binding Message}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- ===================== Modèles & snippets ===================== -->
+        <Grid Classes.modalOpen="{Binding LuaTemplatesOpen}" IsHitTestVisible="{Binding LuaTemplatesOpen}">
+            <Border Classes="modalScrim" PointerPressed="OnScrimTemplates" />
+            <Border Classes="modalCard" Width="980" Height="620" Padding="22,20" CornerRadius="16"
+                    Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid RowDefinitions="Auto,Auto,*,Auto" IsVisible="{Binding LuaTemplatesOpen}">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <PathIcon Data="{StaticResource IconSparkle}" Width="20" Height="20" Foreground="{DynamicResource AccentBrightBrush}" VerticalAlignment="Center" />
+                        <TextBlock Classes="mtitle" Text="{DynamicResource L.Lua.Editor.TemplatesTitle}" />
+                    </StackPanel>
+                    <Border Grid.Row="1" Classes="segbar" HorizontalAlignment="Left" Margin="0,14,0,12">
+                        <StackPanel Orientation="Horizontal" Spacing="3">
+                            <RadioButton Classes="seg" GroupName="luaTpl" IsChecked="{Binding LuaTemplatesTab, Converter={x:Static vm:LuaTabIs.Instance}, ConverterParameter=0}"
+                                         Content="{DynamicResource L.Lua.Editor.TabScripts}" />
+                            <RadioButton Classes="seg" GroupName="luaTpl" IsChecked="{Binding LuaTemplatesTab, Converter={x:Static vm:LuaTabIs.Instance}, ConverterParameter=1}"
+                                         Content="{DynamicResource L.Lua.Editor.TabSnippets}" />
+                        </StackPanel>
+                    </Border>
+                    <Grid Grid.Row="2" ColumnDefinitions="330,*" ColumnSpacing="14">
+                        <Panel Grid.Column="0">
+                            <ListBox Classes="luapick" ItemsSource="{Binding LuaScriptTemplates}" SelectedItem="{Binding SelectedLuaTemplate}"
+                                     IsVisible="{Binding LuaTemplatesTab, Converter={x:Static vm:LuaTabIs.Instance}, ConverterParameter=0}"
+                                     Background="Transparent" DoubleTapped="OnTemplateDoubleTapped">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate x:DataType="tool:LuaScriptTemplate">
+                                        <StackPanel Spacing="3">
+                                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                                <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="13" Foreground="{StaticResource TextPrimaryBrush}" />
+                                                <Border Background="{StaticResource Surface3Brush}" CornerRadius="5" Padding="6,1" VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding Category}" FontSize="10.5" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                </Border>
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding Description}" FontSize="11.5" TextWrapping="Wrap" Foreground="{StaticResource TextSecondaryBrush}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                            <ListBox Classes="luapick" ItemsSource="{Binding LuaSnippets}" SelectedItem="{Binding SelectedLuaSnippet}"
+                                     IsVisible="{Binding LuaTemplatesTab, Converter={x:Static vm:LuaTabIs.Instance}, ConverterParameter=1}"
+                                     Background="Transparent" DoubleTapped="OnTemplateDoubleTapped">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate x:DataType="tool:LuaSnippet">
+                                        <StackPanel Spacing="3">
+                                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                                <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="13" Foreground="{StaticResource TextPrimaryBrush}" />
+                                                <Border Background="{StaticResource Surface3Brush}" CornerRadius="5" Padding="6,1" VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding Trigger}" FontFamily="Cascadia Mono,Consolas,monospace" FontSize="10.5" Foreground="#B39DDB" />
+                                                </Border>
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding Description}" FontSize="11.5" TextWrapping="Wrap" Foreground="{StaticResource TextSecondaryBrush}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Panel>
+                        <Border Grid.Column="1" CornerRadius="10" ClipToBounds="True" Background="{DynamicResource ConsolePanelBrush}"
+                                BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1">
+                            <lua:LuaCodePreview Text="{Binding LuaTemplatePreview}" />
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="3" ColumnDefinitions="*,Auto" Margin="0,16,0,0">
+                        <TextBlock Classes="caption" VerticalAlignment="Center" Foreground="{StaticResource TextMutedBrush}"
+                                   Text="{DynamicResource L.Lua.Editor.TemplatesHint}" TextWrapping="Wrap" />
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10">
+                            <Button Classes="ghost" Height="38" MinWidth="100" Command="{Binding LuaCloseTemplatesCommand}">
+                                <StackPanel Orientation="Horizontal" Spacing="7">
+                                    <PathIcon Data="{StaticResource IconClose}" Width="12" Height="12" />
+                                    <TextBlock Text="{DynamicResource L.Common.Close}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                            <Button Classes="ghost" Height="38" MinWidth="150" Command="{Binding LuaInsertTemplateCommand}">
+                                <StackPanel Orientation="Horizontal" Spacing="7">
+                                    <PathIcon Data="{StaticResource IconPlus}" Width="13" Height="13" />
+                                    <TextBlock Text="{DynamicResource L.Lua.Editor.InsertAtCaret}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                            <Button Classes="primary" Height="38" MinWidth="170" Command="{Binding LuaApplyTemplateCommand}"
+                                    IsVisible="{Binding LuaTemplatesTab, Converter={x:Static vm:LuaTabIs.Instance}, ConverterParameter=0}">
+                                <StackPanel Orientation="Horizontal" Spacing="7">
+                                    <PathIcon Data="{StaticResource IconCheck}" Width="13" Height="13" />
+                                    <TextBlock Text="{DynamicResource L.Lua.Editor.Replace}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- ===================== Scripts récents ===================== -->
+        <Grid Classes.modalOpen="{Binding LuaRecentOpen}" IsHitTestVisible="{Binding LuaRecentOpen}">
+            <Border Classes="modalScrim" PointerPressed="OnScrimRecent" />
+            <Border Classes="modalCard" Width="720" MaxHeight="620" Padding="22,20" CornerRadius="16"
+                    Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid RowDefinitions="Auto,*,Auto" IsVisible="{Binding LuaRecentOpen}">
+                    <StackPanel Orientation="Horizontal" Spacing="12" Margin="0,0,0,14">
+                        <PathIcon Data="{StaticResource IconClock}" Width="20" Height="20" Foreground="{DynamicResource AccentBrightBrush}" VerticalAlignment="Center" />
+                        <TextBlock Classes="mtitle" Text="{DynamicResource L.Lua.Editor.RecentTitle}" />
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel Spacing="6">
+                            <TextBlock Classes="caption" Text="{DynamicResource L.Lua.Editor.RecentEmpty}" IsVisible="{Binding !LuaHasRecent}"
+                                       Foreground="{StaticResource TextMutedBrush}" Margin="2,4" />
+                            <ItemsControl ItemsSource="{Binding LuaRecentFiles}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="vm:LuaRecentRow">
+                                        <Border Background="{StaticResource Surface1Brush}" CornerRadius="9" Padding="12,8" Margin="0,2"
+                                                BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1">
+                                            <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="10">
+                                                <PathIcon Data="{StaticResource IconScript}" Width="14" Height="14" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
+                                                <StackPanel Grid.Column="1" Spacing="1">
+                                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                                        <TextBlock Text="{Binding Name}" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" />
+                                                        <TextBlock Text="{DynamicResource L.Lua.Editor.MissingTag}" IsVisible="{Binding !Exists}" Foreground="#FF6B7A" FontSize="11" VerticalAlignment="Center" />
+                                                    </StackPanel>
+                                                    <TextBlock Classes="pii" Text="{Binding Folder}" FontSize="11" Foreground="{StaticResource TextMutedBrush}" TextTrimming="CharacterEllipsis" />
+                                                </StackPanel>
+                                                <TextBlock Grid.Column="2" Text="{Binding When}" FontSize="11" Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center" />
+                                                <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="6">
+                                                    <Button Classes="iconbtn lua" ToolTip.Tip="{DynamicResource L.Lua.Editor.Forget}"
+                                                            Command="{Binding $parent[ItemsControl].((vm:BotsViewModel)DataContext).LuaForgetRecentCommand}" CommandParameter="{Binding}">
+                                                        <PathIcon Data="{StaticResource IconClose}" Width="11" Height="11" />
+                                                    </Button>
+                                                    <Button Classes="ghost" Height="30" MinWidth="80" IsEnabled="{Binding Exists}"
+                                                            Command="{Binding $parent[ItemsControl].((vm:BotsViewModel)DataContext).LuaOpenRecentCommand}" CommandParameter="{Binding}">
+                                                        <TextBlock Text="{DynamicResource L.Lua.Editor.Open}" VerticalAlignment="Center" FontSize="12" />
+                                                    </Button>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <TextBlock Classes="caption" Text="{DynamicResource L.Lua.Editor.Library}" IsVisible="{Binding LuaHasLibrary}"
+                                       Foreground="{StaticResource TextMutedBrush}" Margin="2,14,0,4" />
+                            <ItemsControl ItemsSource="{Binding LuaLibraryFiles}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="vm:LuaRecentRow">
+                                        <Border Background="{StaticResource Surface1Brush}" CornerRadius="9" Padding="12,6" Margin="0,2"
+                                                BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1">
+                                            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
+                                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                                    <TextBlock Text="{Binding Name}" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center" />
+                                                    <TextBlock Text="{Binding Folder}" FontSize="11" Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center" />
+                                                </StackPanel>
+                                                <TextBlock Grid.Column="1" Text="{Binding When}" FontSize="11" Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center" />
+                                                <Button Grid.Column="2" Classes="ghost" Height="28" MinWidth="80"
+                                                        Command="{Binding $parent[ItemsControl].((vm:BotsViewModel)DataContext).LuaOpenRecentCommand}" CommandParameter="{Binding}">
+                                                    <TextBlock Text="{DynamicResource L.Lua.Editor.Open}" VerticalAlignment="Center" FontSize="12" />
+                                                </Button>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,16,0,0">
+                        <Button Classes="ghost" Height="38" MinWidth="100" Command="{Binding LuaCloseRecentCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <PathIcon Data="{StaticResource IconClose}" Width="12" Height="12" />
+                                <TextBlock Text="{DynamicResource L.Common.Close}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button Classes="primary" Height="38" MinWidth="140" Command="{Binding LuaOpenFromRecentPickerCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <PathIcon Data="{StaticResource IconFolder}" Width="13" Height="13" />
+                                <TextBlock Text="{DynamicResource L.Lua.Editor.Browse}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- ===================== Référence de l'API ===================== -->
+        <Grid Classes.modalOpen="{Binding LuaApiRefOpen}" IsHitTestVisible="{Binding LuaApiRefOpen}">
+            <Border Classes="modalScrim" PointerPressed="OnScrimApi" />
+            <Border Classes="modalCard" Width="1100" Height="680" Padding="22,20" CornerRadius="16"
+                    Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid RowDefinitions="Auto,Auto,*,Auto" IsVisible="{Binding LuaApiRefOpen}">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <PathIcon Data="{StaticResource IconBook}" Width="20" Height="20" Foreground="{DynamicResource AccentBrightBrush}" VerticalAlignment="Center" />
+                        <TextBlock Classes="mtitle" Text="{DynamicResource L.Lua.Editor.ApiTitle}" />
+                        <TextBlock Text="{Binding LuaApiCount}" FontSize="12" Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <TextBox x:Name="ApiSearch" Grid.Row="1" Margin="0,14,0,12" Text="{Binding LuaApiQuery}"
+                             Watermark="{DynamicResource L.Lua.Editor.ApiSearch}" KeyDown="OnApiSearchKeyDown" />
+                    <Grid Grid.Row="2" ColumnDefinitions="210,340,*" ColumnSpacing="12">
+                        <ListBox Grid.Column="0" Classes="luapick" ItemsSource="{Binding LuaApiCategories}" SelectedIndex="{Binding LuaApiCategoryIndex}"
+                                 Background="Transparent">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate x:DataType="vm:LuaApiCategoryRow">
+                                    <TextBlock Text="{Binding Title}" FontSize="12.5" TextTrimming="CharacterEllipsis" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Border Grid.Column="1" CornerRadius="10" Background="{StaticResource Surface1Brush}" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1">
+                            <Panel>
+                                <TextBlock Text="{DynamicResource L.Lua.Editor.ApiEmpty}" IsVisible="{Binding LuaApiEmpty}" Margin="14"
+                                           Foreground="{StaticResource TextMutedBrush}" />
+                                <ListBox Classes="luapick" ItemsSource="{Binding LuaApiResults}" SelectedItem="{Binding SelectedLuaApiRow}"
+                                         Background="Transparent" DoubleTapped="OnApiDoubleTapped">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:LuaApiRow">
+                                            <Grid ColumnDefinitions="18,*" ColumnSpacing="6">
+                                                <TextBlock Text="{Binding KindGlyph}" Foreground="{Binding KindBrush}" FontWeight="Bold" HorizontalAlignment="Center" />
+                                                <StackPanel Grid.Column="1" Spacing="2">
+                                                    <TextBlock Text="{Binding Title}" FontFamily="Cascadia Mono,Consolas,monospace" FontSize="12.5"
+                                                               Foreground="{StaticResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis" />
+                                                    <TextBlock Text="{Binding Summary}" FontSize="11" Foreground="{StaticResource TextMutedBrush}"
+                                                               TextTrimming="CharacterEllipsis" MaxLines="2" TextWrapping="Wrap" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Panel>
+                        </Border>
+                        <Border Grid.Column="2" CornerRadius="10" Background="{StaticResource Surface1Brush}" BorderBrush="{StaticResource StrokeSoftBrush}"
+                                BorderThickness="1" Padding="16,14">
+                            <Grid RowDefinitions="Auto,*">
+                                <TextBlock Text="{Binding LuaApiCategoryBlurb}" TextWrapping="Wrap" FontSize="11.5" Margin="0,0,0,10"
+                                           Foreground="{StaticResource TextMutedBrush}" IsVisible="{Binding LuaApiCategoryBlurb, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                                <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled">
+                                    <lua:LuaApiCard Row="{Binding SelectedLuaApiRow}" />
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,16,0,0">
+                        <Button Classes="ghost" Height="38" MinWidth="100" Command="{Binding LuaCloseApiRefCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <PathIcon Data="{StaticResource IconClose}" Width="12" Height="12" />
+                                <TextBlock Text="{DynamicResource L.Common.Close}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button Classes="ghost" Height="38" MinWidth="150" Click="OnCopyApiExample">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <PathIcon Data="{StaticResource IconCopy}" Width="13" Height="13" />
+                                <TextBlock Text="{DynamicResource L.Lua.Editor.CopyExample}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button Classes="primary" Height="38" MinWidth="130" Command="{Binding LuaInsertApiCommand}" CommandParameter="{Binding SelectedLuaApiRow}">
+                            <StackPanel Orientation="Horizontal" Spacing="7">
+                                <PathIcon Data="{StaticResource IconPlus}" Width="13" Height="13" />
+                                <TextBlock Text="{DynamicResource L.Lua.Editor.Insert}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- ===================== Aller à la ligne (Ctrl+G) ===================== -->
+        <Grid Classes.modalOpen="{Binding LuaGoToOpen}" IsHitTestVisible="{Binding LuaGoToOpen}" IsEnabled="{Binding LuaGoToOpen}">
+            <Border Classes="modalScrim" PointerPressed="OnScrimGoTo" />
+            <Border Classes="modalCard" Width="380" Padding="24,22" CornerRadius="16"
+                    Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Spacing="14">
+                    <TextBlock Classes="mtitle" Text="{DynamicResource L.Lua.Editor.GoToTitle}" />
+                    <TextBox x:Name="GoToBox" Text="{Binding LuaGoToText}" Watermark="{Binding LuaGoToHint}" KeyDown="OnGoToKeyDown" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                        <Button Classes="ghost" Height="38" MinWidth="100" Command="{Binding LuaGoToCancelCommand}">
+                            <TextBlock Text="{DynamicResource L.Common.Cancel}" VerticalAlignment="Center" />
+                        </Button>
+                        <Button Classes="primary" Height="38" MinWidth="100" Command="{Binding LuaGoToConfirmCommand}">
+                            <TextBlock Text="{DynamicResource L.Lua.Editor.Go}" VerticalAlignment="Center" />
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- ===================== Modifications non enregistrées ===================== -->
+        <Grid Classes.modalOpen="{Binding LuaUnsavedOpen}" IsHitTestVisible="{Binding LuaUnsavedOpen}" IsEnabled="{Binding LuaUnsavedOpen}">
+            <Border Classes="modalScrim" />
+            <Border Classes="modalCard" Width="460" Padding="26,24" CornerRadius="16"
+                    Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Spacing="16">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <PathIcon Data="{StaticResource IconSave}" Width="20" Height="20" Foreground="#E8B339" VerticalAlignment="Center" />
+                        <TextBlock Classes="mtitle" Text="{DynamicResource L.Lua.Editor.UnsavedTitle}" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding LuaUnsavedText}" TextWrapping="Wrap" FontSize="13" Foreground="{StaticResource TextSecondaryBrush}" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                        <Button Classes="ghost" Height="38" MinWidth="90" Command="{Binding LuaUnsavedCancelCommand}">
+                            <TextBlock Text="{DynamicResource L.Common.Cancel}" VerticalAlignment="Center" />
+                        </Button>
+                        <Button Classes="ghost" Height="38" MinWidth="130" Command="{Binding LuaUnsavedDiscardCommand}">
+                            <TextBlock Text="{DynamicResource L.Lua.Editor.DontSave}" VerticalAlignment="Center" />
+                        </Button>
+                        <Button Classes="primary" Height="38" MinWidth="120" Command="{Binding LuaUnsavedSaveCommand}">
+                            <TextBlock Text="{DynamicResource L.Common.Save}" VerticalAlignment="Center" />
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

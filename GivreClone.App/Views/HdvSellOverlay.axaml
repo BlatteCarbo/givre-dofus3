@@ -1,0 +1,295 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             xmlns:ctl="using:GivreClone.App.Controls"
+             x:Class="GivreClone.App.Views.HdvSellOverlay"
+             x:DataType="vm:BotsViewModel">
+    <!-- Overlay niveau fenêtre : « Mettre en vente » de l'onglet HDV (objets du sac + banque, mise en vente en flux). -->
+    <UserControl.Styles>
+        <Style Selector="ListBox.sell">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+        <Style Selector="ListBox.sell ListBoxItem">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="MinHeight" Value="0" />
+            <Setter Property="CornerRadius" Value="8" />
+        </Style>
+        <Style Selector="ListBox.sell ListBoxItem:selected /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource Surface2Brush}" />
+        </Style>
+        <Style Selector="ListBox.sell ListBoxItem:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource Surface1Brush}" />
+        </Style>
+        <Style Selector="TextBlock.colhead">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="NumericUpDown, ComboBox, TextBox">
+            <Setter Property="Background" Value="{StaticResource Surface2Brush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource StrokeSoftBrush}" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid Classes.modalOpen="{Binding Hdv.SellModalVisible}" IsHitTestVisible="{Binding Hdv.SellModalVisible}"
+          IsEnabled="{Binding Hdv.SellModalVisible}">
+        <Border Classes="modalScrim" PointerPressed="OnScrimPressed" />
+        <Border Classes="modalCard" MaxWidth="1240" MaxHeight="860" Margin="28" Padding="0" CornerRadius="16"
+                Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                DataContext="{Binding Hdv}" x:DataType="vm:HdvViewModel">
+            <Grid RowDefinitions="Auto,Auto,*,Auto">
+
+                <!-- En-tête -->
+                <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto,Auto" Margin="22,18,16,10">
+                    <PathIcon Grid.Column="0" Data="{StaticResource IconCart}" Width="22" Height="22" VerticalAlignment="Center" Foreground="{DynamicResource AccentBrightBrush}" />
+                    <StackPanel Grid.Column="1" Spacing="2" Margin="12,0,12,0" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="{DynamicResource L.Bots.Hdv.Sell.Title}" FontSize="17" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" />
+                            <TextBlock Text="—" FontSize="17" Foreground="{StaticResource TextMutedBrush}" IsVisible="{Binding SellCharName, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                            <TextBlock Text="{Binding SellCharName}" Classes="pii" FontSize="17" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" />
+                        </StackPanel>
+                        <TextBlock Text="{DynamicResource L.Bots.Hdv.Sell.Hint}" Classes="caption" TextWrapping="Wrap" MaxWidth="820" Foreground="{StaticResource TextMutedBrush}" />
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button Content="{DynamicResource L.Bots.Hdv.BankRefresh}" Command="{Binding RefreshBankStockCommand}"
+                                    IsEnabled="{Binding CanBulk}" Padding="8,3" />
+                            <TextBlock Text="{Binding BankStockStatus}" VerticalAlignment="Center" FontSize="11.5" Foreground="{StaticResource TextMutedBrush}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Top" Margin="0,2,12,0">
+                        <Button Content="Diagnostic UID" Command="{Binding OpenUidOperatorCommand}" />
+                        <Border CornerRadius="10" Padding="10,4" Background="#1F63D3A6" IsVisible="{Binding IsHdvOpen}">
+                            <TextBlock Text="{DynamicResource L.Bots.Hdv.Sell.HdvOpen}" FontSize="11.5" Foreground="#63D3A6" />
+                        </Border>
+                        <Border CornerRadius="10" Padding="10,4" Background="#1FF2C14E" IsVisible="{Binding !IsHdvOpen}">
+                            <TextBlock Text="{DynamicResource L.Bots.Hdv.Sell.HdvClosed}" FontSize="11.5" Foreground="#F2C14E" />
+                        </Border>
+                        <Border CornerRadius="10" Padding="10,4" Background="{StaticResource Surface2Brush}">
+                            <TextBlock Text="{Binding FreeSlotsText}" FontSize="11.5" Foreground="{StaticResource TextSecondaryBrush}" />
+                        </Border>
+                    </StackPanel>
+                    <Button Grid.Column="3" Classes="ghost" Width="34" Height="34" MinWidth="0" Padding="0" VerticalAlignment="Top"
+                            Click="OnClosePressed" ToolTip.Tip="{DynamicResource L.Common.Close}">
+                        <PathIcon Data="{StaticResource IconClose}" Width="15" Height="15" />
+                    </Button>
+                </Grid>
+
+                <!-- Barre d'outils : recherche, filtre, tri, cases -->
+                <Grid Grid.Row="1" ColumnDefinitions="*,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="8" Margin="22,0,22,10" IsEnabled="{Binding IsStageSelect}">
+                    <TextBox Grid.Column="0" Height="32" Text="{Binding SellSearch}" Watermark="{DynamicResource L.Bots.Hdv.Sell.Search}" />
+                    <ComboBox Grid.Column="1" Height="32" MinWidth="150" ItemsSource="{Binding SellFilterModes}" SelectedIndex="{Binding SellFilterIndex}" />
+                    <ComboBox Grid.Column="2" Height="32" MinWidth="150" ItemsSource="{Binding SellSortModes}" SelectedIndex="{Binding SellSortIndex}" />
+                    <Button Grid.Column="3" Classes="ghost" Height="32" MinWidth="0" Padding="12,0" Command="{Binding CheckVisibleCommand}">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <PathIcon Data="{StaticResource IconCheck}" Width="12" Height="12" />
+                            <TextBlock Text="{DynamicResource L.Bots.Hdv.Sell.CheckVisible}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Column="4" Classes="ghost" Height="32" MinWidth="0" Padding="12,0" Command="{Binding CheckResourcesCommand}"
+                            ToolTip.Tip="{DynamicResource L.Bots.Hdv.Bulk.CheckResourcesTip}">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <PathIcon Data="{StaticResource IconLeaf}" Width="12" Height="12" />
+                            <TextBlock Text="{DynamicResource L.Bots.Hdv.Bulk.CheckResources}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Column="5" Classes="ghost" Height="32" MinWidth="0" Padding="12,0" Command="{Binding UncheckAllCommand}">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <PathIcon Data="{StaticResource IconClose}" Width="10" Height="10" />
+                            <TextBlock Text="{DynamicResource L.Bots.Hdv.Bulk.UncheckAll}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
+
+                <!-- Corps : liste (gauche) + réglages / résumé / vente d'un lot (droite) -->
+                <Grid Grid.Row="2" ColumnDefinitions="*,340" ColumnSpacing="14" Margin="22,0,22,8">
+                    <Border Grid.Column="0" Background="{StaticResource Surface1Brush}" CornerRadius="12" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1" Padding="8,6">
+                        <Grid RowDefinitions="Auto,*,Auto">
+                            <!-- en-têtes : mêmes largeurs que les lignes -->
+                            <Grid Grid.Row="0" ColumnDefinitions="32,34,*,90,90,120,150,120" Margin="6,2,6,6">
+                                <TextBlock Grid.Column="2" Classes="colhead" Text="{DynamicResource L.Bots.Hdv.Sell.ColItem}" />
+                                <TextBlock Grid.Column="3" Classes="colhead" Text="{DynamicResource L.Bots.Hdv.Sell.ColQty}" HorizontalAlignment="Right" />
+                                <TextBlock Grid.Column="4" Classes="colhead" Text="{DynamicResource L.Bots.Hdv.Sell.ColAvg}" HorizontalAlignment="Right" />
+                                <TextBlock Grid.Column="5" Classes="colhead" Text="{DynamicResource L.Bots.Hdv.Sell.ColEst}" HorizontalAlignment="Right" />
+                                <TextBlock Grid.Column="6" Classes="colhead" Text="{DynamicResource L.Bots.Hdv.Sell.ColPlan}" Margin="14,0,0,0" />
+                                <TextBlock Grid.Column="7" Classes="colhead" Text="{DynamicResource L.Bots.Hdv.Sell.ColState}" />
+                            </Grid>
+                            <!-- VIRTUALISÉE (pas de ScrollViewer autour) : des centaines d'objets restent fluides -->
+                            <ListBox Grid.Row="1" Classes="sell" ItemsSource="{Binding SellRowsView}" SelectedItem="{Binding SelectedSellRow}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate x:DataType="vm:HdvSellRow">
+                                        <Grid ColumnDefinitions="32,34,*,90,90,120,150,120" Height="40" Margin="6,0">
+                                            <ToolTip.Tip><ctl:ItemTooltip Gid="{Binding Gid}" Pid="{Binding TooltipPid}" /></ToolTip.Tip>
+                                            <CheckBox Grid.Column="0" IsChecked="{Binding Checked}" MinWidth="0" Padding="0" VerticalAlignment="Center"
+                                                      IsEnabled="{Binding $parent[ListBox].((vm:HdvViewModel)DataContext).IsStageSelect}" />
+                                            <Panel Grid.Column="1" Width="28" Height="28" VerticalAlignment="Center">
+                                                <Image Source="{Binding Icon}" IsVisible="{Binding HasIcon}" />
+                                                <Border IsVisible="{Binding !HasIcon}" CornerRadius="6" Background="{StaticResource StrokeSoftBrush}" />
+                                            </Panel>
+                                            <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="8,0" Spacing="0">
+                                                <TextBlock Text="{Binding Name}" Foreground="{StaticResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis" />
+                                                <TextBlock Text="{Binding SourceText}" FontSize="10.5" Foreground="{StaticResource TextMutedBrush}" />
+                                            </StackPanel>
+                                            <TextBlock Grid.Column="3" Text="{Binding QtyText}" Foreground="#63D3A6" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                            <TextBlock Grid.Column="4" Text="{Binding AvgText}" Foreground="{StaticResource TextSecondaryBrush}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                            <TextBlock Grid.Column="5" Text="{Binding EstValueText}" Foreground="{DynamicResource AccentBrightBrush}" FontWeight="SemiBold" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                            <TextBlock Grid.Column="6" Text="{Binding PlanText}" Foreground="{StaticResource TextSecondaryBrush}" FontSize="11.5" Margin="14,0,0,0" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                            <StackPanel Grid.Column="7" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                                                <Ellipse Classes="spinner" Width="12" Height="12" IsVisible="{Binding IsBusy}" />
+                                                <PathIcon Data="{StaticResource IconCheck}" Width="12" Height="12" Foreground="#63D3A6" IsVisible="{Binding IsDone}" />
+                                                <PathIcon Data="{StaticResource IconMinimize}" Width="11" Height="11" Foreground="#F2C14E" IsVisible="{Binding IsSkipped}" />
+                                                <PathIcon Data="{StaticResource IconClose}" Width="10" Height="10" Foreground="#F0616D" IsVisible="{Binding IsFailed}" />
+                                                <TextBlock Text="{Binding ProgressText}" FontSize="11.5" Foreground="{StaticResource TextSecondaryBrush}" />
+                                                <TextBlock Text="{Binding StateText}" FontSize="11.5" Foreground="{StaticResource TextMutedBrush}" TextTrimming="CharacterEllipsis" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                            <TextBlock Grid.Row="2" Text="{Binding NotAcceptedText}" IsVisible="{Binding HasNotAccepted}" Classes="caption" Margin="6,6,6,0" Foreground="{StaticResource TextMutedBrush}" />
+                        </Grid>
+                    </Border>
+
+                    <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel Spacing="12">
+                            <!-- Réglages -->
+                            <Border Background="{StaticResource Surface1Brush}" CornerRadius="12" Padding="14" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1">
+                                <StackPanel Spacing="8" IsEnabled="{Binding IsStageSelect}">
+                                    <TextBlock Classes="section" Text="{DynamicResource L.Bots.Hdv.Sell.Settings}" />
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                                        <StackPanel Spacing="2">
+                                            <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Hdv.Bulk.LotSize}" />
+                                            <ComboBox HorizontalAlignment="Stretch" ItemsSource="{Binding BulkLotModes}" SelectedIndex="{Binding BulkLotIndex}" ToolTip.Tip="{DynamicResource L.Bots.Hdv.Bulk.LotSizeTip}" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Spacing="2">
+                                            <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Hdv.Bulk.MaxLots}" />
+                                            <NumericUpDown Value="{Binding BulkMaxLots}" Minimum="0" Maximum="100" Increment="1" FormatString="0"
+                                                           ToolTip.Tip="{DynamicResource L.Bots.Hdv.Sell.MaxLotsHint}" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,130" RowDefinitions="Auto,Auto" RowSpacing="6">
+                                        <TextBlock Grid.Row="0" Classes="caption" Text="{DynamicResource L.Bots.Hdv.UndercutBy}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                        <NumericUpDown Grid.Row="0" Grid.Column="1" Value="{Binding PriceStep}" Minimum="1" Maximum="1000000" Increment="1" FormatString="N0" ToolTip.Tip="{DynamicResource L.Bots.Hdv.UndercutByTip}" />
+                                        <TextBlock Grid.Row="1" Classes="caption" Text="{DynamicResource L.Bots.Hdv.FloorPct}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                        <NumericUpDown Grid.Row="1" Grid.Column="1" Value="{Binding FloorPercent}" Minimum="0" Maximum="100" Increment="1" FormatString="0" ToolTip.Tip="{DynamicResource L.Bots.Hdv.FloorPctTip}" />
+                                    </Grid>
+                                    <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Bots.Hdv.Sell.RuleHint}" Foreground="{StaticResource TextMutedBrush}" />
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Résumé -->
+                            <Border Background="{StaticResource Surface1Brush}" CornerRadius="12" Padding="14" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1">
+                                <StackPanel Spacing="6">
+                                    <TextBlock Classes="section" Text="{DynamicResource L.Bots.Hdv.Sell.Summary}" />
+                                    <TextBlock Text="{Binding CheckedCountText}" Foreground="{StaticResource TextPrimaryBrush}" />
+                                    <TextBlock Text="{Binding FreeSlotsText}" Foreground="{StaticResource TextSecondaryBrush}" />
+                                    <TextBlock Text="{Binding PreviewText}" TextWrapping="Wrap" Foreground="{DynamicResource AccentBrightBrush}" />
+                                    <Border IsVisible="{Binding HasTaxHint}" CornerRadius="8" Padding="10,8" Background="#1FF2C14E">
+                                        <TextBlock Text="{Binding TaxHintText}" TextWrapping="Wrap" FontSize="11.5" Foreground="#F2C14E" />
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Vente d'un lot (objet sélectionné) -->
+                            <Border Background="{StaticResource Surface1Brush}" CornerRadius="12" Padding="14" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1"
+                                    IsVisible="{Binding HasSelectedItem}">
+                                <StackPanel Spacing="8" IsEnabled="{Binding IsStageSelect}">
+                                    <TextBlock Classes="section" Text="{DynamicResource L.Bots.Hdv.Sell.One}" />
+                                    <TextBlock Text="{Binding SelectedSellRow.Name}" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis" />
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Hdv.Market}" />
+                                        <TextBlock Grid.Column="1" Text="{Binding SelectedMarketText}" Foreground="#F2C14E" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                                        <StackPanel Spacing="2">
+                                            <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Hdv.LotQty}" />
+                                            <ComboBox HorizontalAlignment="Stretch" ItemsSource="{Binding LotOptions}" SelectedItem="{Binding SellLotQty}" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Spacing="2">
+                                            <TextBlock Classes="caption" Text="{DynamicResource L.Bots.Hdv.UnitPrice}" />
+                                            <NumericUpDown Value="{Binding SellUnitPrice}" Minimum="0" Maximum="1000000000" Increment="1" FormatString="N0" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <Button HorizontalAlignment="Stretch" Classes="ghost" Command="{Binding SellSelectedCommand}" IsVisible="{Binding !SellArmed}">
+                                        <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
+                                            <PathIcon Data="{StaticResource IconCart}" Width="13" Height="13" />
+                                            <TextBlock Text="{DynamicResource L.Bots.Hdv.Sell.SellOne}" VerticalAlignment="Center" />
+                                        </StackPanel>
+                                    </Button>
+                                    <Button HorizontalAlignment="Stretch" Classes="primary" Command="{Binding SellSelectedCommand}" IsVisible="{Binding SellArmed}">
+                                        <TextBlock Text="{Binding SellArmText}" TextWrapping="Wrap" TextAlignment="Center" />
+                                    </Button>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+
+                <!-- Pied : selon l'étape -->
+                <Border Grid.Row="3" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="0,1,0,0" Padding="22,12">
+                    <Panel>
+                        <!-- choix -->
+                        <Grid ColumnDefinitions="Auto,*,Auto" IsVisible="{Binding IsStageSelect}">
+                            <Button Grid.Column="0" Classes="ghost" Height="38" Padding="16,0" Click="OnClosePressed">
+                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                    <PathIcon Data="{StaticResource IconClose}" Width="11" Height="11" />
+                                    <TextBlock Text="{DynamicResource L.Common.Close}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                            <Button Grid.Column="2" Classes="primary" Height="38" Padding="20,0" Command="{Binding StartSellCommand}" IsEnabled="{Binding CanStartSell}">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <PathIcon Data="{StaticResource IconCart}" Width="14" Height="14" />
+                                    <TextBlock Text="{Binding StartSellText}" VerticalAlignment="Center" FontWeight="SemiBold" />
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                        <!-- en cours -->
+                        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8" IsVisible="{Binding IsStageRunning}">
+                            <StackPanel Grid.Column="0" Spacing="6" VerticalAlignment="Center">
+                                <Grid ColumnDefinitions="Auto,*,Auto">
+                                    <Ellipse Grid.Column="0" Classes="spinner" Width="12" Height="12" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Column="1" Text="{Binding CurrentItemText}" Margin="8,0" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Foreground="{StaticResource TextPrimaryBrush}" />
+                                    <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding BulkProgressText}" Foreground="{StaticResource TextSecondaryBrush}" />
+                                        <TextBlock Text="{Binding RunListedValueText}" Foreground="{DynamicResource AccentBrightBrush}" FontWeight="SemiBold" />
+                                    </StackPanel>
+                                </Grid>
+                                <ProgressBar Minimum="0" Maximum="1" Value="{Binding BulkProgressValue}" Height="4" MinHeight="4"
+                                             Foreground="{DynamicResource AccentBrush}" Background="{StaticResource Surface2Brush}" />
+                            </StackPanel>
+                            <Button Grid.Column="1" Classes="ghost" Height="38" Padding="16,0" Click="OnClosePressed">
+                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                    <PathIcon Data="{StaticResource IconMinimize}" Width="11" Height="11" />
+                                    <TextBlock Text="{DynamicResource L.Bots.Hdv.Sell.Minimize}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                            <Button Grid.Column="2" Classes="ghost" Height="38" Padding="16,0" Command="{Binding CancelBulkCommand}">
+                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                    <PathIcon Data="{StaticResource IconStop}" Width="11" Height="11" />
+                                    <TextBlock Text="{DynamicResource L.Bots.Hdv.Sell.Stop}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                        <!-- terminé -->
+                        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8" IsVisible="{Binding IsStageDone}">
+                            <TextBlock Grid.Column="0" Text="{Binding RunSummaryText}" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}" />
+                            <Button Grid.Column="1" Classes="ghost" Height="38" Padding="16,0" Command="{Binding SellAgainCommand}">
+                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                    <PathIcon Data="{StaticResource IconCart}" Width="12" Height="12" />
+                                    <TextBlock Text="{DynamicResource L.Bots.Hdv.Sell.Again}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                            <Button Grid.Column="2" Classes="primary" Height="38" Padding="16,0" Click="OnClosePressed">
+                                <StackPanel Orientation="Horizontal" Spacing="7">
+                                    <PathIcon Data="{StaticResource IconClose}" Width="12" Height="12" />
+                                    <TextBlock Text="{DynamicResource L.Common.Close}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </Panel>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

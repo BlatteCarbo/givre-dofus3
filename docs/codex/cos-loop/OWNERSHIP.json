@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "canonical_path": "docs/codex/cos-loop/OWNERSHIP.json",
+  "coordinator": "this CoS caller",
+  "source_registry_evidence": "docs/agents/20261026/S02/s02-ownership/REGISTRY.json",
+  "source_registry_state": "Historical; active leases of another family unconfirmed",
+  "reserved_hot_files": [
+    "GivreClone.App/Services/LaunchService.cs",
+    "GivreClone.App/Services/LaunchService.Packets.cs",
+    "GivreClone.App/Services/GivreLuaHost.Bindings.cs",
+    "GivreClone.Protocol/RequiredMapping.cs",
+    "GivreClone.App/Views/BotsView.axaml",
+    "GivreClone.Tests/GivreClone.Tests.csproj",
+    "GivreClone.App/Lang/fr.axaml",
+    "GivreClone.App/Lang/en.axaml",
+    "GivreClone.App/Lang/es.axaml"
+  ],
+  "reserved_hot_files_owner": "integration-prime historical; worker writes forbidden until reconciled",
+  "active_this_caller": [
+    {
+      "id": "C02",
+      "worker": "worker-1",
+      "task_id": "C02-W111",
+      "stage": "integrated_verified_commit_abcfccf",
+      "base_head": "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-1/tree",
+      "write_scope": "GivreClone.App/Services/Combat/C02LoopW111*.cs; GivreClone.Tests/C02LoopW111*Tests.cs; docs/agents/20261028/C02/loop-w111/**",
+      "hot_files": "PRIME only, INTEGRATION.diff review-only"
+    },
+    {
+      "id": "H02",
+      "worker": "worker-3",
+      "task_id": "H02-W111",
+      "stage": "integrated_verified_commit_ab1b642",
+      "base_head": "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-3/tree",
+      "write_scope": "GivreClone.App/Services/HdvOfferPresentation/H02LoopW111*.cs; GivreClone.Tests/H02LoopW111*Tests.cs; docs/agents/20261028/H02/loop-w111/**",
+      "hot_files": "PRIME only, INTEGRATION.diff review-only"
+    },
+    {
+      "id": "S02",
+      "worker": "worker-4",
+      "task_id": "S02-W111",
+      "stage": "integrated_verified_commit_b4a2479",
+      "base_head": "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-4/tree",
+      "write_scope": "GivreClone.App/Services/Ownership/S02LoopW111*.cs; GivreClone.Tests/S02LoopW111*Tests.cs; docs/agents/20261028/S02/loop-w111/**",
+      "hot_files": "PRIME only, INTEGRATION.diff review-only"
+    },
+    {
+      "id": "N02",
+      "worker": "worker-5",
+      "task_id": "N02-W111",
+      "stage": "integrated_verified_commit_cdea366",
+      "base_head": "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-5/tree",
+      "write_scope": "GivreClone.App/Services/Movement/N02LoopW111*.cs; GivreClone.Tests/N02LoopW111*Tests.cs; docs/agents/20261028/N02/loop-w111/**",
+      "hot_files": "PRIME only, INTEGRATION.diff review-only"
+    },
+    {
+      "id": "F02",
+      "worker": "worker-6",
+      "task_id": "F02-W111",
+      "stage": "integrated_verified_commit_7e39d95",
+      "base_head": "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-6/tree",
+      "write_scope": "GivreClone.App/Services/Forge/F02LoopW111*.cs; GivreClone.Tests/F02LoopW111*Tests.cs; docs/agents/20261028/F02/loop-w111/**",
+      "hot_files": "PRIME only, INTEGRATION.diff review-only"
+    },
+    {
+      "id": "S05",
+      "worker": "worker-4",
+      "task_id": "S05-W113",
+      "stage": "active_worker_scoped_read_only_prime",
+      "base_head": "94786ba134fb977ead93410112ee397c6f56756f",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-4/tree",
+      "write_scope": "GivreClone.App/Services/CommandLifecycle/S05LoopW113*.cs; GivreClone.Tests/S05LoopW113*Tests.cs; docs/agents/20261028/S05/loop-w113/**",
+      "hot_files": "PRIME only, INTEGRATION.diff review-only"
+    }
+  ],
+  "pending_this_caller": [
+    {
+      "id": "R01",
+      "worker": "worker-1",
+      "task_id": "R01-W110",
+      "stage": "integrated_verified_commit_87b89cb",
+      "base_head": "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-1/tree",
+      "write_scope": "GivreClone.App/Services/NativeEvidence/R01LoopW110*.cs; GivreClone.Tests/R01LoopW110*Tests.cs; docs/agents/20261028/R01/loop-w110/**",
+      "dependencies": [
+        "S01"
+      ],
+      "hot_files": "PRIME only; INTEGRATION.diff review-only"
+    },
+    {
+      "id": "R05",
+      "worker": "worker-2",
+      "task_id": "R05-W110",
+      "stage": "delivered_pending_review",
+      "base_head": "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-2/tree",
+      "write_scope": "GivreClone.App/Services/ReferenceAtlas/R05LoopW110*.cs; GivreClone.Tests/R05LoopW110*Tests.cs; docs/agents/20261028/R05/loop-w110/**",
+      "dependencies": [
+        "S01"
+      ],
+      "hot_files": "PRIME only; INTEGRATION.diff review-only"
+    },
+    {
+      "id": "B01",
+      "worker": "worker-3",
+      "task_id": "B01-W110",
+      "stage": "delivered_pending_review",
+      "base_head": "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-3/tree",
+      "write_scope": "GivreClone.App/Services/BridgeAudit/B01LoopW110*.cs; GivreClone.Tests/B01LoopW110*Tests.cs; docs/agents/20261028/B01/loop-w110/**",
+      "dependencies": [
+        "S01"
+      ],
+      "hot_files": "PRIME only; INTEGRATION.diff review-only"
+    },
+    {
+      "id": "S10",
+      "worker": "worker-4",
+      "task_id": "S10-W110",
+      "stage": "delivered_pending_review",
+      "base_head": "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-4/tree",
+      "write_scope": "GivreClone.App/Services/IntegrationManifest/S10LoopW110*.cs; GivreClone.Tests/S10LoopW110*Tests.cs; docs/agents/20261028/S10/loop-w110/**",
+      "dependencies": [
+        "S01",
+        "S02",
+        "S03"
+      ],
+      "hot_files": "PRIME only; INTEGRATION.diff review-only"
+    },
+    {
+      "id": "S04",
+      "worker": "worker-5",
+      "task_id": "S04-W110",
+      "stage": "integrated_verified_commit_87b89cb",
+      "base_head": "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-5/tree",
+      "write_scope": "GivreClone.App/Services/CapabilityInventory/S04LoopW110*.cs; GivreClone.Tests/S04LoopW110*Tests.cs; docs/agents/20261028/S04/loop-w110/**",
+      "dependencies": [
+        "S01"
+      ],
+      "hot_files": "PRIME only; INTEGRATION.diff review-only"
+    },
+    {
+      "id": "S05",
+      "worker": "worker-6",
+      "task_id": "S05-W110",
+      "stage": "delivered_pending_review",
+      "base_head": "bf98473cc79a70998eb96141f8ceb4c3ce8b2376",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-6/tree",
+      "write_scope": "GivreClone.App/Services/CommandState/S05LoopW110*.cs; GivreClone.Tests/S05LoopW110*Tests.cs; docs/agents/20261028/S05/loop-w110/**",
+      "dependencies": [
+        "S04"
+      ],
+      "hot_files": "PRIME only; INTEGRATION.diff review-only"
+    }
+  ],
+  "foreign_worktrees": "Do not touch",
+  "last_update": "2026-10-28",
+  "last_integrated_commit": "46f1ddeba4f1b8195e27bcec2d4bb18fc8f263e0",
+  "run_id": "4d4c7709-8953-4483-aa73-c1dca6845f0d",
+  "delivered_history": [
+    {
+      "id": "C02",
+      "worker": "worker-1",
+      "task_id": "C02-W109",
+      "stage": "integrated_verified",
+      "base_head": "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "write_scope": "docs/agents/20261028/C02/loop-w109 and NEW matching code/test files only",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-1/tree"
+    },
+    {
+      "id": "N02",
+      "worker": "worker-2",
+      "task_id": "N02-W109",
+      "stage": "integrated_verified",
+      "base_head": "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "write_scope": "docs/agents/20261028/N02/loop-w109 and NEW matching code/test files only",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-2/tree"
+    },
+    {
+      "id": "H02",
+      "worker": "worker-3",
+      "task_id": "H02-W109",
+      "stage": "integrated_verified",
+      "base_head": "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "write_scope": "docs/agents/20261028/H02/loop-w109 and NEW matching code/test files only",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-3/tree"
+    },
+    {
+      "id": "F02",
+      "worker": "worker-4",
+      "task_id": "F02-W109",
+      "stage": "integrated_verified",
+      "base_head": "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "write_scope": "docs/agents/20261028/F02/loop-w109 and NEW matching code/test files only",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-4/tree"
+    },
+    {
+      "id": "U05",
+      "worker": "worker-5",
+      "task_id": "U05-W109",
+      "stage": "integrated_verified",
+      "base_head": "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "write_scope": "docs/agents/20261028/U05/loop-w109 and NEW matching code/test files only",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-5/tree"
+    },
+    {
+      "id": "S07",
+      "worker": "worker-6",
+      "task_id": "S07-W109",
+      "stage": "integrated_verified",
+      "base_head": "e3082f581bb7e25898d616fa8afb79bdb5a3f5fb",
+      "source_worktree": "%USERPROFILE%/.t3/worktrees/GivreWork/cos-loop-prime-20261028",
+      "write_scope": "docs/agents/20261028/S07/loop-w109 and NEW matching code/test files only",
+      "worker_worktree": "%USERPROFILE%/.chat-on-steroids-worktrees/fbc7323df4dd5e57/c0a6a550-4488-43b1-a094-05aa5b3022be/worker-6/tree"
+    }
+  ]
+}

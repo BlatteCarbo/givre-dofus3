@@ -1,0 +1,140 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build runtime
+        shell: pwsh
+        run: ./build.ps1 -Configuration Release
+
+      - name: Package runtime
+        shell: pwsh
+        run: |
+          Copy-Item `
+            dist/DofusRuntime/NativeMods/DofusNativeTactical.dll `
+            DofusNativeTactical.dll
+          (Get-FileHash DofusNativeTactical.dll -Algorithm SHA256).Hash.ToLowerInvariant() `
+            + "  DofusNativeTactical.dll" |
+            Set-Content DofusNativeTactical.sha256
+          Copy-Item `
+            dist/NativeMods/DofusNetworkDumper.dll `
+            DofusNetworkDumper.dll
+          (Get-FileHash DofusNetworkDumper.dll -Algorithm SHA256).Hash.ToLowerInvariant() `
+            + "  DofusNetworkDumper.dll" |
+            Set-Content DofusNetworkDumper.sha256
+          Copy-Item `
+            dist/NativeMods/DofusRuntimeInspector.dll `
+            DofusRuntimeInspector.dll
+          (Get-FileHash DofusRuntimeInspector.dll -Algorithm SHA256).Hash.ToLowerInvariant() `
+            + "  DofusRuntimeInspector.dll" |
+            Set-Content DofusRuntimeInspector.sha256
+          Copy-Item `
+            dist/NativeMods/DofusInterfaceAnalyzer.dll `
+            DofusInterfaceAnalyzer.dll
+          (Get-FileHash DofusInterfaceAnalyzer.dll -Algorithm SHA256).Hash.ToLowerInvariant() `
+            + "  DofusInterfaceAnalyzer.dll" |
+            Set-Content DofusInterfaceAnalyzer.sha256
+          Copy-Item `
+            dist/NativeMods/DofusCombatAnimationSkipper.dll `
+            DofusCombatAnimationSkipper.dll
+          (Get-FileHash DofusCombatAnimationSkipper.dll -Algorithm SHA256).Hash.ToLowerInvariant() `
+            + "  DofusCombatAnimationSkipper.dll" |
+            Set-Content DofusCombatAnimationSkipper.sha256
+          Compress-Archive `
+            -Path dist/DofusRuntime/* `
+            -DestinationPath Dofus3NativeHost-windows-x64.zip
+          (Get-FileHash Dofus3NativeHost-windows-x64.zip -Algorithm SHA256).Hash `
+            + "  Dofus3NativeHost-windows-x64.zip" |
+            Set-Content Dofus3NativeHost-windows-x64.sha256
+
+      - name: Build Windows installer
+        shell: pwsh
+        run: |
+          choco install innosetup --yes --no-progress
+          $version = $env:GITHUB_REF_NAME.TrimStart('v')
+          & 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe' `
+            "/DMyAppVersion=$version" `
+            installer\DofusNativeHost.iss
+          Copy-Item `
+            installer\output\Dofus3NativeHost-Setup-windows-x64.exe `
+            Dofus3NativeHost-Setup-windows-x64.exe
+          (Get-FileHash Dofus3NativeHost-Setup-windows-x64.exe -Algorithm SHA256).Hash `
+            + "  Dofus3NativeHost-Setup-windows-x64.exe" |
+            Set-Content Dofus3NativeHost-Setup-windows-x64.sha256
+
+      - name: Publish GitHub release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create $env:GITHUB_REF_NAME `
+            Dofus3NativeHost-windows-x64.zip `
+            Dofus3NativeHost-windows-x64.sha256 `
+            Dofus3NativeHost-Setup-windows-x64.exe `
+            Dofus3NativeHost-Setup-windows-x64.sha256 `
+            DofusNativeTactical.dll `
+            DofusNativeTactical.sha256 `
+            DofusNetworkDumper.dll `
+            DofusNetworkDumper.sha256 `
+            DofusRuntimeInspector.dll `
+            DofusRuntimeInspector.sha256 `
+            DofusInterfaceAnalyzer.dll `
+            DofusInterfaceAnalyzer.sha256 `
+            DofusCombatAnimationSkipper.dll `
+            DofusCombatAnimationSkipper.sha256 `
+            --generate-notes `
+            --title "Dofus 3 Native Host $env:GITHUB_REF_NAME"
+
+      - name: Update marketplace hashes
+        shell: pwsh
+        run: |
+          git fetch origin main
+          git switch --force-create marketplace-update origin/main
+          $catalog = Get-Content marketplace.json -Raw | ConvertFrom-Json
+          $tag = $env:GITHUB_REF_NAME
+          $tactical = $catalog.mods |
+            Where-Object id -eq 'bubble.dofus3.native-tactical'
+          $tactical.downloadUrl = "https://github.com/AlpaGit/dofus3-native-host/releases/download/$tag/DofusNativeTactical.dll"
+          $tactical.sha256 = (Get-FileHash DofusNativeTactical.dll -Algorithm SHA256).Hash.ToLowerInvariant()
+          $network = $catalog.mods |
+            Where-Object id -eq 'bubble.dofus3.network-dumper'
+          $network.downloadUrl = "https://github.com/AlpaGit/dofus3-native-host/releases/download/$tag/DofusNetworkDumper.dll"
+          $network.sha256 = (Get-FileHash DofusNetworkDumper.dll -Algorithm SHA256).Hash.ToLowerInvariant()
+          $inspector = $catalog.mods |
+            Where-Object id -eq 'bubble.dofus3.runtime-inspector'
+          $inspector.downloadUrl = "https://github.com/AlpaGit/dofus3-native-host/releases/download/$tag/DofusRuntimeInspector.dll"
+          $inspector.sha256 = (Get-FileHash DofusRuntimeInspector.dll -Algorithm SHA256).Hash.ToLowerInvariant()
+          $interface = $catalog.mods |
+            Where-Object id -eq 'bubble.dofus3.interface-analyzer'
+          $interface.downloadUrl = "https://github.com/AlpaGit/dofus3-native-host/releases/download/$tag/DofusInterfaceAnalyzer.dll"
+          $interface.sha256 = (Get-FileHash DofusInterfaceAnalyzer.dll -Algorithm SHA256).Hash.ToLowerInvariant()
+          $animation = $catalog.mods |
+            Where-Object id -eq 'bubble.dofus3.combat-animation-skipper'
+          $animation.downloadUrl = "https://github.com/AlpaGit/dofus3-native-host/releases/download/$tag/DofusCombatAnimationSkipper.dll"
+          $animation.sha256 = (Get-FileHash DofusCombatAnimationSkipper.dll -Algorithm SHA256).Hash.ToLowerInvariant()
+          $catalog.updatedAt = [DateTimeOffset]::UtcNow.ToString('O')
+          $catalog | ConvertTo-Json -Depth 10 |
+            Set-Content marketplace.json -Encoding utf8
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add marketplace.json
+          git diff --cached --quiet
+          if ($LASTEXITCODE -ne 0) {
+            git commit -m "Update marketplace for $tag [skip ci]"
+            git push origin HEAD:main
+          }

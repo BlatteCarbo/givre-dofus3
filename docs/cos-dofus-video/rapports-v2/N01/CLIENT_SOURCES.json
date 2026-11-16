@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "clientVersion": "3.7.13.17",
+  "buildDate": "2026-11-03T14:09:52+00:00",
+  "source": "installed-official-client-bundles-local",
+  "unityPyVersion": "1.25.4",
+  "readerFallbackUnityVersion": "6000.3.16f1",
+  "sourceBundleManifest": {
+    "breeds": {
+      "file": "data_assets_breedsdataroot.asset.bundle",
+      "bytes": 3950,
+      "sha256": "3d5332b763b7319e616f3220f2d1a23ff9cf9db2a5ccb6236715973e6ced2f0f",
+      "records": 19,
+      "managedReferenceRoot": "BreedsDataRoot",
+      "class": {
+        "class": "BreedData",
+        "ns": "Core.DataCenter.Metadata.Breed",
+        "asm": "Ankama.Dofus.Core.DataCenter"
+      }
+    },
+    "spells": {
+      "file": "data_assets_spellsdataroot.asset.bundle",
+      "bytes": 320298,
+      "sha256": "96c830cd1add89cb0af1c613886a7f193fd38706d1cd27e51556bfad9b330e26",
+      "records": 17006,
+      "managedReferenceRoot": "SpellsDataRoot",
+      "class": {
+        "class": "SpellData",
+        "ns": "Core.DataCenter.Metadata.Spell",
+        "asm": "Ankama.Dofus.Core.DataCenter"
+      }
+    },
+    "spelllevels": {
+      "file": "data_assets_spelllevelsdataroot.asset.bundle",
+      "bytes": 1097950,
+      "sha256": "525048d9a4406720ba79fb6a23826b9ac5e40d4a87dcd3c452e1a0ccc27b2a30",
+      "records": 34318,
+      "managedReferenceRoot": "SpellLevelsDataRoot",
+      "class": {
+        "class": "SpellLevelData",
+        "ns": "Core.DataCenter.Metadata.Spell",
+        "asm": "Ankama.Dofus.Core.DataCenter"
+      }
+    },
+    "spellvariants": {
+      "file": "data_assets_spellvariantsdataroot.asset.bundle",
+      "bytes": 4216,
+      "sha256": "9cff1a5aafd46d3ebcc3a2a4d6c4f793d1c27427a9c35e8f8cd092ec0e8c170a",
+      "records": 431,
+      "managedReferenceRoot": "SpellVariantsDataRoot",
+      "class": {
+        "class": "SpellVariantData",
+        "ns": "Core.DataCenter.Metadata.Spell",
+        "asm": "Ankama.Dofus.Core.DataCenter"
+      }
+    },
+    "version": {
+      "file": "Dofus_Data/StreamingAssets/version",
+      "sha256": "302ebf852253f99af779869ae5987a05e19e45e9113f52b30468ca1115a6753d",
+      "bytes": 113
+    },
+    "i18nFr": {
+      "file": "Dofus_Data/StreamingAssets/Content/I18n/fr.bin",
+      "sha256": "40fb0c50526fdf084b2b8e16fd32f874a7ed633edc430f821f050b70dc7bb0ad",
+      "bytes": 28047670
+    },
+    "gameAssembly": {
+      "file": "GameAssembly.dll",
+      "sha256": "ad013415455d93bd865aef70fcf1b7c6f704c799f85e2ef301aa7fa610ef2591",
+      "bytes": 125827584
+    },
+    "globalMetadata": {
+      "file": "Dofus_Data/il2cpp_data/Metadata/global-metadata.dat",
+      "sha256": "ad2880162d7e0aee219fdc81e4a3817cc86cca4aba3df3ce86fd470c1bb9a6af",
+      "bytes": 43768684
+    }
+  },
+  "audit": {
+    "sram": {
+      "breedId": 4,
+      "classLabelFr": "Sram",
+      "variantEntries": 22,
+      "spellIdsReferenced": 44,
+      "spellsResolved": 44,
+      "missingSpells": [],
+      "danglingLevelIds": [],
+      "levelRecords": 91
+    },
+    "roublard": {
+      "breedId": 13,
+      "classLabelFr": "Roublard",
+      "variantEntries": 22,
+      "spellIdsReferenced": 44,
+      "spellsResolved": 44,
+      "missingSpells": [],
+      "danglingLevelIds": [],
+      "levelRecords": 91
+    },
+    "xelor": {
+      "breedId": 5,
+      "classLabelFr": "Xélor",
+      "variantEntries": 22,
+      "spellIdsReferenced": 44,
+      "spellsResolved": 44,
+      "missingSpells": [],
+      "danglingLevelIds": [],
+      "levelRecords": 91
+    },
+    "eliotrope": {
+      "breedId": 16,
+      "classLabelFr": "Eliotrope",
+      "variantEntries": 22,
+      "spellIdsReferenced": 44,
+      "spellsResolved": 44,
+      "missingSpells": [],
+      "danglingLevelIds": [],
+      "levelRecords": 91
+    }
+  },
+  "note": "Fields are native serialized data; names from fr.bin. Not a server behavior proof."
+}

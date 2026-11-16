@@ -1,0 +1,940 @@
+":[mv
+ !"#$%&'(((()((*+,-./0
+6789:;<(=>?@ABC??D(EF?????GHIJK?(L?????MNO?PQ?RST?UV?WX??Y(Z([\\]^_`abcdefghijcdklmnopqdrsthuvcdwxyhz{|}~
+\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+777:::
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\
+??????
+?????????????????????
+???????
+\\\\\\\
+\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\
+\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\
+????????????
+\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\t\\\\\\
+\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+(((((((((((((((
+t&%@?
+$,4<DLT\dlt|
+initialiitializetools/liols/listtools/caols/call
+tools/caols/callinitialiitializemizanbott_statusmizanmcpmcp-init
+.NET TP P Worker
+xxxxxxxx
+!<BaseAddress>+0
+Unknown error (0
+ValueTaskSourceA
+ LineNum | BytePositionI
+System.MA
+System.ReadOnlyMA
+ValueTaskSourceA
+System.ReadOnlySSystem.SSystem.ReadOnlySSystem.SC
+ValueTaskSourceAl
+        aaaaaaaa
+ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}
+The remainder of the message was truncated.
+ --->
+  Argument
+ --->
+ ByRe
+ LineNumber:
+ at offset
+ in file:line:column
+ | BytePositionInLine:
+!<BaseAddress>+0
+, ContentType=WindowsRuntim
+, Culture
+, PublicKey
+, PublicKeyToken
+, Retargetable=Ye
+, Version
+--- End of stack trace from previous location --
+-Infinit
+. '/"[]()
+.NET Long Running Tas
+.NET Runtim
+.NET TP Worke
+0001020304050607080910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989
+0123456789ABCDE
+2025-06-1
+<filename unknown
+<null
+<offset unknown
+<unknown
+<unknown>
+?\UNC
+A MizanBot connection point exists but belongs to another Windows user. MizanBot and the AI app must run under the same Windows account
+AD AUTHORIT
+APP_CONTEXT_BASE_DIRECTOR
+Access Violation: Attempted to read or write protected memory. This is often an indication that other memory is corrupt. The application will be terminated since this platform does not support throwing an AccessViolationException
+AccessControl_AclTooLon
+AccessControl_InvalidGrou
+AccessControl_InvalidOwne
+AccessControl_InvalidSecurityDescriptorRevisio
+AccessControl_InvalidSecurityDescriptorSelfRelativeFor
+AccessControl_MustSpecifyContainerAc
+AccessControl_MustSpecifyDirectoryObjectAc
+AccessControl_MustSpecifyLeafObjectAc
+AccessControl_MustSpecifyNonDirectoryObjectAc
+AccessControl_NoAssociatedSecurit
+AccessControl_UnexpectedErro
+AggregateException_InnerExceptio
+AggregateException_ctor_DefaultMessag
+AggregateException_ctor_InnerExceptionNul
+AmbiguousMatchException_Assembl
+Application:
+Arg_AccessViolationExceptio
+Arg_AmbiguousImplementationException_NoMessag
+Arg_AmbiguousMatchException_MemberInf
+Arg_AmbiguousMatchException_NoMessag
+Arg_AmbiguousMatchException_UnsafeAccesso
+Arg_ApplicationExceptio
+Arg_ArgumentExceptio
+Arg_ArgumentOutOfRangeExceptio
+Arg_ArithmeticExceptio
+Arg_ArrayPlusOffTooSmal
+Arg_ArrayTypeMismatchExceptio
+Arg_BadImageFormatExceptio
+Arg_BufferTooSmal
+Arg_ByteArrayTooSmallForValu
+Arg_CannotHaveNegativeValu
+Arg_CannotMarsha
+Arg_CryptographyExceptio
+Arg_DataMisalignedExceptio
+Arg_DirectoryNotFoundExceptio
+Arg_DivideByZer
+Arg_DlgtNullIns
+Arg_DllNotFoundExceptio
+Arg_DuplicateWaitObjectExceptio
+Arg_EmptyCollectio
+Arg_EntryPointNotFoundExceptio
+Arg_EntryPointNotFoundExceptionParameterize
+Arg_EntryPointNotFoundExceptionParameterizedNoLibrar
+Arg_EnumAtLeastOneFla
+Arg_EnumIllegalVa
+Arg_ExternalExceptio
+Arg_FormatExceptio
+Arg_GuidArrayCto
+Arg_HTCapacityOverflo
+Arg_IndexOutOfRangeExceptio
+Arg_InvalidANSIStrin
+Arg_InvalidBas
+Arg_InvalidCastExceptio
+Arg_InvalidFilterCriteriaExceptio
+Arg_InvalidHandl
+Arg_InvalidOperationExceptio
+Arg_KeyNotFoun
+Arg_KeyNotFoundWithKe
+Arg_LongerThanDestArra
+Arg_LongerThanSrcArra
+Arg_LowerBoundsMustMatc
+Arg_MarshalDirectiveExceptio
+Arg_MissingMethodExceptio
+Arg_MustBeEnu
+Arg_MustBeNullTerminatedStrin
+Arg_MustBePrimArra
+Arg_MustBeTyp
+Arg_Need1DArra
+Arg_Need2DArra
+Arg_Need3DArra
+Arg_NeedAtLeast1Ran
+Arg_NonZeroLowerBoun
+Arg_NotGenericParamete
+Arg_NotImplementedExceptio
+Arg_NotSupportedExceptio
+Arg_NullArgumentNullRe
+Arg_NullReferenceExceptio
+Arg_OutOfMemoryExceptio
+Arg_OverflowExceptio
+Arg_ParamName_Nam
+Arg_Path2IsRoote
+Arg_PathEmpt
+Arg_PlatformNotSupporte
+Arg_RankExceptio
+Arg_RankIndice
+Arg_RankMultiDimNotSupporte
+Arg_RanksAndBound
+Arg_SecurityExceptio
+Arg_SynchronizationLockExceptio
+Arg_TargetInvocationExceptio
+Arg_ThreadStartExceptio
+Arg_ThreadStateExceptio
+Arg_TimeoutExceptio
+Arg_TypeLoadExceptio
+Arg_TypeNotSupporte
+Arg_UnauthorizedAccessExceptio
+Arg_UnreachableExceptio
+ArgumentException_BufferNotFromPoo
+ArgumentException_InvalidAceBinaryFor
+ArgumentException_InvalidAclBinaryFor
+ArgumentException_InvalidArrayElementTyp
+ArgumentException_InvalidTypeArgumen
+ArgumentException_NotIsomorphi
+ArgumentException_OtherNotArrayOfCorrectLengt
+ArgumentNull_Arra
+ArgumentNull_Generi
+ArgumentNull_SafeHandl
+ArgumentOutOfRange_ActualValu
+ArgumentOutOfRange_AnonymousReserve
+ArgumentOutOfRange_ArrayLengt
+ArgumentOutOfRange_ArrayLengthMultipl
+ArgumentOutOfRange_ArrayTooSmal
+ArgumentOutOfRange_BiggerThanCollectio
+ArgumentOutOfRange_Bounds_Lower_Uppe
+ArgumentOutOfRange_Capacit
+ArgumentOutOfRange_Coun
+ArgumentOutOfRange_DirectionModeInOutOrInOu
+ArgumentOutOfRange_EndIndexStartInde
+ArgumentOutOfRange_Enu
+ArgumentOutOfRange_Generic_MustBeGreaterOrEqua
+ArgumentOutOfRange_Generic_MustBeLes
+ArgumentOutOfRange_Generic_MustBeLessOrEqua
+ArgumentOutOfRange_Generic_MustBeNonNegativ
+ArgumentOutOfRange_Generic_MustBeNonNegativeNonZer
+ArgumentOutOfRange_GetByteCountOverflo
+ArgumentOutOfRange_GetCharCountOverflo
+ArgumentOutOfRange_HandleInheritabilityNoneOrInheritabl
+ArgumentOutOfRange_HashtableLoadFacto
+ArgumentOutOfRange_HugeArrayNotSupporte
+ArgumentOutOfRange_ImpersonationInvali
+ArgumentOutOfRange_IndexCoun
+ArgumentOutOfRange_IndexCountBuffe
+ArgumentOutOfRange_IndexLengt
+ArgumentOutOfRange_IndexMustBeLes
+ArgumentOutOfRange_IndexMustBeLessOrEqua
+ArgumentOutOfRange_InvalidHighSurrogat
+ArgumentOutOfRange_InvalidLowSurrogat
+ArgumentOutOfRange_InvalidUserDefinedAceTyp
+ArgumentOutOfRange_LengthGreaterThanCapacit
+ArgumentOutOfRange_ListInser
+ArgumentOutOfRange_NeedNonNegNu
+ArgumentOutOfRange_NotGreaterThanBufferLengt
+ArgumentOutOfRange_OptionsInvali
+ArgumentOutOfRange_PartialWCHA
+ArgumentOutOfRange_Rang
+ArgumentOutOfRange_SmallCapacit
+ArgumentOutOfRange_StartIndexLargerThanLengt
+ArgumentOutOfRange_UIntPtrMa
+ArgumentOutOfRange_Yea
+Argument_AddingDuplicat
+Argument_AddingDuplicateWithKe
+Argument_AlignmentMustBePow
+Argument_AlreadyBoundOrSyncHandl
+Argument_ArgumentZer
+Argument_BadFormatSpecifie
+Argument_CannotExtractScala
+Argument_CodepageNotSupporte
+Argument_CompareOptionOrdina
+Argument_ConversionOverflo
+Argument_CultureInvalidIdentifie
+Argument_CultureNotSupporte
+Argument_CultureNotSupportedInInvariantMod
+Argument_DestinationTooShor
+Argument_EmptyServerNam
+Argument_EmptyStrin
+Argument_EncoderFallbackNotEmpt
+Argument_EncodingConversionOverflowByte
+Argument_EncodingConversionOverflowChar
+Argument_HasToBeArrayClas
+Argument_ImpersonateUse
+Argument_ImproperTyp
+Argument_InvalidAnyFla
+Argument_InvalidArgumentForCompariso
+Argument_InvalidCharSequenceNoInde
+Argument_InvalidCodePageBytesInde
+Argument_InvalidCodePageConversionInde
+Argument_InvalidFla
+Argument_InvalidHandl
+Argument_InvalidImpersonationToke
+Argument_InvalidNam
+Argument_InvalidOffLe
+Argument_InvalidPrivilegeNam
+Argument_InvalidResourceCultureNam
+Argument_InvalidSafeHandl
+Argument_InvalidValu
+Argument_NativeOverlappedAlreadyFre
+Argument_NativeOverlappedWrongBoundHandl
+Argument_NeedNonGenericTyp
+Argument_NullCharInPat
+Argument_PreAllocatedAlreadyAllocate
+Argument_RecursiveFallbac
+Argument_RecursiveFallbackByte
+Argument_SpansMustHaveSameLengt
+Argument_StreamNotReadabl
+Argument_StreamNotWritabl
+Argument_TokenZer
+Argument_UnexpectedStateForKnownCallbac
+ArrayDepthTooLarg
+ArrayTypeMismatch_CantAssignTyp
+ArrayTypeMismatch_ConstrainedCop
+Assertion failur
+AsyncMethodBuilder_InstanceNotInitialize
+BufferMaximumSizeExceede
+CancellationTokenSource_Dispose
+CannotCreateByRefOfByRe
+CannotCreatePointerOfByRe
+CannotEncodeInvalidUTF1
+CannotEncodeInvalidUTF
+CannotReadIncompleteUTF1
+CannotReadInvalidUTF1
+CannotStartObjectArrayAfterPrimitiveOrClos
+CannotStartObjectArrayWithoutPropert
+CannotTranscodeInvalidUtf1
+CannotTranscodeInvalidUtf
+CannotWriteEndAfterPropert
+CannotWritePropertyAfterPropert
+CannotWritePropertyWithinArra
+CannotWriteValueAfterPrimitiveOrClos
+CannotWriteValueWithinObjec
+CannotWriteWithinStrin
+Canonical types cannot be allocate
+Canonical types do not have EEType
+CharUnknownLo
+ClassLoad_BadForma
+ClassLoad_ExplicitGeneri
+ClassLoad_ExplicitLayou
+ClassLoad_Genera
+ClassLoad_InlineArrayExplici
+ClassLoad_InlineArrayExplicitSiz
+ClassLoad_InlineArrayFieldCoun
+ClassLoad_InlineArrayLengt
+ClassLoad_RankTooLarg
+ClassLoad_ValueClassTooLarg
+CommentHandlingMustBeVali
+CompareInfo -
+CompilerService
+ConcurrentCollection_SyncRoot_NotSupporte
+CoreCLR Version:
+Current module queried in wrong enumerator stat
+DOTNET_Lock_AdaptiveSpinPerio
+DOTNET_Lock_SpinCoun
+DOTNET_SYSTEM_BUFFERS_SHAREDARRAYPOOL_MAXARRAYSPERPARTITIO
+DOTNET_SYSTEM_BUFFERS_SHAREDARRAYPOOL_MAXPARTITIONCOUN
+DOTNET_ThreadPool_UseWindowsThreadPoo
+Declaring type:
+Defaul
+DepthTooLarg
+Description: The application requested process termination through System.Environment.FailFast
+Description: The process was terminated due to an internal error in the .NET Runtime
+Description: The process was terminated due to an unhandled exception
+DllNotFound_Window
+DuplicatePropertiesNotAllowed_NameSpa
+EE_MissingFiel
+EE_MissingMetho
+Encoding_UTF7_Disable
+EndOfCommentNotFoun
+EndOfStringNotFoun
+EndPositionNotReache
+Environment.FailFast was calle
+Exception Info:
+Exception during registration rollbac
+Exception_EndOfInnerExceptionStac
+Exception_EndStackTraceFromPreviousThro
+Exception_WasThrow
+Exceptions must derive from the System.Exception clas
+ExecutionContext_ExceptionInAsyncLocalNotificatio
+ExpectedEndAfterSingleJso
+ExpectedEndOfDigitNotFoun
+ExpectedFals
+ExpectedJsonToken
+ExpectedNextDigitEValueNotFoun
+ExpectedNul
+ExpectedOneCompleteToke
+ExpectedSeparatorAfterPropertyNameNotFoun
+ExpectedStartOfPropertyNotFoun
+ExpectedStartOfPropertyOrValueAfterCommen
+ExpectedStartOfPropertyOrValueNotFoun
+ExpectedStartOfValueNotFoun
+ExpectedTru
+ExpectedValueAfterPropertyNameNotFoun
+Explains why MizanBot tools are unavailable and what the user must do. Calling it also retries the connection
+Failed allocating GC static base
+Failed to create generic virtual method implementatio
+Failed to register frozen object segment for the module
+FailedToGetLargerSpa
+FileLoadException_RefDefMismatc
+FileNotFound_AssemblyNotFoun
+FlagsAttribut
+Format_EmptyInputStrin
+Format_ExpectedAsciiDigi
+Format_ExtraJunkAtEn
+Format_IndexOutOfRang
+Format_InvalidEnumFormatSpecificatio
+Format_InvalidGuidFormatSpecificatio
+Format_InvalidStrin
+Format_InvalidStringWithOffsetAndReaso
+Format_InvalidStringWithValu
+Format_NoParsibleDigit
+Format_UnclosedFormatIte
+Format_UnexpectedClosingBrac
+FoundInvalidCharacte
+Generic virtual method pointer lookup failure
+GetSystemTimeAsFileTim
+GetSystemTimePreciseAsFileTim
+Globalization_cp_120
+Globalization_cp_1200
+Globalization_cp_1200
+Globalization_cp_120
+Globalization_cp_2012
+Globalization_cp_2859
+Globalization_cp_6500
+Globalization_cp_6500
+HH:mm:s
+IO_AlreadyExists_Nam
+IO_EOF_ReadBeyondEO
+IO_FileExists_Nam
+IO_FileLoa
+IO_FileLoad_FileNam
+IO_FileName_Nam
+IO_FileNotFoun
+IO_FileNotFound_FileNam
+IO_PathNotFound_NoPathNam
+IO_PathNotFound_Pat
+IO_PathTooLon
+IO_PathTooLong_Pat
+IO_PipeBroke
+IO_SharingViolation_Fil
+IO_SharingViolation_NoFileNam
+IdentityReference_AccountNameTooLon
+IdentityReference_CannotCreateLogonIdsSi
+IdentityReference_DomainNameTooLon
+IdentityReference_DomainSidRequire
+IdentityReference_IdentifierAuthorityTooLarg
+IdentityReference_IdentityNotMappe
+IdentityReference_InvalidNumberOfSubauthoritie
+IdentityReference_InvalidSidRevisio
+IdentityReference_MustBeIdentityReferenc
+IdentityReference_NotAWindowsDomai
+Illegal instruction: Attempted to execute an instruction code not defined by the processor
+In page error: Attempted to access a memory page that is not present, and the system is unable to load the page. For example, this exception might occur if a network connection is lost while running a program over a network
+IndexOutOfRange_ArrayRankInde
+Infinit
+Instantiation
+International Monetary Fun
+Invalid module requested in enumeration:
+InvalidCast_DownCastArrayElemen
+InvalidCharacterAfterEscapeWithinStrin
+InvalidCharacterAtStartOfCommen
+InvalidCharacterWithinStrin
+InvalidEndOfJsonNonPrimitiv
+InvalidFilterCriteriaException_CritIn
+InvalidFilterCriteriaException_CritStrin
+InvalidHexCharacterWithinStrin
+InvalidIndentCharacte
+InvalidIndentSiz
+InvalidLeadingZeroInNumbe
+InvalidNewLin
+InvalidOperationException_ActorGraphCircula
+InvalidOperation_AsyncFlowCtrlCtxMismatc
+InvalidOperation_AsyncIOInProgres
+InvalidOperation_CannotRestoreUnsuppressedFlo
+InvalidOperation_CannotUseAFCOtherThrea
+InvalidOperation_CollectionCorrupte
+InvalidOperation_ConcurrentOperationsNotSupporte
+InvalidOperation_DisconnectedPip
+InvalidOperation_EmptyQueu
+InvalidOperation_EmptyStac
+InvalidOperation_EnumEnde
+InvalidOperation_EnumFailedVersio
+InvalidOperation_EnumNotStarte
+InvalidOperation_EnumOpCantHappe
+InvalidOperation_GetVersio
+InvalidOperation_HandleIsNotInitialize
+InvalidOperation_HandleIsNotPinne
+InvalidOperation_IComparerFaile
+InvalidOperation_IncompatibleCompare
+InvalidOperation_InvalidHandl
+InvalidOperation_ModificationOfNonCanonicalAc
+InvalidOperation_MustBeSameThrea
+InvalidOperation_MustCallInitializ
+InvalidOperation_MustRevertPrivileg
+InvalidOperation_NoSecurityDescripto
+InvalidOperation_NoValu
+InvalidOperation_NotGenericTyp
+InvalidOperation_NullArra
+InvalidOperation_NullContex
+InvalidOperation_PipeAlreadyConnecte
+InvalidOperation_PipeDisconnecte
+InvalidOperation_PipeHandleNotSe
+InvalidOperation_PipeNotYetConnecte
+InvalidOperation_SpanOverlappedOperatio
+InvalidOperation_TimeProviderInvalidTimestampFrequenc
+InvalidOperation_TimeProviderNullLocalTimeZon
+InvalidOperation_UnknownEnumTyp
+InvalidOperation_WrongAsyncResultOrEndCalledMultipl
+InvalidProgram_CallVirtFinaliz
+InvalidProgram_Defaul
+InvalidProgram_GenericMetho
+InvalidProgram_MultipleCallCon
+InvalidProgram_NonBlittableType
+InvalidProgram_NonStaticMetho
+InvalidProgram_Specifi
+InvalidProgram_Varar
+Invariant Countr
+Invariant Languag
+Invariant Language (Invariant Country
+IsByRefLikeAttribut
+JsonDocumen
+JsonElementHasWrongTyp
+JsonObjec
+LOCAL AUTHORIT
+Ldtoken is not permitted for a canonical fiel
+Ldtoken is not permitted for a canonical metho
+LockRecursionException_ReadAfterWriteNotAllowe
+LockRecursionException_RecursiveReadNotAllowe
+LockRecursionException_RecursiveWriteNotAllowe
+LockRecursionException_WriteAfterReadNotAllowe
+Lock_Enter_LockRecursionExceptio
+Lock_Enter_WaiterCountOverflow_OutOfMemoryExceptio
+Lock_Exit_SynchronizationLockExceptio
+Mac OS X
+ManualResetEventSlim_ctor_TooManyWaiter
+MaxDepthMustBePositiv
+Message:
+Method dictionaries of canonical methods do not exis
+Method name:
+Method not found:
+MethodTable:0
+Microsoft Win32S
+Microsoft Windows 95
+Microsoft Windows 98
+Microsoft Windows CE
+Microsoft Windows NT
+MismatchedObjectArra
+MissingConstructor_Nam
+MissingMember_Nam
+MissingMethod_Nam
+MizanBo
+MizanBot closed the connection (MizanBot closed, or its AI assistant turned off). Its tools come back on the next request once it is open again with R
+glages > Assistant IA enabled
+MizanBot is connected now: its tools are available. List the tools again
+MizanBot is not running, or its AI assistant is turned off (no MizanBot connection point on this PC). Ask the user to open MizanBot and enable R
+glages > Assistant IA. No need to restart the AI app: MizanBot's tools appear on the next request once it is ready
+MizanBot is running but Windows refused the connection: MizanBot and the AI app run with different rights or under different Windows users (an older MizanBot run as administrator refuses an AI app started normally). Ask the user to update MizanBot, or to run MizanBot and the AI app under the same Windows user
+MizanBot is running but did not accept the connection in time: all its AI connections are in use (4 at most). Ask the user to close other AI apps or windows connected to MizanBot; the connection is retried on the next request
+MizanBot.Mcp
+MultiDim_Of_This_Rank_Not_Supporte
+NodeAlreadyHasParen
+NodeCycleDetecte
+NodeWrongTyp
+NotEnoughDat
+NotSupported_BodyRemove
+NotSupported_CannotCallEqualsOnSpa
+NotSupported_CannotCallGetHashCodeOnSpa
+NotSupported_FeatureBodyRemove
+NotSupported_FixedSizeCollectio
+NotSupported_InstanceBodyRemove
+NotSupported_KeyCollectionSe
+NotSupported_MaxWaitHandles_ST
+NotSupported_NoCodepageDat
+NotSupported_ReadOnlyCollectio
+NotSupported_StringCompariso
+NotSupported_Typ
+NotSupported_UnreadableStrea
+NotSupported_UnseekableStrea
+NotSupported_UnwritableStrea
+NotSupported_ValueCollectionSe
+NotSupported_WaitAllSTAThrea
+ObjectDepthTooLarg
+ObjectDisposed_FileClose
+ObjectDisposed_Generi
+ObjectDisposed_ObjectName_Nam
+ObjectDisposed_PipeClose
+ObjectDisposed_ReaderClose
+ObjectDisposed_WriterClose
+OperationCancele
+OrdinalCompare
+Other
+OutOfMemory_StringTooLon
+Overflow_Int1
+Overflow_Int3
+Overflow_MutexReacquireCoun
+Overflow_NegateTwosCompNu
+Overflow_NegativeUnsigne
+Overflow_SByt
+Overflow_TimeSpanTooLon
+Overflow_UInt3
+PlatformNotSupported_NoTypeHandleForOpenType
+PrivilegeNotHeld_Name
+Privileged instruction: Attempted to execute an instruction code that cannot be executed in user mode
+Process terminated.
+PropertyNameTooLarg
+Rank_MultiDimNotSupporte
+Rank_MustMatc
+Reflection_InsufficientMetadata_EdbNeede
+RequiredDigitNotFoundAfterDecima
+RequiredDigitNotFoundAfterSig
+RequiredDigitNotFoundEndOfDat
+Runtim
+Runtime internal erro
+SYSLIB000
+SeSecurityPrivileg
+Security_InvalidAssemblyPublicKe
+SemaphoreSlim_Release_CountWron
+SemaphoreSlim_ctor_InitialCountWron
+SemaphoreSlim_ctor_MaxCountWron
+Serialization_MissingKey
+Serialization_NullKe
+SpinLock_IsHeldByCurrentThrea
+SpinLock_TryEnter_ArgumentOutOfRang
+SpinLock_TryEnter_LockRecursionExceptio
+SpinLock_TryReliableEnter_ArgumentExceptio
+Stack
+StructMarshalling_MissingInteropDat
+SynchronizationLockException_IncorrectDispos
+SynchronizationLockException_MisMatchedRea
+SynchronizationLockException_MisMatchedWrit
+Syste
+System.MDArrayRan
+System.Memory
+System.ReadOnlyMemory
+System.ReadOnlySpan
+System.Span
+System.Text.Json.Rethrowabl
+System.Text.Json.Serialization.EnableSourceGenReflectionFallbac
+System.Text.Json.Serialization.RespectNullableAnnotationsDefaul
+System.Text.Json.Serialization.RespectRequiredConstructorParametersDefaul
+System.Threading.Lock.AdaptiveSpinPerio
+System.Threading.Lock.SpinCoun
+System.Threading.ThreadPool.UseWindowsThreadPoo
+System.__Cano
+System.__UniversalCano
+Target type:
+TaskCanceledException_ctor_DefaultMessag
+TaskCompletionSourceT_TrySetException_NoException
+TaskCompletionSourceT_TrySetException_NullExceptio
+TaskExceptionHolder_UnhandledExceptio
+TaskExceptionHolder_UnknownExceptionTyp
+TaskSchedulerException_ctor_DefaultMessag
+TaskScheduler_InconsistentStateAfterTryExecuteTaskInlin
+TaskT_TransitionToFinal_AlreadyComplete
+Task_ContinueWith_ESandL
+Task_ContinueWith_NotOnAnythin
+Task_Delay_InvalidMillisecondsDela
+Task_Dispose_NotComplete
+Task_InvalidTimerTimeSpa
+Task_MultiTaskContinuation_EmptyTaskLis
+Task_MultiTaskContinuation_NullTas
+Task_RunSynchronously_AlreadyStarte
+Task_RunSynchronously_Continuatio
+Task_RunSynchronously_Promis
+Task_RunSynchronously_TaskComplete
+Task_Start_AlreadyStarte
+Task_Start_ContinuationTas
+Task_Start_Promis
+Task_Start_TaskComplete
+Task_ThrowIfDispose
+Task_WaitMulti_NullTas
+Template is missin
+TextInfo -
+The runtime requires an exception for a case that this class library does not understand
+ThreadState_AlreadyStarte
+ThreadState_Dead_Priorit
+ThreadState_Dead_Stat
+ThreadState_SetPriorityFaile
+Thread_ApartmentState_ChangeFaile
+Threading_AbandonedMutexExceptio
+Threading_SemaphoreFullExceptio
+Threading_WaitHandleTooManyPost
+Too many outstanding Win32ThreadPoolNativeOverlapped instance
+TrailingCommaNotAllowedBeforeArrayEn
+TrailingCommaNotAllowedBeforeObjectEn
+TypeInitialization_Defaul
+TypeInitialization_Type_NoTypeAvailabl
+TypeLoad_ResolveTypeFromAssembl
+TypeLoaderLock not hel
+Unable to compute call information for a canonical interfac
+Unable to compute call information for a canonical type/method
+Unable to compute static field locations for a canonical type
+Unable to create compare
+Unable to find exact method pointer for a resolved GVM
+UnauthorizedAccess_IODenied_NoPathNam
+UnauthorizedAccess_IODenied_Pat
+UnauthorizedAccess_NotOwnedByCurrentUse
+UnexpectedEndOfDataWhileReadingCommen
+UnexpectedEndOfLineSeparato
+Unhandled exception.
+Unhandled exception: a managed exception was not handled before reaching unmanaged cod
+Unhandled exception: an unmanaged exception was thrown out of a managed-to-native transitio
+Unknow
+Unknown error (0
+Unknown reason
+Utf8JsonWrite
+ValueTaskSourceAsTas
+ValueTooLarg
+ZeroDepthAtEn
+\\.\pipe
+\\.\pipe\anonymou
+\\?\UNC
+\pipe
+__Cano
+__UniversalCano
+_sourc
+accessMas
+accessTyp
+accountNam
+actio
+arrayInde
+arrayTyp
+assemblyFullNam
+asyncResul
+beginMetho
+binaryFor
+buffe
+bufferSiz
+bufferWrite
+buffer
+byteCoun
+byteInde
+bytesUnknow
+callBac
+callbac
+cancellationToke
+capabilitie
+capacit
+charCoun
+charInde
+charUnknownHig
+charUnknownLo
+chunkLengt
+codePag
+codePoin
+codepag
+collectio
+collectionSelecto
+comparabl
+compare
+compariso
+comparisonTyp
+conten
+continuatio
+continuationActio
+continuationFunctio
+continuationOption
+converte
+creationOption
+cultur
+descriptio
+destinatio
+destinationArra
+destinationInde
+dictionar
+directio
+director
+discretionaryAc
+diviso
+domainNam
+domainSi
+dstOffse
+dueTim
+elementSelecto
+elementTyp
+endFunctio
+endInclusiv
+endInde
+endMetho
+enumTyp
+enumerabl
+enumerationOption
+exceptio
+exceptionObjec
+exception
+expressio
+facto
+fieldCoun
+firstCodePoin
+forma
+format
+functio
+h:mm t
+handl
+hh:mm t
+highSurrogat
+http://schemas.microsoft.com/ws/2008/06/identity/claims/denyonlyprimarygroupsi
+http://schemas.microsoft.com/ws/2008/06/identity/claims/denyonlyprimarysi
+http://schemas.microsoft.com/ws/2008/06/identity/claims/denyonlywindowsdevicegrou
+http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsi
+http://schemas.microsoft.com/ws/2008/06/identity/claims/primarygroupsi
+http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysi
+http://schemas.microsoft.com/ws/2008/06/identity/claims/rol
+http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsdeviceclai
+http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsdevicegrou
+http://schemas.microsoft.com/ws/2008/06/identity/claims/windowssubauthorit
+http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsuserclai
+http://schemas.xmlsoap.org/ws/2005/05/identity/claims/denyonlysi
+http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nam
+http://www.w3.org/2001/XMLSchema#boolea
+http://www.w3.org/2001/XMLSchema#integer6
+http://www.w3.org/2001/XMLSchema#strin
+http://www.w3.org/2001/XMLSchema#uinteger6
+https://aka.ms/dotnet-warnings/{0
+identifierAuthorit
+identit
+impersonationLeve
+index
+index
+index
+indice
+inheritabilit
+inheritanceFlag
+initialCoun
+initializ
+innerException
+innerKeySelecto
+inputSchem
+instruction
+isErro
+jsonrp
+kernel32.dl
+keySelecto
+lastCharacte
+lengt
+length
+listChange
+loadFacto
+lowSurrogat
+manage
+matchTyp
+maxCapacit
+maxCoun
+messag
+metho
+millisecondsDela
+millisecondsTimeou
+minimumByte
+minimumLengt
+mizanbo
+mizanbot_statu
+mizanmcp-ini
+neutra
+newSiz
+notifications/initialize
+notifications/tools/list_change
+nullableTyp
+numByte
+objec
+offlin
+offse
+opaqu
+option
+outerKeySelecto
+overlappe
+ownedMemor
+pHandl
+param
+perio
+pipeNam
+platfor
+pointe
+positio
+preAllocate
+predicat
+prefi
+privilegeNam
+propagationFlag
+propertie
+propertyNam
+protocolVersio
+qualifie
+rawAc
+rawSecurityDescripto
+releaseCoun
+repeatCoun
+replacemen
+requiredLengt
+resul
+resultSelecto
+revisio
+schedule
+searchPatter
+searchTarge
+secon
+securityDescripto
+securityIdentifie
+seedSelecto
+selecto
+serverInf
+serverNam
+sidTyp
+sidType/domainSi
+sourc
+sourceArra
+sourceBytesToCop
+sourceInde
+sourceSid
+spinCoun
+srcOffse
+stackTrac
+startInde
+stateMachin
+strea
+structureTypeHandl
+subAuthorities.Lengt
+suffi
+switchNam
+systemAc
+targetTyp
+timeou
+tools/cal
+tools/lis
+transfor
+unknow
+utf-16utf-16BEutf-32utf-32BEus-asciiiso-8859-1utf-7utf-
+utf8FormattedNumbe
+valueCoun
+valueFactor
+value
+variabl
+versio
+waitHandles
+write
+zh-CH
+zh-CH
+{0} (0x{0:x4}
+\[]+*&
+ntdll.dll
+kernel32
+Tkernel32.dll
+DOTNET_
+SeLockMemoryPrivilege
+VS_VERSION_INFO
+VarFileInfo
+Translation
+StringFileInfo
+000004b0
+CompanyName
+MizanBot
+FileDescription
+MizanMcp
+FileVersion
+1.0.0.0
+InternalName
+MizanMcp.dll
+LegalCopyright
+MizanBot
+OriginalFilename
+MizanMcp.dll
+ProductName
+MizanBot
+ProductVersion
+1.0.0
+Assembly Version
+1.0.0.0

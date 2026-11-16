@@ -1,0 +1,1509 @@
+{
+  "binary_provenance": {
+    "artifacts": [],
+    "exe_feature_verification": "not_performed",
+    "running_window_observation": {
+      "binary_sha256": null,
+      "executable_read_or_copied": false,
+      "status": "running_window_only",
+      "version_label": "1.3.1",
+      "version_provenance": "reported_by_prime_passive_ui_only"
+    },
+    "source_declared_version": {
+      "evidence": [
+        {
+          "file": "GivreClone.App/Services/LicenseService.cs",
+          "line": 52,
+          "sha256": "9bd12a81528994526a4849aec4b4d88db2629276ef3590447d633a2ce52452e5"
+        }
+      ],
+      "role": "license_client.version",
+      "state": "source_only",
+      "version": "1.2.0"
+    },
+    "source_vs_window_version": "different_unlinked_labels",
+    "state": "no_offline_exe",
+    "warning": "A valid PE and SHA do not establish application feature parity."
+  },
+  "classification": "source_only_offline_parity_inventory",
+  "dependencies_present": {
+    "givre_core_neighbor_project": false,
+    "givre_data_mapping_directory": false,
+    "givre_server_mapping_directory": false,
+    "rework_pinned_fields": true,
+    "rework_pinned_matching": true
+  },
+  "feature_count": 21,
+  "features": [
+    {
+      "comparison": "both_source",
+      "exe_confirmed": false,
+      "functional_note": "Rework catalogues 3.7 candidats, verification wire encore ouverte.",
+      "id": "protocol_catalog",
+      "label": "Catalogue messages",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.Protocol/ProtocolCatalog.cs",
+            "line": 20,
+            "sha256": "b38b395b176eacc0f67d3c2824f1ab91f3c06f417673aef20736fd07001c4bb9",
+            "symbol": "ProtocolCatalog"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [
+          {
+            "file": "src/GivreRework.Infrastructure/Protocol/Versioned/P0PinnedBranchCatalog.cs",
+            "line": 38,
+            "sha256": "6780bc1d8bfe9cb1272e0bf8d5bf0d715d90aeb750b0de5edbf1b25f2670ea57",
+            "symbol": "P0PinnedBranchCatalog"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      }
+    },
+    {
+      "comparison": "both_source",
+      "exe_confirmed": false,
+      "functional_note": "L'intention offline Rework ne prouve pas une emission reseau.",
+      "id": "outbound_envelope",
+      "label": "Forge des requetes",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.Protocol/EnvelopeBuilder.cs",
+            "line": 17,
+            "sha256": "30e0c318904c93cd0f958f0593ca77e7f38bca6643d5bbbb9d09f79563808050",
+            "symbol": "EnvelopeBuilder"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [
+          {
+            "file": "src/GivreRework.Infrastructure/Scripting/IntentBridge/TypedLuaIntentBridge.cs",
+            "line": 45,
+            "sha256": "e2f01167282df00278880580f381c97e425e85fc722d146e5cab782d4d313632",
+            "symbol": "TypedLuaIntentBridge"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      }
+    },
+    {
+      "comparison": "both_source",
+      "exe_confirmed": false,
+      "functional_note": "Givre appelle des types GivreCore externes; Rework ne lit qu'un corpus prive offline.",
+      "id": "inbound_capture",
+      "label": "Reception de messages",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.Engine/DofusCaptureHost.cs",
+            "line": 13,
+            "sha256": "ea4b981f05ca760aa7b50ddc5d33cb9cbca4098ae47adec40c1376b304e8fa80",
+            "symbol": "DofusCaptureHost"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [
+          {
+            "file": "src/GivreRework.Infrastructure/Protocol/Differential/P0PrivateCapturePreview.cs",
+            "line": 38,
+            "sha256": "e8e72838043d2ff1bb0636c9575b32f997843b16a2bb0ff9c46db0ca38a3fb18",
+            "symbol": "P0PrivateCapturePreview"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      }
+    },
+    {
+      "comparison": "rework_source_only",
+      "exe_confirmed": false,
+      "functional_note": "Decodeur de framing Givre en dependance GivreCore absente de la copie.",
+      "id": "stream_framing",
+      "label": "Framing incremental",
+      "givre": {
+        "evidence": [],
+        "reason": "no_corresponding_anchor_selected",
+        "status": "missing_source"
+      },
+      "givre_rework": {
+        "evidence": [
+          {
+            "file": "src/GivreRework.Infrastructure/Protocol/Stream/P0LegacyCompatibleStreamFramer.cs",
+            "line": 87,
+            "sha256": "643db3642f7ac800febbc1d9e8df3054f2464e7b25927c6eb014f82890365640",
+            "symbol": "P0LegacyCompatibleStreamFramer"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      }
+    },
+    {
+      "comparison": "both_source",
+      "exe_confirmed": false,
+      "functional_note": "UID candidat Rework n'est pas une confirmation serveur.",
+      "id": "request_correlation",
+      "label": "Correlation UID",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.Protocol/RequestCorrelator.cs",
+            "line": 9,
+            "sha256": "fb7d915505b54a75aca0a4db84f349e4c8a4171632419515391b858b81a8d24a",
+            "symbol": "RequestCorrelator"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [
+          {
+            "file": "src/GivreRework.Infrastructure/Protocol/Differential/P0CandidateCorrelationTracker.cs",
+            "line": 29,
+            "sha256": "341a4d3ad1eea416d6ac0dd4cb0279065e7892ab5480a6ed832becb45b10cfec",
+            "symbol": "P0CandidateCorrelationTracker"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      }
+    },
+    {
+      "comparison": "givre_source_only",
+      "exe_confirmed": false,
+      "functional_note": "Pas de bus synchrone equivalent certifie par cette selection source Rework.",
+      "id": "packet_bus",
+      "label": "Bus par session",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.Engine/PacketBus.cs",
+            "line": 17,
+            "sha256": "ea9005c0e1603db714090e2be0350c37f946bb87e6e337da37ddc92bd49da74b",
+            "symbol": "PacketBus"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [],
+        "reason": "no_corresponding_anchor_selected",
+        "status": "missing_source"
+      }
+    },
+    {
+      "comparison": "both_source",
+      "exe_confirmed": false,
+      "functional_note": "Le reducteur Rework ne prouve pas la mise a jour depuis un flux reel.",
+      "id": "game_state",
+      "label": "Etat de jeu",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.Engine/GameState.cs",
+            "line": 19,
+            "sha256": "0f29ae1336f2fc80cae056372f3af944dd6d5699ae961d4470832d490d098ad0",
+            "symbol": "GameState"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [
+          {
+            "file": "src/GivreRework.Domain/Combat/CombatObservationState.cs",
+            "line": 83,
+            "sha256": "a4b49b8e00a0020a3380e2451ddce0b13671eb77e19f1d7a259b2019071c7db8",
+            "symbol": "CombatObservationReducer"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      }
+    },
+    {
+      "comparison": "givre_source_only",
+      "exe_confirmed": false,
+      "functional_note": "Aucun emetteur gameplay certifie de production Rework dans le perimetre P0.",
+      "id": "action_sender",
+      "label": "Emetteur gameplay",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.Engine/ActionSender.cs",
+            "line": 34,
+            "sha256": "cff2a51ef9a28ac3de7c0c7068ef7c42824259adb825e1adf304d8b71f29bf2f",
+            "symbol": "ActionSender"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [],
+        "reason": "no_corresponding_anchor_selected",
+        "status": "missing_source"
+      }
+    },
+    {
+      "comparison": "both_source",
+      "exe_confirmed": false,
+      "functional_note": "Givre logique applicative source; Rework simulateur offline.",
+      "id": "combat",
+      "label": "Combat automatique",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.App/Services/LaunchService.Combat.cs",
+            "line": 22,
+            "sha256": "c3cd55f23d9ac121e18dd60a45f64c30555d1ddc6b6252da9c477ac5a74f0127",
+            "symbol": "LaunchService"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [
+          {
+            "file": "src/GivreRework.Domain/Combat/Simulation/G7OfflineTacticalSimulator.cs",
+            "line": 65,
+            "sha256": "0e481054d81a3246ce82bcdb715cbab217929fe10a5c7599c6add22589ec2248",
+            "symbol": "G7OfflineTacticalSimulator"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      }
+    },
+    {
+      "comparison": "both_source",
+      "exe_confirmed": false,
+      "functional_note": "Comparer topologie/cellules, sans inferrer de mouvement execute.",
+      "id": "navigation",
+      "label": "Navigation et pathfinding",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.Protocol/MapPathfinder.cs",
+            "line": 12,
+            "sha256": "4dacc1fc8690284ef9ef2c5ed6eadec52353d7ac7b05d5fd8da403fa2a387744",
+            "symbol": "MapPathfinder"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [
+          {
+            "file": "src/GivreRework.Domain/World/Pathfinding/ObservedWalkabilityPathfinder.cs",
+            "line": 11,
+            "sha256": "12a896a986b6782f9ce02921db07665652ac5df3b430d251fa057d0df7f620e6",
+            "symbol": "ObservedWalkabilityPathfinder"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      }
+    },
+    {
+      "comparison": "both_source",
+      "exe_confirmed": false,
+      "functional_note": "Flux Rework est une preparation offline, pas un parcours banque reel.",
+      "id": "bank",
+      "label": "Banque/echange",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.App/Services/LaunchService.Bank.cs",
+            "line": 22,
+            "sha256": "7079d237f625532d354c6e1454b51ba8ad97d2930c91116ad1ca6f3f36b70de1",
+            "symbol": "LaunchService"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [
+          {
+            "file": "src/GivreRework.Application/Bank/Exchange/OfflineExchangeFlow.cs",
+            "line": 87,
+            "sha256": "7c775574dc17f5e9ee00c3ec33f9439997f8d060a854c55d433dfb7eb73a3131",
+            "symbol": "OfflineExchangeFlow"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      }
+    },
+    {
+      "comparison": "both_source",
+      "exe_confirmed": false,
+      "functional_note": "Les cotations Rework ne correspondent pas a un achat/une vente en jeu.",
+      "id": "market",
+      "label": "HDV et economie",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.App/Services/LaunchService.Hdv.cs",
+            "line": 22,
+            "sha256": "1376d829ae0d44962783d05f4df69110f1fd1961c2ee4a3131b6b29e8046ec88",
+            "symbol": "LaunchService"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [
+          {
+            "file": "src/GivreRework.Application/Economy/Market/OfflineMarketQuoteEngine.cs",
+            "line": 14,
+            "sha256": "1fd3d644eb5b748ad805719d08752a2fa2e1349a3b95db68d401a2fc9b314c4e",
+            "symbol": "OfflineMarketQuoteEngine"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      }
+    },
+    {
+      "comparison": "both_source",
+      "exe_confirmed": false,
+      "functional_note": "Rework planification hors ligne.",
+      "id": "craft",
+      "label": "Fabrication",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.App/Services/LaunchService.Craft.cs",
+            "line": 22,
+            "sha256": "9c47ac43abecb592ce8cf5f2bab3b5ca1cb22828a59b292cbd5596314a2324c9",
+            "symbol": "LaunchService"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [
+          {
+            "file": "src/GivreRework.Application/Economy/Crafting/OfflineCraftingPlanner.cs",
+            "line": 234,
+            "sha256": "60a1f2fc7d522d74661ebdbfaf2317d597ef89f2ecfe071bea3fe6858b9f4985",
+            "symbol": "OfflineCraftingPlanner"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      }
+    },
+    {
+      "comparison": "both_source",
+      "exe_confirmed": false,
+      "functional_note": "Le runtime Rework est borne aux contrats offline tant que le flux manque.",
+      "id": "lua_runtime",
+      "label": "Execution de scripts Lua",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.App/Services/GivreLuaHost.cs",
+            "line": 32,
+            "sha256": "bbdedf3cc8faad18b18c27388e206cdf2dbe2544be7de8452c1f17592a8f5072",
+            "symbol": "GivreLuaHost"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [
+          {
+            "file": "src/GivreRework.Infrastructure/Scripting/Engine/BoundedOfflineLuaEngine.cs",
+            "line": 38,
+            "sha256": "9e272e91ad97c0f183dd53078d57676cbf6007d673e60ef75f52552efc2ccba1",
+            "symbol": "BoundedOfflineLuaEngine"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      }
+    },
+    {
+      "comparison": "both_source",
+      "exe_confirmed": false,
+      "functional_note": "Rework enregistre des observations fournies; leur origine reste a verifier.",
+      "id": "route_recording",
+      "label": "Enregistrement d'itineraire",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.App/Services/RoadRecorder.cs",
+            "line": 45,
+            "sha256": "24311c1f06d32f86c245602f64aa3b866140c732dc43c840e3a64a4ff523e7b0",
+            "symbol": "RoadRecorder"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [
+          {
+            "file": "src/GivreRework.Application/World/Recording/ObservedRouteRecorder.cs",
+            "line": 69,
+            "sha256": "f4e2e7f9f444c42e1f713ef1c3f02284ecafc295d2182f23656e6a1c09d6b2ab",
+            "symbol": "ObservedRouteRecorder"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      }
+    },
+    {
+      "comparison": "givre_source_only",
+      "exe_confirmed": false,
+      "functional_note": "Pas de gestionnaire de comptes live equivalent certifie dans Rework P0.",
+      "id": "multi_account",
+      "label": "Gestion multi-comptes",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.Engine/Accounts/AccountManager.cs",
+            "line": 12,
+            "sha256": "12a323a0ed448cb15fb67aa65639e3fc52860c1fff7d6ad125ea934133e69850",
+            "symbol": "AccountManager"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [],
+        "reason": "no_corresponding_anchor_selected",
+        "status": "missing_source"
+      }
+    },
+    {
+      "comparison": "both_source",
+      "exe_confirmed": false,
+      "functional_note": "Le superviseur Rework est explicitement offline.",
+      "id": "orchestration",
+      "label": "Orchestration de bots",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.Engine/BotOrchestrator.cs",
+            "line": 12,
+            "sha256": "45dcf8700937837f5d334e3b6fa949f976fae3cb041b7c6b5ffc7f0fb3f9e40c",
+            "symbol": "BotOrchestrator"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [
+          {
+            "file": "src/GivreRework.Application/Supervision/Offline/OfflineSupervisor.cs",
+            "line": 104,
+            "sha256": "f83faf669a6e4267f7de0282d493774ff38a3f28ea2c23ee553dc75be659e0b8",
+            "symbol": "OfflineSupervisor"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      }
+    },
+    {
+      "comparison": "givre_source_only",
+      "exe_confirmed": false,
+      "functional_note": "Cette copie n'inclut aucune preuve d'integration native Rework.",
+      "id": "native_turbo",
+      "label": "Turbo/animations natif",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.App/Services/NativeTurboRuntime.cs",
+            "line": 21,
+            "sha256": "3afbcd3f5b8b96a69173c5cc8fadbeb43d4d276bad61397b36df778d47afd87c",
+            "symbol": "NativeTurboRuntime"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [],
+        "reason": "no_corresponding_anchor_selected",
+        "status": "missing_source"
+      }
+    },
+    {
+      "comparison": "both_source",
+      "exe_confirmed": false,
+      "functional_note": "Comparer ecrans et commandes sur le code reel, pas sur le nom du framework.",
+      "id": "avalonia_ui",
+      "label": "Interface Avalonia",
+      "givre": {
+        "evidence": [
+          {
+            "file": "GivreClone.App/Views/BotsView.axaml.cs",
+            "line": 18,
+            "sha256": "3996945c15c203eb20af88500d90126163835306127b7899f14304772cfe140d",
+            "symbol": "BotsView"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      },
+      "givre_rework": {
+        "evidence": [
+          {
+            "file": "src/GivreRework.App/MainWindow.cs",
+            "line": 21,
+            "sha256": "766273038c762b3eedd69741faa904f31a96c87e69a57a4d9863f036157f5344",
+            "symbol": "MainWindow"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      }
+    },
+    {
+      "comparison": "rework_source_only",
+      "exe_confirmed": false,
+      "functional_note": "Les deux vrais decodeurs et le corpus authentifie manquent au passage end-to-end.",
+      "id": "private_differential",
+      "label": "Comparaison privee des decodeurs",
+      "givre": {
+        "evidence": [],
+        "reason": "no_corresponding_anchor_selected",
+        "status": "missing_source"
+      },
+      "givre_rework": {
+        "evidence": [
+          {
+            "file": "src/GivreRework.Infrastructure/Protocol/Differential/P0SameBytesDifferential.cs",
+            "line": 47,
+            "sha256": "df433664052e43a332470a26883404e9e0a49f40b94ff5257cf7cb36829f5095",
+            "symbol": "P0SameBytesDifferential"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      }
+    },
+    {
+      "comparison": "rework_source_only",
+      "exe_confirmed": false,
+      "functional_note": "Fenetre offline verifiee, aucune session Dofus live deduite.",
+      "id": "operator_panel",
+      "label": "Console diagnostics P0",
+      "givre": {
+        "evidence": [],
+        "reason": "no_corresponding_anchor_selected",
+        "status": "missing_source"
+      },
+      "givre_rework": {
+        "evidence": [
+          {
+            "file": "src/GivreRework.App/Services/P0OperatorWindow.cs",
+            "line": 16,
+            "sha256": "0dfc1c77197e45e2e0be3c83eb1a9fcb769ca4d1fde4ec5375cc6e815209eca8",
+            "symbol": "P0OperatorWindow"
+          }
+        ],
+        "reason": "declaration_present_not_runtime_verified",
+        "status": "source_only"
+      }
+    }
+  ],
+  "global_proof": {
+    "exe_features_confirmed": 0,
+    "live_process_examined": false,
+    "runtime_gameplay_validated": false,
+    "server_ack_validated": false,
+    "source_scanned": true
+  },
+  "givre_app_module_provenance": [
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Bank.cs",
+      "sha256": "7079d237f625532d354c6e1454b51ba8ad97d2930c91116ad1ca6f3f36b70de1",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Character.cs",
+      "sha256": "083006e406ff5d5cbac557ca3941f071c58a29d0a2509114b7c30ab09c225f2d",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Chat.cs",
+      "sha256": "1cc85c9c147107bbdc9e23e3eb3be568c34822fbe78ebaf7f2b532fd40ccae24",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Combat.Challenges.cs",
+      "sha256": "6ced2f77c02da2c521e7a347d1bb0eea3e8e1d051c4e27be8cdc2098e4c95e77",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Combat.Debug.cs",
+      "sha256": "ee1e7b5390a83281e05d358e16d8bf6a9ace3f3e15c62427ea2a50de63f26e85",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Combat.PreFight.cs",
+      "sha256": "d675852f307d5fb56574797e4862fae6b4ac75c58df6e22c2c921081bcbf97ea",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Combat.Script.cs",
+      "sha256": "e7836f43156fa523eabd5cda7d297672380ae1d663a49bb486296481481966b5",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Combat.Turn.cs",
+      "sha256": "4056d0642bf28dfdcfc88c418c1561b5c2823ca78f85137da810f4b949d9d616",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Combat.cs",
+      "sha256": "c3cd55f23d9ac121e18dd60a45f64c30555d1ddc6b6252da9c477ac5a74f0127",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Craft.cs",
+      "sha256": "9c47ac43abecb592ce8cf5f2bab3b5ca1cb22828a59b292cbd5596314a2324c9",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Events.cs",
+      "sha256": "0faab3cc689cdd10b8da716565e71b62344cef4498858525bb34da981899569f",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.GameLink.cs",
+      "sha256": "a9ddf5fcb9a8cb388890417dae5ead1fec908debdd3201da78b268b1bd370024",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Hdv.cs",
+      "sha256": "1376d829ae0d44962783d05f4df69110f1fd1961c2ee4a3131b6b29e8046ec88",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.HdvStatus.cs",
+      "sha256": "ca4380834332efd59142b4a0409162ce8a983852847ee945071b8e3c2ce78329",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.HdvTracker.cs",
+      "sha256": "e4ac55f54759d2064a8565c7b82820b6d0520f01004138d21a7a5e45e79ef0e4",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Interactives.cs",
+      "sha256": "1eaaf13aee043277e8b640edc078282900dd7b5425bff04b874bb0391b3b1e4b",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Inventory.cs",
+      "sha256": "1ad8e9ac8951ddd1bdd27096b0a3a938031171e29724be95cdfa09eaf1349315",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.LevelUp.cs",
+      "sha256": "62172e213e9e334c4aecac7765a536c010feca3600910e1bd791d9cd00d1f7dc",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.LotE.cs",
+      "sha256": "7ab46d5011f151188f683b2e197c35467c78f76787570edd103402d3753bda9f",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.LotF.cs",
+      "sha256": "55b51fe80b9b4803b47ff092a6d110f78bc17b9fed0edd31e1ffcf2210b361ce",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.LotG.cs",
+      "sha256": "37cb6f25d3aa4180959b96e233e37ad69ad17b651833de76669964718c071701",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.LotI.cs",
+      "sha256": "8f2797d9f0cc8437dfdd65bfff11f0b54c632e6aad35c82507014e7ae1125adf",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.LotJ.cs",
+      "sha256": "d20721f7b77e77670f6d6e7d996df963071fb51ff4ee9e97853e5119e312e05b",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.LotK.cs",
+      "sha256": "2d15597a46ca54676416d0fadb861fcd0f68714c83d398cba5299fdcc25255bf",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Movement.cs",
+      "sha256": "9549d8104154b250355e2b1c768238debcc933a2e4715cf348dfb8fc6237365e",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Packets.cs",
+      "sha256": "84bbb7ddb90070ef153d18f08b3263218502f5963b2d1ce413a90dc5fb848154",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Scripting.cs",
+      "sha256": "de1dc855539dc2f3ff033d5cdea1936a186e892bc0038c28f8fb2187fe0fe189",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Snow.cs",
+      "sha256": "2e1cd49ed1c9e5c2427061dc685426502bf3a54c999cd08890052c3e429802cb",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.SnowPlacement.cs",
+      "sha256": "046f180132c36ec2b1524611bb0ba0fbcbae934775031cdcaedcb9ac30924b71",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Team.cs",
+      "sha256": "876b2aafe85ac0c0d61f92346f371183a585b0004269861e9605232ac93110b3",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Trade.cs",
+      "sha256": "32f1aab7d39c31e36b9d502924f094d68edcbf5096141befc6fab8854f99f31a",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.Treasure.cs",
+      "sha256": "aae31538eac2b8d3be3ffd0cd336f136a30d46a41659b65399d05c18c2c6e7eb",
+      "source_only": true
+    },
+    {
+      "category": "gameplay_service",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LaunchService.cs",
+      "sha256": "5c3cdc7564dd47ae7ac35ba8acd31153b927d19fc6b6a81e07068e9de5f41057",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.Bank.cs",
+      "sha256": "16e9589b4a806b9397c83f211f507b1262ca3c1259fb6de026ac3d097efa7c48",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.Bindings.cs",
+      "sha256": "f1caedbdf8d1cd6506b7617b7c1e569bb3e8fcbc0efd561f80326c9f1b63b843",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.Combat.cs",
+      "sha256": "1ebf3dc5b215e5d422d5df48e8bf5bbe0f2c47f16abd5600aef1d7f5ce81c963",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.Gather.cs",
+      "sha256": "bd53cc3752e200f6452820828b647a6f1955af112de794ef171a95f27903404c",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.Hdv.cs",
+      "sha256": "d3235646745ccbf8f7f4f9b85b8a152b7e1b50978ed173acd6fe494d49aefb60",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.Logging.cs",
+      "sha256": "c161022ea1565f365f1c527003f882330b924c5cf45bc163f7beb87628555daf",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.LotB.cs",
+      "sha256": "6fb75e1de504db0f7c394aa2a72f6a38ac3b5d8cd0355f372c83911ec0ac326f",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.LotE.cs",
+      "sha256": "ac1d98d7e5115e68ab698813c0e602200451ee82a6226a9c5685d9c8b54ffa0b",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.LotF.cs",
+      "sha256": "8b34cd27ae5786afed85e9f6bf649544a4431c6c7666e912aa1bda9215410996",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.LotG.cs",
+      "sha256": "c8c992fe3c44abc302277e962451e5a6862fe41046961080f32a00586a239d03",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.LotI.cs",
+      "sha256": "d96a015d9573135343daf2bca45c7d8a3f1653325fdee13b3755f47f3d61fa02",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.LotJ.cs",
+      "sha256": "c56295a3ab96acffb3a84ae04f4f87fbe3f061db925db07c5f97a25fd9fc25ac",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.LotK.cs",
+      "sha256": "f36d76f49d8eb6dc3c39bdaa8a34bfc2b1006f024464f90099d4c2931cce27cd",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.RoadCreator.cs",
+      "sha256": "0e1846f701a688ef2ebc36fd0c9350dc8c52b16aca6eee656e4e2df4e1ed0fed",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.Route.cs",
+      "sha256": "976f21ee4418209ffb01e0d7552713aec903901758c2d4ffabc2586f28202fa5",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.Snow.cs",
+      "sha256": "4ccf961ec895703bb98f00618dddac3cfc5aeb4d279e6eddfb36135a00868954",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.SnowDev.cs",
+      "sha256": "1b51c3e31ab93235f907397581538c9602c3c50944f4c8ba4021b34054d7af4d",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.SnowEconomy.cs",
+      "sha256": "996865d7a36c51afb8ccac19f7aa60751905e276e4584ff8600297dea5ba3e8b",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.SnowMap.cs",
+      "sha256": "d647d7d3e270a48635a081c900749feead3efb6b3a8e47f4db86af0474b7c64a",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.SnowNpc.cs",
+      "sha256": "893c0286c322cd813865edc2aab369b1900cf0568b63ce6fa8f06d2232c7fec6",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.SnowScript.cs",
+      "sha256": "44baed55609540a486e7eb55bdc3af170bbaa53cb357e286fbf07ea8bf722021",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.SnowTreasure.cs",
+      "sha256": "c312452cafcc659f899e7ed3f4b45cf394941d9cfe5073fdb615da5de2cefe50",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.Travel.cs",
+      "sha256": "cd98a599bf1381a47087591a634262e64e5390edf40b85205386f2026dea464e",
+      "source_only": true
+    },
+    {
+      "category": "lua_binding",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/GivreLuaHost.cs",
+      "sha256": "bbdedf3cc8faad18b18c27388e206cdf2dbe2544be7de8452c1f17592a8f5072",
+      "source_only": true
+    },
+    {
+      "category": "road_recorder",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/RoadRecorder.cs",
+      "sha256": "24311c1f06d32f86c245602f64aa3b866140c732dc43c840e3a64a4ff523e7b0",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/AccountOverlays.axaml",
+      "sha256": "1c098410ced4470ad0401e4a239d74f86b566a5054d1049b6fdfabab6ed349c9",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/AccountsView.axaml",
+      "sha256": "b1174b368533a758b8c201c929eabf181eeb7eefdf0e812667a9ad00ef10a472",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/AdaptersView.axaml",
+      "sha256": "f650970655fcfa53addaf24a5b6e16c10739fb4ed72a1d0affb6e029529a1bdf",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/BotsView.axaml",
+      "sha256": "3742113b217496cdd4645dbcb0b08c3773cdb41c52aaa85bc986e7cc0cb3bb6c",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/CombatOverlays.axaml",
+      "sha256": "dafd753a318106281265514433af8100eb703f52c00dd41cb56357224a39d267",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/CombatSimOverlay.axaml",
+      "sha256": "3fff92a5fddb124deb12b7f5aa03113fcd9c14b9afe22fbdb2340eb29d9c79f6",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/HdvSellOverlay.axaml",
+      "sha256": "714b93da0d8047b59cdb41074f603ff6577aae8c99992a2155bcc4ccff651fd6",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/LevelCapOverlay.axaml",
+      "sha256": "4f7f5235053854cc35ee18e91674d2008d610b2aba90ccd6239f351cc941d8b4",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/LuaEditorOverlays.axaml",
+      "sha256": "0692e206b3aec4fffc724f4f73699057c010e41cf954fccec607fd74a75581bc",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/MainWindow.axaml",
+      "sha256": "6698d30e9f90b9948c94ff95b6f90cabdf2884ddcaee0dcaaf43283c5665696c",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/MyAccountView.axaml",
+      "sha256": "61e304f6645d1f81199cfcb4c90eb2d26da6d71bf9c461868ce5023ab996ccac",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/PlannedOfflineCard.axaml",
+      "sha256": "8f3f4596a0f697ee7f87aa74d7fc8410b49db7d9fd28cbbec073ae052c8a52cb",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/PlanningDisconnectOverlay.axaml",
+      "sha256": "6dab11a0e33ecca2fd8c6105c43e840bc2dee90eb597c0ad96c0a3bba9950bc6",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/PlanningEditor.axaml",
+      "sha256": "7514786bc133d86410a208245a281fb9b22cd7b188586bb782dd6a45563f9861",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/PlanningOverlays.axaml",
+      "sha256": "644f45ae901181cb486453640c61620de634dba2dce0fee6033e8eee92afb489",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/ProxysOverlays.axaml",
+      "sha256": "d1bf2c862efe82827af3e32791a9510874d3bf359da1938b91a6c9ba0f74dd48",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/ProxysView.axaml",
+      "sha256": "0996103d38175130df804a2d43d73d2c1b7884b9d1ef3b055d36611641e556ed",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/RoadRecorderOverlays.axaml",
+      "sha256": "7c024f69ccd888a452bc6455b836b366951617ae6b464cc4ddb649d22bfcbf7a",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/SettingsView.axaml",
+      "sha256": "a0bff895fd2521ddaa5984a756ccbe38ef623f56621f34086e53f61761e3d534",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/SocketServerPickOverlay.axaml",
+      "sha256": "f3fd6b60b890bf8163c4888874ab27f5a3179b8611482f29dc9e8916f107190e",
+      "source_only": true
+    },
+    {
+      "category": "view_definition",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Views/TeamsView.axaml",
+      "sha256": "e21b65e803e8e12a1dda5ab85c269b6660a6c747cf6e2cdb91c0edd8b40013fd",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/AccountsViewModel.Launch.cs",
+      "sha256": "42c95796af5e89d7502c879d9a098a06b424bb82e9105b68ab134b595dda18ac",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/AccountsViewModel.ServerPick.cs",
+      "sha256": "82c2baf0676a49a3240cc18ae5dbfcad7c7ddf5692d7ebaf0d4a94b8a831d1d7",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/AccountsViewModel.Socket.cs",
+      "sha256": "6487f59bd34f95bde9bd9a16b7cf6cf5179349f8f3416c579c8f9c4f857d7efc",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/AccountsViewModel.Telemetry.cs",
+      "sha256": "d4ad875da1e9ae79d83417a98244e3af452d6e9fa9f6878700e806c0a965abe9",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/AccountsViewModel.cs",
+      "sha256": "42792a098b62bdb4d04bdb7a9c85956c93754e56d9a49681acd46a14f6444cfb",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/AdaptersViewModel.cs",
+      "sha256": "cdf7bc60762e893adb7a1a8724940a27bdfbd28f43f08ef6c71b748400b3bf37",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotRowViewModel.cs",
+      "sha256": "0969df4c60aaf7fbad7a72975907a1a2ba5d8f658cb57af7a15e027cab370ec6",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotSettingsViewModel.cs",
+      "sha256": "89924554233d64231fe65995e29087a83748165107fc731144f504519634c01a",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotStatsViewModel.cs",
+      "sha256": "c8ce309bc4f585e67b3a626865c3bb3199c2ad7ee56c242dc5a2dc59bc7f262f",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.AutoStart.cs",
+      "sha256": "24f49f6d8646ef7d5b19fa85eae6c74726ba74dd9654d8dedf1a5ada7920276a",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.Autonomy.cs",
+      "sha256": "e576de0bb182c12926751a5542348471f3f11ff8dbac116417a4d5b964b0059e",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.Combat.Challenges.cs",
+      "sha256": "f72a427036b6866da03dc77a615d935f3b5dab8c95c7e466791cabd438c320ea",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.Combat.cs",
+      "sha256": "39f9a3b29087bcc2c5060ea613bc931eb3913806693512c797bc94c961e094ba",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.ConnectionJournal.cs",
+      "sha256": "f03cac3ceaeabdd070941630d5a322177dd80d319486a253af25fa58b1bdf6a6",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.Console.cs",
+      "sha256": "b9855a477eb2643105c93c88bed771bd6d33dcee0c9a104cb6c8e917ba42f27e",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.GameJournal.cs",
+      "sha256": "65f8191a1f0323ae03e6049c379eff84c2f7c5654bb6a30d7d410c160ad5512a",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.LevelCap.cs",
+      "sha256": "1f2462790363acc728ed83dde1118bb721d2c80592f2e3f5fd0bac201a29b916",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.Lua.cs",
+      "sha256": "dcea4449466f895ddcac416c07d3e28c13b9b68ab5fb3c4ff5a7d7af80f4084b",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.LuaEditor.cs",
+      "sha256": "60ed3c950423376508feed4d8237583a4dc5a1e63f41515f0aa4f8a3c5fa74c5",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.Planning.cs",
+      "sha256": "8642e61bfe3b97eab5575f247b822c226b9e09b0536dfe0e3a4d9050417522fd",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.PlanningConnect.cs",
+      "sha256": "b117f87ee710d2bb3ae393df5599cfd2204277e910276b3cb860937884807f3a",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.Reconnect.cs",
+      "sha256": "7951e83a6e00fecc460a26ddb968ab6b0464b234cd82ad3e12a744ab8a39e8fb",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.RoadRecorder.cs",
+      "sha256": "66c969766f4c9f719612b746104dd6e79a14e5e01ee218d4b1a1a4e0bfe632e5",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.SnowAccounts.cs",
+      "sha256": "3b59ba3ea4be42d9cb8afad96fccedca6cbde7df27c95e934a1f6f3aaf7bff5a",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.Team.cs",
+      "sha256": "9a249499027fe34d3465a0497be3238b728fbee494e9ce9485e091a5c3b5da62",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.TeamFollow.cs",
+      "sha256": "b759bf5e907b71c7b45c4ea12f21c9d94291045af9ddce7be6bf0dfe0f0f67be",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/BotsViewModel.cs",
+      "sha256": "529e8bf266faf51bab6bbcd8ccf3867f961ba6a08c05b3f3280a13dab33ea174",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/CombatSimViewModel.cs",
+      "sha256": "9b2fe40937702c96e6879843ac34c7cc4c37e5cbac18db60af88476fcd89cec8",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/HdvStatsViewModel.cs",
+      "sha256": "d072386691f297c47ab12c71cf0fd190dbca4a91b3d72727a50563b1ede10e03",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/HdvViewModel.Bulk.cs",
+      "sha256": "e6deff23993d6e70240fc3c5459ee1248c2ad417f6024ee72d574d92dc74fb41",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/HdvViewModel.cs",
+      "sha256": "2a59fea8b0b64d7177d316f73a63e5884cb6abc49748edf70e3cccd3c19e767f",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/MZP0OperatorContracts.cs",
+      "sha256": "2bee922f9d5b6639d03fb8cf67892c5c480787208ae84493654494b1f8cc6e7a",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/MZP0OperatorViewModel.cs",
+      "sha256": "28f3188038889eb43495d6337ea10acc812129cd7d878a3f7ff173f9335e0415",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/MainViewModel.cs",
+      "sha256": "05bb21acf1df15d9039c59b5337f875faff7ee86226b75c439728016abbfad6d",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/MyAccountViewModel.cs",
+      "sha256": "825ef32737ae7b96a9a82336efac06b0f4956a34b2d1b7bdf9ca7ada6bd61ee7",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/NotificationCenterViewModel.cs",
+      "sha256": "0548d03e11ae7d295d7442737614a3ebdb7321b62e79ce2a6f70cfdd3ec106e4",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/PlanningViewModel.cs",
+      "sha256": "3934dcd4f4474b04f3902b7710c017da433ba57a67f47403f7e6279d5b111087",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/ProxysViewModel.cs",
+      "sha256": "19274d9980c45ef011ee105b51e6178064f652dd60267cf9ba403b3e90091cb5",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/SettingsViewModel.cs",
+      "sha256": "6a770344b26cce2d4b1dca413b84e65200bbc40286d0a378aa5a28a4f329099e",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/SpellRowViewModel.cs",
+      "sha256": "a6defce358e226940e385ea6b3d6311343723444f2985594bdcfe9910e26a996",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/Team.cs",
+      "sha256": "29609eb02253cc0af109aa17fd8624d0e3c53bd00856f90cfe3973119e547147",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/TeamsViewModel.cs",
+      "sha256": "e7acc11a3a4ba8be4d7770a333aba5936647d6cf3de8cea8a63151d64f9fc9ac",
+      "source_only": true
+    },
+    {
+      "category": "view_model",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/ViewModels/ViewModelBase.cs",
+      "sha256": "e4db2b9f149cf64f2bfbf4654ae9abb6d51aaaa87649aebc3b5fc6a5739c1935",
+      "source_only": true
+    }
+  ],
+  "repositories": {
+    "givre": "GivreShareWork",
+    "givre_rework": "GivreRework"
+  },
+  "schema_version": 1
+}

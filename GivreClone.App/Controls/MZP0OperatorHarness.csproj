@@ -1,0 +1,43 @@
+<Project>
+  <!-- Isolated source-only test/AXAML compilation project. Never launches the main app,
+       its dependencies or the existing Dofus/Givre sessions. Builds under App/obj and App/bin
+       so the parent App's default globs do not ingest this test project's generated files. -->
+  <PropertyGroup>
+    <!-- Must be set before Sdk.props / Microsoft.Common.props, otherwise NuGet writes
+         intermediate files into Controls/obj and warns that the paths diverge. -->
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)..\obj\MZP0OperatorHarness\</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(MSBuildThisFileDirectory)..\bin\MZP0OperatorHarness\</BaseOutputPath>
+  </PropertyGroup>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <DefineConstants>$(DefineConstants);MZP0_TESTS</DefineConstants>
+    <AssemblyName>MZP0OperatorHarness</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.1.1" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\ViewModels\ViewModelBase.cs" />
+    <Compile Include="..\ViewModels\MZP0OperatorContracts.cs" />
+    <Compile Include="..\ViewModels\MZP0OperatorViewModel.cs" />
+    <Compile Include="MZP0OperatorPanel.axaml.cs" />
+    <Compile Include="MZP0OperatorNavigation.cs" />
+    <Compile Include="MZP0OperatorTests.cs" />
+    <Compile Include="MZP0OperatorNavigationTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Views\MainWindow.axaml" Link="MZP0_MainWindow.axaml" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+</Project>

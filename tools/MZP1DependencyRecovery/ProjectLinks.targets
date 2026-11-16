@@ -1,0 +1,28 @@
+<Project>
+  <!-- Opt-in MSBuild import via -p:DirectoryBuildTargetsPath=<this file>.
+       Never installed as repository-wide Directory.Build.targets.
+       No placeholder/stub projects. Paths must be validated by MZP1DependencyBuild.ps1
+       and are only supplied if original sources are recovered and fingerprinted. -->
+  <PropertyGroup Condition="'$(MZP1DependencyRecovery)' == 'true'">
+    <MZP1CoreSourceProject Condition="'$(MZP1CoreSourceProject)' == ''">__MISSING_GIVRE_CORE_SOURCE__</MZP1CoreSourceProject>
+    <MZP1LauncherSourceProject Condition="'$(MZP1LauncherSourceProject)' == ''">__MISSING_GIVRE_LAUNCHER_SOURCE__</MZP1LauncherSourceProject>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(MZP1DependencyRecovery)' == 'true' and
+                        ('$(MSBuildProjectName)' == 'GivreClone.Engine' or '$(MSBuildProjectName)' == 'GivreClone.Protocol')">
+    <ProjectReference Remove="..\..\GivreProxy\GivreCore\GivreCore.csproj" />
+    <ProjectReference Include="$(MZP1CoreSourceProject)" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(MZP1DependencyRecovery)' == 'true' and '$(MSBuildProjectName)' == 'GivreClone.App'">
+    <ProjectReference Remove="..\..\GivreLauncher\GivreLauncher.Core\GivreLauncher.Core.csproj" />
+    <ProjectReference Include="$(MZP1LauncherSourceProject)" />
+  </ItemGroup>
+
+  <Target Name="MZP1DependencyFailClosed"
+          BeforeTargets="ResolveProjectReferences"
+          Condition="'$(MZP1DependencyRecovery)' == 'true'">
+    <Error Condition="!Exists('$(MZP1CoreSourceProject)')" Text="MZP1: real fingerprinted GivreCore source project is required." />
+    <Error Condition="!Exists('$(MZP1LauncherSourceProject)')" Text="MZP1: real fingerprinted GivreLauncher.Core source project is required." />
+  </Target>
+</Project>

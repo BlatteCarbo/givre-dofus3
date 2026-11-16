@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="GivreClone.Protocol/GivreClone.Protocol.csproj" />
+  <Project Path="GivreClone.Engine/GivreClone.Engine.csproj" />
+  <Project Path="GivreClone.App/GivreClone.App.csproj" />
+  <Project Path="GivreClone.Tests/GivreClone.Tests.csproj" />
+  <Project Path="GivreRelayAgent/GivreRelayAgent.csproj" />
+  <Project Path="../GivreProxy/GivreCore/GivreCore.csproj" />
+</Solution>

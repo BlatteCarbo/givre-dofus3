@@ -1,0 +1,212 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             xmlns:svc="using:GivreClone.App.Services"
+             x:Class="GivreClone.App.Views.ProxysView"
+             x:DataType="vm:ProxysViewModel"
+             Classes="page">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="30,26" Spacing="20" MaxWidth="980" HorizontalAlignment="Center">
+
+            <StackPanel Spacing="4">
+                <TextBlock Classes="h1" Text="{DynamicResource L.Proxys.Title}" />
+                <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Proxys.Subtitle}" />
+            </StackPanel>
+
+            <!-- Bandeau licence : sans la permission "proxy", l'onglet reste visible mais les proxys ne sont
+                 ni testables ni utilisables au lancement (CanUseProxys=false). Informe du POURQUOI. -->
+            <Border Classes="notice" IsVisible="{Binding ShowLegacyProxyLicenseNotice}">
+                <Grid ColumnDefinitions="Auto,*">
+                    <PathIcon Grid.Column="0" Data="{StaticResource IconLock}" />
+                    <TextBlock Grid.Column="1" Text="{DynamicResource L.Proxys.NoLicense}" />
+                </Grid>
+            </Border>
+
+            <!-- ajouter un proxy externe -->
+            <Border Classes="card">
+                <StackPanel Spacing="14">
+                    <TextBlock Classes="section" Text="{DynamicResource L.Proxys.AddExternalTitle}" />
+                    <Grid ColumnDefinitions="1.4*,0.9*,1.6*,0.8*" ColumnSpacing="12">
+                        <StackPanel Grid.Column="0" Spacing="6">
+                            <TextBlock Classes="label" Text="{DynamicResource L.Proxys.Name}" />
+                            <TextBox Watermark="{DynamicResource L.Proxys.NameHint}" Text="{Binding NewName}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Spacing="6">
+                            <TextBlock Classes="label" Text="{DynamicResource L.Proxys.Protocol}" />
+                            <ComboBox HorizontalAlignment="Stretch" ItemsSource="{Binding Protocols}" SelectedItem="{Binding Protocol}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Spacing="6">
+                            <TextBlock Classes="label" Text="{DynamicResource L.Proxys.Host}" />
+                            <TextBox Watermark="127.0.0.1" Text="{Binding NewHost}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="3" Spacing="6">
+                            <TextBlock Classes="label" Text="{DynamicResource L.Proxys.Port}" />
+                            <TextBox Watermark="8080" Text="{Binding NewPort}" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*,Auto" ColumnSpacing="12">
+                        <StackPanel Grid.Column="0" Spacing="6">
+                            <TextBlock Classes="label" Text="{DynamicResource L.Proxys.User}" />
+                            <TextBox Watermark="{DynamicResource L.Proxys.Optional}" Text="{Binding NewUser}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Spacing="6">
+                            <TextBlock Classes="label" Text="{DynamicResource L.Proxys.Pass}" />
+                            <TextBox PasswordChar="●" Watermark="{DynamicResource L.Proxys.Optional}" Text="{Binding NewPass}" />
+                        </StackPanel>
+                        <Button Grid.Column="2" Classes="accent" Height="44" MinWidth="128" VerticalAlignment="Bottom" Command="{Binding AddExternalCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <PathIcon Data="{StaticResource IconPlus}" Width="14" Height="14" />
+                                <TextBlock Text="{DynamicResource L.Proxys.Add}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- ajouter depuis un adaptateur -->
+            <Border Classes="card">
+                <StackPanel Spacing="10">
+                    <TextBlock Classes="section" Text="{DynamicResource L.Proxys.FromAdapterTitle}" />
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                        <ComboBox Grid.Column="0" HorizontalAlignment="Stretch"
+                                  ItemsSource="{Binding AdapterChoices}" SelectedItem="{Binding SelectedAdapter}"
+                                  PlaceholderText="{DynamicResource L.Proxys.PickAdapter}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="svc:NetAdapter">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <PathIcon Data="{StaticResource IconNetwork}" Width="12" Height="12" VerticalAlignment="Center" />
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" />
+                                        <TextBlock Text="{Binding Ip}" Classes="caption pii" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button Grid.Column="1" Classes="accent" Command="{Binding AddFromAdapterCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <PathIcon Data="{StaticResource IconNetwork}" Width="13" Height="13" />
+                                <TextBlock Text="{DynamicResource L.Proxys.AddFromAdapter}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Assistant d'import local : revue détaillée par ligne, jamais de rendu des identifiants. -->
+            <Border Classes="card">
+                <StackPanel Spacing="12">
+                    <TextBlock Classes="section" Text="Import de proxys (local)" />
+                    <TextBlock Classes="caption" TextWrapping="Wrap"
+                               Text="Collez une liste de proxys SOCKS5 ou HTTP. L'aperçu indique les corrections à faire et masque les identifiants." />
+                    <Button Classes="ghost" HorizontalAlignment="Left" Content="Ouvrir l'import"
+                            Command="{Binding OpenImportCommand}" />
+                    <StackPanel IsVisible="{Binding ImportVisible}" Spacing="10">
+                        <TextBox PlaceholderText="proxy.example:1080 ou utilisateur:motdepasse@proxy.example:1080"
+                                 Text="{Binding ImportText, Mode=TwoWay}" AcceptsReturn="True"
+                                 MinHeight="112" MaxHeight="180" TextWrapping="NoWrap" />
+                        <Grid ColumnDefinitions="*,2*" ColumnSpacing="12">
+                            <StackPanel Grid.Column="0" Spacing="4">
+                                <TextBlock Classes="label" Text="Protocole par défaut" />
+                                <ComboBox ItemsSource="{Binding Protocols}" SelectedItem="{Binding ImportProtocol}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Spacing="4">
+                                <TextBlock Classes="label" Text="Nom des proxys" />
+                                <TextBox Text="{Binding ImportNameBase}" />
+                            </StackPanel>
+                        </Grid>
+                        <TextBlock Text="{Binding ImportPreview}" TextWrapping="Wrap" />
+                        <ScrollViewer MaxHeight="220" VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding ImportRows}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="svc:MZP24ProxyReviewRow">
+                                        <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource StrokeSoftBrush}"
+                                                Padding="2,8">
+                                            <StackPanel Spacing="3">
+                                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                                    <TextBlock Classes="caption" Text="Ligne" />
+                                                    <TextBlock Classes="caption" Text="{Binding Line}" />
+                                                    <TextBlock FontWeight="SemiBold" Text="{Binding DisplayStatus}" />
+                                                    <TextBlock Classes="caption" Text="{Binding MaskedPreview}" />
+                                                </StackPanel>
+                                                <TextBlock Classes="caption" TextWrapping="Wrap" Text="{Binding Reason}" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Button Classes="accent" Content="Importer les lignes validées"
+                                    IsEnabled="{Binding ImportReady}" Command="{Binding ImportProxiesCommand}" />
+                            <Button Classes="ghost" Content="Annuler" Command="{Binding CancelImportCommand}" />
+                        </StackPanel>
+                        <TextBlock Classes="caption" TextWrapping="Wrap"
+                                   Text="Toutes les lignes doivent être valides. Aucune connexion ni test réseau pendant cette revue." />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- GivreRelay : partages d'IP d'amis (créés sur le portail). Ils apparaissent dans la liste ci-dessous. -->
+            <Border Classes="card">
+                <StackPanel Spacing="8">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                        <TextBlock Grid.Column="0" Classes="section" Text="{DynamicResource L.Relay.Title}" VerticalAlignment="Center" />
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                            <PathIcon Data="{StaticResource IconRadar}" Width="12" Height="12" VerticalAlignment="Center"
+                                      Foreground="{DynamicResource AccentBrightBrush}" IsVisible="{Binding RelayConnected}" />
+                            <TextBlock Text="{Binding RelayStateText}" Classes="caption" VerticalAlignment="Center"
+                                       TextTrimming="CharacterEllipsis" MaxWidth="460" ToolTip.Tip="{Binding RelayStateText}" />
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Relay.Subtitle}" />
+                    <TextBlock Classes="caption" TextWrapping="Wrap" IsVisible="{Binding RelayEmpty}" Text="{DynamicResource L.Relay.Empty}" />
+                </StackPanel>
+            </Border>
+
+            <!-- liste des proxys -->
+            <Border Classes="card">
+                <StackPanel Spacing="12">
+                    <TextBlock Classes="section" Text="{DynamicResource L.Proxys.ListTitle}" />
+                    <TextBlock Classes="caption" IsVisible="{Binding !HasProxies}" Text="{DynamicResource L.Proxys.Empty}" />
+                    <ItemsControl ItemsSource="{Binding Proxies}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:ProxyItem">
+                                <Border Classes="listItem" Margin="0,0,0,8" Padding="14,12" ClipToBounds="True">
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="14">
+                                        <StackPanel Grid.Column="0" Spacing="3" VerticalAlignment="Center" ClipToBounds="True">
+                                            <TextBlock Text="{Binding Name}" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}"
+                                                       TextTrimming="CharacterEllipsis" />
+                                            <TextBlock Text="{Binding Detail}" Classes="caption" TextTrimming="CharacterEllipsis" />
+                                            <TextBlock Text="{Binding ExitIp}" Classes="pii" FontSize="11.5" Foreground="{DynamicResource AccentBrightBrush}"
+                                                       TextTrimming="CharacterEllipsis" ToolTip.Tip="{Binding ExitIp}" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                            <Button Classes="ghost"
+                                                    IsEnabled="{Binding CanTest}"
+                                                    Command="{Binding $parent[ItemsControl].((vm:ProxysViewModel)DataContext).TestCommand}"
+                                                    CommandParameter="{Binding}">
+                                                <StackPanel Orientation="Horizontal" Spacing="6">
+                                                    <PathIcon Data="{StaticResource IconRadar}" Width="13" Height="13" />
+                                                    <TextBlock Text="{DynamicResource L.Proxys.Test}" VerticalAlignment="Center" />
+                                                </StackPanel>
+                                            </Button>
+                                            <Button Classes="ghost" IsVisible="{Binding CanEdit}"
+                                                    Command="{Binding $parent[ItemsControl].((vm:ProxysViewModel)DataContext).BeginEditCommand}"
+                                                    CommandParameter="{Binding}" ToolTip.Tip="{DynamicResource L.Proxys.Edit}">
+                                                <PathIcon Data="{StaticResource IconWrench}" Width="13" Height="13" />
+                                            </Button>
+                                            <Button Classes="ghost" IsVisible="{Binding CanRemove}"
+                                                    Command="{Binding $parent[ItemsControl].((vm:ProxysViewModel)DataContext).RemoveCommand}"
+                                                    CommandParameter="{Binding}" ToolTip.Tip="{DynamicResource L.Proxys.Remove}">
+                                                <PathIcon Data="{StaticResource IconTrash}" Width="14" Height="14" />
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

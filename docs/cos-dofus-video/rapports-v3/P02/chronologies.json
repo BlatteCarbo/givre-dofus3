@@ -1,0 +1,19 @@
+{
+  "schema": "dofus-371317-buff-timeline-candidates-1",
+  "status": "synthetic_not_executed",
+  "source_sha256": "cbd685e8852966961a7d155c17d7a21dd23ec8e45cac70aa31be06300f89384b",
+  "timebase": "relative combat turn boundary, no measured timestamp",
+  "actors": {"S": "caster", "B": "beneficiary_if_target_mask_allows"},
+  "cases": [
+    {"id": "P02-01", "family": "AP", "spellId": 14621, "effectUid": 226301, "durationRaw": 2, "delayRaw": 0, "initiative": "S_B", "events": ["start_S_1", "cast_request", "effect_receipt_missing", "end_S_1", "start_B_1", "end_B_1", "start_S_2"], "serverOracle": "Unknown"},
+    {"id": "P02-02", "family": "AP", "spellId": 14621, "effectUid": 226301, "durationRaw": 2, "delayRaw": 0, "initiative": "B_S", "events": ["start_B_1", "end_B_1", "start_S_1", "cast_request", "effect_receipt_missing", "end_S_1", "start_B_2"], "serverOracle": "Unknown"},
+    {"id": "P02-03", "family": "MP", "spellId": 12913, "effectUid": 208233, "durationRaw": 2, "delayRaw": 0, "initiative": "S_B", "events": ["start_S_1", "cast_request", "end_S_1", "start_B_1", "end_B_1", "start_B_2"], "serverOracle": "Unknown"},
+    {"id": "P02-04", "family": "MP", "spellId": 12913, "effectUid": 208233, "durationRaw": 2, "delayRaw": 0, "initiative": "B_S", "events": ["start_B_1", "end_B_1", "start_S_1", "cast_request", "start_B_2", "end_B_2"], "serverOracle": "Unknown"},
+    {"id": "P02-05", "family": "power", "spellId": 14617, "effectUid": 404718, "durationRaw": 2, "delayRaw": 0, "initiative": "S_B", "events": ["start_S_1", "cast_request", "end_S_1", "start_B_1", "damage_event_required", "end_B_1"], "serverOracle": "Unknown"},
+    {"id": "P02-06", "family": "power", "spellId": 14617, "effectUid": 404718, "durationRaw": 2, "delayRaw": 0, "initiative": "B_S", "events": ["start_B_1", "damage_event", "end_B_1", "start_S_1", "cast_request", "start_B_2"], "serverOracle": "Unknown"},
+    {"id": "P02-07", "family": "shield", "spellId": 13431, "effectUid": 259838, "durationRaw": 1, "delayRaw": 0, "initiative": "S_B", "events": ["start_S_1", "cast_request", "end_S_1", "start_B_1", "damage_receipt_required", "end_B_1"], "serverOracle": "Unknown"},
+    {"id": "P02-08", "family": "shield", "spellId": 13431, "effectUid": 259838, "durationRaw": 1, "delayRaw": 0, "initiative": "B_S", "events": ["start_B_1", "end_B_1", "start_S_1", "cast_request", "start_B_2", "damage_receipt_required"], "serverOracle": "Unknown"},
+    {"id": "P02-09", "family": "damage_reduction_hypothesis", "spellId": 13445, "effectUid": 259886, "stateValue": 2512, "durationRaw": 3, "initiative": "S_B", "events": ["start_S_1", "cast_request", "end_S_1", "start_B_1", "damage_receipt_required", "end_B_1"], "serverOracle": "Unknown; state meaning unproven"},
+    {"id": "P02-10", "family": "damage_reduction_hypothesis", "spellId": 13445, "effectUid": 259886, "stateValue": 2512, "durationRaw": 3, "initiative": "B_S", "events": ["start_B_1", "end_B_1", "start_S_1", "cast_request", "start_B_2", "damage_receipt_required"], "serverOracle": "Unknown; state meaning unproven"}
+  ]
+}

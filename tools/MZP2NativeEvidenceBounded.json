@@ -1,0 +1,322 @@
+{
+  "installed_executable_accessed": false,
+  "licensing_or_drm_accessed": false,
+  "schema_version": 1,
+  "search": {
+    "all_subtrees_complete": false,
+    "archives_inspected": false,
+    "binary_reference": {
+      "provenance": "MZP1_PRIME_HANDOFF_20261016.md:15-31; installed read-only observation by PRIME",
+      "sha256": "21c9de5ba4d15763e9daf029fd7432e3574ea113c9d1f44175fa9e0590290758",
+      "size_bytes": 54083584
+    },
+    "exact_sha_matches": [],
+    "installed_executable_read_or_copied": false,
+    "limits": {
+      "dirs_per_root": 4000,
+      "entries_per_root": 80000,
+      "exe_per_root": 5000,
+      "matches": 8,
+      "max_depth": 10
+    },
+    "processes_inspected": false,
+    "search_scope": "previously_unindexed_allowlisted_subtrees",
+    "subtrees": [
+      {
+        "directories_scanned": 11,
+        "entries_examined": 1377,
+        "exe_names_seen": 0,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {},
+        "status": "complete",
+        "subtree": "analysis"
+      },
+      {
+        "directories_scanned": 2,
+        "entries_examined": 2,
+        "exe_names_seen": 0,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {},
+        "status": "complete",
+        "subtree": "artifacts"
+      },
+      {
+        "directories_scanned": 3,
+        "entries_examined": 81,
+        "exe_names_seen": 0,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {},
+        "status": "complete",
+        "subtree": "DocraftResearch_20261010"
+      },
+      {
+        "directories_scanned": 37,
+        "entries_examined": 936,
+        "exe_names_seen": 0,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {},
+        "status": "complete",
+        "subtree": "DoFarmCurrentAnalysis"
+      },
+      {
+        "directories_scanned": 6,
+        "entries_examined": 40,
+        "exe_names_seen": 0,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {
+          "excluded": 1
+        },
+        "status": "complete",
+        "subtree": "dofusmasters-bot"
+      },
+      {
+        "directories_scanned": 20,
+        "entries_examined": 311,
+        "exe_names_seen": 0,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {
+          "excluded": 2
+        },
+        "status": "complete",
+        "subtree": "DofusMultiPublicSource"
+      },
+      {
+        "directories_scanned": 49,
+        "entries_examined": 272,
+        "exe_names_seen": 0,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {
+          "excluded": 1
+        },
+        "status": "complete",
+        "subtree": "DofusMultiREAReview"
+      },
+      {
+        "directories_scanned": 3,
+        "entries_examined": 5,
+        "exe_names_seen": 0,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {
+          "excluded": 1
+        },
+        "status": "complete",
+        "subtree": "DofusMultiRecovered"
+      },
+      {
+        "directories_scanned": 219,
+        "entries_examined": 703,
+        "exe_names_seen": 17,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {
+          "excluded": 5
+        },
+        "status": "complete",
+        "subtree": "DofusReverseIndexer"
+      },
+      {
+        "directories_scanned": 34,
+        "entries_examined": 156,
+        "exe_names_seen": 0,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {
+          "excluded": 3
+        },
+        "status": "complete",
+        "subtree": "DofusSpriteRendererWork"
+      },
+      {
+        "directories_scanned": 1,
+        "entries_examined": 40,
+        "exe_names_seen": 0,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {},
+        "status": "complete",
+        "subtree": "ExoFastResearch_20261010"
+      },
+      {
+        "directories_scanned": 202,
+        "entries_examined": 2246,
+        "exe_names_seen": 0,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {
+          "excluded": 7
+        },
+        "status": "complete",
+        "subtree": "ReaReference"
+      },
+      {
+        "directories_scanned": 1,
+        "entries_examined": 12,
+        "exe_names_seen": 0,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {},
+        "status": "complete",
+        "subtree": "retro-survival-autobot"
+      },
+      {
+        "directories_scanned": 9,
+        "entries_examined": 27,
+        "exe_names_seen": 0,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {
+          "excluded": 2
+        },
+        "status": "complete",
+        "subtree": "GivreCompanionReference"
+      },
+      {
+        "directories_scanned": 4000,
+        "entries_examined": 15479,
+        "exe_names_seen": 409,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {
+          "budget": 67,
+          "excluded": 386,
+          "max_depth": 2
+        },
+        "status": "partial",
+        "subtree": "GivreRework"
+      },
+      {
+        "directories_scanned": 3529,
+        "entries_examined": 80000,
+        "exe_names_seen": 47,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {
+          "budget": 7,
+          "excluded": 20,
+          "max_depth": 36
+        },
+        "status": "partial",
+        "subtree": "GivreUnity"
+      },
+      {
+        "directories_scanned": 1,
+        "entries_examined": 2,
+        "exe_names_seen": 0,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {},
+        "status": "complete",
+        "subtree": "_safety"
+      },
+      {
+        "directories_scanned": 47,
+        "entries_examined": 192,
+        "exe_names_seen": 1,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {
+          "excluded": 3
+        },
+        "status": "complete",
+        "subtree": "_tmp_cytrus_studio_20261009"
+      },
+      {
+        "directories_scanned": 3,
+        "entries_examined": 16,
+        "exe_names_seen": 0,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {
+          "excluded": 1
+        },
+        "status": "complete",
+        "subtree": "_tmp_dofus_account_generator_reference"
+      },
+      {
+        "directories_scanned": 4,
+        "entries_examined": 10,
+        "exe_names_seen": 0,
+        "exe_size_candidates_hashed": 0,
+        "skipped": {
+          "excluded": 1
+        },
+        "status": "complete",
+        "subtree": "_tmp_givre_native_runtime_compile"
+      }
+    ]
+  },
+  "status": "blocked_no_matching_detached_exe",
+  "unpacking_attempted": false,
+  "verified_detached_fingerprints": [],
+  "version_drift": {
+    "detached_binary_verified": false,
+    "installed_reference": {
+      "sha256": "21c9de5ba4d15763e9daf029fd7432e3574ea113c9d1f44175fa9e0590290758",
+      "sha_provenance": "MZP1_PRIME_HANDOFF_20261016.md:15-31 (read-only PRIME observation)",
+      "ui_title": "v1.3.1"
+    },
+    "matrix_version": 1,
+    "nativeaot_assessment": "unknown",
+    "packer_assessment": "unknown",
+    "product_functionality_proven_from_binary": false,
+    "runtime_version_drift": "source_appversion_1.2.0_vs_UI_label_v1.3.1_unlinked",
+    "source_evidence": [
+      {
+        "declared_value": "GivreClone",
+        "exe_confirmed": false,
+        "file": "GivreClone.App/GivreClone.App.csproj",
+        "file_sha256": "9f3623f9b9fd861e778279c8f9c238515c57a9720ded70e1e6b7049946e04788",
+        "lines": [
+          10
+        ],
+        "status": "source_present",
+        "symbol": "assembly_identity"
+      },
+      {
+        "declared_value": "1.2.0",
+        "exe_confirmed": false,
+        "file": "GivreClone.App/Services/LicenseService.cs",
+        "file_sha256": "9bd12a81528994526a4849aec4b4d88db2629276ef3590447d633a2ce52452e5",
+        "lines": [
+          52
+        ],
+        "status": "source_present",
+        "symbol": "app_source_version"
+      },
+      {
+        "declared_value": "build_config_only",
+        "exe_confirmed": false,
+        "file": "GivreClone.App/GivreClone.App.csproj",
+        "file_sha256": "9f3623f9b9fd861e778279c8f9c238515c57a9720ded70e1e6b7049946e04788",
+        "lines": [
+          27
+        ],
+        "status": "source_present",
+        "symbol": "nativeaot_opt_in"
+      },
+      {
+        "declared_value": "source_declaration_only",
+        "exe_confirmed": false,
+        "file": "GivreClone.Engine/BotSession.cs",
+        "file_sha256": "45fc6d6a215f449b6c3bb75cce26713c63be3d3f24013645e9b506f45c4c393f",
+        "lines": [
+          12
+        ],
+        "status": "source_present",
+        "symbol": "session_engine"
+      },
+      {
+        "declared_value": "source_declaration_only",
+        "exe_confirmed": false,
+        "file": "GivreClone.Engine/ActionSender.cs",
+        "file_sha256": "cff2a51ef9a28ac3de7c0c7068ef7c42824259adb825e1adf304d8b71f29bf2f",
+        "lines": [
+          34
+        ],
+        "status": "source_present",
+        "symbol": "action_sender"
+      },
+      {
+        "declared_value": "source_declaration_only",
+        "exe_confirmed": false,
+        "file": "GivreClone.Engine/DofusCaptureHost.cs",
+        "file_sha256": "1a20002d6df59e01ce5d892daf342e405e1de8d213f6446cdadb17610efc94bb",
+        "lines": [
+          14
+        ],
+        "status": "source_present",
+        "symbol": "proxy_dependency"
+      }
+    ],
+    "symbol_correspondence": "unproven_even_if_exact_EXE_SHA_matches_prior_installed_observation"
+  }
+}

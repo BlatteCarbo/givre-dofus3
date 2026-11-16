@@ -1,0 +1,186 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+ <!-- Palette nuit : bleu profond, trois niveaux de surface bien separes, texte attenue encore lisible (>= 6:1 sur les cartes). -->
+ <CornerRadius x:Key="CardCornerRadius">8</CornerRadius>
+ <CornerRadius x:Key="PanelCornerRadius">6</CornerRadius>
+ <CornerRadius x:Key="ControlCornerRadius">5</CornerRadius>
+ <Thickness x:Key="CardPadding">22,20</Thickness>
+ <Thickness x:Key="PanelPadding">14,12</Thickness>
+ <x:Double x:Key="DetailViewportHeight">192</x:Double>
+
+ <!-- Fonds & surfaces -->
+ <Color x:Key="Bg0">#11141C</Color>
+ <Color x:Key="Bg1">#161A24</Color>
+ <Color x:Key="Surface1">#1E2331</Color> <!-- cartes -->
+ <Color x:Key="Surface2">#283043</Color> <!-- contrôles -->
+ <Color x:Key="Surface3">#343D55</Color> <!-- survol -->
+
+ <!-- Texte -->
+ <Color x:Key="TextPrimary">#EEF2FA</Color>
+ <Color x:Key="TextSecondary">#CDD4E4</Color>
+ <Color x:Key="TextMuted">#9DA7BE</Color>
+ <SolidColorBrush x:Key="WorkshopAccentBrush" Color="#C2D957" />
+ <SolidColorBrush x:Key="WorkshopAccentTextBrush" Color="#252B18" />
+
+ <!-- Accent: défini par le thème actif (Themes/*.axaml) -->
+
+ <!-- États -->
+ <Color x:Key="Success">#3BD17E</Color>
+ <Color x:Key="Danger">#F0533B</Color>
+
+ <!-- Brosses -->
+ <SolidColorBrush x:Key="Bg1Brush" Color="{StaticResource Bg1}" />
+ <SolidColorBrush x:Key="Surface1Brush" Color="{StaticResource Surface1}" />
+ <SolidColorBrush x:Key="Surface2Brush" Color="{StaticResource Surface2}" />
+ <SolidColorBrush x:Key="Surface3Brush" Color="{StaticResource Surface3}" />
+
+ <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimary}" />
+ <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondary}" />
+ <SolidColorBrush x:Key="TextMutedBrush" Color="{StaticResource TextMuted}" />
+
+ <!-- Accent*Brush: via le thème actif -->
+ <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource Success}" />
+ <SolidColorBrush x:Key="DangerBrush" Color="{StaticResource Danger}" />
+ <SolidColorBrush x:Key="AmberBrush" Color="#E0A53F" />
+
+ <!-- translucides, volontairement très discrets -->
+ <SolidColorBrush x:Key="StrokeSoftBrush" Color="#22B8C6E6" />
+ <SolidColorBrush x:Key="StrokeMedBrush" Color="#3CB8C6E6" />
+ <SolidColorBrush x:Key="StrokeStrongBrush" Color="#62B8C6E6" />
+
+ <!-- Survols translucides -->
+ <SolidColorBrush x:Key="HoverSoftBrush" Color="#14FFFFFF" />
+ <SolidColorBrush x:Key="HoverMedBrush" Color="#1FFFFFFF" />
+
+ <!-- Contrôles -->
+ <SolidColorBrush x:Key="ControlFillBrush" Color="#283043" />
+ <SolidColorBrush x:Key="ControlStrokeBrush" Color="#20FFFFFF" />
+
+ <!-- DatePicker (onglet Stats): le FluentTheme le rend NOIR par défaut. On surcharge ses clés de ressources
+ (Application.Resources l'emporte sur les ThemeDictionaries de FluentTheme) pour l'aligner sur Surface2/PanelBrush. -->
+ <SolidColorBrush x:Key="DateTimePickerFlyoutButtonBackground" Color="{StaticResource Surface2}" />
+ <SolidColorBrush x:Key="DateTimePickerFlyoutButtonBackgroundPointerOver" Color="{StaticResource Surface3}" />
+ <SolidColorBrush x:Key="DateTimePickerFlyoutButtonBackgroundPressed" Color="{StaticResource Surface3}" />
+ <SolidColorBrush x:Key="DateTimePickerFlyoutButtonBorderBrush" Color="#20FFFFFF" />
+ <SolidColorBrush x:Key="DateTimePickerButtonForeground" Color="{StaticResource TextPrimary}" />
+ <SolidColorBrush x:Key="DateTimePickerFlyoutButtonForegroundPointerOver" Color="{StaticResource TextPrimary}" />
+ <SolidColorBrush x:Key="DateTimePickerFlyoutButtonForegroundPressed" Color="{StaticResource TextPrimary}" />
+ <SolidColorBrush x:Key="DatePickerFlyoutPresenterBackground" Color="#F21E2331" />
+ <SolidColorBrush x:Key="DatePickerFlyoutPresenterBorderBrush" Color="#20FFFFFF" />
+ <SolidColorBrush x:Key="DatePickerFlyoutPresenterHighlightFill" Color="#1FFFFFFF" />
+ <SolidColorBrush x:Key="DatePickerFlyoutPresenterSpacerFill" Color="#15FFFFFF" />
+
+ <!-- Boutons fenêtre -->
+ <SolidColorBrush x:Key="WindowButtonHoverBrush" Color="#1AFFFFFF" />
+ <SolidColorBrush x:Key="CloseButtonHoverBrush" Color="#E0533B" />
+
+ <!-- Skeleton (pulse) -->
+ <SolidColorBrush x:Key="SkeletonBrush" Color="#2A313F" />
+
+ <!-- Notifications / overlay -->
+ <SolidColorBrush x:Key="ScrimBrush" Color="#7A05060A" />
+ <SolidColorBrush x:Key="PanelBrush" Color="#F237394F" />
+ <SolidColorBrush x:Key="NotifCardBrush" Color="#41455E" />
+ <SolidColorBrush x:Key="NotifSuccessBg" Color="#14241C" />
+
+ <!-- Tooltip -->
+ <SolidColorBrush x:Key="TooltipBrush" Color="#F244475F" />
+
+ <!-- WindowGlowBrush + SystemAccentColor + ToggleSwitch on: via le thème actif (le on suit SystemAccentColor) -->
+
+ <SolidColorBrush x:Key="ToggleSwitchFillOff" Color="#2A3040" />
+ <SolidColorBrush x:Key="ToggleSwitchFillOffPointerOver" Color="#333B4D" />
+ <SolidColorBrush x:Key="ToggleSwitchStrokeOff" Color="#454D5E" />
+ <SolidColorBrush x:Key="ToggleSwitchStrokeOffPointerOver" Color="#566075" />
+ <SolidColorBrush x:Key="ToggleSwitchKnobFillOn" Color="#FFFFFF" />
+ <SolidColorBrush x:Key="ToggleSwitchKnobFillOnPointerOver" Color="#FFFFFF" />
+ <SolidColorBrush x:Key="ToggleSwitchKnobFillOff" Color="#C3CAD6" />
+ <SolidColorBrush x:Key="ToggleSwitchKnobFillOffPointerOver" Color="#DDE3EC" />
+
+ <SolidColorBrush x:Key="ComboBoxBackground" Color="#283043" />
+ <SolidColorBrush x:Key="ComboBoxBackgroundPointerOver" Color="#343D55" />
+ <SolidColorBrush x:Key="ComboBoxBackgroundPressed" Color="#1E2331" />
+ <SolidColorBrush x:Key="ComboBoxBackgroundFocused" Color="#343D55" />
+ <SolidColorBrush x:Key="ComboBoxBorderBrush" Color="#20FFFFFF" />
+ <SolidColorBrush x:Key="ComboBoxDropDownBackground" Color="#F237394F" />
+ <SolidColorBrush x:Key="ComboBoxForeground" Color="{StaticResource TextSecondary}" />
+
+ <!-- items ComboBox: sélection via SystemAccentColor -->
+ <SolidColorBrush x:Key="ComboBoxItemForeground" Color="{StaticResource TextSecondary}" />
+ <SolidColorBrush x:Key="ComboBoxItemForegroundPointerOver" Color="{StaticResource TextPrimary}" />
+ <SolidColorBrush x:Key="ComboBoxItemForegroundSelected" Color="{StaticResource TextPrimary}" />
+
+ <!-- coins arrondis des popups -->
+ <CornerRadius x:Key="OverlayCornerRadius">10</CornerRadius>
+
+ <!-- Discord (blurple) -->
+ <Color x:Key="Discord">#5865F2</Color>
+ <SolidColorBrush x:Key="DiscordBrush" Color="#5865F2" />
+ <SolidColorBrush x:Key="DiscordHoverBrush" Color="#6B77F5" />
+
+ <!-- Champs de saisie (login) -->
+ <SolidColorBrush x:Key="InputFillBrush" Color="#283043" />
+ <SolidColorBrush x:Key="InputStrokeBrush" Color="#26FFFFFF" />
+
+ <!-- Fond des panneaux console / canvas carte (onglets Bots). Clé dédiée -> la skin un bot tiers la repeint
+ en gris; ici valeur d'origine inchangée (skin par défaut identique). -->
+ <SolidColorBrush x:Key="ConsolePanelBrush" Color="#292C40" />
+
+ <!-- Fluent garde ses controles natifs : seuls les roles de couleur et la densite sont harmonises. -->
+ <x:Double x:Key="ExpanderMinHeight">36</x:Double>
+ <Thickness x:Key="ExpanderHeaderPadding">8,0,0,0</Thickness>
+ <Thickness x:Key="ExpanderChevronMargin">8,0,8,0</Thickness>
+ <x:Double x:Key="ExpanderChevronButtonSize">24</x:Double>
+ <StaticResource x:Key="ExpanderHeaderBackground" ResourceKey="Surface2Brush" />
+ <StaticResource x:Key="ExpanderHeaderBackgroundPointerOver" ResourceKey="Surface3Brush" />
+ <StaticResource x:Key="ExpanderHeaderBackgroundPressed" ResourceKey="Surface1Brush" />
+ <StaticResource x:Key="ExpanderHeaderBackgroundDisabled" ResourceKey="Surface2Brush" />
+ <StaticResource x:Key="ExpanderHeaderBorderBrush" ResourceKey="StrokeSoftBrush" />
+ <StaticResource x:Key="ExpanderHeaderBorderBrushPointerOver" ResourceKey="StrokeStrongBrush" />
+ <StaticResource x:Key="ExpanderHeaderBorderBrushPressed" ResourceKey="StrokeMedBrush" />
+ <StaticResource x:Key="ExpanderHeaderBorderBrushDisabled" ResourceKey="StrokeSoftBrush" />
+ <StaticResource x:Key="ExpanderHeaderForeground" ResourceKey="TextPrimaryBrush" />
+ <StaticResource x:Key="ExpanderHeaderForegroundPointerOver" ResourceKey="TextPrimaryBrush" />
+ <StaticResource x:Key="ExpanderHeaderForegroundPressed" ResourceKey="TextPrimaryBrush" />
+ <StaticResource x:Key="ExpanderHeaderForegroundDisabled" ResourceKey="TextMutedBrush" />
+ <StaticResource x:Key="ExpanderChevronBackground" ResourceKey="Surface2Brush" />
+ <StaticResource x:Key="ExpanderChevronBackgroundPointerOver" ResourceKey="Surface3Brush" />
+ <StaticResource x:Key="ExpanderChevronBackgroundPressed" ResourceKey="Surface1Brush" />
+ <StaticResource x:Key="ExpanderChevronBackgroundDisabled" ResourceKey="Surface2Brush" />
+ <StaticResource x:Key="ExpanderChevronForeground" ResourceKey="TextSecondaryBrush" />
+ <StaticResource x:Key="ExpanderChevronForegroundPointerOver" ResourceKey="TextPrimaryBrush" />
+ <StaticResource x:Key="ExpanderChevronForegroundPressed" ResourceKey="TextPrimaryBrush" />
+ <StaticResource x:Key="ExpanderChevronForegroundDisabled" ResourceKey="TextMutedBrush" />
+ <StaticResource x:Key="ExpanderContentBackground" ResourceKey="Surface1Brush" />
+ <StaticResource x:Key="ExpanderContentBorderBrush" ResourceKey="StrokeSoftBrush" />
+
+ <StaticResource x:Key="ButtonBackground" ResourceKey="Surface2Brush" />
+ <StaticResource x:Key="ButtonBackgroundPointerOver" ResourceKey="Surface3Brush" />
+ <StaticResource x:Key="ButtonBackgroundPressed" ResourceKey="Surface1Brush" />
+ <StaticResource x:Key="ButtonBackgroundDisabled" ResourceKey="Surface2Brush" />
+ <StaticResource x:Key="ButtonForeground" ResourceKey="TextPrimaryBrush" />
+ <StaticResource x:Key="ButtonForegroundPointerOver" ResourceKey="TextPrimaryBrush" />
+ <StaticResource x:Key="ButtonForegroundPressed" ResourceKey="TextPrimaryBrush" />
+ <StaticResource x:Key="ButtonForegroundDisabled" ResourceKey="TextMutedBrush" />
+ <StaticResource x:Key="ButtonBorderBrush" ResourceKey="StrokeSoftBrush" />
+ <StaticResource x:Key="ButtonBorderBrushPointerOver" ResourceKey="StrokeStrongBrush" />
+ <StaticResource x:Key="ButtonBorderBrushPressed" ResourceKey="StrokeMedBrush" />
+ <StaticResource x:Key="ButtonBorderBrushDisabled" ResourceKey="StrokeSoftBrush" />
+
+ <x:Double x:Key="TabItemMinHeight">36</x:Double>
+ <StaticResource x:Key="TabItemHeaderBackgroundSelected" ResourceKey="Surface2Brush" />
+ <StaticResource x:Key="TabItemHeaderBackgroundUnselectedPointerOver" ResourceKey="Surface3Brush" />
+ <StaticResource x:Key="TabItemHeaderBackgroundSelectedPointerOver" ResourceKey="Surface3Brush" />
+ <StaticResource x:Key="TabItemHeaderBackgroundUnselectedPressed" ResourceKey="Surface1Brush" />
+ <StaticResource x:Key="TabItemHeaderBackgroundSelectedPressed" ResourceKey="Surface1Brush" />
+ <StaticResource x:Key="TabItemHeaderForegroundUnselected" ResourceKey="TextSecondaryBrush" />
+ <StaticResource x:Key="TabItemHeaderForegroundSelected" ResourceKey="TextPrimaryBrush" />
+ <StaticResource x:Key="TabItemHeaderForegroundUnselectedPointerOver" ResourceKey="TextPrimaryBrush" />
+ <StaticResource x:Key="TabItemHeaderForegroundSelectedPointerOver" ResourceKey="TextPrimaryBrush" />
+ <StaticResource x:Key="TabItemHeaderForegroundUnselectedPressed" ResourceKey="TextPrimaryBrush" />
+ <StaticResource x:Key="TabItemHeaderForegroundSelectedPressed" ResourceKey="TextPrimaryBrush" />
+ <StaticResource x:Key="TabItemHeaderForegroundDisabled" ResourceKey="TextMutedBrush" />
+ <StaticResource x:Key="TabItemHeaderSelectedPipeFill" ResourceKey="WorkshopAccentBrush" />
+
+</ResourceDictionary>

@@ -1,0 +1,9 @@
+# Round 6 — enrichissement des infobulles objets
+
+`native/ItemIdOverlay` version locale **0.3.0**. Le mod intercepte uniquement `UnityEngine.UIElements.TextElement.set_text`. Une correspondance **exacte** dans sa table `src/items.tsv` ajoute l'ID et, si ce nom ne renvoie qu'un seul GID, le type : `Sachet de Haricots  #16828 · Conteneur`. En cas d'homonymie, seuls les IDs sont affichés. Aucun balayage de l'arbre UI n'est ajouté.
+
+Le hook d'origine journalisait les 60 premiers textes affichés, qui pouvaient contenir du texte privé. Ce comportement est supprimé. Seuls les compteurs de hook et de correspondances sont encore enregistrés, sans texte UI ni payload. Le suffixe actuel `#id` est conservé ; le format alternatif `[id]` et le commutateur distinct du suffixe restent à brancher dans les Réglages.
+
+La table locale embarquée existante comprend `nom, niveau, type, gid`, mais ne comprend **ni prix observé HDV ni nombre de recettes**. La version 3.7.11.11 de `dofus.sqlite` n'a pas été localisée dans `proto-3.7.11.11` pendant la passe ; aucune information de prix/recette ne doit être fabriquée. Un enrichissement futur pourra générer les colonnes de recettes depuis un dataset explicitement versionné. Pour le prix HDV, la source appropriée est le cache du scanner local et le transfert vers le processus natif doit conserver une liste minimale de prix par GID et ne lire aucun compte.
+
+Tests : `cargo test --manifest-path native/ItemIdOverlay/Cargo.toml --offline`, **6 réussites** ; `cargo build --manifest-path native/ItemIdOverlay/Cargo.toml --release --offline` réussi. DLL embarquée : `native/GivreTurboRuntime/ItemIdOverlay/GivreItemIdOverlay.dll`, SHA-256 `d3ecd7bdf436cce740cd4e6bf74c40ccbe69d4ddaeb410f7e926ca202b95e7b1` épinglé dans `NativeTurboRuntime.cs`. Vérification visuelle à effectuer sur un objet dans l'inventaire d'un client test.

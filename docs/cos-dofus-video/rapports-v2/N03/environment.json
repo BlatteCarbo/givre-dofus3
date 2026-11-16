@@ -1,0 +1,18 @@
+{
+  "generatedUtc": "2026-11-04T12:04:23.2159299+00:00",
+  "dotnet": ".NET 10.0.13",
+  "os": "Microsoft Windows 10.0.26300",
+  "arch": "X64",
+  "processorCount": 8,
+  "stopwatchFrequency": 10000000,
+  "buildFlavor": "Release-built assembly already in GivreClone.Tests/bin/Release/net10.0",
+  "iterations": 12,
+  "warmups": 2,
+  "fixtures": [
+    "no_spells",
+    "one_ranged",
+    "two_attacks",
+    "heal_vs_attack",
+    "three_attacks"
+  ]
+}

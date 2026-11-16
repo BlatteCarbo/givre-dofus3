@@ -1,0 +1,16 @@
+{
+  "schema": "dofus-371317-healing-candidates-1",
+  "status": "synthetic_not_executed",
+  "source_sha256": "cbd685e8852966961a7d155c17d7a21dd23ec8e45cac70aa31be06300f89384b",
+  "sources": ["rapports-v2/N01/EFFECTS_3.7.13.17.csv", "GivreClone.App/Services/Combat/SpellResolver.cs"],
+  "cases": [
+    {"id": "P01-01", "spellId": 14579, "actionId": 108, "initial": {"life": 60, "maxLife": 100}, "codeOracle": "heal bounded by 40", "serverOracle": "Unknown until receipt and state"},
+    {"id": "P01-02", "spellId": 14579, "actionId": 108, "initial": {"life": 100, "maxLife": 100}, "codeOracle": "heal=0", "serverOracle": "Unknown for side effects"},
+    {"id": "P01-03", "spellId": 12922, "actionId": 91, "initial": {"targetLifeLost": 0}, "codeOracle": "lifeStealHeal=0", "serverOracle": "Unknown"},
+    {"id": "P01-04", "spellId": 12922, "actionId": 91, "initial": {"targetLifeLost": 20, "casterMissingLife": 50}, "codeOracle": "lifeStealHeal=10", "serverOracle": "Unknown; ratio and states require confirmation"},
+    {"id": "P01-05", "spellId": 13431, "actionId": 1020, "initial": {"life": 60, "maxLife": 100, "shield": 0}, "codeOracle": "shield changes; life unchanged", "serverOracle": "Unknown for validity and expiry"},
+    {"id": "P01-06", "spellId": 14579, "actionId": 108, "initial": {"stateId": null, "stateMeaning": "possible heal prohibition"}, "codeOracle": "no heal-prohibition gate", "serverOracle": "Unknown; state ID and actual PV event missing"},
+    {"id": "P01-07", "spellId": 14587, "actionId": 1109, "initial": {"life": 120, "maxLife": 200}, "codeOracle": "heal=12 before caps, from client diceNum=6", "serverOracle": "Unknown"},
+    {"id": "P01-08", "spellId": null, "actionId": null, "initial": {"delay": 1, "turn": 1}, "codeOracle": "immediate resolver does not resolve deferred row", "serverOracle": "Unknown; actual periodic effect missing"}
+  ]
+}

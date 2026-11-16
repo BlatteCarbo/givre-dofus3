@@ -1,0 +1,5 @@
+# Planner decisions in combat replay — 2026-11-06
+
+The combat replay transport filtered `[combat-planner]` entries before they could appear in the timeline. A regression was added and demonstrated the missing decision before the fix. Both filters were then changed so planner entries are retained and classified as informational, not as executed spells or movements; the transport must not inflate those counters. The 45 targeted replay tests passed. At the snapshot boundary the complete suite was still running, so do not report it as passed or claim deployment/live validation of this change.
+
+Separately, the deployed build's bounded gathering runs ended as intended: Bastionbot stopped after three passages (one harvest, +2 pods, −980 kamas); Sylvanbot stopped after twelve passages (multiple harvests, +541 pods, −860 kamas). Neither encountered a protector. These establish bounded route/harvest behavior only, not combat-fix validation, full profession leveling, or profitability. No evidence justified blocking spell 12733.

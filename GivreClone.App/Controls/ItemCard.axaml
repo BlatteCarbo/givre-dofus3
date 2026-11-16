@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:social="using:GivreClone.App.Services.Social"
+             xmlns:acv="using:Avalonia.Data.Converters"
+             x:Class="GivreClone.App.Controls.ItemCard"
+             x:DataType="social:ItemHoverModel"
+             MinWidth="240" MaxWidth="380">
+  <Border Background="{StaticResource Surface1Brush}" BorderBrush="{StaticResource StrokeSoftBrush}"
+          BorderThickness="1" CornerRadius="12" Padding="12">
+    <StackPanel Spacing="4">
+      <TextBlock Classes="section" Text="{Binding Name}" TextWrapping="Wrap" />
+      <TextBlock Classes="caption" Text="{Binding Subtitle}" TextWrapping="Wrap" IsVisible="{Binding Subtitle, Converter={x:Static acv:StringConverters.IsNotNullOrEmpty}}" />
+      <TextBlock Text="{Binding IdLine}" TextWrapping="Wrap" />
+      <TextBlock Text="{Binding SetLine}" TextWrapping="Wrap" IsVisible="{Binding HasSet}" />
+      <TextBlock Text="{Binding EffectsText}" TextWrapping="Wrap" IsVisible="{Binding HasEffects}" />
+      <TextBlock Text="Effets inconnus" IsVisible="{Binding MissingEffects}" />
+      <TextBlock Text="{Binding WeightLine}" />
+      <TextBlock Text="{Binding PriceLine}" />
+      <TextBlock Classes="caption" Text="{Binding Description}" TextWrapping="Wrap" IsVisible="{Binding HasDescription}" />
+    </StackPanel>
+  </Border>
+</UserControl>

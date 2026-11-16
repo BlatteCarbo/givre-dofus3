@@ -1,0 +1,1063 @@
+<Window xmlns="https://github.com/avaloniaui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:vm="using:GivreClone.App.ViewModels"
+ xmlns:nav="using:GivreClone.App.Services.UiNavigation"
+ xmlns:views="using:GivreClone.App.Views"
+ xmlns:snow="using:GivreClone.App.Views.Classic"
+ xmlns:mzp0="using:GivreClone.App.Controls"
+ xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ mc:Ignorable="d" d:DesignWidth="1320" d:DesignHeight="840"
+ x:Class="GivreClone.App.Views.MainWindow"
+ x:DataType="vm:MainViewModel"
+ Width="1460" Height="920" MinWidth="960" MinHeight="600"
+ WindowStartupLocation="CenterScreen"
+ Icon="avares://GivreClone/Assets/GivreClone.ico"
+ WindowDecorations="None"
+ TransparencyLevelHint="None"
+ Background="Transparent"
+ Title="{Binding AppVersionLabel, StringFormat='GivreClone {0}'}">
+
+ <!-- La sidebar dessine son propre template: rendre le focus clavier visible dans ce template. -->
+ <Window.Styles>
+ <Style Selector="Button.nav:focus-visible /template/ Border">
+ <Setter Property="BorderBrush" Value="{DynamicResource AccentBrightBrush}" />
+ <Setter Property="BorderThickness" Value="2" />
+ </Style>
+ <Style Selector="Button.win:focus-visible /template/ Border">
+ <Setter Property="BorderBrush" Value="{DynamicResource AccentBrightBrush}" />
+ <Setter Property="BorderThickness" Value="2" />
+ </Style>
+ </Window.Styles>
+
+ <Border Name="RootFade" CornerRadius="12" ClipToBounds="True" Opacity="0" RenderTransformOrigin="50%,50%">
+ <Border.Transitions>
+ <Transitions>
+ <DoubleTransition Property="Opacity" Duration="0:0:0.32" Easing="CubicEaseOut" />
+ <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.22" Easing="CubicEaseOut" />
+ </Transitions>
+ </Border.Transitions>
+
+ <Grid>
+ <!-- Fond mat : le contenu du jeu porte la couleur, pas le chrome. -->
+ <Border Background="{StaticResource Bg1Brush}" />
+ <Canvas Name="Particles" IsHitTestVisible="False" ClipToBounds="True" />
+ <Border BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1" CornerRadius="12" IsHitTestVisible="False" />
+
+ <Grid x:Name="ShellRoot" RowDefinitions="56,Auto,*"
+       AutomationProperties.Name="Application Principale Givre"
+       AutomationProperties.AutomationId="MainShell">
+
+ <!-- barre de titre -->
+ <Grid Grid.Row="0" Name="TitleBar" Background="Transparent"
+ ColumnDefinitions="Auto,*,Auto" PointerPressed="OnTitleBarPressed" DoubleTapped="OnTitleBarDoubleTapped">
+ <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0" Spacing="9">
+ <TextBlock Text="{DynamicResource L.Shell.Title}" FontSize="15.5" FontWeight="Bold"
+ Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center" />
+ <!-- version du build: identifie clairement "GivreClone v1.0.0" -->
+ <Border Classes="badge" VerticalAlignment="Center">
+ <TextBlock Text="{Binding AppVersionLabel}" FontSize="10.5"
+ Foreground="{DynamicResource AccentBrightBrush}" />
+ </Border>
+ <Border Classes="badge" VerticalAlignment="Center">
+ <TextBlock Text="{DynamicResource L.Shell.Badge}" FontSize="10.5"
+ Foreground="{StaticResource TextSecondaryBrush}" />
+ </Border>
+ <!-- MAJ reportée au prochain lancement: rappel cliquable (rouvre le choix maintenant / au prochain lancement). -->
+ <Button x:Name="UpdatePendingBtn" Classes="ghost" IsVisible="False" Height="24" MinWidth="0" Padding="9,0"
+ FontSize="11" VerticalAlignment="Center" Click="OnUpdatePending"
+ ToolTip.Tip="{DynamicResource L.Control.PendingTip}">
+ <StackPanel Orientation="Horizontal" Spacing="5">
+ <PathIcon Data="{StaticResource IconDownload}" Width="11" Height="11" Foreground="{StaticResource AmberBrush}" />
+ <TextBlock x:Name="UpdatePendingText" VerticalAlignment="Center" Foreground="{StaticResource AmberBrush}" />
+ </StackPanel>
+ </Button>
+ </StackPanel>
+ <!-- Lien licence: reprise de session après une coupure longue / une veille (invisible si elle réussit vite). -->
+ <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+ IsVisible="{Binding LicenseLinkVisible}" CornerRadius="10" Padding="10,3"
+ Background="#26E0A53F" BorderBrush="{StaticResource AmberBrush}" BorderThickness="1"
+ ToolTip.Tip="{DynamicResource L.LicLink.Tip}">
+ <StackPanel Orientation="Horizontal" Spacing="8">
+ <Ellipse Classes="spinner" Width="12" Height="12" IsVisible="{Binding LicenseLinkBusy}" VerticalAlignment="Center" />
+ <TextBlock Text="{Binding LicenseLinkText}" FontSize="11.5" FontWeight="SemiBold" VerticalAlignment="Center"
+ Foreground="{StaticResource AmberBrush}" />
+ <Button Classes="ghost" Height="24" MinWidth="0" Padding="9,0" FontSize="11" VerticalAlignment="Center"
+ IsVisible="{Binding LicenseLinkCanRetry}" Command="{Binding RetryLicenseLinkCommand}">
+ <StackPanel Orientation="Horizontal" Spacing="5">
+ <PathIcon Data="{StaticResource IconUpdate}" Width="11" Height="11" />
+ <TextBlock Text="{DynamicResource L.LicLink.Retry}" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ </StackPanel>
+ </Border>
+ <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,8,0" Spacing="2">
+ <!-- Palette d'actions : mêmes commandes de navigation que les deux shells, Ctrl+K. -->
+ <Button Classes="ghost" Height="30" MinWidth="0" Padding="10,0" Click="OnOpenQuickNavigation"
+         ToolTip.Tip="Rechercher une page · Ctrl+K" AutomationProperties.Name="Rechercher une page ou une action, Ctrl+K">
+ <StackPanel Orientation="Horizontal" Spacing="8">
+ <TextBlock Text="Rechercher" VerticalAlignment="Center" FontSize="11.5" />
+ <Border Background="{DynamicResource HoverSoftBrush}" CornerRadius="4" Padding="5,2">
+ <TextBlock Text="Ctrl+K" FontSize="10" Foreground="{StaticResource TextSecondaryBrush}" />
+ </Border>
+ </StackPanel>
+ </Button>
+ <!-- Outils secondaires dans un menu unique ; les raccourcis Ctrl+K restent disponibles. -->
+ <Button Classes="ghost" Height="30" Padding="12,0" MinWidth="0"
+         Command="{Binding ToggleAdvancedToolsCommand}"
+         AutomationProperties.Name="Afficher les outils avancés"
+         ToolTip.Tip="Atelier, atlas, protocoles et diagnostics">
+ <StackPanel Orientation="Horizontal" Spacing="7">
+ <PathIcon Data="{StaticResource IconBook}" Width="14" Height="14" VerticalAlignment="Center" />
+ <TextBlock Text="Outils" FontSize="12" VerticalAlignment="Center" />
+ <PathIcon Data="{StaticResource IconMenu}" Width="12" Height="12" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ <!-- Cloche: centre de notifications (historique + son). Pastille = nombre de non-lus. -->
+ <Button Classes="win" Command="{Binding Notifications.ToggleOpenCommand}" ToolTip.Tip="{DynamicResource L.Notif.Title}"
+ AutomationProperties.Name="{DynamicResource L.Notif.Title}">
+ <Panel Width="18" Height="18">
+ <PathIcon Data="{StaticResource IconBell}" Width="16" Height="16" />
+ <Border IsVisible="{Binding Notifications.HasUnread}" Background="#F0616D" CornerRadius="7" MinWidth="14" Height="14"
+ HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-5,-7,0" Padding="3,0">
+ <TextBlock Text="{Binding Notifications.UnreadBadge}" FontSize="9" FontWeight="Bold" Foreground="White"
+ HorizontalAlignment="Center" VerticalAlignment="Center" />
+ </Border>
+ </Panel>
+ </Button>
+ <Button Classes="win" Click="OnMinimize" ToolTip.Tip="{DynamicResource L.Shell.Minimize}"
+ AutomationProperties.Name="{DynamicResource L.Shell.Minimize}"
+ AutomationProperties.AutomationId="BtnWinMinimize">
+ <PathIcon Data="{StaticResource IconMinimize}" Width="16" Height="16" />
+ </Button>
+ <Button Classes="win" Click="OnMaximize" ToolTip.Tip="{DynamicResource L.Shell.MaximizeRestore}"
+ AutomationProperties.Name="{DynamicResource L.Shell.MaximizeRestore}"
+ AutomationProperties.AutomationId="BtnWinMaximizeRestore">
+ <PathIcon Data="{StaticResource IconMaximize}" Width="15" Height="15" />
+ </Button>
+ <Button Classes="win close" Click="OnClose" ToolTip.Tip="{DynamicResource L.Shell.Close}"
+ AutomationProperties.Name="{DynamicResource L.Shell.Close}"
+ AutomationProperties.AutomationId="BtnWinClose">
+ <PathIcon Data="{StaticResource IconClose}" Width="16" Height="16" />
+ </Button>
+ </StackPanel>
+ </Grid>
+
+ <!-- corps: sidebar + page (skin par défaut) OU corps « » selon UiSkin -->
+ <StackPanel Grid.Row="1" Spacing="0">
+ <!-- Une alerte seulement si version/empreinte installée réellement suspecte.
+      Une nouvelle version publiée, ou une revue SHA admise, n'est pas un blocage. -->
+ <Border IsVisible="{Binding VersionNoticeVisible}" Background="#442E19" Padding="14,7">
+ <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="10">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconInfo}" Foreground="{StaticResource AmberBrush}"
+           Width="16" Height="16" VerticalAlignment="Center"/>
+ <TextBlock Grid.Column="1" Text="{Binding VersionNoticeText}" TextWrapping="Wrap"
+            Foreground="{StaticResource AmberBrush}" VerticalAlignment="Center" FontSize="12" />
+ <Button Grid.Column="2" Classes="ghost" Content="Détails" Padding="10,4"
+         Command="{Binding ToggleProtocolDetailsCommand}"
+         AutomationProperties.Name="Afficher ou masquer le diagnostic du protocole"/>
+ <Button Grid.Column="3" Classes="ghost" Content="Revérifier" Padding="10,4"
+         Command="{Binding RefreshLocalVersionCommand}" IsEnabled="{Binding !ProtocolAuditBusy}"/>
+ </Grid>
+ </Border>
+ <!-- Détails TECHNIQUES sur demande ; n'encombrent plus le tableau de bord au démarrage. -->
+ <Border IsVisible="{Binding ProtocolAuditVisible}" Background="#202B39" Padding="14,10">
+ <Grid RowDefinitions="Auto,Auto" RowSpacing="6">
+ <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+ <StackPanel Grid.Column="0" Spacing="3">
+ <TextBlock Text="{Binding ProtocolShortStatus}" FontWeight="SemiBold"
+            Foreground="{StaticResource TextPrimaryBrush}" FontSize="12"/>
+ <TextBlock Text="{Binding SocketReviewStatus}" TextWrapping="Wrap" FontSize="11.5"
+            Foreground="{StaticResource TextSecondaryBrush}"/>
+ </StackPanel>
+ <Button Grid.Column="1" Classes="ghost" Content="Revérifier"
+         Command="{Binding RefreshProtocolAuditCommand}" IsEnabled="{Binding !ProtocolAuditBusy}"/>
+ <Button Grid.Column="2" Classes="ghost" Content="Fermer" Command="{Binding ToggleProtocolDetailsCommand}"/>
+ </Grid>
+ <ScrollViewer Grid.Row="1" MaxHeight="80" VerticalScrollBarVisibility="Auto">
+ <TextBlock Text="{Binding ProtocolAuditText}" FontSize="11" TextWrapping="Wrap"
+            Foreground="{StaticResource TextSecondaryBrush}"/>
+ </ScrollViewer>
+ </Grid>
+ </Border>
+ </StackPanel>
+ <Grid Grid.Row="2" ColumnDefinitions="Auto,*">
+ <!-- rail transparent: partage l'acrylic de la fenêtre, pas de fond opaque -->
+ <Border Grid.Column="0" Name="Sidebar" Classes="sidebar" IsVisible="{Binding !IsClassicSkin}"
+ BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="0,0,1,0">
+ <Panel>
+ <!-- Indicateur glissant -->
+ <Border Name="NavIndicator" Width="3" Height="22" CornerRadius="3"
+ Background="{DynamicResource AccentBrush}"
+ HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0" Margin="0">
+ <Border.Transitions>
+ <Transitions>
+ <ThicknessTransition Property="Margin" Duration="0:0:0.30" Easing="CubicEaseOut" />
+ <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+ </Transitions>
+ </Border.Transitions>
+ </Border>
+
+ <DockPanel LastChildFill="True">
+ <Button DockPanel.Dock="Bottom" Classes="nav" Name="NavSettingsBtn"
+ Classes.active="{Binding IsSettingsActive}" Command="{Binding ShowSettingsCommand}"
+ AutomationProperties.Name="{DynamicResource L.Nav.Settings}"
+ ToolTip.Tip="{DynamicResource L.Nav.Settings}" ToolTip.Placement="Right">
+ <Grid ColumnDefinitions="46,*">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconSettings}" Width="21" Height="21" />
+ <TextBlock Grid.Column="1" Classes="navlabel" Text="{DynamicResource L.Nav.Settings}" />
+ </Grid>
+ </Button>
+
+ <Button DockPanel.Dock="Bottom" Classes="nav" Name="NavMyAccountBtn"
+ Classes.active="{Binding IsMyAccountActive}" Command="{Binding ShowMyAccountCommand}"
+ AutomationProperties.Name="{DynamicResource L.Nav.MyAccount}"
+ ToolTip.Tip="{DynamicResource L.Nav.MyAccount}" ToolTip.Placement="Right">
+ <Grid ColumnDefinitions="46,*">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconAccount}" Width="21" Height="21" />
+ <TextBlock Grid.Column="1" Classes="navlabel" Text="{DynamicResource L.Nav.MyAccount}" />
+ </Grid>
+ </Button>
+
+ <!-- Scroll autonome : l'ouverture des outils ne pousse jamais Mon compte/Paramètres hors écran. -->
+ <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+ <StackPanel>
+ <Button Classes="nav" Click="OnToggleSidebar" AutomationProperties.AutomationId="NavToggleSidebar" ToolTip.Tip="{DynamicResource L.Nav.Menu}" ToolTip.Placement="Right"
+ AutomationProperties.Name="{DynamicResource L.Nav.Menu}">
+ <Grid ColumnDefinitions="46,*">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconMenu}" Width="21" Height="21" />
+ <TextBlock Grid.Column="1" Classes="navlabel" Text="{DynamicResource L.Nav.Menu}" />
+ </Grid>
+ </Button>
+ <Button Classes="nav" Name="NavDashboardBtn"
+ Classes.active="{Binding IsDashboardActive}" Command="{Binding ShowDashboardCommand}" AutomationProperties.AutomationId="NavDashboardBtn"
+ AutomationProperties.Name="Tableau de bord global"
+ ToolTip.Tip="Tableau de bord" ToolTip.Placement="Right">
+ <Grid ColumnDefinitions="46,*">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconHome}" Width="21" Height="21" />
+ <TextBlock Grid.Column="1" Classes="navlabel" Text="Tableau de bord" />
+ </Grid>
+ </Button>
+ <Button Classes="nav" Name="NavAccountsBtn" AutomationProperties.AutomationId="NavAccountsBtn"
+ Classes.active="{Binding IsAccountsActive}" Command="{Binding ShowAccountsCommand}"
+ AutomationProperties.Name="{DynamicResource L.Nav.Accounts}"
+ ToolTip.Tip="{DynamicResource L.Nav.Accounts}" ToolTip.Placement="Right">
+ <Grid ColumnDefinitions="46,*">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconKey}" Width="21" Height="21" />
+ <TextBlock Grid.Column="1" Classes="navlabel" Text="{DynamicResource L.Nav.Accounts}" />
+ </Grid>
+ </Button>
+ <Button Classes="nav" Name="NavBotsBtn" AutomationProperties.AutomationId="NavBotsBtn"
+ Classes.active="{Binding IsBotsActive}" Command="{Binding ShowBotsCommand}"
+ AutomationProperties.Name="{DynamicResource L.Nav.Bots}"
+ ToolTip.Tip="{DynamicResource L.Nav.Bots}" ToolTip.Placement="Right">
+ <Grid ColumnDefinitions="46,*">
+ <Panel Grid.Column="0">
+ <PathIcon Data="{StaticResource IconRobot}" Width="21" Height="21" />
+ <!-- pastille: nombre de bots en jeu -->
+ <Border IsVisible="{Binding BotsVM.HasBots}" Background="{DynamicResource AccentBrightBrush}"
+ CornerRadius="9" MinWidth="17" Height="17" Padding="4,0"
+ HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-5,4,0">
+ <TextBlock Text="{Binding BotsVM.Bots.Count}" FontSize="10.5" FontWeight="Bold"
+ Foreground="#0B0E14" HorizontalAlignment="Center" VerticalAlignment="Center" />
+ </Border>
+ </Panel>
+ <TextBlock Grid.Column="1" Classes="navlabel" Text="{DynamicResource L.Nav.Bots}" />
+ </Grid>
+ </Button>
+ <Button Classes="nav" Name="NavTeamsBtn" AutomationProperties.AutomationId="NavTeamsBtn"
+ Classes.active="{Binding IsTeamsActive}" Command="{Binding ShowTeamsCommand}"
+ AutomationProperties.Name="{DynamicResource L.Nav.Team}"
+ ToolTip.Tip="{DynamicResource L.Nav.Team}" ToolTip.Placement="Right">
+ <Grid ColumnDefinitions="46,*">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconGroup}" Width="21" Height="21" />
+ <TextBlock Grid.Column="1" Classes="navlabel" Text="{DynamicResource L.Nav.Team}" />
+ </Grid>
+ </Button>
+ <!-- Les pages de travail restent visibles ; les modules consultatifs et réseau sont pliables. -->
+ <Button Classes="nav" Command="{Binding ToggleSidebarToolsCommand}" AutomationProperties.AutomationId="BtnToggleSidebarTools"
+         AutomationProperties.Name="Afficher ou masquer les outils secondaires"
+         ToolTip.Tip="Outils secondaires : métiers, atelier, atlas, réseau et diagnostics" ToolTip.Placement="Right">
+ <Grid ColumnDefinitions="46,*">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconBook}" Width="21" Height="21"/>
+ <TextBlock Grid.Column="1" Classes="navlabel" Text="{Binding SidebarToolsLabel}"/>
+ </Grid>
+ </Button>
+ <StackPanel IsVisible="{Binding SidebarToolsVisible}" Spacing="1" Margin="0,4,0,4">
+ <TextBlock Classes="navlabel" Text="Planification" Margin="8,8,0,4" />
+ <Button Classes="nav" Name="NavProfessionPlannerBtn" Command="{Binding ToggleProfessionPlannerCommand}"
+         Classes.active="{Binding ProfessionPlannerVisible}"
+         AutomationProperties.Name="Planifier la progression des métiers"
+         ToolTip.Tip="Coach métiers · recettes et acquisition de ressources" ToolTip.Placement="Right">
+ <Grid ColumnDefinitions="46,*">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconWrench}" Width="21" Height="21" />
+ <TextBlock Grid.Column="1" Classes="navlabel" Text="Coach métiers" />
+ </Grid>
+ </Button>
+ <Button Classes="nav" Name="NavItemCraftBtn" Command="{Binding ToggleItemCraftCommand}"
+         Classes.active="{Binding ItemCraftVisible}"
+         AutomationProperties.Name="Atelier fabrication objets et panoplies"
+         ToolTip.Tip="Objets · panoplies · farm · stock banque" ToolTip.Placement="Right">
+ <Grid ColumnDefinitions="46,*">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconBook}" Width="21" Height="21" />
+ <TextBlock Grid.Column="1" Classes="navlabel" Text="Atelier de fabrication" />
+ </Grid>
+ </Button>
+ <Button Classes="nav" Name="NavWorldAtlasBtn" Command="{Binding ToggleWorldAtlasCommand}"
+         Classes.active="{Binding WorldAtlasVisible}"
+         AutomationProperties.Name="Ouvrir ou fermer l'atlas des cartes"
+         ToolTip.Tip="Atlas du monde · grottes, mines, couches et transitions" ToolTip.Placement="Right">
+ <Grid ColumnDefinitions="46,*">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconMap}" Width="21" Height="21" />
+ <TextBlock Grid.Column="1" Classes="navlabel" Text="Atlas du monde" />
+ </Grid>
+ </Button>
+ <Button Classes="nav" Name="NavVisualModsBtn" Command="{Binding ToggleVisualModsCommand}"
+         Classes.active="{Binding VisualModsVisible}"
+         AutomationProperties.Name="Ouvrir ou fermer le carnet et les mods visuels"
+         ToolTip.Tip="Carnet et mods visuels · points d'intérêt et chasse manuelle" ToolTip.Placement="Right">
+ <Grid ColumnDefinitions="46,*">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconSparkle}" Width="21" Height="21" />
+ <TextBlock Grid.Column="1" Classes="navlabel" Text="Carnet et mods visuels" />
+ </Grid>
+ </Button>
+ <Button Classes="nav" Command="{Binding ToggleMarketInsightsCommand}"
+         Classes.active="{Binding MarketInsightsVisible}"
+         AutomationProperties.Name="Voir le marché et l'historique des ventes HDV"
+         ToolTip.Tip="Marché &amp; kamas · cours des ventes et prix HDV, lecture seule" ToolTip.Placement="Right">
+ <Grid ColumnDefinitions="46,*">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconCart}" Width="21" Height="21" />
+ <TextBlock Grid.Column="1" Classes="navlabel" Text="Marché &amp; kamas" />
+ </Grid>
+ </Button>
+ <Button Classes="nav" Name="NavEcoToolsBtn" Command="{Binding ToggleEcoToolsCommand}"
+         Classes.active="{Binding EcoToolsVisible}"
+         AutomationProperties.Name="Atelier éco : craft ou acheter, forgemagie, carnet"
+         ToolTip.Tip="Atelier éco · bonnes affaires, craft ou acheter, forgemagie, carnet" ToolTip.Placement="Right">
+ <Grid ColumnDefinitions="46,*">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconWrench}" Width="21" Height="21" />
+ <TextBlock Grid.Column="1" Classes="navlabel" Text="Atelier éco" />
+ </Grid>
+ </Button>
+ <TextBlock Classes="navlabel" Text="Connexions et diagnostic" Margin="8,8,0,4" />
+ <Button Classes="nav" Name="NavProxysBtn"
+ Classes.active="{Binding IsProxysActive}" Command="{Binding ShowProxysCommand}"
+ AutomationProperties.Name="{DynamicResource L.Nav.Proxys}"
+ ToolTip.Tip="{DynamicResource L.Nav.Proxys}" ToolTip.Placement="Right">
+ <Grid ColumnDefinitions="46,*">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconRadar}" Width="21" Height="21" />
+ <TextBlock Grid.Column="1" Classes="navlabel" Text="{DynamicResource L.Nav.Proxys}" />
+ </Grid>
+ </Button>
+ <Button Classes="nav" Name="NavAdaptersBtn"
+ Classes.active="{Binding IsAdaptersActive}" Command="{Binding ShowAdaptersCommand}"
+ AutomationProperties.Name="{DynamicResource L.Nav.Adapters}"
+ ToolTip.Tip="{DynamicResource L.Nav.Adapters}" ToolTip.Placement="Right">
+ <Grid ColumnDefinitions="46,*">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconNetwork}" Width="21" Height="21" />
+ <TextBlock Grid.Column="1" Classes="navlabel" Text="{DynamicResource L.Nav.Adapters}" />
+ </Grid>
+ </Button>
+ <Button Classes="nav" Name="MZP0NavDiagnosticsBtn" Click="OnMZP0ToggleDiagnostics"
+ ToolTip.Tip="Diagnostics · lecture seule" ToolTip.Placement="Right"
+ AutomationProperties.Name="Ouvrir ou fermer les diagnostics">
+ <Grid ColumnDefinitions="46,*">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconInfo}" Width="21" Height="21" />
+ <TextBlock Grid.Column="1" Classes="navlabel" Text="Diagnostics" />
+ </Grid>
+ </Button>
+ </StackPanel>
+ </StackPanel>
+ </ScrollViewer>
+ </DockPanel>
+ </Panel>
+ </Border>
+
+ <LayoutTransformControl Grid.Column="1" Name="DensityHost" IsVisible="{Binding !IsClassicSkin}">
+ <TransitioningContentControl Name="PageHost" Content="{Binding DefaultPage}"
+                              AutomationProperties.Name="Contenu de la Page"
+                              AutomationProperties.AutomationId="PageHost">
+ <TransitioningContentControl.PageTransition>
+ <CrossFade Duration="0:0:0.22" />
+ </TransitioningContentControl.PageTransition>
+ </TransitioningContentControl>
+ </LayoutTransformControl>
+
+ <!-- corps alternatif « »: couvre les 2 colonnes, visible seulement en skin un bot tiers.
+ Bind le même MainViewModel (DataContext hérité) -> aucune logique dupliquée. -->
+ <snow:ClassicShellBody Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding IsClassicSkin}" />
+
+ <!-- Panneau réellement monté dans le shell : la source est volontairement absente
+ tant que le host n'a pas fourni une provenance vérifiée. Il recouvre uniquement
+ la page en skin normal, ou le corps classique entier ; la barre de titre reste accessible. -->
+ <LayoutTransformControl Grid.Column="1" Name="MZP0DiagnosticsHost" IsVisible="False">
+ <mzp0:MZP0OperatorPanel Name="MZP0DiagnosticsPanel" />
+ </LayoutTransformControl>
+ <!-- Les modules visuels sont EXTERNES au client Dofus ; aucune injection Unity. -->
+ <Border Grid.Column="1" IsVisible="{Binding VisualModsVisible}"
+         Background="{DynamicResource PanelBrush}" Padding="14">
+ <DockPanel LastChildFill="True">
+ <Button DockPanel.Dock="Top" HorizontalAlignment="Right" Classes="ghost"
+         Content="Fermer les mods visuels" Command="{Binding CloseVisualModsCommand}"
+         AutomationProperties.Name="Fermer les mods visuels" Margin="0,0,0,8" />
+ <views:VisualModsPanel />
+ </DockPanel>
+ </Border>
+ <Border Grid.Column="1" IsVisible="{Binding WorldAtlasVisible}"
+         Background="{DynamicResource PanelBrush}" Padding="14">
+ <DockPanel LastChildFill="True">
+ <Button DockPanel.Dock="Top" HorizontalAlignment="Right" Classes="ghost"
+         Content="Fermer l'atlas" Command="{Binding CloseWorldAtlasCommand}"
+         AutomationProperties.Name="Fermer l'atlas" Margin="0,0,0,8" />
+ <views:WorldAtlasPanel x:Name="WorldAtlasPanelHost" />
+ </DockPanel>
+ </Border>
+ <!-- Atelier de planification consultatif indépendant du client Dofus. -->
+ <Border Grid.Column="1" IsVisible="{Binding ProfessionPlannerVisible}"
+         Background="{DynamicResource PanelBrush}" Padding="14">
+ <DockPanel LastChildFill="True">
+ <Button DockPanel.Dock="Top" Classes="ghost" HorizontalAlignment="Right"
+         Content="Fermer le Coach métiers" Command="{Binding CloseProfessionPlannerCommand}"
+         AutomationProperties.Name="Fermer le Coach métiers" Margin="0,0,0,8" />
+ <views:ProfessionPlannerPanel x:Name="ProfessionPlannerHost" />
+ </DockPanel>
+ </Border>
+ <Border Grid.Column="1" IsVisible="{Binding ItemCraftVisible}"
+         Background="{DynamicResource PanelBrush}" Padding="14">
+ <DockPanel LastChildFill="True">
+ <Button DockPanel.Dock="Top" Classes="ghost" HorizontalAlignment="Right"
+         Content="Fermer l'atelier" Command="{Binding CloseItemCraftCommand}"
+         AutomationProperties.Name="Fermer l'atelier de fabrication" Margin="0,0,0,8" />
+ <views:ItemCraftPlannerPanel x:Name="ItemCraftPlannerHost" />
+ </DockPanel>
+ </Border>
+ <!-- Market read-only uses the SAME selected bot's HDV evidence and explicit
+      manual history request as the existing Bots -> HDV view. -->
+ <Border Grid.Column="1" IsVisible="{Binding MarketInsightsVisible}"
+         Background="{DynamicResource PanelBrush}" Padding="14">
+ <DockPanel LastChildFill="True">
+ <Button DockPanel.Dock="Top" Classes="ghost" HorizontalAlignment="Right"
+         Content="Fermer le marché" Command="{Binding CloseMarketInsightsCommand}"
+         AutomationProperties.Name="Fermer le panneau marché" Margin="0,0,0,8" />
+ <views:MarketInsightsPanel DataContext="{Binding BotsVM}" />
+ </DockPanel>
+ </Border>
+ <Border Grid.Column="1" IsVisible="{Binding EcoToolsVisible}"
+         Background="{DynamicResource Bg1Brush}" Padding="14">
+ <DockPanel LastChildFill="True">
+ <Button DockPanel.Dock="Top" Classes="ghost" HorizontalAlignment="Right"
+         Content="Fermer l'atelier éco" Command="{Binding CloseEcoToolsCommand}"
+         AutomationProperties.Name="Fermer l'atelier éco" Margin="0,0,0,8" />
+ <views:EcoToolsPanel />
+ </DockPanel>
+ </Border>
+ </Grid>
+ </Grid>
+
+ <!-- Le menu est superposé au shell et ne réduit pas la hauteur du contenu. -->
+ <Border IsVisible="{Binding AdvancedToolsVisible}" HorizontalAlignment="Right" VerticalAlignment="Top"
+         Margin="0,54,94,0" Width="336" Padding="16" CornerRadius="12"
+         Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}"
+         BorderThickness="1" BoxShadow="0 12 36 0 #88000000">
+ <StackPanel Spacing="10">
+ <Grid ColumnDefinitions="*,Auto">
+ <TextBlock Text="Outils" FontSize="15" FontWeight="SemiBold"
+            Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center"/>
+ <Button Grid.Column="1" Classes="ghost" Content="Fermer" Padding="8,4"
+         Command="{Binding CloseAdvancedToolsCommand}" />
+ </Grid>
+ <TextBlock Text="Planification" FontSize="11" Foreground="{StaticResource TextMutedBrush}" />
+ <Grid ColumnDefinitions="*,*" ColumnSpacing="8" RowDefinitions="Auto,Auto" RowSpacing="7">
+ <Button Grid.Row="0" Classes="ghost" Content="Coach métiers" Command="{Binding OpenToolProfessionsCommand}"
+         AutomationProperties.Name="Ouvrir le Coach métiers" />
+ <Button Grid.Row="0" Grid.Column="1" Classes="ghost" Content="Atelier objets" Command="{Binding OpenToolItemCraftCommand}"
+         AutomationProperties.Name="Ouvrir l'atelier objets" />
+ <Button Grid.Row="1" Classes="ghost" Content="Atlas" Command="{Binding OpenToolWorldAtlasCommand}"
+         AutomationProperties.Name="Ouvrir l'atlas du monde" />
+ <Button Grid.Row="1" Grid.Column="1" Classes="ghost" Content="Carnet" Command="{Binding OpenToolVisualModsCommand}"
+         AutomationProperties.Name="Ouvrir le carnet de positions" />
+ </Grid>
+ <Button Classes="ghost" Content="Marché &amp; kamas · historique HDV"
+         Command="{Binding OpenMarketInsightsCommand}"
+         AutomationProperties.Name="Ouvrir les cours du marché" />
+ <Button Classes="ghost" Content="Atelier éco · craft, forgemagie, carnet"
+         Command="{Binding OpenEcoToolsCommand}"
+         AutomationProperties.Name="Ouvrir l'atelier éco" />
+ <Button Classes="ghost" Content="Replay de combat · décisions de l'IA"
+         Command="{Binding OpenCombatReplayCommand}"
+         AutomationProperties.Name="Ouvrir le replay de combat"
+         AutomationProperties.AutomationId="NavCombatReplayBtn" />
+ <Button Classes="ghost" Content="Carte du monde · ressources, bots"
+         Command="{Binding OpenWorldMapCommand}"
+         AutomationProperties.Name="Ouvrir la carte du monde"
+         AutomationProperties.AutomationId="NavWorldMapBtn" />
+ <TextBlock Text="Connexions et diagnostic" FontSize="11" Foreground="{StaticResource TextMutedBrush}" />
+ <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="8" RowSpacing="7">
+ <Button Classes="ghost" Content="Proxys" Command="{Binding OpenToolProxysCommand}" />
+ <Button Grid.Column="1" Classes="ghost" Content="Réseau" Command="{Binding OpenToolAdaptersCommand}" />
+ <Button Grid.Row="1" Classes="ghost" Content="Protocole" Command="{Binding ToggleProtocolDetailsCommand}"
+         ToolTip.Tip="Afficher le détail des vérifications ; aucun mapping n'est activé" />
+ <!-- Nom préservé : le panneau natif de diagnostic le référence dans le code-behind. -->
+ <Button Grid.Row="1" Grid.Column="1" Name="MZP0TitleDiagnosticsBtn" Classes="ghost"
+         Content="Diagnostics" Click="OnMZP0ToggleDiagnostics"
+         AutomationProperties.Name="Ouvrir ou fermer les diagnostics"/>
+ </Grid>
+ <!-- Lisible sur demande, sans confondre session en jeu, canal disponible et ACK gameplay. -->
+ <Border Background="#1C2D38" BorderBrush="#345066" BorderThickness="1"
+         Padding="10" CornerRadius="8">
+ <StackPanel Spacing="4">
+ <TextBlock Text="{Binding SocketSessionSummary}" Foreground="{StaticResource TextPrimaryBrush}"
+            FontSize="11.5" TextWrapping="Wrap"/>
+ <TextBlock Text="{Binding SocketControlSummary}" Foreground="{StaticResource TextSecondaryBrush}"
+            FontSize="11" TextWrapping="Wrap"/>
+ <TextBlock Text="{Binding SocketReviewStatus}" Foreground="{StaticResource TextSecondaryBrush}"
+            FontSize="11" TextWrapping="Wrap"/>
+ <TextBlock Text="{Binding SocketCapabilitiesSummary}" Foreground="{StaticResource TextMutedBrush}"
+            FontSize="10.5" TextWrapping="Wrap"/>
+ </StackPanel>
+ </Border>
+ <!-- Ces opérations lourdes étaient dupliquées dans le bandeau permanent.
+      Elles restent accessibles depuis l'audit explicite. -->
+ <StackPanel Orientation="Horizontal" Spacing="7">
+ <Button Classes="ghost" Padding="8,4" Content="Plan indexeur"
+         Command="{Binding RunIndexerReviewCommand}" IsEnabled="{Binding ProtocolIndexerAvailable}"
+         ToolTip.Tip="Revue hors ligne uniquement"/>
+ <Button Classes="ghost" Padding="8,4" Content="Extraire / comparer"
+         Command="{Binding RunIndexerExtractionCommand}" IsEnabled="{Binding ProtocolIndexerAvailable}"
+         ToolTip.Tip="Action explicite : acquisition de candidats dans un cache isolé, sans activation de mapping"/>
+ </StackPanel>
+ <Button Classes="ghost" Click="OnOpenDiscord" HorizontalAlignment="Stretch">
+ <StackPanel Orientation="Horizontal" Spacing="7">
+ <PathIcon Data="{StaticResource IconDiscord}" Width="14" Height="14" Foreground="{StaticResource DiscordBrush}" />
+ <TextBlock Text="{DynamicResource L.Shell.Discord}" />
+ </StackPanel>
+ </Button>
+ </StackPanel>
+ </Border>
+
+ <!-- poignées de resize (WindowDecorations=None -> pas celles de l'OS) -->
+ <Border VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="5" Margin="10,0" Background="Transparent"
+ Cursor="SizeNorthSouth" Tag="North" PointerPressed="OnResizeGrip" />
+ <Border VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="5" Margin="10,0" Background="Transparent"
+ Cursor="SizeNorthSouth" Tag="South" PointerPressed="OnResizeGrip" />
+ <Border HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="5" Margin="0,10" Background="Transparent"
+ Cursor="SizeWestEast" Tag="West" PointerPressed="OnResizeGrip" />
+ <Border HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="5" Margin="0,10" Background="Transparent"
+ Cursor="SizeWestEast" Tag="East" PointerPressed="OnResizeGrip" />
+ <Border HorizontalAlignment="Left" VerticalAlignment="Top" Width="12" Height="12" Background="Transparent"
+ Cursor="TopLeftCorner" Tag="NorthWest" PointerPressed="OnResizeGrip" />
+ <Border HorizontalAlignment="Right" VerticalAlignment="Top" Width="12" Height="12" Background="Transparent"
+ Cursor="TopRightCorner" Tag="NorthEast" PointerPressed="OnResizeGrip" />
+ <Border HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="12" Height="12" Background="Transparent"
+ Cursor="BottomLeftCorner" Tag="SouthWest" PointerPressed="OnResizeGrip" />
+ <Border HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="12" Height="12" Background="Transparent"
+ Cursor="BottomRightCorner" Tag="SouthEast" PointerPressed="OnResizeGrip" />
+
+ <!-- modal de confirmation réutilisable -->
+ <Grid x:Name="ConfirmOverlay" IsHitTestVisible="False">
+ <Border Classes="modalScrim" PointerPressed="OnConfirmBackdrop" />
+ <Border Classes="modalCard" Width="420" Padding="24,22" CornerRadius="16"
+ Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+ HorizontalAlignment="Center" VerticalAlignment="Center">
+ <StackPanel Spacing="14">
+ <Grid ColumnDefinitions="Auto,*">
+ <PathIcon Grid.Column="0" x:Name="ConfirmIcon" Data="{StaticResource IconHelp}" Width="22" Height="22"
+ VerticalAlignment="Center" Foreground="{DynamicResource AccentBrightBrush}" />
+ <TextBlock Grid.Column="1" x:Name="ConfirmTitle" Margin="12,0,0,0" FontSize="16" FontWeight="SemiBold"
+ VerticalAlignment="Center" TextWrapping="Wrap" Foreground="{StaticResource TextPrimaryBrush}" />
+ </Grid>
+ <TextBlock x:Name="ConfirmBody" TextWrapping="Wrap" LineHeight="20" FontSize="13"
+ Foreground="{StaticResource TextSecondaryBrush}" />
+ <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,4,0,0">
+ <Button Classes="ghost" Height="40" MinWidth="110" Click="OnConfirmCancel">
+ <StackPanel Orientation="Horizontal" Spacing="6">
+ <PathIcon Data="{StaticResource IconClose}" Width="13" Height="13" />
+ <TextBlock Text="{DynamicResource L.Common.Cancel}" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ <Button x:Name="ConfirmOkBtn" Classes="primary" Height="40" MinWidth="130" Click="OnConfirmOk">
+ <StackPanel Orientation="Horizontal" Spacing="6">
+ <PathIcon x:Name="ConfirmOkIcon" Data="{StaticResource IconCheck}" Width="14" Height="14" />
+ <TextBlock x:Name="ConfirmOkText" Text="{DynamicResource L.Common.Confirm}" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ </StackPanel>
+ </StackPanel>
+ </Border>
+ </Grid>
+
+ <!-- choix langue au 1er lancement -->
+ <Grid x:Name="LangOverlay" IsHitTestVisible="False">
+ <Border Classes="modalScrim" />
+ <Border Classes="modalCard" Width="440" Padding="28,26" CornerRadius="16"
+ Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+ HorizontalAlignment="Center" VerticalAlignment="Center">
+ <StackPanel Spacing="18" HorizontalAlignment="Stretch">
+ <PathIcon Data="{StaticResource IconSparkle}" Width="30" Height="30" HorizontalAlignment="Center"
+ Foreground="{DynamicResource AccentBrightBrush}" />
+ <TextBlock Text="{DynamicResource L.Onboarding.Title}" FontSize="20" FontWeight="Bold"
+ HorizontalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Text="{DynamicResource L.Onboarding.ChooseLanguage}" FontSize="13"
+ HorizontalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" />
+ <StackPanel Orientation="Horizontal" Spacing="14" HorizontalAlignment="Center">
+ <Button Classes="langpick" Tag="fr" Click="OnPickLanguage">
+ <StackPanel Spacing="8" HorizontalAlignment="Center">
+ <Image Source="avares://GivreClone/Assets/flags/fr.png" Width="46" Height="30" />
+ <TextBlock Text="Français" HorizontalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}" />
+ </StackPanel>
+ </Button>
+ <Button Classes="langpick" Tag="en" Click="OnPickLanguage">
+ <StackPanel Spacing="8" HorizontalAlignment="Center">
+ <Image Source="avares://GivreClone/Assets/flags/en.png" Width="46" Height="30" />
+ <TextBlock Text="English" HorizontalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}" />
+ </StackPanel>
+ </Button>
+ <Button Classes="langpick" Tag="es" Click="OnPickLanguage">
+ <StackPanel Spacing="8" HorizontalAlignment="Center">
+ <Image Source="avares://GivreClone/Assets/flags/es.png" Width="46" Height="30" />
+ <TextBlock Text="Español" HorizontalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}" />
+ </StackPanel>
+ </Button>
+ </StackPanel>
+ </StackPanel>
+ </Border>
+ </Grid>
+
+ <!-- Overlays comptes (lancement + code Shield) au niveau fenetre: couvrent toute la fenetre -->
+ <views:AccountOverlays DataContext="{Binding AccountsVM}" />
+
+ <!-- Overlay choix serveur / personnage (mode Socket « ecran de choix... ») au niveau fenetre -->
+ <views:SocketServerPickOverlay DataContext="{Binding AccountsVM}" />
+
+ <!-- Overlay proxys (modifier un proxy) au niveau fenetre: le scrim couvre toute la fenetre -->
+ <views:ProxysOverlays DataContext="{Binding ProxysVM}" />
+
+ <!-- Overlay combat (configuration d'un sort) au niveau fenetre -->
+ <views:CombatOverlays DataContext="{Binding BotsVM}" />
+
+ <!-- Overlay simulateur de tour de combat au niveau fenetre -->
+ <views:CombatSimOverlay DataContext="{Binding BotsVM}" />
+
+ <!-- Overlay enregistreur de trajet (Road Creator): modale « recolter/combattre » par carte -->
+ <views:RoadRecorderOverlays DataContext="{Binding BotsVM}" />
+
+ <!-- Overlay planning d'un perso HORS LIGNE (connexion auto): éditeur + « Connecter maintenant » -->
+ <views:PlanningOverlays DataContext="{Binding BotsVM}" />
+ <views:HdvSellOverlay DataContext="{Binding BotsVM}" />
+ <!-- Éditeur Lua: plein écran + modèles / récents / référence de l'API / aller à la ligne / non enregistré -->
+ <views:LuaEditorOverlays DataContext="{Binding BotsVM}" />
+
+ <!-- ===================== Centre de notifications ===================== -->
+ <!-- Panneau (dropdown haut-droite). Même chrome que les modals: scrim sombre qui FOND (plus de voile blanc du
+ bouton transparent), carte qui fade+scale. Clic sur le scrim (dehors) -> ferme (OnNotifScrimPressed). -->
+ <Grid Classes.modalOpen="{Binding Notifications.IsOpen}" IsHitTestVisible="{Binding Notifications.IsOpen}">
+ <Border Classes="modalScrim" PointerPressed="OnNotifScrimPressed" />
+ <Border Classes="modalCard" Width="410" MaxHeight="540" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,46,12,0"
+ RenderTransformOrigin="100%,0%"
+ Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1" CornerRadius="14"
+ BoxShadow="0 14 44 0 #A0000000">
+ <Border.Styles>
+ <Style Selector="Button.notifRow"><Setter Property="Background" Value="Transparent" /><Setter Property="BorderThickness" Value="0" /><Setter Property="CornerRadius" Value="9" /><Setter Property="Padding" Value="11,9" /><Setter Property="HorizontalContentAlignment" Value="Stretch" /><Setter Property="Height" Value="NaN" /><Setter Property="Cursor" Value="Hand" /></Style>
+ <Style Selector="Button.notifRow:pointerover /template/ ContentPresenter"><Setter Property="Background" Value="{StaticResource HoverSoftBrush}" /></Style>
+ </Border.Styles>
+ <Grid RowDefinitions="Auto,Auto,Auto,*">
+ <!-- entete -->
+ <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="16,13,10,6">
+ <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+ <PathIcon Data="{StaticResource IconBell}" Width="15" Height="15" Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center" />
+ <TextBlock Text="{DynamicResource L.Notif.Title}" FontWeight="SemiBold" FontSize="14" VerticalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}" />
+ </StackPanel>
+ <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4">
+ <Button Classes="ghost silent" Height="26" MinWidth="0" Padding="9,0" FontSize="11" Content="{Binding Notifications.MarkReadLabel}"
+ Command="{Binding Notifications.MarkAllReadCommand}" IsVisible="{Binding Notifications.HasUnread}" />
+ <Button Classes="ghost silent" Height="26" MinWidth="0" Padding="9,0" FontSize="11" Content="{DynamicResource L.Notif.ClearAll}"
+ Command="{Binding Notifications.ClearAllCommand}" IsVisible="{Binding !Notifications.IsEmpty}" />
+ </StackPanel>
+ </Grid>
+ <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="10" Margin="16,0,10,4">
+ <CheckBox Content="Non lus" IsChecked="{Binding Notifications.UnreadOnly}" />
+ <CheckBox Content="Incidents" IsChecked="{Binding Notifications.IncidentsOnly}" />
+ <TextBlock Text="{Binding Notifications.FilterCount}" Classes="caption" VerticalAlignment="Center" />
+ </StackPanel>
+ <Grid Grid.Row="2" ColumnDefinitions="*,*" Margin="16,0,10,8">
+ <StackPanel Grid.Column="0" Spacing="3" Margin="0,0,8,0">
+ <TextBlock Text="Texte" Classes="caption" />
+ <TextBox Text="{Binding Notifications.NotificationQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+          AutomationProperties.Name="Rechercher dans les notifications" PlaceholderText="Titre ou message" />
+ </StackPanel>
+ <StackPanel Grid.Column="1" Spacing="3">
+ <TextBlock Text="Source" Classes="caption" />
+ <TextBox Text="{Binding Notifications.SourceQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+          AutomationProperties.Name="Filtrer les notifications par source" PlaceholderText="Compte ou origine" />
+ </StackPanel>
+ </Grid>
+ <!-- vide -->
+ <StackPanel Grid.Row="3" IsVisible="{Binding Notifications.NoVisibleItems}" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8" Margin="0,36,0,44">
+ <PathIcon Data="{StaticResource IconBell}" Width="26" Height="26" Foreground="{StaticResource TextMutedBrush}" HorizontalAlignment="Center" Opacity="0.5" />
+ <TextBlock Text="Aucune notification pour ces filtres." Classes="caption" HorizontalAlignment="Center" />
+ </StackPanel>
+ <!-- liste -->
+ <ScrollViewer Grid.Row="3" IsVisible="{Binding !Notifications.NoVisibleItems}" VerticalScrollBarVisibility="Auto" MaxHeight="360" Padding="6,2,6,8">
+ <ItemsControl ItemsSource="{Binding Notifications.VisibleItems}">
+ <ItemsControl.ItemTemplate>
+ <DataTemplate x:DataType="vm:NotifRow">
+ <!-- Opacité pilotée par RowOpacity: passe à 0 (transition) avant le retrait -> fade-out doux -->
+ <Border Opacity="{Binding RowOpacity}">
+ <Border.Transitions>
+ <Transitions><DoubleTransition Property="Opacity" Duration="0:0:0.18" Easing="CubicEaseOut" /></Transitions>
+ </Border.Transitions>
+ <Grid ColumnDefinitions="*,Auto" Margin="2,1">
+ <Button Grid.Column="0" Classes="notifRow silent"
+ Command="{Binding $parent[ItemsControl].((vm:MainViewModel)DataContext).Notifications.OpenCommand}"
+ CommandParameter="{Binding}">
+ <Grid ColumnDefinitions="Auto,*">
+ <PathIcon Grid.Column="0" Data="{Binding IconGeo}" Width="15" Height="15" Foreground="{Binding Accent}" VerticalAlignment="Top" Margin="0,2,10,0" />
+ <StackPanel Grid.Column="1" Spacing="2">
+ <Grid ColumnDefinitions="*,Auto">
+ <TextBlock Grid.Column="0" Text="{Binding Title}" Classes="pii" FontWeight="SemiBold" FontSize="12.5" Foreground="{StaticResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis" />
+ <Ellipse Grid.Column="1" Width="7" Height="7" Fill="{Binding Accent}" VerticalAlignment="Center" Margin="6,0,0,0" IsVisible="{Binding !Read}" />
+ </Grid>
+ <TextBlock Text="{Binding Preview}" Classes="pii" FontSize="11.5" Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap" MaxLines="2" TextTrimming="CharacterEllipsis" />
+ <StackPanel Orientation="Horizontal" Spacing="8">
+ <TextBlock Text="{Binding Source}" Classes="pii" FontSize="10.5" Foreground="{StaticResource AmberBrush}" IsVisible="{Binding HasSource}" />
+ <TextBlock Text="{Binding TimeText}" FontSize="10.5" Foreground="{StaticResource TextMutedBrush}" />
+ </StackPanel>
+ </StackPanel>
+ </Grid>
+ </Button>
+ <Button Grid.Column="1" Classes="ghost silent" Width="26" Height="26" MinWidth="0" Padding="0" VerticalAlignment="Center" Margin="2,0,0,0"
+ ToolTip.Tip="{DynamicResource L.Notif.Dismiss}"
+ Command="{Binding $parent[ItemsControl].((vm:MainViewModel)DataContext).Notifications.DismissCommand}"
+ CommandParameter="{Binding}">
+ <PathIcon Data="{StaticResource IconClose}" Width="11" Height="11" />
+ </Button>
+ </Grid>
+ </Border>
+ </DataTemplate>
+ </ItemsControl.ItemTemplate>
+ </ItemsControl>
+ </ScrollViewer>
+ </Grid>
+ </Border>
+ </Grid>
+
+ <!-- Modal de detail d'une notification (corps long) -->
+ <Grid Classes.modalOpen="{Binding Notifications.DetailVisible}" IsHitTestVisible="{Binding Notifications.DetailVisible}">
+ <Border Classes="modalScrim" />
+ <Border Classes="modalCard" Width="520" MaxHeight="560" Padding="26,24" CornerRadius="16"
+ Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+ HorizontalAlignment="Center" VerticalAlignment="Center">
+ <Grid RowDefinitions="Auto,Auto,*,Auto" DataContext="{Binding Notifications.Detail}">
+ <!-- Grid (pas un StackPanel horizontal: sinon le titre ne se borne pas -> il dépasse la carte) -->
+ <Grid Grid.Row="0" ColumnDefinitions="Auto,*">
+ <PathIcon Grid.Column="0" Data="{Binding IconGeo}" Width="22" Height="22" Foreground="{Binding Accent}" VerticalAlignment="Top" Margin="0,1,12,0" />
+ <TextBlock Grid.Column="1" Text="{Binding Title}" Classes="pii" FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" TextWrapping="Wrap" />
+ </Grid>
+ <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="10" Margin="0,8,0,4">
+ <TextBlock Text="{Binding Source}" Classes="pii" FontSize="12" Foreground="{StaticResource AmberBrush}" IsVisible="{Binding HasSource}" />
+ <TextBlock Text="{Binding FullTimeText}" FontSize="12" Foreground="{StaticResource TextMutedBrush}" />
+ </StackPanel>
+ <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Margin="0,8" IsVisible="{Binding HasBody}">
+ <TextBlock Text="{Binding Body}" Classes="pii" FontSize="13.5" LineHeight="20" TextWrapping="Wrap" Foreground="{StaticResource TextSecondaryBrush}" />
+ </ScrollViewer>
+ <Button Grid.Row="3" Classes="ghost" Height="38" MinWidth="104" HorizontalAlignment="Left"
+ Content="Copier" Click="OnCopyNotificationDetail" AutomationProperties.Name="Copier le contenu complet de la notification" />
+ <Button Grid.Row="3" Classes="ghost" Height="38" MinWidth="104" HorizontalAlignment="Right"
+ Command="{Binding $parent[Window].((vm:MainViewModel)DataContext).Notifications.CloseDetailCommand}">
+ <StackPanel Orientation="Horizontal" Spacing="6">
+ <PathIcon Data="{StaticResource IconClose}" Width="13" Height="13" />
+ <TextBlock Text="{DynamicResource L.Common.Close}" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ </Grid>
+ </Border>
+ </Grid>
+
+ <!-- Palette non destructive, superposée aux pages mais toujours SOUS les modales
+      de chargement, licence et blocage. Aucune recherche réseau ni exécution Lua. -->
+ <Grid x:Name="QuickNavOverlay" IsVisible="{Binding QuickNavVisible}" IsHitTestVisible="{Binding QuickNavVisible}">
+ <Border Background="#C90A0E14" PointerPressed="OnQuickNavBackdrop" />
+ <Border Width="520" MaxWidth="520" MaxHeight="630" HorizontalAlignment="Center" VerticalAlignment="Top"
+         Margin="0,95,0,0" Padding="20" CornerRadius="16"
+         Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}"
+         BorderThickness="1" BoxShadow="0 18 52 0 #99000000">
+ <StackPanel Spacing="12">
+ <Grid ColumnDefinitions="*,Auto">
+ <TextBlock Grid.Column="0" Text="Accès rapide" FontWeight="Bold" FontSize="17"
+            Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center" />
+ <Button Grid.Column="1" Classes="ghost" Content="Fermer · Esc" Command="{Binding CloseQuickNavigationCommand}"
+         AutomationProperties.Name="Fermer la recherche rapide" />
+ </Grid>
+ <TextBox x:Name="QuickNavSearch" Text="{Binding QuickNavQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+          PlaceholderText="Une page ou un outil, ex. métiers, réseau…"
+          AutomationProperties.Name="Rechercher dans les pages locales" />
+ <TextBlock Classes="caption" TextWrapping="Wrap"
+            Text="Raccourcis : Ctrl+K ouvre cette recherche · Entrée ouvre le premier résultat · Échap ferme la fenêtre du dessus" />
+ <TextBlock Text="Aucune page correspondante" IsVisible="{Binding QuickNavNoResults}"
+            Foreground="{StaticResource TextSecondaryBrush}" Margin="4,10" />
+ <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="390">
+ <ItemsControl ItemsSource="{Binding QuickNavResults}">
+ <ItemsControl.ItemTemplate>
+ <DataTemplate x:DataType="nav:QuickNavigationAction">
+ <Button Classes="ghost" Tag="{Binding Key}" Click="OnQuickNavItemClick" HorizontalAlignment="Stretch"
+          HorizontalContentAlignment="Stretch" Height="NaN" MinHeight="54" Padding="12,9" Margin="0,2"
+         AutomationProperties.Name="{Binding Label}">
+ <StackPanel Spacing="3">
+ <TextBlock Text="{Binding Label}" FontWeight="SemiBold" FontSize="13.5"
+            Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Left" />
+ <TextBlock Text="{Binding Description}" FontSize="11.5"
+             Foreground="{StaticResource TextSecondaryBrush}" HorizontalAlignment="Left" TextWrapping="Wrap" />
+ </StackPanel>
+ </Button>
+ </DataTemplate>
+ </ItemsControl.ItemTemplate>
+ </ItemsControl>
+ </ScrollViewer>
+ <TextBlock Text="Entrée : ouvrir le premier résultat · Tab : parcourir · Échap : fermer"
+            FontSize="10.5" Foreground="{StaticResource TextMutedBrush}" />
+ </StackPanel>
+ </Border>
+ </Grid>
+
+ <!-- ===================== Pré-extraction des cartes (progression) =====================
+ 1er lancement / après un patch Dofus: on décompresse une fois tous les bundles de
+ cartes pour accélérer durablement les chargements. Niveau fenêtre, SOUS le gate licence
+ (le gate doit toujours gagner). Non bloquant: "continuer en arrière-plan" ferme le modal
+ pendant que l'extraction continue. -->
+ <Grid x:Name="MapExtractOverlay"
+ Classes.modalOpen="{Binding MapExtractVisible}" IsHitTestVisible="{Binding MapExtractVisible}">
+ <Border Classes="modalScrim" />
+ <Border Classes="modalCard" Width="480" Padding="28,26" CornerRadius="16"
+ Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+ HorizontalAlignment="Center" VerticalAlignment="Center">
+ <StackPanel Spacing="16">
+ <StackPanel Orientation="Horizontal" Spacing="12">
+ <Ellipse Classes="spinner" Width="22" Height="22" IsVisible="{Binding MapExtractBusy}" />
+ <PathIcon Data="{StaticResource IconCheckCircle}" Width="22" Height="22"
+ Foreground="{StaticResource SuccessBrush}" IsVisible="{Binding MapExtractDoneOk}" />
+ <TextBlock Text="{DynamicResource L.MapExtract.Title}" FontSize="16" FontWeight="SemiBold"
+ VerticalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}" />
+ </StackPanel>
+ <TextBlock Text="{DynamicResource L.MapExtract.Explain}" TextWrapping="Wrap" FontSize="13.5"
+ LineHeight="19" Foreground="{StaticResource TextSecondaryBrush}" />
+ <StackPanel Spacing="8">
+ <ProgressBar Height="6" CornerRadius="3" HorizontalAlignment="Stretch" Minimum="0"
+ Maximum="{Binding MapExtractTotal}" Value="{Binding MapExtractDone}"
+ Foreground="{DynamicResource AccentBrightBrush}" />
+ <TextBlock Text="{Binding MapExtractCounter}" FontSize="12" HorizontalAlignment="Right"
+ Foreground="{StaticResource TextMutedBrush}" />
+ </StackPanel>
+ <Button Classes="ghost" Height="38" MinWidth="150" HorizontalAlignment="Right"
+ Command="{Binding CloseMapExtractCommand}">
+ <TextBlock Text="{DynamicResource L.MapExtract.Background}" />
+ </Button>
+ </StackPanel>
+ </Border>
+ </Grid>
+
+ <!-- Modal de chargement du PROTOCOLE (mapping streamé du serveur). Bloquant le temps que le stream arrive,
+ pour éviter la course "login -> lancement trop rapide -> mapping manquant". Niveau fenêtre, SOUS le gate
+ licence. Pas de bouton: se ferme seul dès que le protocole est prêt. -->
+ <Grid x:Name="MappingLoadOverlay"
+ Classes.modalOpen="{Binding MappingLoadVisible}" IsHitTestVisible="{Binding MappingLoadVisible}">
+ <Border Classes="modalScrim" />
+ <Border Classes="modalCard" Width="440" Padding="28,26" CornerRadius="16"
+ Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+ HorizontalAlignment="Center" VerticalAlignment="Center">
+ <StackPanel Spacing="14">
+ <StackPanel Orientation="Horizontal" Spacing="12">
+ <Ellipse Classes="spinner" Width="22" Height="22" IsVisible="{Binding MappingLoadBusy}" />
+ <TextBlock Text="{DynamicResource L.MappingLoad.Title}" FontSize="16" FontWeight="SemiBold"
+ VerticalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}" />
+ </StackPanel>
+ <TextBlock Text="{DynamicResource L.MappingLoad.Explain}" TextWrapping="Wrap" FontSize="13.5"
+ LineHeight="19" Foreground="{StaticResource TextSecondaryBrush}" />
+ </StackPanel>
+ </Border>
+ </Grid>
+
+ <!-- Déconnexion planifiée à compte à rebours (annulable): au-dessus des modales de page / notifications,
+ SOUS l'écran de licence (qui la masquerait: elle est alors vidée côté VM). -->
+ <views:PlanningDisconnectOverlay DataContext="{Binding BotsVM}" />
+
+ <!-- Offre gratuite: personnage au-delà du niveau autorisé (botting bloqué sur lui) + lien vers les offres. -->
+ <views:LevelCapOverlay DataContext="{Binding BotsVM}" />
+
+ <!-- ===================== Gate de licence (clé Ikuware) =====================
+ Bloquant au démarrage: voile quasi opaque + carte de saisie de la clé. On n'ouvre
+ l'app qu'après validation serveur (enveloppe signée Ed25519). Niveau fenêtre. -->
+ <Grid x:Name="LoginOverlay" IsVisible="False" IsHitTestVisible="False">
+ <!-- voile de gate 62% (comme PyxLauncher #9E080A0F): on distingue le shell FLOUTÉ derrière;
+ animé via la classe modalOpen. -->
+ <Border Classes="modalScrim" Background="#9E080A0F" />
+
+ <!-- strip de déplacement + min/fermer -->
+ <Grid VerticalAlignment="Top" Height="56" Background="Transparent" PointerPressed="OnTitleBarPressed">
+ <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,8,0" Spacing="2">
+ <Button Classes="win" Click="OnMinimize" ToolTip.Tip="{DynamicResource L.Shell.Minimize}">
+ <PathIcon Data="{StaticResource IconMinimize}" Width="16" Height="16" />
+ </Button>
+ <Button Classes="win close" Click="OnClose" ToolTip.Tip="{DynamicResource L.Shell.Close}">
+ <PathIcon Data="{StaticResource IconClose}" Width="16" Height="16" />
+ </Button>
+ </StackPanel>
+ </Grid>
+
+ <Border Classes="modalCard" Width="430" Padding="34,32" CornerRadius="14"
+ Background="{StaticResource Surface1Brush}" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1"
+ HorizontalAlignment="Center" VerticalAlignment="Center">
+ <StackPanel>
+ <Border Width="64" Height="64" CornerRadius="18" HorizontalAlignment="Center">
+ <Border.Background>
+ <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+ <GradientStop Offset="0" Color="{DynamicResource AccentBright}" />
+ <GradientStop Offset="1" Color="{DynamicResource AccentDeep}" />
+ </LinearGradientBrush>
+ </Border.Background>
+ <PathIcon Data="{StaticResource IconKey}" Width="30" Height="30" Foreground="White" />
+ </Border>
+
+ <StackPanel Orientation="Horizontal" Spacing="9" HorizontalAlignment="Center" Margin="0,18,0,0">
+ <TextBlock Text="{DynamicResource L.Login.Title}" FontSize="26" FontWeight="Bold"
+ Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center" />
+ <Border Classes="badge" VerticalAlignment="Center">
+ <TextBlock Text="{Binding AppVersionLabel}" FontSize="11"
+ Foreground="{DynamicResource AccentBrightBrush}" />
+ </Border>
+ </StackPanel>
+ <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Margin="0,6,0,0"
+ FontSize="13" TextWrapping="Wrap" Foreground="{StaticResource TextSecondaryBrush}"
+ Text="{DynamicResource L.Login.Subtitle}" />
+
+ <TextBox x:Name="LicenseBox" Classes="key" Margin="0,22,0,0"
+ PlaceholderText="{DynamicResource L.Login.Placeholder}" />
+
+ <Button x:Name="ValidateBtn" Classes="primary" Margin="0,12,0,0"
+ HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+ IsDefault="True" Click="OnValidateLicense"
+ Content="{DynamicResource L.Login.Validate}" />
+
+ <CheckBox x:Name="RememberCheck" Margin="2,14,0,0" FontSize="13"
+ Foreground="{StaticResource TextSecondaryBrush}"
+ Content="{DynamicResource L.Login.Remember}" />
+
+ <Button Classes="link" HorizontalAlignment="Center" Margin="0,10,0,0" Click="OnLoginHelp">
+ <StackPanel Orientation="Horizontal" Spacing="7">
+ <PathIcon Data="{StaticResource IconHelp}" Width="14" Height="14"
+ Foreground="{DynamicResource AccentBrightBrush}" />
+ <TextBlock Text="{DynamicResource L.Login.Help}" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ </StackPanel>
+ </Border>
+ </Grid>
+
+ <!-- ===================== Modal de statut du login (connexion / succès / erreur) =====================
+ Même mécanisme modalScrim/modalCard/modalOpen que les autres modals -> animation d'entrée.
+ Spinner ambre = contact serveur; check vert = validée; croix rouge + OK = erreur. -->
+ <Grid x:Name="LoginModal" IsVisible="False" IsHitTestVisible="False">
+ <Border Classes="modalScrim" PointerPressed="OnLoginModalBackdrop" />
+ <Border Classes="modalCard" Width="430" MaxHeight="640" Padding="26,24" CornerRadius="16"
+ Background="{StaticResource PanelBrush}" BorderBrush="{StaticResource StrokeMedBrush}" BorderThickness="1"
+ HorizontalAlignment="Center" VerticalAlignment="Center">
+ <StackPanel Spacing="14">
+ <!-- icône PETITE à gauche (spinner 24 / pastille ronde 30) + titre à droite -->
+ <Grid ColumnDefinitions="Auto,*">
+ <Panel Grid.Column="0" VerticalAlignment="Center">
+ <Ellipse x:Name="LoginModalSpinner" Classes="spinner" Width="24" Height="24"
+ StrokeThickness="2.4" IsVisible="False" />
+ <Border x:Name="LoginModalIcon" Width="30" Height="30" CornerRadius="15" IsVisible="False">
+ <PathIcon x:Name="LoginModalGlyph" Width="17" Height="17" Foreground="White" />
+ </Border>
+ </Panel>
+ <TextBlock Grid.Column="1" x:Name="LoginModalTitle" FontSize="15" FontWeight="SemiBold"
+ VerticalAlignment="Center" Margin="13,0,0,0" TextWrapping="Wrap"
+ Foreground="{StaticResource TextPrimaryBrush}" />
+ </Grid>
+ <!-- OK: bas-droite, visible sur erreur uniquement -->
+ <Button x:Name="LoginModalOk" Classes="primary" Height="42" MinWidth="130"
+ HorizontalAlignment="Right" HorizontalContentAlignment="Center" Margin="0,6,0,0" IsVisible="False"
+ Click="OnLoginModalOk" Content="{DynamicResource L.Common.OK}" />
+ </StackPanel>
+ </Border>
+ </Grid>
+
+ <!-- Toast (notif transitoire son+visuel: interface ajoutée/retirée) -->
+ <Border x:Name="Toast" Classes="toast" VerticalAlignment="Top" HorizontalAlignment="Center"
+ Margin="0,20,0,0" IsHitTestVisible="False">
+ <StackPanel Orientation="Horizontal" Spacing="10">
+ <PathIcon x:Name="ToastIcon" Width="18" Height="18" VerticalAlignment="Center"
+ Foreground="{StaticResource SuccessBrush}" Data="{StaticResource IconCheckCircle}" />
+ <TextBlock x:Name="ToastText" Classes="pii" VerticalAlignment="Center" FontSize="13.5"
+ Foreground="{StaticResource TextPrimaryBrush}" />
+ </StackPanel>
+ </Border>
+
+ <!-- ===================== Splash de démarrage (comme PyxLauncher) =====================
+ Couvre toute la fenêtre au lancement (logo + version + spinner), puis fondu de sortie
+ vers le gate de licence. Dernier enfant = au-dessus de tout au démarrage. -->
+ <Grid x:Name="SplashOverlay">
+ <Grid.Transitions>
+ <Transitions>
+ <DoubleTransition Property="Opacity" Duration="0:0:0.45" Easing="CubicEaseInOut" />
+ </Transitions>
+ </Grid.Transitions>
+ <Border Background="{StaticResource Bg1Brush}" />
+ <Border Background="{DynamicResource WindowGlowBrush}" IsHitTestVisible="False" />
+ <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="22">
+ <!-- Logo 84 + glow bleu accent (comme PyxLauncher); ClipToBounds moule le PNG dans les coins arrondis. -->
+ <Border Width="84" Height="84" CornerRadius="22" HorizontalAlignment="Center" ClipToBounds="True"
+ BoxShadow="0 10 40 0 #552E6AE0">
+ <Image Source="avares://GivreClone/Assets/GivreClone.png" Width="84" Height="84" />
+ </Border>
+ <TextBlock Text="GivreClone" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center"
+ Foreground="{StaticResource TextPrimaryBrush}" />
+ <Ellipse Classes="spinner" Width="26" Height="26" HorizontalAlignment="Center" Margin="0,4,0,0" />
+ <TextBlock Text="{DynamicResource L.Login.Loading}" Classes="caption" HorizontalAlignment="Center" />
+ </StackPanel>
+ </Grid>
+
+ <!-- ===================== Blocage "launcher control" (kill switch / version requise) =====================
+ Vérifié AU DÉMARRAGE via GET /version (public, non signé). kill=true OU outdated=true -> on BLOQUE
+ (aucun login possible), en affichant le message de l'opérateur. Au-dessus de tout. -->
+ <Grid x:Name="ControlOverlay" IsVisible="False" IsHitTestVisible="False">
+ <Border Background="#F00A0E14" />
+ <Grid VerticalAlignment="Top" Height="56" Background="Transparent" PointerPressed="OnTitleBarPressed">
+ <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,8,0" Spacing="2">
+ <Button Classes="win" Click="OnMinimize" ToolTip.Tip="{DynamicResource L.Shell.Minimize}">
+ <PathIcon Data="{StaticResource IconMinimize}" Width="16" Height="16" />
+ </Button>
+ <Button Classes="win close" Click="OnClose" ToolTip.Tip="{DynamicResource L.Shell.Close}">
+ <PathIcon Data="{StaticResource IconClose}" Width="16" Height="16" />
+ </Button>
+ </StackPanel>
+ </Grid>
+ <Border Classes="modalCard" Width="440" Padding="34,30" CornerRadius="16"
+ Background="{StaticResource Surface1Brush}" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1"
+ HorizontalAlignment="Center" VerticalAlignment="Center">
+ <StackPanel Spacing="16" HorizontalAlignment="Center">
+ <Border x:Name="ControlIcon" Width="64" Height="64" CornerRadius="18" HorizontalAlignment="Center"
+ Background="{StaticResource AmberBrush}">
+ <PathIcon x:Name="ControlGlyph" Data="{StaticResource IconClose}" Width="28" Height="28" Foreground="White" />
+ </Border>
+ <TextBlock x:Name="ControlTitle" FontSize="21" FontWeight="Bold" HorizontalAlignment="Center"
+ TextAlignment="Center" TextWrapping="Wrap" Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock x:Name="ControlMessage" FontSize="13.5" LineHeight="20" HorizontalAlignment="Center"
+ TextAlignment="Center" TextWrapping="Wrap" MaxWidth="360" Foreground="{StaticResource TextSecondaryBrush}" />
+ <TextBlock x:Name="ControlVersion" FontSize="12" HorizontalAlignment="Center" IsVisible="False"
+ Foreground="{DynamicResource AccentBrightBrush}" />
+ <!-- Auto-update: visible seulement si le verdict porte un pointeur (download_url+sha256).
+ Télécharge (vérif SHA-256 signé) puis passe la main au swappeur natif GivreUpdater.exe. -->
+ <Button x:Name="ControlUpdateBtn" Classes="primary" IsVisible="False" HorizontalAlignment="Center"
+ Margin="0,4,0,0" Content="{DynamicResource L.Control.UpdateNow}" Click="OnControlUpdate" />
+ <!-- MAJ proposée pendant l'utilisation seulement: la reporter au prochain lancement (bots maintenus). -->
+ <Button x:Name="ControlLaterBtn" Classes="ghost" IsVisible="False" HorizontalAlignment="Center"
+ Content="{DynamicResource L.Control.Later}" Click="OnControlLater" />
+ <TextBlock x:Name="ControlUpdateStatus" FontSize="12" HorizontalAlignment="Center" IsVisible="False"
+ TextAlignment="Center" TextWrapping="Wrap" MaxWidth="360" Foreground="{StaticResource TextSecondaryBrush}" />
+ </StackPanel>
+ </Border>
+ </Grid>
+ </Grid>
+ </Border>
+</Window>

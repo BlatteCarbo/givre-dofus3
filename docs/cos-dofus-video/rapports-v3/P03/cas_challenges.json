@@ -1,0 +1,18 @@
+{
+  "schema": "dofus-371317-companion-challenge-candidates-1",
+  "status": "synthetic_not_executed",
+  "source_sha256": {
+    "challenge_code": "28e5ebb3eff7283210ed74c9ba4cbc0855f051d939698c4692d3ff3554ca863a",
+    "n02_export": "8cf8e15df884943d080dee3f2f1ecafafb68e23b9669ce2dbca441e51b9bde1"
+  },
+  "cases": [
+    {"id": "P03-L1", "challenge": "MemeLignee", "player": [0, 0], "other": {"kind": "player", "cell": [2, 0]}, "codeExpected": "EndCell predicate true", "serverExpected": "Unknown"},
+    {"id": "P03-L2", "challenge": "MemeLignee", "player": [0, 0], "other": {"kind": "summon", "cell": [2, 0]}, "codeExpected": "true if present as non-enemy in fighters", "serverExpected": "Unknown"},
+    {"id": "P03-L3", "challenge": "MemeLignee", "player": [0, 0], "other": {"kind": "controlled_companion", "cell": [2, 0]}, "codeExpected": "true if present as non-enemy in fighters", "serverExpected": "Unknown"},
+    {"id": "P03-D1", "challenge": "Duel", "turns": [{"attacker": "A", "target": "X"}, {"attacker": "B", "target": "Y"}], "codeExpected": "no same-enemy Avoid", "serverExpected": "Unknown"},
+    {"id": "P03-D2", "challenge": "Duel", "turns": [{"attacker": "A", "target": "X"}, {"attacker": "B", "target": "X"}], "codeExpected": "Avoid X for B if A recorded", "serverExpected": "Unknown"},
+    {"id": "P03-D3", "challenge": "Duel", "turns": [{"attacker": "summon_A", "owner": "A", "target": "X"}, {"attacker": "B", "target": "X"}], "codeExpected": "depends on exact attacker identity received", "serverExpected": "Unknown"},
+    {"id": "P03-R1", "challenge": "Prudent", "endCellDistanceToNearestEnemy": [1, 2], "codeExpected": "distance 1 rejected; distance 2 candidate", "serverExpected": "Unknown"},
+    {"id": "P03-R2", "challenge": "Prudent", "history": {"reportedFight": 22, "reportedStartAP": 11, "reportedStartMP": 6, "reportedFallbackCells": [344, 357]}, "missing": ["allowedCells", "endCellCandidates", "completeSpellGates", "castReceipt"], "codeExpected": "cause not identifiable", "serverExpected": "Unknown"}
+  ]
+}

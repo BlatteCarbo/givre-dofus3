@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ReaderSmoke.cs" />
+    <Compile Include="../../GivreClone.App/Services/EquipmentSetData/EquipmentSetCatalog.cs"
+             Link="EquipmentSetCatalog.cs" />
+    <Compile Include="../../GivreClone.App/Services/EquipmentSetData/EquipmentSetCatalogReader.cs"
+             Link="EquipmentSetCatalogReader.cs" />
+  </ItemGroup>
+</Project>

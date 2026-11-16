@@ -1,0 +1,35 @@
+{
+  "utc": "2026-10-23T06:27:33.334574+00:00",
+  "application": "PASS: Debug App and references compiled through RecoveredUiHarness",
+  "navigation_search": {
+    "checks": 13,
+    "result": "PASS"
+  },
+  "smithmagic_planner": {
+    "checks": 14,
+    "result": "PASS"
+  },
+  "treasure": "PASS: offline request tracker and ViewModel receipt/session scenarios",
+  "webauth_contract": {
+    "checks": 18,
+    "result": "PASS"
+  },
+  "avalonia_headless": {
+    "checks": 10,
+    "result": "PASS",
+    "includes": [
+      "Enter/Escape navigation",
+      "stream-mode labels",
+      "local target editor",
+      "queue deduplication",
+      "view construction"
+    ]
+  },
+  "live_gameplay_tested": false,
+  "remaining": [
+    "Automatic treasure resolution/legendary purchases",
+    "Live smithmagic transport and observed effect/rune mappings",
+    "Unresolved native types/indirect calls"
+  ],
+  "existing_changes": "Pre-existing combat/lang/test modifications preserved"
+}

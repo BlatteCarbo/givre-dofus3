@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GivreClone.Engine\GivreClone.Engine.csproj" />
+    <Compile Include="..\GivreClone.App\Services\BotSettings.cs" Link="Production\BotSettings.cs" />
+    <Compile Include="..\GivreClone.App\Services\BotSettingsStore.cs" Link="Production\BotSettingsStore.cs" />
+    <Compile Include="..\GivreClone.App\Services\WebhookService.cs" Link="Production\WebhookService.cs" />
+    <Compile Include="..\GivreClone.App\Services\AtomicJson.cs" Link="Production\AtomicJson.cs" />
+  </ItemGroup>
+</Project>

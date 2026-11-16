@@ -1,0 +1,33 @@
+ExecuteScriptAsync
+AssemblyFileVersionAttribute
+AssemblyInformationalVersionAttribute
+System.Runtime.Versioning
+get_BrowserVersionString
+MizanLauncher.WebAuth
+MizanLauncher.WebAuth.dll
+PrefillScript
+SubmitScript
+.NETCoreApp,Version=v10.0
+MizanLauncher
+.MizanLauncher.WebAuth.BrowseForm+<OnLoad>d__27
+3MizanLauncher.WebAuth.BrowseForm+<SignInAsync>d__30
+?MizanLauncher.WebAuth.BrowserSetup+<CreateEnvironmentAsync>d__2
+7MizanLauncher.WebAuth.BrowserSetup+<ConfigureAsync>d__5
+AMizanLauncher.WebAuth.BrowserSetup+<ApplyChromeIdentityAsync>d__7
+=MizanLauncher.WebAuth.BrowserSetup+<ReadClientHintsAsync>d__8
+:MizanLauncher.WebAuth.BrowserSetup+<ProbeEgressAsync>d__10
+<MizanLauncher.WebAuth.BrowserSetup+<ApplyTimeZoneAsync>d__11
+<MizanLauncher.WebAuth.LocalSocksBridge+<AcceptLoopAsync>d__8
+8MizanLauncher.WebAuth.LocalSocksBridge+<HandleAsync>d__9
+>MizanLauncher.WebAuth.LocalSocksBridge+<ReadExactlyAsync>d__10
+-MizanLauncher.WebAuth.LoginFlow+<OnLoad>d__27
+9MizanLauncher.WebAuth.LoginFlow+<CheckEgressIpAsync>d__28
+<MizanLauncher.WebAuth.LoginFlow+<OnNavigationCompleted>d__29
+;MizanLauncher.WebAuth.LoginFlow+<OnNavigationStarting>d__30
+9MizanLauncher.WebAuth.LoginFlow+<ExchangeTokenAsync>d__31
+DMizanLauncher.WebAuth.BrowseForm+<>c__DisplayClass28_0+<<Wire>b__7>d
+DMizanLauncher.WebAuth.BrowseForm+<>c__DisplayClass28_0+<<Wire>b__8>d
+Version
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+  <assemblyIdentity version="1.0.0.0" name="MyApplication.app"/>

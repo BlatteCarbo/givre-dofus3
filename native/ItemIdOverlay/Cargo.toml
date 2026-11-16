@@ -1,0 +1,20 @@
+[package]
+name = "givre-item-id-overlay"
+version = "0.4.1"
+edition = "2024"
+license = "MIT"
+description = "Mod natif Dofus 3 : affiche l'identifiant (GID) de l'objet a droite de son nom dans les bulles d'information."
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+# SDK ABI 8 du depot (le clone externe _tmp_dofus3_native_host n'est pas present dans cet espace de travail).
+[dependencies]
+dofus-native-mod-api = { path = "../dofus3-native-host/crates/mod-api" }
+dofus-native-mod-sdk = { path = "../dofus3-native-host/crates/mod-sdk" }
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+panic = "unwind"
+strip = "symbols"

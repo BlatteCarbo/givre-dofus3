@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#132a3a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.78" cy="0.45" r="0.55">
+      <stop offset="0" stop-color="#38bdf8" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="portalA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7dd3fc"/>
+      <stop offset="1" stop-color="#0369a1"/>
+    </linearGradient>
+    <linearGradient id="portalB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0abfc"/>
+      <stop offset="1" stop-color="#7e22ce"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="360" fill="url(#bg)"/>
+  <rect width="1280" height="360" fill="url(#glow)"/>
+  <g stroke="#1f3b4f" stroke-width="1" opacity="0.7">
+    <path d="M760 300 L900 230 L1040 300 L900 370 Z" fill="none"/>
+    <path d="M900 230 L1040 160 L1180 230 L1040 300 Z" fill="none"/>
+    <path d="M620 230 L760 160 L900 230 L760 300 Z" fill="none"/>
+    <path d="M760 160 L900 90 L1040 160 L900 230 Z" fill="none"/>
+    <path d="M900 90 L1040 20 L1180 90 L1040 160 Z" fill="none"/>
+    <path d="M1040 300 L1180 230 L1320 300 L1180 370 Z" fill="none"/>
+  </g>
+  <ellipse cx="790" cy="205" rx="44" ry="18" fill="none" stroke="url(#portalA)" stroke-width="7"/>
+  <ellipse cx="1110" cy="150" rx="44" ry="18" fill="none" stroke="url(#portalB)" stroke-width="7"/>
+  <path d="M790 205 C 880 120, 1000 110, 1110 150" fill="none" stroke="#e0f2fe" stroke-width="2.5" stroke-dasharray="8 7" opacity="0.85"/>
+  <circle cx="1110" cy="150" r="5" fill="#f5d0fe"/>
+  <path d="M1110 150 L1180 196" stroke="#fda4af" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="1188" cy="202" r="11" fill="#be123c" opacity="0.9"/>
+  <text x="80" y="150" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="78" font-weight="800" fill="#f0f9ff" letter-spacing="-1">Givre</text>
+  <text x="84" y="200" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="26" fill="#bae6fd">Bot open source pour Dofus 3</text>
+  <text x="84" y="240" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="19" fill="#7dd3fc">Combat tactique · protocole sans client · scripts Lua · multi-compte</text>
+  <g font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="15" font-weight="600">
+    <rect x="84" y="270" width="96" height="30" rx="15" fill="#0c4a6e"/>
+    <text x="132" y="290" fill="#e0f2fe" text-anchor="middle">.NET 10</text>
+    <rect x="190" y="270" width="104" height="30" rx="15" fill="#0c4a6e"/>
+    <text x="242" y="290" fill="#e0f2fe" text-anchor="middle">Avalonia</text>
+    <rect x="304" y="270" width="80" height="30" rx="15" fill="#0c4a6e"/>
+    <text x="344" y="290" fill="#e0f2fe" text-anchor="middle">Lua</text>
+    <rect x="394" y="270" width="150" height="30" rx="15" fill="#4c0519"/>
+    <text x="469" y="290" fill="#fecdd3" text-anchor="middle">Projet arrêté</text>
+  </g>
+</svg>

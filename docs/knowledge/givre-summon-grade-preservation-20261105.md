@@ -1,0 +1,3 @@
+# Summon grade preservation
+
+On 2026-11-05, an independent test run passed 116 tests with no failures or skips. Explicit grade values survive spell-created summon simulation and subsequent planner conversion; absent values remain unknown/zero. The change does not establish summon stat mapping, observed combat grade decoding, bomb explosions, or combo mechanics. Further investigation found the observed grade already existed in another decoder but was omitted when constructing the planner snapshot; a narrowly scoped pass-through correction with producer-path tests was started, but no result is present in the reviewed transcript.

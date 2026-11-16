@@ -1,0 +1,68 @@
+{
+  "schema": "givre-turbo-phase-latency-candidate-1",
+  "status": "synthetic_not_executed",
+  "sourceHashes": {
+    "historicalN10Export": "153f24c529b4ddabcfc8b4e19d3f90c80790969d82d960600155bbba32aeb40d",
+    "nativeTurboSource": "34f7e4f8691e1cbcd5e6e1ff5bd90af6bbede35e4a003df55e7f88eda2e1cf632"
+  },
+  "requiredEnvelope": ["clientVersion", "gameAssemblySHA256", "appBuildSHA256", "plannerDLLSHA256", "runtime", "CPU", "warmupIndex", "transport", "fightAlias", "epoch", "round", "actorAlias", "requestAlias", "actionAlias", "clockDomain"],
+  "clockPolicy": {
+    "monoMs": "monotonic timestamp within ONE process only",
+    "utcMs": "wall-clock UTC, use only with measured skew and synchronization",
+    "nullMissing": true,
+    "crossProcessDifference": "Unknown until clock offset is measured"
+  },
+  "events": [
+    {"name": "turnOpen", "origin": "FightTurnEvent", "currentEvidence": "read_code", "mustCorrelate": ["actorAlias", "epoch"]},
+    {"name": "planStart", "origin": "LaunchService.Combat.Turn Choose Stopwatch", "currentEvidence": "duration_only", "mustCorrelate": ["round", "actorAlias", "planIndex"]},
+    {"name": "planEnd", "origin": "combat-planner plan_ms/work/bounded", "currentEvidence": "duration_only", "mustCorrelate": ["round", "actorAlias", "planIndex"]},
+    {"name": "requestTx", "origin": "turbo-metric request_tx", "currentEvidence": "N10_historical", "mustCorrelate": ["requestAlias"]},
+    {"name": "moveRequest", "origin": "outbound transport move request and full requested path", "currentEvidence": "N10_historical_requests_kind_unproven", "mustCorrelate": ["requestAlias", "actorAlias", "fromCell", "requestedDestination"]},
+    {"name": "moveReceipt", "origin": "authoritative observed movement with MP change", "currentEvidence": "N04_positions_only_no_mp", "mustCorrelate": ["actionAlias", "actorAlias", "positionBefore", "positionAfter", "mpBefore", "mpAfter"]},
+    {"name": "serverSequenceStart", "origin": "_turboSeqOuterStartAt", "currentEvidence": "read_code_only", "mustCorrelate": ["actionAlias", "actorAlias"]},
+    {"name": "serverSequenceEnd", "origin": "sequence_end_self action/t", "currentEvidence": "N10_historical_missing_action_id", "mustCorrelate": ["actionAlias"]},
+    {"name": "ackTx", "origin": "ack_tx action/t", "currentEvidence": "N10_historical_missing_action_id", "mustCorrelate": ["actionAlias"]},
+    {"name": "barrierClosed", "origin": "barrier_closed", "currentEvidence": "N10_historical", "mustCorrelate": ["requestAlias", "actionAlias"]},
+    {"name": "effectApplied", "origin": "authoritative server position/AP/MP/HP change", "currentEvidence": "not_observed", "mustCorrelate": ["actionAlias", "actorAlias"]},
+    {"name": "visualStart", "origin": "client-presenter witness", "currentEvidence": "not_observed", "mustCorrelate": ["actionAlias"]},
+    {"name": "visualEnd", "origin": "client-presenter witness", "currentEvidence": "not_observed", "mustCorrelate": ["actionAlias"]},
+    {"name": "firstEnemyAction", "origin": "server sequence for enemy with receipt", "currentEvidence": "not_correlated", "mustCorrelate": ["actorAlias", "actionAlias"]},
+    {"name": "nativeCombatOwnerAccepted", "origin": "turbo-native owner accepted utc/monotonic", "currentEvidence": "read_code_only", "mustCorrelate": ["generation"]},
+    {"name": "nativeLeasePublished", "origin": "turbo-native combat lease published", "currentEvidence": "read_code_only", "mustCorrelate": ["generation"]},
+    {"name": "nativeTimescaleFirstObserved", "origin": "actual native frame/timeScale witness", "currentEvidence": "not_observed", "mustCorrelate": ["generation"]},
+    {"name": "combatResult", "origin": "server combat result", "currentEvidence": "developer_historical_summary", "mustCorrelate": ["fightAlias"]},
+    {"name": "restoreAck", "origin": "native restore ACK generation", "currentEvidence": "read_code_only", "mustCorrelate": ["generation"]},
+    {"name": "baselineConfirmed", "origin": "native baseline verification", "currentEvidence": "not_observed_for_same_fight", "mustCorrelate": ["generation"]}
+  ],
+  "derivedMetrics": [
+    {"name": "plannerComputeMs", "from": "planStart", "to": "planEnd", "interpretation": "decision CPU/JIT/GC wall elapsed, same process"},
+    {"name": "turnToRequestMs", "from": "turnOpen", "to": "requestTx", "interpretation": "sum of decision, readiness and other waits"},
+    {"name": "moveConfirmationMs", "from": "moveRequest", "to": "moveReceipt", "interpretation": "only if move kind, action identity and observed position/MP are paired"},
+    {"name": "requestToServerSequenceMs", "from": "requestTx", "to": "serverSequenceStart", "interpretation": "transport/server lead in, not pure server compute"},
+    {"name": "sequenceEndToAckMs", "from": "serverSequenceEnd", "to": "ackTx", "interpretation": "client/proxy acknowledgement delay"},
+    {"name": "requestToEffectAppliedMs", "from": "requestTx", "to": "effectApplied", "interpretation": "receipt+server effect, only with authoritative match"},
+    {"name": "effectToVisualEndMs", "from": "effectApplied", "to": "visualEnd", "interpretation": "presentation lag only with synchronized clocks"},
+    {"name": "nativeActivationLagMs", "from": "nativeLeasePublished", "to": "nativeTimescaleFirstObserved", "interpretation": "native reaction delay only with same generation"},
+    {"name": "restorationMs", "from": "combatResult", "to": "baselineConfirmed", "interpretation": "out-of-combat restore only with matching generation"}
+  ],
+  "historicalSanityCheck": {
+    "source": "N10/turbo_chronologie_anonymisee.json",
+    "requestAtSec": 6.88,
+    "sequenceEndAtSec": 6.95,
+    "loggedRequestToSequenceEndMs": 70,
+    "barrierClosedAtSec": 6.953,
+    "loggedRequestToAckMs": 75,
+    "nextAckAtSec": 7.067,
+    "nextAckSameAction": null,
+    "presentationEnd": null,
+    "serverEffectApplied": null,
+    "caution": "Events from journal summary not matched by authoritative action ID"
+  },
+  "diagnoses": [
+    {"id": "planner_slow", "requires": ["planStart", "planEnd", "work", "warmupIndex"], "concludeIfMissing": "UnknownPlanner"},
+    {"id": "per_step_mp", "requires": ["moveRequest", "moveReceipt", "mpBefore", "mpAfter", "requestedPath", "actionAlias"], "concludeIfMissing": "UnknownPerStepMp"},
+    {"id": "server_confirmation_slow", "requires": ["requestTx", "effectApplied", "actionAlias", "clockDomain"], "concludeIfMissing": "UnknownServer"},
+    {"id": "animation_slow", "requires": ["effectApplied", "visualEnd", "actionAlias", "clockDomain"], "concludeIfMissing": "UnknownPresentation"},
+    {"id": "first_enemy_not_accelerated", "requires": ["firstEnemyAction", "nativeTimescaleFirstObserved", "generation"], "concludeIfMissing": "UnknownNative"}
+  ]
+}

@@ -1,0 +1,31 @@
+<!-- Durcissement OpSec commun a TOUS les projets GivreClone (Protocol/Engine/App/Tests).
+     But : aucune trace systeme/developpeur dans le binaire distribue.
+     - PathMap  : reecrit le chemin source absolu (C:\Users\...) en "./" -> plus de nom d'utilisateur
+                  dans les PDB, exceptions, [CallerFilePath], chaines de debug.
+     - Deterministic : build reproductible (pas d'horodatage/GUID machine).
+     - DebugType none (Release) : aucun PDB genere -> aucun chemin PDB embarque dans l'exe.
+     - Metadonnees neutres : ni nom, ni email, ni societe perso.
+     - Pas de SHA git dans la version. -->
+<Project>
+  <PropertyGroup>
+    <Deterministic>true</Deterministic>
+    <PathMap>$(MSBuildThisFileDirectory)=./</PathMap>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <EnableSourceLink>false</EnableSourceLink>
+    <EmbedUntrackedSources>false</EmbedUntrackedSources>
+
+    <!-- Metadonnees d'assembly neutres (aucune PII) -->
+    <Company>GivreClone</Company>
+    <Authors>GivreClone</Authors>
+    <Product>GivreClone</Product>
+    <Copyright>GivreClone</Copyright>
+    <AssemblyTitle>GivreClone</AssemblyTitle>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <!-- Release = binaire de distribution : pas de symboles/PDB, donc aucun chemin embarque. -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+</Project>

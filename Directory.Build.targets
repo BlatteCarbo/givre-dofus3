@@ -1,0 +1,13 @@
+<Project>
+<PropertyGroup>
+  <!-- Prefer the owned source tree when this sibling worktree is present;
+       standalone snapshots still compile against the bundled local copy. -->
+  <GivreCoreProject Condition="Exists('$(MSBuildThisFileDirectory)..\GivreProxy\GivreCore\GivreCore.csproj')">$(MSBuildThisFileDirectory)..\GivreProxy\GivreCore\GivreCore.csproj</GivreCoreProject>
+  <GivreCoreProject Condition="'$(GivreCoreProject)' == ''">$(MSBuildThisFileDirectory)obj/local-deps/GivreCore/GivreCore.csproj</GivreCoreProject>
+</PropertyGroup>
+<ItemGroup>
+<ProjectReference Remove="..\..\GivreProxy\GivreCore\GivreCore.csproj;..\..\GivreLauncher\GivreLauncher.Core\GivreLauncher.Core.csproj" />
+<ProjectReference Include="$(GivreCoreProject)" Condition="'$(MSBuildProjectName)' == 'GivreClone.Protocol' Or '$(MSBuildProjectName)' == 'GivreClone.Engine' Or '$(MSBuildProjectName)' == 'GivreClone.App' Or '$(MSBuildProjectName)' == 'GivreClone.Tests' Or '$(MSBuildProjectName)' == 'GivreRelayAgent'" />
+<ProjectReference Include="$(MSBuildThisFileDirectory)obj/local-deps/GivreLauncher.Core/GivreLauncher.Core.csproj" Condition="'$(MSBuildProjectName)' == 'GivreClone.App' Or '$(MSBuildProjectName)' == 'GivreClone.Tests' Or '$(MSBuildProjectName)' == 'GivreRelayAgent'" />
+</ItemGroup>
+</Project>

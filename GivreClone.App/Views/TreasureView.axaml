@@ -1,0 +1,92 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             x:Class="GivreClone.App.Views.TreasureView" x:DataType="vm:TreasureViewModel">
+  <UserControl.Resources>
+    <x:Double x:Key="TreasureSectionSpacing">8</x:Double>
+    <x:Double x:Key="TreasureFieldSpacing">4</x:Double>
+    <x:Double x:Key="TreasureFieldWidth">160</x:Double>
+    <Thickness x:Key="TreasureFieldGap">0,0,12,8</Thickness>
+  </UserControl.Resources>
+  <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="14" RowSpacing="12">
+    <StackPanel Spacing="6">
+      <TextBlock Text="Chasse au trésor" FontSize="20" FontWeight="SemiBold" />
+      <TextBlock Text="{Binding SessionText}" TextWrapping="Wrap" />
+      <TextBlock Text="{Binding CheckPointText}" />
+      <TextBlock Text="{Binding RetriesText}" />
+      <TextBlock Text="{Binding CurrentStepText}" TextWrapping="Wrap" FontWeight="SemiBold" />
+    </StackPanel>
+    <TextBlock Grid.Row="1" Text="{Binding Status}" TextWrapping="Wrap" />
+    <ListBox Grid.Row="2" ItemsSource="{Binding Steps}" SelectedIndex="{Binding SelectedIndex}">
+      <ListBox.ItemTemplate>
+        <DataTemplate x:DataType="vm:TreasureStepRow">
+          <Grid ColumnDefinitions="40,*,Auto" Margin="4">
+            <TextBlock Text="{Binding Arrow}" FontSize="22" VerticalAlignment="Center" />
+            <StackPanel Grid.Column="1" Spacing="4">
+              <TextBlock Text="{Binding Label}" FontWeight="SemiBold" />
+              <TextBlock Text="{Binding Where}" /><TextBlock Text="{Binding State}" />
+            </StackPanel>
+            <TextBlock Grid.Column="2" Text="{Binding Source}" />
+          </Grid>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+    <StackPanel Grid.Row="3" Spacing="8">
+      <TextBlock Text="{Binding AutoHuntPrerequisites}" TextWrapping="Wrap" />
+      <WrapPanel>
+        <Button Content="Chasse automatique" Command="{Binding StartAutoHuntCommand}" Margin="0,0,8,8"
+                ToolTip.Tip="Rejoint le coffre de chasse le plus proche, puis lance le script (indices, phorreurs, drapeaux, creusage, combat). Le trajet s'affiche au-dessus." />
+        <Button Content="Arrêter la chasse" Command="{Binding StopHuntCommand}" Margin="0,0,8,8"
+                AutomationProperties.Name="Arrêter la chasse automatique"
+                ToolTip.Tip="Arrête le script lancé par Chasse automatique ou par Fouduglen, sans abandonner la chasse en cours." />
+        <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,0,12,8"><TextBlock Text="Niveau" VerticalAlignment="Center" FontSize="11" />
+          <NumericUpDown Value="{Binding AutoHuntLevel}" Minimum="0" Maximum="200" FormatString="0" Width="110" /></StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,0,12,8"><TextBlock Text="Échecs tolérés" VerticalAlignment="Center" FontSize="11" />
+          <NumericUpDown Value="{Binding AutoHuntMaxFails}" Minimum="1" Maximum="10" FormatString="0" Width="100" /></StackPanel>
+      </WrapPanel>
+      <StackPanel Spacing="{StaticResource TreasureSectionSpacing}">
+        <TextBlock Classes="label" Text="Fouduglen · chasse légendaire" FontWeight="SemiBold" />
+        <WrapPanel>
+          <StackPanel Spacing="{StaticResource TreasureFieldSpacing}" Margin="{StaticResource TreasureFieldGap}">
+            <TextBlock Classes="caption" Text="Nombre de chasses" />
+            <NumericUpDown Value="{Binding FouduglenCount, Mode=TwoWay}" Minimum="1" Maximum="100"
+                           FormatString="0" Width="{StaticResource TreasureFieldWidth}"
+                           AutomationProperties.Name="Nombre de chasses Fouduglen" />
+          </StackPanel>
+          <StackPanel Spacing="{StaticResource TreasureFieldSpacing}" Margin="{StaticResource TreasureFieldGap}">
+            <TextBlock Classes="caption" Text="Budget fragments (kamas)" />
+            <NumericUpDown Value="{Binding FouduglenBudget, Mode=TwoWay}" Minimum="0" Maximum="2147483647"
+                           FormatString="0" Width="{StaticResource TreasureFieldWidth}"
+                           AutomationProperties.Name="Budget d'achat des fragments Fouduglen en kamas" />
+          </StackPanel>
+          <StackPanel Spacing="{StaticResource TreasureFieldSpacing}" Margin="{StaticResource TreasureFieldGap}">
+            <TextBlock Classes="caption" Text="Prix max. / fragment (kamas)" />
+            <NumericUpDown Value="{Binding FouduglenMaxUnitPrice, Mode=TwoWay}" Minimum="0" Maximum="2147483647"
+                           FormatString="0" Width="{StaticResource TreasureFieldWidth}"
+                           AutomationProperties.Name="Prix maximum par fragment Fouduglen en kamas" />
+          </StackPanel>
+        </WrapPanel>
+        <TextBlock Classes="caption" TextWrapping="Wrap"
+                   Text="Réutilise les cartes et fragments de l'inventaire, achète le manque, assemble à la Malle aux trésors, puis chasse et combat. Budget réservé aux fragments, hors frais de trajet. Arrêt au premier échec sans abandon. L'étape en cours s'affiche au-dessus ; Arrêter la chasse interrompt le script." />
+        <Button Command="{Binding StartFouduglenCommand}" HorizontalAlignment="Left"
+                AutomationProperties.Name="Fouduglen : acheter, assembler et chasser">
+          <TextBlock Text="Fouduglen : acheter, assembler et chasser" TextWrapping="Wrap" />
+        </Button>
+        <Button Command="{Binding StopHuntCommand}" HorizontalAlignment="Left" Margin="0,8,0,0"
+                AutomationProperties.Name="Arrêter Fouduglen"
+                ToolTip.Tip="Arrête le script lancé par Chasse automatique ou par Fouduglen, sans abandonner la chasse en cours.">
+          <TextBlock Text="Arrêter la chasse" TextWrapping="Wrap" />
+        </Button>
+      </StackPanel>
+      <WrapPanel>
+        <Button Classes="primary" Content="Y aller (étape en cours)" IsEnabled="{Binding CanGo}" Command="{Binding GoToStepCommand}" Margin="0,0,8,8" />
+        <Button Content="Arrêter le trajet" IsVisible="{Binding Going}" Command="{Binding StopGoCommand}" Margin="0,0,8,8" />
+        <Button Content="Poser le drapeau sélectionné" Command="{Binding FlagCommand}" Margin="0,0,8,8" />
+        <Button Content="Retirer le drapeau sélectionné" Command="{Binding RemoveFlagCommand}" Margin="0,0,8,8" />
+        <Button Content="Creuser" Command="{Binding DigCommand}" Margin="0,0,8,8" />
+        <Button Content="Abandonner la chasse" Command="{Binding GiveUpCommand}" Margin="0,0,8,8" />
+      </WrapPanel>
+      <TextBlock Text="« Y aller » trouve la carte de l'étape (direction calculée ou indice cherché dans DofusDB) et y mène le perso ; pose ensuite le drapeau. Phorreurs : suivre la direction jusqu'à le voir." TextWrapping="Wrap" />
+    </StackPanel>
+  </Grid>
+</UserControl>

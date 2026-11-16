@@ -1,0 +1,82 @@
+{
+  "detached_binary_verified": false,
+  "installed_reference": {
+    "sha256": "21c9de5ba4d15763e9daf029fd7432e3574ea113c9d1f44175fa9e0590290758",
+    "sha_provenance": "MZP1_PRIME_HANDOFF_20261016.md:15-31 (read-only PRIME observation)",
+    "ui_title": "v1.3.1"
+  },
+  "matrix_version": 1,
+  "nativeaot_assessment": "unknown",
+  "packer_assessment": "unknown",
+  "product_functionality_proven_from_binary": false,
+  "runtime_version_drift": "source_appversion_1.2.0_vs_UI_label_v1.3.1_unlinked",
+  "source_evidence": [
+    {
+      "declared_value": "GivreClone",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/GivreClone.App.csproj",
+      "file_sha256": "9f3623f9b9fd861e778279c8f9c238515c57a9720ded70e1e6b7049946e04788",
+      "lines": [
+        10
+      ],
+      "status": "source_present",
+      "symbol": "assembly_identity"
+    },
+    {
+      "declared_value": "1.2.0",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/Services/LicenseService.cs",
+      "file_sha256": "9bd12a81528994526a4849aec4b4d88db2629276ef3590447d633a2ce52452e5",
+      "lines": [
+        52
+      ],
+      "status": "source_present",
+      "symbol": "app_source_version"
+    },
+    {
+      "declared_value": "build_config_only",
+      "exe_confirmed": false,
+      "file": "GivreClone.App/GivreClone.App.csproj",
+      "file_sha256": "9f3623f9b9fd861e778279c8f9c238515c57a9720ded70e1e6b7049946e04788",
+      "lines": [
+        27
+      ],
+      "status": "source_present",
+      "symbol": "nativeaot_opt_in"
+    },
+    {
+      "declared_value": "source_declaration_only",
+      "exe_confirmed": false,
+      "file": "GivreClone.Engine/BotSession.cs",
+      "file_sha256": "45fc6d6a215f449b6c3bb75cce26713c63be3d3f24013645e9b506f45c4c393f",
+      "lines": [
+        12
+      ],
+      "status": "source_present",
+      "symbol": "session_engine"
+    },
+    {
+      "declared_value": "source_declaration_only",
+      "exe_confirmed": false,
+      "file": "GivreClone.Engine/ActionSender.cs",
+      "file_sha256": "cff2a51ef9a28ac3de7c0c7068ef7c42824259adb825e1adf304d8b71f29bf2f",
+      "lines": [
+        34
+      ],
+      "status": "source_present",
+      "symbol": "action_sender"
+    },
+    {
+      "declared_value": "source_declaration_only",
+      "exe_confirmed": false,
+      "file": "GivreClone.Engine/DofusCaptureHost.cs",
+      "file_sha256": "2f85d15915eeeb7530649a91e213aae48621e865440b33e25b8d229a8c8788a2",
+      "lines": [
+        14
+      ],
+      "status": "source_present",
+      "symbol": "proxy_dependency"
+    }
+  ],
+  "symbol_correspondence": "unproven_even_if_exact_EXE_SHA_matches_prior_installed_observation"
+}\n

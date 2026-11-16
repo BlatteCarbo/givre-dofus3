@@ -1,0 +1,34 @@
+# Tests de la logique pure à chaque push / PR : génération des trajets, expédition et donjon (y compris compilation Lua des scripts
+# générés), fenêtre d'interaction, panoplies. Le projet complet dépend de dépôts voisins absents ici : il n'est pas compilé.
+name: Tests logique pure
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  pure-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Tests
+        run: dotnet test GivreClone.PureTests/GivreClone.PureTests.csproj --configuration Release --logger "console;verbosity=normal"
+
+  mcp-contracts:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Build MCP and local control bridge
+        run: dotnet build GivreMcp/GivreMcp.csproj --configuration Debug
+      - name: MCP discovery and offline access controls
+        shell: pwsh
+        run: ./GivreMcp/Smoke.ps1

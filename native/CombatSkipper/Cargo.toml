@@ -1,0 +1,19 @@
+[package]
+name = "givre-combat-animation-skipper"
+version = "1.0.8"
+edition = "2024"
+license = "MIT"
+description = "Fork Givre de Dofus Combat Animation Skipper (AlpaGit/dofus3-native-host) : detection du combat par InputChecker quand FightEntitiesService n'existe plus (client 3.7.11.11)."
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+dofus-native-mod-api = { path = "../../../_tmp_dofus3_native_host/crates/mod-api" }
+dofus-native-mod-sdk = { path = "../../../_tmp_dofus3_native_host/crates/mod-sdk" }
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+panic = "unwind"
+strip = "symbols"

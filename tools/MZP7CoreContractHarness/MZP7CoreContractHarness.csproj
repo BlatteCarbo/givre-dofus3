@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Genuine GivreClone.Protocol production code, no GivreCore namespace shim. -->
+    <Compile Include="../../GivreClone.Protocol/MZP0ProtocolAdmission.cs" Link="Product/MZP0ProtocolAdmission.cs" />
+    <Compile Include="../../GivreClone.Protocol/MZP3RawProtobuf.cs" Link="Product/MZP3RawProtobuf.cs" />
+    <Compile Include="../../GivreClone.Protocol/MZP3FrameAndEnvelope.cs" Link="Product/MZP3FrameAndEnvelope.cs" />
+    <Compile Include="../../GivreClone.Protocol/MZP4ProtocolAdapter.cs" Link="Product/MZP4ProtocolAdapter.cs" />
+    <Compile Include="../../GivreClone.Protocol/MZP5InboundProtocol.cs" Link="Product/MZP5InboundProtocol.cs" />
+    <Compile Include="../../GivreClone.Protocol/MZP7TypedProtobufContract.cs" Link="Product/MZP7TypedProtobufContract.cs" />
+  </ItemGroup>
+</Project>

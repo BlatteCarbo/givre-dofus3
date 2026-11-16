@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="560" viewBox="0 0 1100 560">
+  <rect width="1100" height="560" fill="#0d1117"/>
+  <g font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif">
+    <text x="40" y="48" font-size="26" font-weight="700" fill="#f0f9ff">Architecture</text>
+    <text x="40" y="76" font-size="15" fill="#8b949e">Du serveur Ankama jusqu'à l'interface, couche par couche</text>
+
+    <rect x="40" y="104" width="300" height="410" rx="14" fill="#161b22" stroke="#30363d"/>
+    <text x="64" y="138" font-size="17" font-weight="700" fill="#7dd3fc">Connexion au jeu</text>
+    <rect x="64" y="156" width="252" height="74" rx="10" fill="#0c2d48"/>
+    <text x="82" y="184" font-size="15" font-weight="600" fill="#e0f2fe">Socket (sans client)</text>
+    <text x="82" y="208" font-size="13" fill="#9ccbe8">Login, sélection, protobuf direct</text>
+    <rect x="64" y="244" width="252" height="74" rx="10" fill="#0c2d48"/>
+    <text x="82" y="272" font-size="15" font-weight="600" fill="#e0f2fe">MITM (avec client)</text>
+    <text x="82" y="296" font-size="13" fill="#9ccbe8">Hook natif + proxy TCP 5555</text>
+    <rect x="64" y="332" width="252" height="74" rx="10" fill="#0c2d48"/>
+    <text x="82" y="360" font-size="15" font-weight="600" fill="#e0f2fe">Catalogue de protocole</text>
+    <text x="82" y="384" font-size="13" fill="#9ccbe8">Noms ⇄ codes obfusqués, par patch</text>
+    <rect x="64" y="420" width="252" height="74" rx="10" fill="#0c2d48"/>
+    <text x="82" y="448" font-size="15" font-weight="600" fill="#e0f2fe">Natif C++ / Rust</text>
+    <text x="82" y="472" font-size="13" fill="#9ccbe8">Turbo, visuels de combat, overlays</text>
+
+    <rect x="400" y="104" width="300" height="410" rx="14" fill="#161b22" stroke="#30363d"/>
+    <text x="424" y="138" font-size="17" font-weight="700" fill="#f0abfc">Moteur</text>
+    <rect x="424" y="156" width="252" height="74" rx="10" fill="#3b0f4a"/>
+    <text x="442" y="184" font-size="15" font-weight="600" fill="#fae8ff">État du monde</text>
+    <text x="442" y="208" font-size="13" fill="#e2b6f0">Cartes, PV, pods, combat, HDV</text>
+    <rect x="424" y="244" width="252" height="74" rx="10" fill="#3b0f4a"/>
+    <text x="442" y="272" font-size="15" font-weight="600" fill="#fae8ff">Planificateur de combat</text>
+    <text x="442" y="296" font-size="13" fill="#e2b6f0">Recherche en faisceau + simulation</text>
+    <rect x="424" y="332" width="252" height="74" rx="10" fill="#3b0f4a"/>
+    <text x="442" y="360" font-size="15" font-weight="600" fill="#fae8ff">Hôte Lua (MoonSharp)</text>
+    <text x="442" y="384" font-size="13" fill="#e2b6f0">Trajets, récolte, banque, HDV</text>
+    <rect x="424" y="420" width="252" height="74" rx="10" fill="#3b0f4a"/>
+    <text x="442" y="448" font-size="15" font-weight="600" fill="#fae8ff">Reprise d'activité</text>
+    <text x="442" y="472" font-size="13" fill="#e2b6f0">Journal durable, quarantaine</text>
+
+    <rect x="760" y="104" width="300" height="410" rx="14" fill="#161b22" stroke="#30363d"/>
+    <text x="784" y="138" font-size="17" font-weight="700" fill="#86efac">Pilotage</text>
+    <rect x="784" y="156" width="252" height="74" rx="10" fill="#0f3a24"/>
+    <text x="802" y="184" font-size="15" font-weight="600" fill="#dcfce7">App Avalonia</text>
+    <text x="802" y="208" font-size="13" fill="#a7e3bd">Comptes, bots, carte, combat</text>
+    <rect x="784" y="244" width="252" height="74" rx="10" fill="#0f3a24"/>
+    <text x="802" y="272" font-size="15" font-weight="600" fill="#dcfce7">Tube de contrôle</text>
+    <text x="802" y="296" font-size="13" fill="#a7e3bd">Commandes JSON locales</text>
+    <rect x="784" y="332" width="252" height="74" rx="10" fill="#0f3a24"/>
+    <text x="802" y="360" font-size="15" font-weight="600" fill="#dcfce7">Serveur MCP</text>
+    <text x="802" y="384" font-size="13" fill="#a7e3bd">Outils pour agents IA</text>
+    <rect x="784" y="420" width="252" height="74" rx="10" fill="#0f3a24"/>
+    <text x="802" y="448" font-size="15" font-weight="600" fill="#dcfce7">Planning multi-compte</text>
+    <text x="802" y="472" font-size="13" fill="#a7e3bd">Équipes, scripts par perso</text>
+
+    <path d="M340 309 L400 309" stroke="#58a6ff" stroke-width="3" marker-end="url(#a)"/>
+    <path d="M700 309 L760 309" stroke="#58a6ff" stroke-width="3" marker-end="url(#a)"/>
+    <text x="40" y="540" font-size="13" fill="#6e7681">Protocole : TCP, protobuf en clair, framing varint(len) + payload</text>
+  </g>
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#58a6ff"/>
+    </marker>
+  </defs>
+</svg>

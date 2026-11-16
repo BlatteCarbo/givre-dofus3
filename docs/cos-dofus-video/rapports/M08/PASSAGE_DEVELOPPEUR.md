@@ -1,0 +1,24 @@
+# Passage développeur — M08 synergie 4 comptes
+
+Livrable **documentaire**, sans code modifié ni test exécuté ; preuves et scénarios détaillés dans [RAPPORT.md](RAPPORT.md) et [FICHE_PANDA_ELIO_FECA_IOP.md](FICHE_PANDA_ELIO_FECA_IOP.md). La vidéo [Tenmalexis du 02/05/2025](https://youtu.be/YFlyjdSo4Ek) couvre la mise à jour annoncée **3.1**, tandis que la cible de projet indiquée est **3.7.13.17**.
+
+## Trois règles à intégrer en priorité
+
+1. **M08-R01 — Placement Pandawa certifié avant attaque Iop.** [Karcham 1 PA au portage et 1 PA au jet](https://openddb.dev/spells/12787-karcham) ; [Brassage 2 PA, vulnérabilité en état Sobre](https://openddb.dev/spells/12816-brassage). Le Iop ne doit planifier son [Colère 7 PA à 1 PO](https://openddb.dev/spells/13124-colere-de-iop) que d'après la **cellule E confirmée**, le chemin accessible et la disponibilité de son propre tour. La vidéo [04:48–05:28](https://youtu.be/YFlyjdSo4Ek?t=288) présente le Panda placeur et la préparation des autres rôles ; les cellules du cas sont **hypothétiques**.
+2. **M08-R02 — Budgets, buffs et durées sont par acteur/cible.** Plan T1 à budgets individuels 12PA/6PM **créés comme fixture** : P porter/jeter/Brassage = 4PA/0PM → **8PA/6PM** ; L deux [Portails à 1PA](https://openddb.dev/spells/14574-portail) → **10PA/6PM** ; F [Bouclier sur P à 2PA](https://openddb.dev/spells/12982-bouclier-feca) → **10PA/6PM** ; I marche 3PM et [Colère 7PA](https://openddb.dev/spells/13124-colere-de-iop) → **5PA/3PM**. Brassage bénéficie à l'attaquant contre la cible ; Bouclier à P ; les Portails sont une option conditionnelle ; aucun don de PA implicite.
+3. **M08-R03 — L'initiative affecte la faisabilité et la préparation T4.** La vidéo annonce un exemple [Brassage → Élio → Iop Colère vers le tour 4](https://youtu.be/YFlyjdSo4Ek?t=379) ; la fiche [Colère](https://openddb.dev/spells/13124-colere-de-iop) donne 3 tours de relance. Si I joue **avant** P au T1 dans la fixture, E=(6,0), P bloque (5,0), I ne peut atteindre à 6PM les autres cases adjacentes : **Colère illégale**, donc pas de charge fictive et aucun retro-boost. Si P joue avant I et E est en (4,0) après jet validé, I atteint (3,0) en 3PM et peut frapper. Hypothèse à tester, non issue d'une vidéo visionnée.
+
+## Variables et transitions
+
+Minimum : `fightId/sessionEpoch`, `turnOrder`, `activeActor`, `actorPA/PM` pour chacun des 4, `positions + obstacles + occupiedCells`, `carriedEntity`, `spellRank`, `selectedVariants`, `soberDrunkState`, `vulnerability`, `shieldRecipient`, `portalSet + activeFlag + route`, `cooldowns`, `monsterState/resists`, `challengeConstraints`. Aucun identifiant de cellule réel récupéré.
+
+Enchaînement T1 : `Karcham porte E(6,0) → Karcham jette E(4,0) → Brassage E → Élio Portails → Féca protège P → Iop atteint (3,0) → Colère E(4,0)`. Avant chaque suffixe dépendant du jet, confirmer la **position du monstre** à partir d'une source d'état serveur ; un simple succès de transport ou ACK ne confirme pas l'effet. Pendant T2–T3, relire déplacement adverse, cooldown de Colère, durée des buffs, survie du Panda et route des portails. T4 de fixture : P Brassage 2PA, L réutilise/recrée Portails 0 ou 2PA, F Bouclier 2PA si disponible, I [Puissance 3PA](https://openddb.dev/spells/13118-puissance) + Colère 7PA si contact et récupération confirmés ; le Iop garde 2PA si aucun mouvement et 12PA de départ.
+
+## Tests proposés, non exécutés
+
+- **Positif M08-T+** : P(5,0), E(6,0), I(0,0), L(1,3), F(4,3), 12PA/6PM chacun, états et zones légaux ; ordre P→L→F→I. Observer E(4,0) après jet puis I à (3,0), lancement Colère validé et quatre budgets propres.
+- **Négatif M08-T-order** : mêmes cellules, ordre I→P→L→F. Avec P bloquant (5,0), aucune cellule adjacente à E accessible au Iop dans 6PM ; empêcher Colère T1 et ne pas présenter le jet tardif comme un effet avant son tour.
+- Autres contres : case de jet occupée, P Saoul changeant effet de Brassage, portails fermés ou utilisables par ennemi, F protégeant après dommage, Colère encore en cooldown, boss immunisé, `Unknown` après Karcham.
+- **Inconnues bloquantes** : ordre et provenance serveur des événements porte/jette, validité des casts et périodes de vulnérabilité au client 3.7.13.17, portée exacte du jet en condition, durée et cumul des boosts, routage portail, adversaires réels et stats de dommages, capture à [04:48](https://youtu.be/YFlyjdSo4Ek?t=288) / [06:19](https://youtu.be/YFlyjdSo4Ek?t=379). Pas de `valide-test` ou `valide-live`.
+
+Priorité : **haute** pour ordonnance des actions et refus/Unknown ; **moyenne** pour arbitrage dégâts du boost vs sécurité, qui attend des données chiffrées. Collecte vidéo : transcript français 225 segments sans pagination ; inspection d'image bloquée par `BROWSER_NOT_DISPATCHED`, n'affirmez donc aucune case observée à l'écran.

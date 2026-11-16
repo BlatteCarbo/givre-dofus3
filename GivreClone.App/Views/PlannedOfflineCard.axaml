@@ -1,0 +1,58 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:vm="using:GivreClone.App.ViewModels"
+ xmlns:acv="using:Avalonia.Data.Converters"
+ x:Class="GivreClone.App.Views.PlannedOfflineCard"
+ x:DataType="vm:PlannedOfflineRow">
+ <!-- Contenu d'une ligne « Hors-ligne · géré par le planning »: avatar grisé
+ + pastille d'état, nom (pii), état, prochaine connexion. Le bouton qui l'entoure (ouvre la modale) vit dans l'hôte. -->
+ <UserControl.Styles>
+ <Style Selector="TextBlock.pstatus">
+ <Setter Property="FontSize" Value="11" />
+ <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}" />
+ <Setter Property="TextWrapping" Value="Wrap" />
+ </Style>
+ <Style Selector="TextBlock.pstatus.connecting"><Setter Property="Foreground" Value="{DynamicResource AccentBrightBrush}" /></Style>
+ <Style Selector="TextBlock.pstatus.attention"><Setter Property="Foreground" Value="{StaticResource AmberBrush}" /></Style>
+ <Style Selector="Border.pdot">
+ <Setter Property="Background" Value="#6B7280" />
+ </Style>
+ <Style Selector="Border.pdot.connecting"><Setter Property="Background" Value="{DynamicResource AccentBrush}" /></Style>
+ <Style Selector="Border.pdot.attention"><Setter Property="Background" Value="{StaticResource AmberBrush}" /></Style>
+ </UserControl.Styles>
+ <Grid ColumnDefinitions="Auto,*">
+ <Panel Grid.Column="0" Width="34" Height="34" VerticalAlignment="Center">
+ <Border Width="34" Height="34" CornerRadius="17" Background="{StaticResource Surface2Brush}" ClipToBounds="True">
+ <Panel Opacity="0.6">
+ <PathIcon Data="{StaticResource IconAccount}" Width="16" Height="16" Foreground="{StaticResource TextMutedBrush}"
+ IsVisible="{Binding ClassIcon, Converter={x:Static acv:ObjectConverters.IsNull}}" />
+ <Image Source="{Binding ClassIcon}" Width="30" Height="30" Stretch="Uniform"
+ IsVisible="{Binding ClassIcon, Converter={x:Static acv:ObjectConverters.IsNotNull}}" />
+ </Panel>
+ </Border>
+ <!-- pastille: gris = hors ligne, accent = connexion en cours / plage active, ambre = action requise -->
+ <Border Classes="pdot" Classes.connecting="{Binding IsConnecting}" Classes.attention="{Binding NeedsAttention}"
+ Width="13" Height="13" CornerRadius="7" BorderBrush="{StaticResource PanelBrush}" BorderThickness="2"
+ HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,-2,-2" />
+ </Panel>
+ <StackPanel Grid.Column="1" Margin="10,0,0,0" Spacing="1" VerticalAlignment="Center">
+ <Grid ColumnDefinitions="*,Auto" ColumnSpacing="6">
+ <TextBlock Grid.Column="0" Text="{Binding Character}" Classes="pii" FontWeight="SemiBold" FontSize="12.5"
+ TextTrimming="CharacterEllipsis" Foreground="{StaticResource TextSecondaryBrush}" />
+ <TextBlock Grid.Column="1" Text="{Binding LevelText}" Classes="pii" FontSize="10.5" VerticalAlignment="Center"
+ Foreground="{StaticResource TextMutedBrush}" />
+ </Grid>
+ <TextBlock Classes="pstatus" Classes.connecting="{Binding IsConnecting}" Classes.attention="{Binding NeedsAttention}"
+ Text="{Binding StatusText}" />
+ <!-- Échéance SEULE (l'horloge dit « prochaine connexion »; la phrase complète est dans l'infobulle): tient sur une
+ ligne dans l'arbre un bot tiers étroit. Grid (largeur contrainte) -> « … » propre si jamais ça déborde, pas de coupe nette. -->
+ <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5"
+ IsVisible="{Binding NextShort, Converter={x:Static acv:StringConverters.IsNotNullOrEmpty}}">
+ <PathIcon Grid.Column="0" Data="{StaticResource IconClock}" Width="9" Height="9" Foreground="{StaticResource TextMutedBrush}"
+ VerticalAlignment="Center" />
+ <TextBlock Grid.Column="1" Text="{Binding NextShort}" FontSize="10.5" Foreground="{StaticResource TextMutedBrush}"
+ TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+ </Grid>
+ </StackPanel>
+ </Grid>
+</UserControl>

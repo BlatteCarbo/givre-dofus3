@@ -1,0 +1,441 @@
+{
+  "schema": "dofus-371317-crit-candidates-1",
+  "status": "client_serialized_only",
+  "source": "rapports-v2/N01/EFFECTS_3.7.13.17.csv",
+  "source_sha256": "cbd685e8852966961a7d155c17d7a21dd23ec8e45cac70aa31be06300f89384b",
+  "levels_sha256": "0fd23fb8da2acee41fd341995ea976c4aa7f0671d73fd070b2ee130d8426a484",
+  "statistics": {
+    "grades_total": 364,
+    "grades_without_critical_rows": 181,
+    "grades_with_critical_rows": 183,
+    "grades_with_dice_changes_by_index": 180,
+    "grades_with_value_changes_by_index": 3
+  },
+  "examples": [
+    {
+      "class": "eliotrope",
+      "spellId": 14575,
+      "spellName": "Affront",
+      "grade": 1,
+      "clientGradeCriticalHitProbability": 10,
+      "changesByEffectIndex": [
+        {
+          "effectIndex": 0,
+          "actionId": "98",
+          "normalEffectUid": "226031",
+          "criticalEffectUid": "226034",
+          "diff": {
+            "diceNum": [
+              "15",
+              "18"
+            ],
+            "diceSide": [
+              "17",
+              "20"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "class": "eliotrope",
+      "spellId": 14581,
+      "spellName": "Thérapie",
+      "grade": 1,
+      "clientGradeCriticalHitProbability": 10,
+      "changesByEffectIndex": [
+        {
+          "effectIndex": 0,
+          "actionId": "92",
+          "normalEffectUid": "226070",
+          "criticalEffectUid": "226073",
+          "diff": {
+            "diceNum": [
+              "15",
+              "18"
+            ],
+            "diceSide": [
+              "17",
+              "20"
+            ]
+          }
+        },
+        {
+          "effectIndex": 1,
+          "actionId": "3000",
+          "normalEffectUid": "410171",
+          "criticalEffectUid": "410172",
+          "diff": {
+            "diceNum": [
+              "15",
+              "18"
+            ],
+            "diceSide": [
+              "17",
+              "20"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "class": "eliotrope",
+      "spellId": 14587,
+      "spellName": "Cicatrisation",
+      "grade": 1,
+      "clientGradeCriticalHitProbability": 15,
+      "changesByEffectIndex": [
+        {
+          "effectIndex": 0,
+          "actionId": "1109",
+          "normalEffectUid": "226187",
+          "criticalEffectUid": "226190",
+          "diff": {
+            "diceNum": [
+              "6",
+              "8"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "class": "eliotrope",
+      "spellId": 14610,
+      "spellName": "Sinécure",
+      "grade": 1,
+      "clientGradeCriticalHitProbability": 5,
+      "changesByEffectIndex": [
+        {
+          "effectIndex": 0,
+          "actionId": "93",
+          "normalEffectUid": "226235",
+          "criticalEffectUid": "226254",
+          "diff": {
+            "diceNum": [
+              "9",
+              "12"
+            ],
+            "diceSide": [
+              "11",
+              "14"
+            ]
+          }
+        },
+        {
+          "effectIndex": 1,
+          "actionId": "2999",
+          "normalEffectUid": "410137",
+          "criticalEffectUid": "410138",
+          "diff": {
+            "diceNum": [
+              "9",
+              "12"
+            ],
+            "diceSide": [
+              "11",
+              "14"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "class": "roublard",
+      "spellId": 13433,
+      "spellName": "Extraction",
+      "grade": 1,
+      "clientGradeCriticalHitProbability": 25,
+      "changesByEffectIndex": [
+        {
+          "effectIndex": 0,
+          "actionId": "94",
+          "normalEffectUid": "211499",
+          "criticalEffectUid": "211500",
+          "diff": {
+            "diceNum": [
+              "16",
+              "20"
+            ],
+            "diceSide": [
+              "18",
+              "22"
+            ]
+          }
+        },
+        {
+          "effectIndex": 1,
+          "actionId": "94",
+          "normalEffectUid": "259095",
+          "criticalEffectUid": "259096",
+          "diff": {
+            "diceNum": [
+              "8",
+              "10"
+            ],
+            "diceSide": [
+              "9",
+              "11"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "class": "roublard",
+      "spellId": 13445,
+      "spellName": "Rémission",
+      "grade": 1,
+      "clientGradeCriticalHitProbability": 25,
+      "changesByEffectIndex": [
+        {
+          "effectIndex": 4,
+          "actionId": "950",
+          "normalEffectUid": "259886",
+          "criticalEffectUid": "260134",
+          "diff": {
+            "targetMask": [
+              "a,P,F3112,F3113,F3114,F5161,F5162,F5163",
+              "a,f3112,f3113,f3114,f5161,f5162,f5163"
+            ],
+            "duration": [
+              "3",
+              "1"
+            ]
+          }
+        },
+        {
+          "effectIndex": 5,
+          "actionId": "950",
+          "normalEffectUid": "260133",
+          "criticalEffectUid": "259889",
+          "diff": {
+            "targetMask": [
+              "a,f3112,f3113,f3114,f5161,f5162,f5163",
+              "a,P,F3112,F3113,F3114,F5161,F5162,F5163"
+            ],
+            "duration": [
+              "1",
+              "3"
+            ]
+          }
+        },
+        {
+          "effectIndex": 8,
+          "actionId": "265",
+          "normalEffectUid": "211885",
+          "criticalEffectUid": "211891",
+          "diff": {
+            "value": [
+              "10",
+              "13"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "class": "roublard",
+      "spellId": 13488,
+      "spellName": "Plombage",
+      "grade": 1,
+      "clientGradeCriticalHitProbability": 15,
+      "changesByEffectIndex": [
+        {
+          "effectIndex": 0,
+          "actionId": "99",
+          "normalEffectUid": "260086",
+          "criticalEffectUid": "291761",
+          "diff": {
+            "diceNum": [
+              "30",
+              "37"
+            ],
+            "diceSide": [
+              "34",
+              "42"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "class": "sram",
+      "spellId": 12902,
+      "spellName": "Truanderie",
+      "grade": 1,
+      "clientGradeCriticalHitProbability": 15,
+      "changesByEffectIndex": [
+        {
+          "effectIndex": 2,
+          "actionId": "97",
+          "normalEffectUid": "208181",
+          "criticalEffectUid": "208130",
+          "diff": {
+            "diceNum": [
+              "15",
+              "19"
+            ],
+            "diceSide": [
+              "17",
+              "21"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "class": "sram",
+      "spellId": 12922,
+      "spellName": "Poisse",
+      "grade": 1,
+      "clientGradeCriticalHitProbability": 20,
+      "changesByEffectIndex": [
+        {
+          "effectIndex": 1,
+          "actionId": "91",
+          "normalEffectUid": "208458",
+          "criticalEffectUid": "208459",
+          "diff": {
+            "diceNum": [
+              "29",
+              "35"
+            ],
+            "diceSide": [
+              "32",
+              "39"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "class": "sram",
+      "spellId": 12938,
+      "spellName": "Extorsion",
+      "grade": 1,
+      "clientGradeCriticalHitProbability": 15,
+      "changesByEffectIndex": [
+        {
+          "effectIndex": 1,
+          "actionId": "92",
+          "normalEffectUid": "208284",
+          "criticalEffectUid": "208311",
+          "diff": {
+            "diceNum": [
+              "17",
+              "20"
+            ],
+            "diceSide": [
+              "19",
+              "23"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "class": "xelor",
+      "spellId": 13283,
+      "spellName": "Rouage",
+      "grade": 1,
+      "clientGradeCriticalHitProbability": 15,
+      "changesByEffectIndex": [
+        {
+          "effectIndex": 3,
+          "actionId": "92",
+          "normalEffectUid": "402328",
+          "criticalEffectUid": "402332",
+          "diff": {
+            "diceNum": [
+              "16",
+              "19"
+            ],
+            "diceSide": [
+              "18",
+              "21"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "class": "xelor",
+      "spellId": 13298,
+      "spellName": "Clepsydre",
+      "grade": 1,
+      "clientGradeCriticalHitProbability": 15,
+      "changesByEffectIndex": [
+        {
+          "effectIndex": 1,
+          "actionId": "1160",
+          "normalEffectUid": "402632",
+          "criticalEffectUid": "402630",
+          "diff": {
+            "targetMask": [
+              "a,E244",
+              "A,E251"
+            ]
+          }
+        },
+        {
+          "effectIndex": 2,
+          "actionId": "1160",
+          "normalEffectUid": "402633",
+          "criticalEffectUid": "402631",
+          "diff": {
+            "targetMask": [
+              "A,E251",
+              "a,E244"
+            ]
+          }
+        },
+        {
+          "effectIndex": 3,
+          "actionId": "1160",
+          "normalEffectUid": "402617",
+          "criticalEffectUid": "402623",
+          "diff": {
+            "targetMask": [
+              "a,E244",
+              "A,E251"
+            ]
+          }
+        },
+        {
+          "effectIndex": 4,
+          "actionId": "1160",
+          "normalEffectUid": "402618",
+          "criticalEffectUid": "402852",
+          "diff": {
+            "targetMask": [
+              "A,E251",
+              "a,E244"
+            ]
+          }
+        },
+        {
+          "effectIndex": 7,
+          "actionId": "96",
+          "normalEffectUid": "402621",
+          "criticalEffectUid": "402626",
+          "diff": {
+            "diceNum": [
+              "33",
+              "40"
+            ],
+            "diceSide": [
+              "37",
+              "44"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Order changes are not necessarily structural changes",
+    "Critical probability in client grade is not a measured per-cast effective probability",
+    "No authoritative server cast or damage confirmation supplied"
+  ]
+}

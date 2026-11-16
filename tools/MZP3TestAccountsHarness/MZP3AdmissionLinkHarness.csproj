@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="../../GivreClone.App/Services/MZP3TestAccountService*.cs" Link="App/%(Filename)%(Extension)" />
+    <Compile Include="../../GivreClone.App/Services/MZP2OwnedHostAdmission.cs" Link="App/MZP2OwnedHostAdmission.cs" />
+    <Compile Include="../../GivreClone.App/Services/BotHostService.cs" Link="App/BotHostService.cs" />
+    <Compile Include="../../GivreClone.Engine/MZP1OwnedClientPermit.cs" Link="Engine/MZP1OwnedClientPermit.cs" />
+    <Compile Include="../../GivreClone.Engine/ActionSender.cs" Link="Engine/ActionSender.cs" />
+    <Compile Include="../../GivreClone.Engine/FrameSink.cs" Link="Engine/FrameSink.cs" />
+    <Compile Include="../../GivreClone.Engine/Pacer.cs" Link="Engine/Pacer.cs" />
+    <Compile Include="../../GivreClone.Engine/PacketBus.cs" Link="Engine/PacketBus.cs" />
+    <Compile Include="../../GivreClone.Engine/BotMessage.cs" Link="Engine/BotMessage.cs" />
+    <Compile Include="../../GivreClone.Engine/BotContext.cs" Link="Engine/BotContext.cs" />
+    <Compile Include="../../GivreClone.Engine/GameState.cs" Link="Engine/GameState.cs" />
+    <Compile Include="../../GivreClone.Engine/Behavior.cs" Link="Engine/Behavior.cs" />
+    <Compile Include="../../GivreClone.Engine/Recovery/MZP0RecoveryModels.cs" Link="Engine/MZP0RecoveryModels.cs" />
+    <Compile Include="../../GivreClone.Engine/Recovery/MZP0RecoveryJournal.cs" Link="Engine/MZP0RecoveryJournal.cs" />
+    <Compile Include="../../GivreClone.Engine/Recovery/MZP0GuardedActionSender.cs" Link="Engine/MZP0GuardedActionSender.cs" />
+    <Compile Include="../../GivreClone.Engine/Recovery/MZP1GuardedEngineWiring.cs" Link="Engine/MZP1GuardedEngineWiring.cs" />
+    <Compile Include="../../GivreClone.Protocol/EnvelopeBuilder.cs" Link="Protocol/EnvelopeBuilder.cs" />
+    <Compile Include="../../GivreClone.Protocol/PayloadBuilder.cs" Link="Protocol/PayloadBuilder.cs" />
+    <Compile Include="../../GivreClone.Protocol/ProtocolCatalog.cs" Link="Protocol/ProtocolCatalog.cs" />
+    <Compile Include="../../GivreClone.Protocol/ProtoSchemaText.cs" Link="Protocol/ProtoSchemaText.cs" />
+    <Compile Include="../../GivreClone.Protocol/RequestCorrelator.cs" Link="Protocol/RequestCorrelator.cs" />
+    <Compile Include="../MZP0RecoveryHarness/MZP0GivreCoreStubs.cs" Link="TestOnly/MZP0GivreCoreStubs.cs" />
+    <Compile Include="../MZP1GuardedWiringHarness/MZP1CapturedMessageStub.cs" Link="TestOnly/MZP1CapturedMessageStub.cs" />
+    <Compile Include="../MZP2HostAdmissionHarness/MZP2BotHostOfflineStub.cs" Link="TestOnly/MZP2BotHostOfflineStub.cs" />
+    <Compile Include="MZP3AdmissionLinkTests.cs" />
+  </ItemGroup>
+</Project>

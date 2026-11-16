@@ -1,0 +1,79 @@
+[
+  {
+    "repo": "Altansar69/dofus-enhanced",
+    "checkedAt": "2026-10-26T10:16:50.340556+00:00",
+    "currentHead": "2b494e141eb82a47d9c10741b7ac09877f7ec8a9",
+    "evidenceCommit": "2b494e141eb82a47d9c10741b7ac09877f7ec8a9",
+    "same": true
+  },
+  {
+    "repo": "Keka-Bron/JondoEmu",
+    "checkedAt": "2026-10-26T10:16:50.396079+00:00",
+    "currentHead": "6b9b857ac9496bcc2553a7c2a5e8b8e4cad8546d",
+    "evidenceCommit": "6b9b857ac9496bcc2553a7c2a5e8b8e4cad8546d",
+    "same": true
+  },
+  {
+    "repo": "vDAKK/stakk-open-source",
+    "checkedAt": "2026-10-26T10:16:50.388414+00:00",
+    "currentHead": "59631e9035cbd83e3416b6c8d500f9225153eae6",
+    "evidenceCommit": "59631e9035cbd83e3416b6c8d500f9225153eae6",
+    "same": true
+  },
+  {
+    "repo": "ix-xs/metamob.api",
+    "checkedAt": "2026-10-26T10:16:50.317454+00:00",
+    "currentHead": "8be181dc62fbeae26af64f347fb29b4c5492d27d",
+    "evidenceCommit": "8be181dc62fbeae26af64f347fb29b4c5492d27d",
+    "same": true
+  },
+  {
+    "repo": "meakitfed/SuperDofus",
+    "checkedAt": "2026-10-26T10:16:50.385449+00:00",
+    "currentHead": "7d5f145974a98048c61f44bd8512b6e4371c4461",
+    "evidenceCommit": "7d5f145974a98048c61f44bd8512b6e4371c4461",
+    "same": true
+  },
+  {
+    "repo": "Skkay/Ogrine-Rates_Server",
+    "checkedAt": "2026-10-26T10:16:50.304453+00:00",
+    "currentHead": "dbef78f9a2f5c0207b7141d20d301ab19d7928c7",
+    "evidenceCommit": "dbef78f9a2f5c0207b7141d20d301ab19d7928c7",
+    "same": true
+  },
+  {
+    "repo": "Fronne/Dofus-Craft",
+    "checkedAt": "2026-10-26T10:16:50.616384+00:00",
+    "currentHead": "21f5b96b88b8521e5f48670b4c5e3b0c3f4dbeb8",
+    "evidenceCommit": "21f5b96b88b8521e5f48670b4c5e3b0c3f4dbeb8",
+    "same": true
+  },
+  {
+    "repo": "Unclerein/dofus-prospection",
+    "checkedAt": "2026-10-26T10:16:50.655870+00:00",
+    "currentHead": "de845abfa4fcacc1ec588efbf5048ec3fa75fb36",
+    "evidenceCommit": "de845abfa4fcacc1ec588efbf5048ec3fa75fb36",
+    "same": true
+  },
+  {
+    "repo": "Valentin-alix/BillBot",
+    "checkedAt": "2026-10-26T10:16:52.424003+00:00",
+    "currentHead": "5373d0dea2ffa6731cf81dd716f04d0c95d7ed14",
+    "evidenceCommit": "5373d0dea2ffa6731cf81dd716f04d0c95d7ed14",
+    "same": true
+  },
+  {
+    "repo": "totec448-spec/chat-on-steroids",
+    "checkedAt": "2026-10-26T10:16:51.059557+00:00",
+    "currentHead": "2fca8760bac79b7633267ac83012aa52f0a357f4",
+    "evidenceCommit": "863f22c811dcc2baacd5b5c0a010878e1774012c",
+    "same": false
+  },
+  {
+    "repo": "pingdotgg/t3code",
+    "checkedAt": "2026-10-26T10:16:50.727856+00:00",
+    "currentHead": "3433ba15fdfec1acaad273f293098e773fc97bee",
+    "evidenceCommit": "6ffde5ba39ba6a718b658e2ef846e8f674c9ee6e",
+    "same": false
+  }
+]

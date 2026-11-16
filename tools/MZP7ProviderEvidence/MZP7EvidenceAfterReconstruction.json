@@ -1,0 +1,769 @@
+{
+  "candidates": [
+    {
+      "assemblyNameContradictsProject": false,
+      "kind": "project",
+      "path": "%USERPROFILE%\\Videos\\GIVRE\\GivreProxy\\GivreCore\\GivreCore.csproj",
+      "project": {
+        "declaredAssemblyNames": [
+          "GivreCore"
+        ],
+        "projectReferences": []
+      },
+      "providers": {
+        "GivreCore": {
+          "externalSourceProvenanceCertified": false,
+          "level": "SOURCE_PARTIAL_PROVIDER_SURFACE",
+          "projectNameFound": true,
+          "providerNamespaceFound": true,
+          "requiredTypeNamesNotObserved": [
+            "CapturedMessage"
+          ],
+          "requiredTypeNamesObserved": [
+            "Direction",
+            "DllInjector",
+            "ProtoField",
+            "RawProtobuf",
+            "TcpProxyServer",
+            "WireType"
+          ],
+          "runtimeOrAbiCertified": false
+        },
+        "GivreLauncher.Core": {
+          "externalSourceProvenanceCertified": false,
+          "level": "NO_PROVIDER_DECLARATION",
+          "projectNameFound": false,
+          "providerNamespaceFound": false,
+          "requiredTypeNamesNotObserved": [
+            "GameLauncher",
+            "HandshakeRelay",
+            "ProxySettings",
+            "ZaapEmulator"
+          ],
+          "requiredTypeNamesObserved": [],
+          "runtimeOrAbiCertified": false
+        }
+      },
+      "sha256": "bc2ede98aceda8422163b3cb2a8356d1a3180733fc9d0d76d72e88c455c62053",
+      "source": {
+        "csFiles": 5,
+        "namespaces": [
+          "GivreCore.Injection",
+          "GivreCore.Mitm",
+          "GivreCore.Protobuf"
+        ],
+        "providerScopedTypes": {
+          "GivreCore": [
+            "Direction",
+            "DllInjector",
+            "ITestInjectionAuthority",
+            "ITestProxyRouteAuthority",
+            "Link",
+            "ProtoField",
+            "RawProtobuf",
+            "TcpProxyServer",
+            "WireType"
+          ],
+          "GivreLauncher.Core": []
+        },
+        "samples": [
+          {
+            "file": "Injection/DllInjector.cs",
+            "namespaces": [
+              "GivreCore.Injection"
+            ],
+            "sha256": "e307f297c2fc5c8ea09215e8a9178b0877141556cd3a9e13957b89dc37d107ec",
+            "types": [
+              "DllInjector",
+              "ITestInjectionAuthority"
+            ]
+          },
+          {
+            "file": "Mitm/TcpProxyServer.cs",
+            "namespaces": [
+              "GivreCore.Mitm"
+            ],
+            "sha256": "06c1bc3f99f87be8acb86bc9a8d1a8fa7fdf4335120f0f111de290eb755123bc",
+            "types": [
+              "Direction",
+              "ITestProxyRouteAuthority",
+              "Link",
+              "TcpProxyServer"
+            ]
+          },
+          {
+            "file": "Protobuf/ProtoField.cs",
+            "namespaces": [
+              "GivreCore.Protobuf"
+            ],
+            "sha256": "85dc8c71bc48d22c682b96602e64feb5c08ce705616a4a71801cb57be9048f3a",
+            "types": [
+              "ProtoField",
+              "WireType"
+            ]
+          },
+          {
+            "file": "Protobuf/RawProtobuf.cs",
+            "namespaces": [
+              "GivreCore.Protobuf"
+            ],
+            "sha256": "516b77bd169cafd7c16e197a14716dd6adc8b2256c8f76fed4ca62a4d7970494",
+            "types": [
+              "RawProtobuf"
+            ]
+          },
+          {
+            "file": "tests/Program.cs",
+            "namespaces": [],
+            "sha256": "33d83121115307bd8214db4f3a6c3d8ca81c0c725bdae8b2f18cab797d00d18b",
+            "types": [
+              "DeniedTestAuthority"
+            ]
+          }
+        ],
+        "types": [
+          "DeniedTestAuthority",
+          "Direction",
+          "DllInjector",
+          "ITestInjectionAuthority",
+          "ITestProxyRouteAuthority",
+          "Link",
+          "ProtoField",
+          "RawProtobuf",
+          "TcpProxyServer",
+          "WireType"
+        ]
+      }
+    },
+    {
+      "assemblyNameContradictsProject": false,
+      "kind": "project",
+      "path": "%USERPROFILE%\\Videos\\GIVRE\\GivreLauncher\\GivreLauncher.Core\\GivreLauncher.Core.csproj",
+      "project": {
+        "declaredAssemblyNames": [
+          "GivreLauncher.Core"
+        ],
+        "projectReferences": []
+      },
+      "providers": {
+        "GivreCore": {
+          "externalSourceProvenanceCertified": false,
+          "level": "NO_PROVIDER_DECLARATION",
+          "projectNameFound": false,
+          "providerNamespaceFound": false,
+          "requiredTypeNamesNotObserved": [
+            "CapturedMessage",
+            "Direction",
+            "DllInjector",
+            "ProtoField",
+            "RawProtobuf",
+            "TcpProxyServer",
+            "WireType"
+          ],
+          "requiredTypeNamesObserved": [],
+          "runtimeOrAbiCertified": false
+        },
+        "GivreLauncher.Core": {
+          "externalSourceProvenanceCertified": false,
+          "level": "SOURCE_PARTIAL_PROVIDER_SURFACE",
+          "projectNameFound": true,
+          "providerNamespaceFound": true,
+          "requiredTypeNamesNotObserved": [
+            "GameLauncher",
+            "HandshakeRelay",
+            "ProxySettings",
+            "ZaapEmulator"
+          ],
+          "requiredTypeNamesObserved": [],
+          "runtimeOrAbiCertified": false
+        }
+      },
+      "sha256": "cc07339e24e3314f868f5954b3579d193b7a20ef0af08b72f32682cd0de46f42",
+      "source": {
+        "csFiles": 5,
+        "namespaces": [
+          "GivreLauncher.Core.Proxy",
+          "GivreLauncher.Core.Transport"
+        ],
+        "providerScopedTypes": {
+          "GivreCore": [],
+          "GivreLauncher.Core": [
+            "HttpConnectForwarder",
+            "ProxyKind",
+            "Socks5Forwarder",
+            "TransportLog"
+          ]
+        },
+        "samples": [
+          {
+            "file": "Proxy/ProxySettings.cs",
+            "namespaces": [
+              "GivreLauncher.Core.Proxy"
+            ],
+            "sha256": "071644613b98386444627bf3ad6fd8f2d642521fd8d11ab92a7283ffde449d86",
+            "types": [
+              "ProxyKind"
+            ]
+          },
+          {
+            "file": "Transport/HttpConnectForwarder.cs",
+            "namespaces": [
+              "GivreLauncher.Core.Transport"
+            ],
+            "sha256": "511c90dc857ea393293b5482626f013d8acacae341b64c2d36b613ea12fb7757",
+            "types": [
+              "HttpConnectForwarder"
+            ]
+          },
+          {
+            "file": "Transport/Socks5Forwarder.cs",
+            "namespaces": [
+              "GivreLauncher.Core.Transport"
+            ],
+            "sha256": "7f8b733a48827b11cf7344f20976adec5dd024863dc4d7bf4b17060a65da6743",
+            "types": [
+              "Socks5Forwarder"
+            ]
+          },
+          {
+            "file": "Transport/TransportLog.cs",
+            "namespaces": [
+              "GivreLauncher.Core.Transport"
+            ],
+            "sha256": "116a307af798513549d4a75425bab0bb7dc4a774d20fc05e921a8cb228cf7f65",
+            "types": [
+              "TransportLog"
+            ]
+          },
+          {
+            "file": "tests/Program.cs",
+            "namespaces": [],
+            "sha256": "36b2a694e687674b0225856fd3cf3fc7160e2227ace21c525d3a3ecf5d1c4f7d",
+            "types": [
+              "ScriptedStream"
+            ]
+          }
+        ],
+        "types": [
+          "HttpConnectForwarder",
+          "ProxyKind",
+          "ScriptedStream",
+          "Socks5Forwarder",
+          "TransportLog"
+        ]
+      }
+    },
+    {
+      "kind": "archive",
+      "level": "ARCHIVE_MEMBER_NAMES",
+      "membersChecked": 10,
+      "path": "%USERPROFILE%\\Videos\\GIVRE\\GivreAI\\AfterArgentee_Kit_20261013.zip",
+      "providerProjects": [],
+      "providers": {
+        "GivreCore": {
+          "externalSourceProvenanceCertified": false,
+          "level": "NO_PROVIDER_DECLARATION",
+          "projectNameFound": false,
+          "providerNamespaceFound": false,
+          "requiredTypeNamesNotObserved": [
+            "CapturedMessage",
+            "Direction",
+            "DllInjector",
+            "ProtoField",
+            "RawProtobuf",
+            "TcpProxyServer",
+            "WireType"
+          ],
+          "requiredTypeNamesObserved": [],
+          "runtimeOrAbiCertified": false
+        },
+        "GivreLauncher.Core": {
+          "externalSourceProvenanceCertified": false,
+          "level": "NO_PROVIDER_DECLARATION",
+          "projectNameFound": false,
+          "providerNamespaceFound": false,
+          "requiredTypeNamesNotObserved": [
+            "GameLauncher",
+            "HandshakeRelay",
+            "ProxySettings",
+            "ZaapEmulator"
+          ],
+          "requiredTypeNamesObserved": [],
+          "runtimeOrAbiCertified": false
+        }
+      },
+      "sha256": "943fe7bb9049f5d5ab6a6ccf1b5c07ce248213a22d0a8adabad32bd33b2a3330",
+      "source": {
+        "csFiles": 0,
+        "namespaces": [],
+        "providerScopedTypes": {
+          "GivreCore": [],
+          "GivreLauncher.Core": []
+        },
+        "samples": [],
+        "types": []
+      }
+    },
+    {
+      "entries": 16,
+      "level": "NO_CANDIDATE_IN_TOP_LEVEL",
+      "path": "%USERPROFILE%\\Videos\\GIVRE\\GivreKnowledgeCrawler"
+    },
+    {
+      "entries": 13,
+      "level": "NO_CANDIDATE_IN_TOP_LEVEL",
+      "path": "%USERPROFILE%\\Videos\\GIVRE\\GivreSacrieurAutopilot"
+    },
+    {
+      "kind": "archive",
+      "level": "ARCHIVE_MEMBER_NAMES",
+      "membersChecked": 39,
+      "path": "%USERPROFILE%\\Videos\\GIVRE\\GivreShareWork\\artifacts\\MZP6-Source-Modules.zip",
+      "providerProjects": [],
+      "providers": {
+        "GivreCore": {
+          "externalSourceProvenanceCertified": false,
+          "level": "NO_PROVIDER_DECLARATION",
+          "projectNameFound": false,
+          "providerNamespaceFound": false,
+          "requiredTypeNamesNotObserved": [
+            "CapturedMessage",
+            "Direction",
+            "DllInjector",
+            "ProtoField",
+            "RawProtobuf",
+            "TcpProxyServer",
+            "WireType"
+          ],
+          "requiredTypeNamesObserved": [],
+          "runtimeOrAbiCertified": false
+        },
+        "GivreLauncher.Core": {
+          "externalSourceProvenanceCertified": false,
+          "level": "NO_PROVIDER_DECLARATION",
+          "projectNameFound": false,
+          "providerNamespaceFound": false,
+          "requiredTypeNamesNotObserved": [
+            "GameLauncher",
+            "HandshakeRelay",
+            "ProxySettings",
+            "ZaapEmulator"
+          ],
+          "requiredTypeNamesObserved": [],
+          "runtimeOrAbiCertified": false
+        }
+      },
+      "sha256": "500b591b865658dc71cc50f424f065bd7578445a24694218b82f36f146cdcdad",
+      "source": {
+        "csFiles": 0,
+        "namespaces": [],
+        "providerScopedTypes": {
+          "GivreCore": [],
+          "GivreLauncher.Core": []
+        },
+        "samples": [],
+        "types": []
+      }
+    }
+  ],
+  "certified": {
+    "actualRuntimeParity": false,
+    "authenticatedSender": false,
+    "cs0246Resolved": false
+  },
+  "consumers": {
+    "consumerExamples": [
+      {
+        "lexicalCallsiteLines": [
+          {
+            "line": 3,
+            "sha256": "e643f682e0b1d935cc11d7cfc8d1a22d91537dd78f584d131d3f355ac725d560"
+          },
+          {
+            "line": 34,
+            "sha256": "717072cf009b50ad461f78d4d31d81b3f876d459531d447ac6b8622f38928e31"
+          },
+          {
+            "line": 40,
+            "sha256": "cc943eae70299d0a4f54cb4bf148e4fb0262eab799a761a90e50bc15d4decfe9"
+          },
+          {
+            "line": 52,
+            "sha256": "256caf751f1f5ba85cf747bef6db4008084b1ec9fa38d63afb1a2baff7075e54"
+          },
+          {
+            "line": 75,
+            "sha256": "6cde99020639ba0d5b6e783a7da11b352bd3870f3fbef1ba57d48e096c0fd18a"
+          },
+          {
+            "line": 87,
+            "sha256": "a6db3a548e5e49ba4457b1d4e46ecd67ad7fcafac0ddc94d69bf58b75b09dbb4"
+          },
+          {
+            "line": 95,
+            "sha256": "7213193a438394d94cac4d6c103307484d2af331d109d938dea64c75933090d6"
+          },
+          {
+            "line": 104,
+            "sha256": "a3a4e0d26f3ce7250926894f5fa7328d266a07beebedf3367972889e774bfd68"
+          },
+          {
+            "line": 120,
+            "sha256": "c20e0a492ceb81741c6a49ee8212be644bf567f22f6af69a0ca9ac0942e14ce7"
+          },
+          {
+            "line": 130,
+            "sha256": "4615e531a9a4c32071fa896457b5f0f17f95bf1855b816ee087c8e29af260fe4"
+          }
+        ],
+        "path": "GivreClone.Protocol/CharacterInfoReader.cs",
+        "sha256": "4f3a8e095b6348efc1d840164c3f7e546efc7c4ad1ff526c414173f898120827"
+      },
+      {
+        "lexicalCallsiteLines": [
+          {
+            "line": 2,
+            "sha256": "e643f682e0b1d935cc11d7cfc8d1a22d91537dd78f584d131d3f355ac725d560"
+          },
+          {
+            "line": 7,
+            "sha256": "1c8d2747805fb81c38c9e9ce3dc7d0725c693cb510a3bbbdffb0980d63c81130"
+          },
+          {
+            "line": 15,
+            "sha256": "f86e232c0c65ea936ab6e3c322f3b78eecc1e08ff08735f55511778ed49d8cb4"
+          },
+          {
+            "line": 52,
+            "sha256": "b760d20713d245e47445fec079d839b3c06759938ca8cd818b524f1d3b5ff001"
+          },
+          {
+            "line": 71,
+            "sha256": "f4ad085a3b84a759eabda378c8a64354995c6cfaf6349b801baf2dc70331e2da"
+          },
+          {
+            "line": 73,
+            "sha256": "b2961278900db56ba408ad8f82a0c76b19d2d4bdb54b15e4e28cdfb5a815e025"
+          },
+          {
+            "line": 75,
+            "sha256": "c12c7e8e6a9196966ff4875b25b535d534f640ba4c0aa60300dbc61a678aff08"
+          },
+          {
+            "line": 82,
+            "sha256": "efac6d79a3ea34ff6b68efe33a000922fc2a521a73be8231f7ff867923b79190"
+          },
+          {
+            "line": 85,
+            "sha256": "de0f501cdb7190de1d36aadbac80eeacf992cc2089ba10913c3154431e068386"
+          },
+          {
+            "line": 87,
+            "sha256": "0f2ba1346765d2b911712c22544e3a0a6405ff01eafa41e73989c8e21bd9a736"
+          },
+          {
+            "line": 90,
+            "sha256": "5fd637f19cdf6747d32c01fc1700b59803480172626aaeb8089400be96ea31a5"
+          },
+          {
+            "line": 91,
+            "sha256": "b092a03f9acb9851140b0b89ad3a3f3a3a0e4f50141aaeb119630876b12f7817"
+          },
+          {
+            "line": 93,
+            "sha256": "f5173abbd20d78637ef985f1b52d65ce1ef0bc99b5c270fa5de8ac3d07982963"
+          },
+          {
+            "line": 95,
+            "sha256": "bb3aed350b8f4a7883124e359dc0c27fed2613e7c632a04f913a4d5ab84a3974"
+          },
+          {
+            "line": 99,
+            "sha256": "c8aac403c97bbd5ba0502b26cafe81008cd7b292622a33d58d031d815af8d122"
+          },
+          {
+            "line": 102,
+            "sha256": "f289e4eff8079deb30149d5448203e24817e6aea93c2e5e1059a0e4537e7d59b"
+          },
+          {
+            "line": 104,
+            "sha256": "df843d5d387108b86a3dca6c02b0602a7148e7893723b19285f1c1cc3340ec06"
+          },
+          {
+            "line": 106,
+            "sha256": "b092a03f9acb9851140b0b89ad3a3f3a3a0e4f50141aaeb119630876b12f7817"
+          },
+          {
+            "line": 108,
+            "sha256": "a71512a0f33e6aa336eacb2f195270ef864712ecf4b6572cb019f77e4af661db"
+          },
+          {
+            "line": 110,
+            "sha256": "bb3aed350b8f4a7883124e359dc0c27fed2613e7c632a04f913a4d5ab84a3974"
+          },
+          {
+            "line": 116,
+            "sha256": "2563706c1f6f7aefe5e1738ff83c2dd08a3ecfb49e41389158524b41157a4fff"
+          },
+          {
+            "line": 117,
+            "sha256": "a53916baeeffb2f078b3d368521b1764f714eb262f26b32a4643ab1dddf5b961"
+          }
+        ],
+        "path": "GivreClone.Protocol/EnvelopeBuilder.cs",
+        "sha256": "30e0c318904c93cd0f958f0593ca77e7f38bca6643d5bbbb9d09f79563808050"
+      },
+      {
+        "lexicalCallsiteLines": [
+          {
+            "line": 3,
+            "sha256": "e643f682e0b1d935cc11d7cfc8d1a22d91537dd78f584d131d3f355ac725d560"
+          },
+          {
+            "line": 24,
+            "sha256": "3fca06888007a212c01fe2aba9784cad078c41b1cf8c48f7b6fed817d3680ccb"
+          },
+          {
+            "line": 34,
+            "sha256": "4bcb6cbca03d40b4267f0b0a916972e25bbd77976c7d8d303b3f546b293ebe57"
+          },
+          {
+            "line": 47,
+            "sha256": "d40bada8d09102cffb79cdaea56c17e9f2ba86aba0c0edcfb3aafddd29de0a8c"
+          },
+          {
+            "line": 67,
+            "sha256": "2cf9ff36e9e1f0ad5d9fb359035cdab7d2e6945940260b8f4db3e421b2909f31"
+          },
+          {
+            "line": 89,
+            "sha256": "07d9d2ebf95f9302c416e07344184428df29fd2e90beecf19e8897c78556aeda"
+          },
+          {
+            "line": 107,
+            "sha256": "4234bfab9c454638a3dbb7b8db9cc9a6145490bb670cbf4253db112dd7cf465b"
+          },
+          {
+            "line": 124,
+            "sha256": "c1257c0bdb798c0e41f75f8670905bed0e6ef0a080b651e7018f48130189d938"
+          },
+          {
+            "line": 131,
+            "sha256": "cd2291ee647458895117d6553486c50e39455084c2139da519226ba1c10e97a9"
+          },
+          {
+            "line": 141,
+            "sha256": "1c2d38568ff906ea794db725ec188ca9d29747492dea0e544a4ea1f4b5b4aab4"
+          },
+          {
+            "line": 154,
+            "sha256": "f89f6a056d96201839b713c574ca899284747581a168e882551d746c4722a614"
+          }
+        ],
+        "path": "GivreClone.Protocol/FightPrepReader.cs",
+        "sha256": "0ed486ac0957c6bb8ae848aece980f5c486f762a5c4372afba0a14c7ecadd02e"
+      },
+      {
+        "lexicalCallsiteLines": [
+          {
+            "line": 3,
+            "sha256": "cf10893faadd4e83cf81cf002d4646641d4b0efdd67be3f27b97cd70e377d9e2"
+          },
+          {
+            "line": 10,
+            "sha256": "bc3bce37b3a69ff128969129b25a5e4c04eb6ee15da991fd9e68feb5d7ba2b7b"
+          },
+          {
+            "line": 15,
+            "sha256": "ae03d652561b746278bd9a0baef1a5a11374bbce83f6aec50c9b7c08bb256a6f"
+          },
+          {
+            "line": 31,
+            "sha256": "245f6be0900db576b0be695922ab32765986a40dd0c6ebbe0a34b0c5ce60ce59"
+          }
+        ],
+        "path": "GivreClone.Engine/BotHost.cs",
+        "sha256": "ac2a83c947838a3615c2253afda4b4c552e82a85d08c6bc898d29b59c96c1523"
+      },
+      {
+        "lexicalCallsiteLines": [
+          {
+            "line": 2,
+            "sha256": "aee30d929877fa2b360b34f05d764cc907e61b72c79ed11f8358ca36e04f8faa"
+          },
+          {
+            "line": 3,
+            "sha256": "cf10893faadd4e83cf81cf002d4646641d4b0efdd67be3f27b97cd70e377d9e2"
+          },
+          {
+            "line": 9,
+            "sha256": "bc79fae32e7fcc99966575fef13ffb700684e0d27f4f8a5f79193197393bdfec"
+          },
+          {
+            "line": 16,
+            "sha256": "318e511470d0c2f8cc86b4e69c124c147df8186f5f72bd1dfb14e2d56ba546b4"
+          },
+          {
+            "line": 27,
+            "sha256": "26167b7cbf5fe2fb087e0459c0cfd88d4358f07ddf3c17b7c52b106b5e39b6cc"
+          }
+        ],
+        "path": "GivreClone.Engine/DofusCaptureHost.cs",
+        "sha256": "1a20002d6df59e01ce5d892daf342e405e1de8d213f6446cdadb17610efc94bb"
+      },
+      {
+        "lexicalCallsiteLines": [
+          {
+            "line": 11,
+            "sha256": "e643f682e0b1d935cc11d7cfc8d1a22d91537dd78f584d131d3f355ac725d560"
+          },
+          {
+            "line": 12,
+            "sha256": "f4708ce535be2d909abaabf5b1c1f872f15d6041d426aaaa560ae78792fedde1"
+          },
+          {
+            "line": 13,
+            "sha256": "c5d63591c9e09fc8c37b967b32fffc92db93e5ae033572823a7955386b79e5cc"
+          },
+          {
+            "line": 14,
+            "sha256": "12d80916aee9cf19aafaf0b4ba6d157aa366426985a2180f61068d77efea5714"
+          },
+          {
+            "line": 15,
+            "sha256": "31540d8da072315993da4561ca1ebb2b9b9d9da7edff5cbff0870afc0a5dbc0e"
+          },
+          {
+            "line": 16,
+            "sha256": "1aaa33634d594522cc8da4c2dacaca8393ff0e9b750e6c6fd8b54026c24b2c92"
+          },
+          {
+            "line": 17,
+            "sha256": "9c43bfb57e339dd5a00dc5396a675ef6e01f8102612862f28bf2a022c93eea1d"
+          },
+          {
+            "line": 38,
+            "sha256": "3eb00494ed7b303439d3196ffd4980b03b8e5ca61578e3dacdce00f41a5fce1f"
+          },
+          {
+            "line": 39,
+            "sha256": "479a5be37486a27fbb416038c928240ba655c6dcc972d1df9cd57ba75f4b3ef3"
+          },
+          {
+            "line": 41,
+            "sha256": "d5b621371d2ce35b62159672ebf1cb32a1e91afbe408a0206a0455e5f6bd0709"
+          },
+          {
+            "line": 52,
+            "sha256": "0bcdfa08bd2c20ea2b74ec9e79880c9f146154b7dd02f4ceacd58669bdcde58d"
+          },
+          {
+            "line": 338,
+            "sha256": "5cb508928f7c4e56e585a7fd65abca0c2fab7512e0c2c6f1b527b516d9fa15df"
+          },
+          {
+            "line": 339,
+            "sha256": "b4248f3f6516324f41113ea1838141199f08622037b6fad254a9199858257a9f"
+          },
+          {
+            "line": 344,
+            "sha256": "232477932e9c3cdc0ef715f43fd5b4f693c38f3471c3c83be17ca2eb037aaa09"
+          },
+          {
+            "line": 387,
+            "sha256": "c0df8093afba801fc0896120e9c2e0e0879c92b5cb8aa1488e2d5620db84339b"
+          },
+          {
+            "line": 497,
+            "sha256": "9287a845ed1fc39078f84ebb3f8290fb29c4e9e20185115ad7551a4cdb618777"
+          },
+          {
+            "line": 532,
+            "sha256": "29ef9f2507683238cf9c715ce0b34477024620403e1df6e160266a7438e8d77d"
+          },
+          {
+            "line": 533,
+            "sha256": "25194f59307abdaf8315aebb9010a38155142c6ebe1aaafa966679046628b4f1"
+          },
+          {
+            "line": 594,
+            "sha256": "96ba908bcae6f9aa1fe36e4d775b0727c80f9e9578ae3409a649fb3fccb1d68c"
+          },
+          {
+            "line": 625,
+            "sha256": "c3b5368d6da21f4b309b966bf9f4edd7c780c75c058bfbe5825c481c059e6769"
+          },
+          {
+            "line": 654,
+            "sha256": "f5adc6314d8465add9fad4ec7bbf237937ca16c8a0220cb89edcff0eca8dca6e"
+          }
+        ],
+        "path": "GivreClone.App/Services/LaunchService.cs",
+        "sha256": "5c3cdc7564dd47ae7ac35ba8acd31153b927d19fc6b6a81e07068e9de5f41057"
+      },
+      {
+        "lexicalCallsiteLines": [
+          {
+            "line": 2,
+            "sha256": "31540d8da072315993da4561ca1ebb2b9b9d9da7edff5cbff0870afc0a5dbc0e"
+          },
+          {
+            "line": 7,
+            "sha256": "587f07442c3cbcdddca4fb63bc18939377ab808c1e737e9fe47f3bf7d9aafef5"
+          },
+          {
+            "line": 12,
+            "sha256": "5e4cf5e39329a2bb18d7f6addf320df9528ce6e48b9defb83f3d48d11f5b3b49"
+          },
+          {
+            "line": 14,
+            "sha256": "13bc75912e565fd21e864c7f6043d0ef652023f4d0e6d443b25d57e3db9701b2"
+          }
+        ],
+        "path": "GivreClone.App/Services/Transport/MitmTransport.cs",
+        "sha256": "d863e7150d69833c16ce305a967e933206801182a5d99630aa0267886b89600d"
+      }
+    ],
+    "projects": [
+      {
+        "missingProjectReferences": [],
+        "path": "GivreClone.Protocol/GivreClone.Protocol.csproj",
+        "projectReferences": [
+          "..\\..\\GivreProxy\\GivreCore\\GivreCore.csproj"
+        ],
+        "sha256": "b7fc01f7a6daf3ec5b297843c93308f9c4580fb303bc141dabead1d9be848312"
+      },
+      {
+        "missingProjectReferences": [],
+        "path": "GivreClone.Engine/GivreClone.Engine.csproj",
+        "projectReferences": [
+          "..\\..\\GivreProxy\\GivreCore\\GivreCore.csproj",
+          "..\\GivreClone.Protocol\\GivreClone.Protocol.csproj"
+        ],
+        "sha256": "0df55fddaabffab4bcb9f669bbb01820e8daa932eeafdb8db48108caa3a89020"
+      },
+      {
+        "missingProjectReferences": [],
+        "path": "GivreClone.App/GivreClone.App.csproj",
+        "projectReferences": [
+          "..\\..\\GivreLauncher\\GivreLauncher.Core\\GivreLauncher.Core.csproj",
+          "..\\GivreClone.Engine\\GivreClone.Engine.csproj",
+          "..\\GivreClone.Protocol\\GivreClone.Protocol.csproj"
+        ],
+        "sha256": "9f3623f9b9fd861e778279c8f9c238515c57a9720ded70e1e6b7049946e04788"
+      }
+    ]
+  },
+  "limits": {
+    "archiveMemberCount": 4096,
+    "candidateCount": 6,
+    "sourceFilesPerProject": 350
+  },
+  "repo": "%USERPROFILE%\\Videos\\GIVRE\\GivreShareWork",
+  "schema": "MZP7ProviderEvidence.v1",
+  "scope": "OFFLINE_BOUNDED_CANDIDATES_ONLY",
+  "verdict": {
+    "GivreCore": "PARTIAL_SOURCE_MISSING_API",
+    "GivreLauncher.Core": "PARTIAL_SOURCE_MISSING_API"
+  }
+}

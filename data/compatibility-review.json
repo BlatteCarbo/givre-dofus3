@@ -1,0 +1,12 @@
+{
+  "fields_jsonSha256": "16086A97AF8C5D9675C4F347DA059E9C132AB890294FC2E208404BF2C6CFB759",
+  "installedFingerprintSha256": "D969124783F12A3BDE6D1CA6C360CECA2C34E49C0E28CDB4425B2A73FB5C399C",
+  "installedGameBuild": "3.7.12.12",
+  "matching_current_jsonSha256": "C1DA4E5090D07C41CC5F6E0D74ABE0CDB4777DB08CCD2C73DE2692E0A4A2DC01",
+  "operatorConfirmedSameMappings": true,
+  "reviewOnly": true,
+  "sourceMappingBuild": "3.7.11.11",
+  "sourceProtoSha256": "BF3799E516EE52D968432DB5651FA662A23308D94AC8314862189E59DBD41651",
+  "targetProtoSha256": "BF3799E516EE52D968432DB5651FA662A23308D94AC8314862189E59DBD41651",
+  "reviewEvidence": "2026-10-24: message code catalog unchanged; LifePointsLost.loss/element_id/permanent_damages corrected from targeted Lua/MCP combat observations. 2026-10-30: TreasureHuntFlag.map_id corrected to field 2 from received flag {f2:99355648}. 2026-10-31: EntityLook.bones_id corrected to field 1 from observed guard looks {f1:91,f4:3} and change_look {target_id:-4,look:{f1:2672,f4:3}}. EntityLook.indexed_colors corrected to field 5 from mounted self actor33202504034 in MapComplementaryInformationEvent at19:16:41; packed bytes and nested rider preserved in docs/codex/SELF_LOOK_WIRE_20261031.json. Fixed-wire regression failed with field1. Appearance rendering remains partially unverified; no semantics assigned to unknown field3."
+}

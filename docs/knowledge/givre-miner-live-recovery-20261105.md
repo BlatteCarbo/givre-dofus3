@@ -1,0 +1,7 @@
+# Miner live recovery — 2026-11-05
+
+During live testing on 2026-11-05, Sylvanbot's miner script stopped with `ARRET regeneration non confirmee` after its 180-second regeneration wait expired at 69% HP (2118/3063). The script did not continue gathering at that point. The operator resumed the saved miner script after adjusting its challenge constraints. The retry traveled to a mining map and continued harvesting; subsequent logs confirmed Frostiz was gathered, and the script proceeded to another map. This demonstrates a successful recovery/restart path for this run, not a general guarantee that all stops are safely resumable.
+
+Bastionbot likewise encountered a regeneration timeout at 69% while running a resource script. In a later observed run, it regenerated to 90% (2757/3063), gathered one Frostiz, and began traveling onward. Keep the distinction between timeout-stop and later resumed activity; do not describe the initial run as uninterrupted or the stop itself as fixed. These are live observations, not offline regression coverage.
+
+Later on 2026-11-05, Sylvanbot's resumed mining route produced a confirmed protector victory: journal `20261105-233707-1073741825` recorded an 8-turn victory, 18 casts, 13 moves, 72.7 seconds, 166,086 XP, and zero reported technical problems. The journal also noted one failed challenge and the character reaching 18% HP by turn 8. This validates that single live combat/recovery episode, not sustained safety or bank completion.

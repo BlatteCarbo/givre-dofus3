@@ -1,0 +1,187 @@
+{
+  "field": 3,
+  "msg": [
+    {
+      "field": 1,
+      "int": 33202504034
+    },
+    {
+      "field": 2,
+      "msg": [
+        {
+          "field": 3,
+          "int": 490
+        },
+        {
+          "field": 4,
+          "int": 7
+        }
+      ]
+    },
+    {
+      "field": 3,
+      "msg": [
+        {
+          "field": 1,
+          "msg": [
+            {
+              "field": 3,
+              "msg": [
+                {
+                  "field": 1,
+                  "msg": [
+                    {
+                      "field": 1,
+                      "msg": [
+                        {
+                          "field": 4,
+                          "msg": [
+                            {
+                              "field": 2,
+                              "msg": [
+                                {
+                                  "field": 2,
+                                  "str": "05d7f025-ca6b-4a2c-9166-49a1052b296b"
+                                },
+                                {
+                                  "field": 3,
+                                  "msg": [
+                                    {
+                                      "field": 1,
+                                      "int": 14090240
+                                    },
+                                    {
+                                      "field": 2,
+                                      "int": 28
+                                    },
+                                    {
+                                      "field": 3,
+                                      "int": 213
+                                    },
+                                    {
+                                      "field": 4,
+                                      "int": 266260
+                                    }
+                                  ]
+                                },
+                                {
+                                  "field": 4,
+                                  "str": "BABA"
+                                },
+                                {
+                                  "field": 6,
+                                  "str": "BABA"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "field": 1,
+                      "msg": [
+                        {
+                          "field": 3,
+                          "int": 1
+                        }
+                      ]
+                    },
+                    {
+                      "field": 2,
+                      "int": 181338905
+                    },
+                    {
+                      "field": 3,
+                      "int": 1
+                    },
+                    {
+                      "field": 5,
+                      "bytes": "0B"
+                    },
+                    {
+                      "field": 6,
+                      "msg": [
+                        {
+                          "field": 1,
+                          "int": 195
+                        },
+                        {
+                          "field": 2,
+                          "int": 2
+                        }
+                      ]
+                    },
+                    {
+                      "field": 7,
+                      "int": 1
+                    }
+                  ]
+                },
+                {
+                  "field": 5,
+                  "str": "Bastionbot"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "field": 2,
+          "msg": [
+            {
+              "field": 1,
+              "int": 639
+            },
+            {
+              "field": 2,
+              "msg": [
+                {
+                  "field": 3,
+                  "msg": [
+                    {
+                      "field": 1,
+                      "int": 2
+                    },
+                    {
+                      "field": 3,
+                      "bytes": "FA2DC929DC07D42F9130D22F"
+                    },
+                    {
+                      "field": 4,
+                      "int": 24
+                    },
+                    {
+                      "field": 5,
+                      "bytes": "AAE7D60F9BD1D517D3D7E21F9DD1CE27D2D5DE2FF3E5CF3794A090488080DC56"
+                    },
+                    {
+                      "field": 6,
+                      "str": "5"
+                    }
+                  ]
+                },
+                {
+                  "field": 4,
+                  "int": 2
+                }
+              ]
+            },
+            {
+              "field": 4,
+              "int": 3
+            },
+            {
+              "field": 5,
+              "bytes": "8281AC0AF0FFFF17F0FFFF1FC3C8D92394A090488080DC56"
+            },
+            {
+              "field": 6,
+              "str": "x"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

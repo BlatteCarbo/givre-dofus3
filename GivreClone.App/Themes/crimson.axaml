@@ -1,0 +1,25 @@
+﻿<ResourceDictionary x:Class="GivreClone.App.Themes.Crimson" xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Thème : Cramoisi -->
+    <Color x:Key="Accent">#FF5C6E</Color>
+    <Color x:Key="AccentBright">#FF8290</Color>
+    <Color x:Key="AccentDeep">#E03B4E</Color>
+
+    <SolidColorBrush x:Key="AccentBrush"       Color="{StaticResource Accent}" />
+    <SolidColorBrush x:Key="AccentBrightBrush" Color="{StaticResource AccentBright}" />
+    <SolidColorBrush x:Key="AccentDeepBrush"   Color="{StaticResource AccentDeep}" />
+    <SolidColorBrush x:Key="AccentSoftBrush"   Color="#26FF5C6E" />
+
+    <Color x:Key="SystemAccentColor">#FF5C6E</Color>
+    <Color x:Key="SystemAccentColorLight1">#FF7384</Color>
+    <Color x:Key="SystemAccentColorLight2">#FF8A99</Color>
+    <Color x:Key="SystemAccentColorLight3">#FFA1AE</Color>
+    <Color x:Key="SystemAccentColorDark1">#E03B4E</Color>
+    <Color x:Key="SystemAccentColorDark2">#BC2F40</Color>
+    <Color x:Key="SystemAccentColorDark3">#992433</Color>
+
+    <RadialGradientBrush x:Key="WindowGlowBrush" Center="62%,8%" GradientOrigin="62%,8%" RadiusX="75%" RadiusY="70%">
+        <GradientStop Offset="0" Color="#23FF5C6E" />
+        <GradientStop Offset="1" Color="#00FF5C6E" />
+    </RadialGradientBrush>
+</ResourceDictionary>

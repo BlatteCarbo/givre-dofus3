@@ -1,0 +1,24 @@
+{
+  "declaredVersion": "3.7.11.11",
+  "versionVerified": true,
+  "versionEvidence": "GitHub release identity and asset SHA256/size verified",
+  "releaseUrl": "https://github.com/ledouxm/dofus-sqlite/releases/tag/v6.0_3.7.11.11",
+  "releaseMetadataSha256": "71960745123523c325bd0822eb3dbf4c3cccf5f00a71395ae5483e56f64740bc",
+  "excludedMissingItemTypeIds": [
+    34569
+  ],
+  "sourceItemCount": 20785,
+  "sqliteSha256": "bcb66ca4611bdff29c5e303cb4dd4770790c6c4905e6a81b0e8c2a33726501b7",
+  "i18nSha256": "f972c8efa2bf22cc626fc2e58e96695f68579cd846303de0afa8d17ac8cb0016",
+  "itemsSha256": "bfd68f5f3157cdb504207689df7811cc5c15267e8fe80c3d5aa809b185cf56d5",
+  "itemCount": 20784,
+  "columns": [
+    "name",
+    "level",
+    "type",
+    "gid",
+    "recipeCount"
+  ],
+  "recipeCount": "COUNT(DISTINCT RecipeData.id) per ingredient; zero is known zero",
+  "pricesIncluded": false
+}

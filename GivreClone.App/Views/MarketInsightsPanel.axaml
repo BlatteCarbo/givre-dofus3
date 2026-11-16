@@ -1,0 +1,142 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             x:Class="GivreClone.App.Views.MarketInsightsPanel"
+             x:DataType="vm:BotsViewModel">
+  <UserControl.Styles>
+    <Style Selector="Border.marketCard">
+      <Setter Property="Background" Value="#16243A"/>
+      <Setter Property="BorderBrush" Value="#34465C"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="CornerRadius" Value="12"/>
+      <Setter Property="Padding" Value="18"/>
+    </Style>
+    <Style Selector="TextBlock.marketMuted">
+      <Setter Property="Foreground" Value="#A5B6CD"/>
+      <Setter Property="FontSize" Value="12"/>
+    </Style>
+    <Style Selector="Button.marketAction">
+      <Setter Property="Background" Value="#264A58"/>
+      <Setter Property="Foreground" Value="#D7FFF5"/>
+      <Setter Property="Padding" Value="13,8"/>
+      <Setter Property="CornerRadius" Value="8"/>
+      <Setter Property="MinHeight" Value="34"/>
+    </Style>
+  </UserControl.Styles>
+
+  <Border Background="#0C1728">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+      <StackPanel Margin="22,20,22,28" MaxWidth="1180" HorizontalAlignment="Stretch" Spacing="16">
+        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="18">
+          <StackPanel Spacing="5">
+            <TextBlock Text="Marché &amp; kamas" FontSize="25" FontWeight="SemiBold" Foreground="#F3F7FD"/>
+            <TextBlock Text="Historique des ventes et prix moyens reçus du serveur. Aucune transaction automatique."
+                       Classes="marketMuted" TextWrapping="Wrap" />
+          </StackPanel>
+          <Border Grid.Column="1" Background="#1D3B46" CornerRadius="7" Padding="12,7"
+                  VerticalAlignment="Center">
+            <TextBlock Text="LECTURE SEULE" Foreground="#8FEDD3" FontWeight="SemiBold" FontSize="11"/>
+          </Border>
+        </Grid>
+
+        <Border Classes="marketCard">
+          <StackPanel Spacing="13">
+            <TextBlock Text="Historique des prix HDV" FontSize="17" FontWeight="SemiBold" Foreground="#EDF5FF"/>
+            <TextBlock Text="Sélectionne un personnage avec son HDV ouvert, choisis un lot en vente, puis demande l'historique. Une demande n'est jamais envoyée automatiquement."
+                       Classes="marketMuted" TextWrapping="Wrap"/>
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+              <ComboBox Grid.Column="0" ItemsSource="{Binding Hdv.ListingsView}"
+                        SelectedItem="{Binding Hdv.PriceHistorySelection, Mode=TwoWay}"
+                        IsEnabled="{Binding Hdv.HasListings}" MinHeight="37"
+                        AutomationProperties.Name="Objet dont consulter l'historique du marché">
+                <ComboBox.ItemTemplate>
+                  <DataTemplate x:DataType="vm:HdvListingRow">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                      <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" MaxWidth="270"/>
+                      <TextBlock Text="{Binding LotText}" Foreground="#9AACC5"/>
+                      <TextBlock Text="{Binding Gid, StringFormat='GID {0}'}" Foreground="#9AACC5"/>
+                    </StackPanel>
+                  </DataTemplate>
+                </ComboBox.ItemTemplate>
+              </ComboBox>
+              <Button Grid.Column="1" Classes="marketAction" Content="Lire l'historique"
+                      Command="{Binding Hdv.ReadPriceHistoryCommand}"
+                      IsEnabled="{Binding Hdv.CanReadPriceHistory}"
+                      AutomationProperties.Name="Demander manuellement l'historique reçu du serveur"/>
+            </Grid>
+            <ProgressBar IsIndeterminate="True" IsVisible="{Binding Hdv.PriceHistoryBusy}" Height="3"/>
+            <TextBlock Text="{Binding Hdv.PriceHistorySelectionLabel}" FontWeight="SemiBold"
+                       Foreground="#E1EDFE" TextWrapping="Wrap"/>
+            <TextBlock Text="{Binding Hdv.PriceHistoryStatus}" Classes="marketMuted" TextWrapping="Wrap"/>
+            <TextBlock Text="{Binding Hdv.PriceHistorySource}" Foreground="#74D9CF" FontSize="11"/>
+            <Border Height="1" Background="#31445D" Margin="0,2"/>
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <Button Classes="marketAction" Content="24 heures"
+                      Command="{Binding Hdv.SetPriceHistoryWindowCommand}" CommandParameter="1"/>
+              <Button Classes="marketAction" Content="7 jours"
+                      Command="{Binding Hdv.SetPriceHistoryWindowCommand}" CommandParameter="7"/>
+              <Button Classes="marketAction" Content="30 jours"
+                      Command="{Binding Hdv.SetPriceHistoryWindowCommand}" CommandParameter="30"/>
+              <TextBlock Text="{Binding Hdv.PriceHistoryWindowDays, StringFormat='Période : {0} jour(s)'}"
+                         Foreground="#F1D28C" VerticalAlignment="Center" Margin="12,0,0,0"/>
+            </StackPanel>
+            <Border Background="#0D192C" CornerRadius="10" BorderBrush="#293C55"
+                    BorderThickness="1" Padding="14" MinHeight="215">
+              <Grid>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"
+                            IsVisible="{Binding !Hdv.PriceHistoryHasChart}" Spacing="7">
+                  <TextBlock Text="Graphique en attente des observations serveur"
+                             Foreground="#D0DDED" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                  <TextBlock Text="Aucun cours reconstitué à partir de DofusDB ou de prix fictifs."
+                             Classes="marketMuted" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                </StackPanel>
+                <Viewbox Stretch="Fill" Height="200" IsVisible="{Binding Hdv.PriceHistoryHasChart}">
+                  <Canvas Width="1000" Height="240">
+                    <Polygon Points="{Binding Hdv.PriceHistoryAreaPoints}" Fill="#265CCCBF"/>
+                    <Polyline Points="{Binding Hdv.PriceHistoryLinePoints}" Stroke="#63DAD0"
+                              StrokeThickness="3" StrokeJoin="Round" StrokeLineCap="Round"/>
+                  </Canvas>
+                </Viewbox>
+              </Grid>
+            </Border>
+            <TextBlock Text="{Binding Hdv.PriceHistoryWindowStatus}" Classes="marketMuted" TextWrapping="Wrap"/>
+            <Grid ColumnDefinitions="*,150,110" ColumnSpacing="10"
+                  IsVisible="{Binding Hdv.PriceHistoryHasChart}">
+              <TextBlock Text="Date" Classes="marketMuted"/>
+              <TextBlock Grid.Column="1" Text="Prix moyen (K)" Classes="marketMuted" TextAlignment="Right"/>
+              <TextBlock Grid.Column="2" Text="Vendus" Classes="marketMuted" TextAlignment="Right"/>
+            </Grid>
+            <ItemsControl ItemsSource="{Binding Hdv.PriceHistoryWindowRows}" MaxHeight="300">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="vm:HdvPriceHistoryLine">
+                  <Border Background="#101E31" Padding="8,6" CornerRadius="5" Margin="0,0,0,4">
+                    <Grid ColumnDefinitions="*,150,110" ColumnSpacing="10">
+                      <TextBlock Text="{Binding DateText}" Foreground="#DEE8F9"/>
+                      <TextBlock Grid.Column="1" Text="{Binding PriceText}" Foreground="#8FE9D4"
+                                 TextAlignment="Right"/>
+                      <TextBlock Grid.Column="2" Text="{Binding SoldText}" Foreground="#F2D69C"
+                                 TextAlignment="Right"/>
+                    </Grid>
+                  </Border>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <TextBlock Text="Source : ObjectAveragePricesHistoryEvent. Ce message ne porte pas le GID : la correspondance avec l'objet demandé est indicative, pas certifiée. Les moyennes et médianes globales du jeu ne sont pas déduites des seuls points reçus."
+                       Classes="marketMuted" TextWrapping="Wrap" FontSize="11"/>
+          </StackPanel>
+        </Border>
+
+        <Expander Header="Autres services du jeu · Bourse, boutique et cadeaux" IsExpanded="False">
+          <StackPanel Spacing="10" Margin="8,12,8,10">
+            <TextBlock Text="Bourse aux Kamas / Ogrines" FontWeight="SemiBold" Foreground="#EBF3FE"/>
+            <TextBlock Text="Le flux des offres et le taux Kamas/Ogrine ne sont pas encore raccordés. Aucun prix, taux ni transaction n'est affiché sans réponse serveur identifiable."
+                       Classes="marketMuted" TextWrapping="Wrap"/>
+            <TextBlock Text="Boutique / Abonnements / Cadeaux" FontWeight="SemiBold" Foreground="#EBF3FE"/>
+            <TextBlock Text="Catalogues de boutique, cadeaux, codes et récompenses : accès non vérifié dans GivreWork. Aucun bouton d'achat, d'échange ou de récupération automatique."
+                       Classes="marketMuted" TextWrapping="Wrap"/>
+          </StackPanel>
+        </Expander>
+      </StackPanel>
+    </ScrollViewer>
+  </Border>
+</UserControl>

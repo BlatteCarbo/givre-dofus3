@@ -1,0 +1,128 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             x:Class="GivreClone.App.Views.CharacterCreationTabView"
+             x:DataType="vm:CharacterCreationTabViewModel"
+             Classes="page">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="30,26" Spacing="18" MaxWidth="920" HorizontalAlignment="Stretch">
+
+            <Grid ColumnDefinitions="Auto,*">
+                <Button Grid.Column="0" Classes="ghost" VerticalAlignment="Center" Margin="0,0,16,0"
+                        Command="{Binding CloseCommand}" Content="Comptes" />
+                <StackPanel Grid.Column="1" Spacing="4">
+                    <TextBlock Classes="h1" Text="Créer un personnage" />
+                    <TextBlock Classes="caption" TextWrapping="Wrap"
+                               Text="La création Socket a lieu à la connexion, quand la liste des personnages arrive. Sur un client MITM, l'envoi ne part que tant que ce client est encore sur cette liste." />
+                </StackPanel>
+            </Grid>
+
+            <Border Classes="notice" IsVisible="{Binding HasNotice}">
+                <TextBlock Text="{Binding Notice}" TextWrapping="Wrap" />
+            </Border>
+
+            <Border Classes="card" Padding="18,16">
+                <StackPanel Spacing="12">
+                    <TextBlock Classes="label" Text="Compte" />
+                    <ComboBox ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount, Mode=TwoWay}"
+                              HorizontalAlignment="Stretch">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="vm:CreationAccountChoice">
+                                <TextBlock Text="{Binding Label}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <TextBlock Classes="label" Text="Serveur" />
+                    <ComboBox ItemsSource="{Binding Servers}" SelectedItem="{Binding SelectedServer, Mode=TwoWay}"
+                              HorizontalAlignment="Stretch">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="vm:CreationServerChoice">
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card" Padding="18,16">
+                <StackPanel Spacing="12">
+                    <TextBlock Classes="label" Text="Classe" />
+                    <ComboBox ItemsSource="{Binding Breeds}" SelectedItem="{Binding SelectedBreed, Mode=TwoWay}"
+                              HorizontalAlignment="Stretch">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="vm:CreationBreedChoice">
+                                <TextBlock Text="{Binding Label}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <TextBlock Classes="label" Text="Sexe" />
+                    <StackPanel Orientation="Horizontal" Spacing="18">
+                        <RadioButton GroupName="CreationSex" Content="♂  Masculin" IsChecked="{Binding IsMale, Mode=TwoWay}" />
+                        <RadioButton GroupName="CreationSex" Content="♀  Féminin" IsChecked="{Binding IsFemale, Mode=TwoWay}" />
+                    </StackPanel>
+                    <TextBlock Classes="label" Text="Nom" />
+                    <Grid ColumnDefinitions="*,Auto">
+                        <TextBox Grid.Column="0" Text="{Binding Name, Mode=TwoWay}" MaxLength="20"
+                                 PlaceholderText="Vide = nom proposé par le serveur" />
+                        <Button Grid.Column="1" Classes="ghost" Margin="8,0,0,0" VerticalAlignment="Center"
+                                Command="{Binding SuggestServerNameCommand}" Content="Nom proposé par le serveur" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card" Padding="18,16">
+                <StackPanel Spacing="12">
+                    <TextBlock Classes="label" Text="Couleurs" />
+                    <TextBlock Classes="caption" TextWrapping="Wrap"
+                               Text="Choisis un emplacement puis une couleur. Estompé = couleur de la classe." />
+                    <ItemsControl ItemsSource="{Binding Colors}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:CreationColor">
+                                <Button Classes="ghost" Padding="6,5" Margin="0,0,6,6"
+                                        Command="{Binding $parent[ItemsControl].((vm:CharacterCreationTabViewModel)DataContext).SelectColorCommand}"
+                                        CommandParameter="{Binding}">
+                                    <StackPanel Spacing="4" Width="52">
+                                        <Border Height="28" CornerRadius="6" BorderThickness="1"
+                                                BorderBrush="{StaticResource StrokeSoftBrush}"
+                                                Background="{Binding Brush}" Opacity="{Binding ShownOpacity}" />
+                                        <TextBlock Text="{Binding SlotName}" FontSize="10.5" HorizontalAlignment="Center"
+                                                   Foreground="{StaticResource TextSecondaryBrush}" />
+                                        <Border Height="3" CornerRadius="2" IsVisible="{Binding IsActive}"
+                                                Background="{DynamicResource AccentBrightBrush}" />
+                                    </StackPanel>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <ItemsControl ItemsSource="{Binding Palette}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:PaletteSwatch">
+                                <Button Classes="ghost" Padding="0" Margin="0,0,5,5" Width="26" Height="26"
+                                        Command="{Binding $parent[ItemsControl].((vm:CharacterCreationTabViewModel)DataContext).ApplyColorCommand}"
+                                        CommandParameter="{Binding}">
+                                    <Border CornerRadius="5" Background="{Binding Brush}" Width="22" Height="22" />
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button Classes="ghost" Content="Au hasard" Command="{Binding RandomColorsCommand}" />
+                        <Button Classes="ghost" Content="Couleurs de la classe" Command="{Binding ClassColorsCommand}" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <Button Classes="primary" Height="40" MinWidth="180" Command="{Binding CreateCommand}"
+                        IsEnabled="{Binding !Busy}" Content="{Binding CreateLabel}" />
+            </StackPanel>
+            <TextBlock Text="{Binding Status}" TextWrapping="Wrap" Foreground="{Binding StatusBrush}" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,390 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:vm="using:GivreClone.App.ViewModels"
+ x:Class="GivreClone.App.Views.DashboardView"
+ x:DataType="vm:DashboardViewModel"
+ Classes="page">
+ <UserControl.Styles>
+        <Style Selector="TextBlock.urgent"><Setter Property="Foreground" Value="{StaticResource AmberBrush}" /></Style>
+ <Style Selector="Button.dashRow">
+ <Setter Property="HorizontalAlignment" Value="Stretch" />
+ <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+ <Setter Property="Background" Value="{StaticResource Surface2Brush}" />
+ <Setter Property="BorderBrush" Value="{StaticResource StrokeSoftBrush}" />
+ <Setter Property="BorderThickness" Value="1" />
+ <Setter Property="CornerRadius" Value="9" />
+ <Setter Property="Padding" Value="12,10" />
+ <Setter Property="Margin" Value="0,0,0,7" />
+ <Setter Property="MinHeight" Value="60" />
+ </Style>
+ <Style Selector="Button.dashRow:pointerover">
+ <Setter Property="BorderBrush" Value="{DynamicResource AccentBrightBrush}" />
+ </Style>
+ <Style Selector="Button.dashRow:focus-visible">
+ <Setter Property="BorderBrush" Value="{DynamicResource AccentBrightBrush}" />
+ <Setter Property="BorderThickness" Value="2" />
+ </Style>
+ <Style Selector="ListBox.dashList">
+ <Setter Property="Background" Value="Transparent" />
+ <Setter Property="BorderThickness" Value="0" />
+ <Setter Property="Padding" Value="0" />
+ </Style>
+ <Style Selector="ListBox.dashList ListBoxItem">
+ <Setter Property="Padding" Value="0" />
+ <Setter Property="Margin" Value="0" />
+ </Style>
+ <Style Selector="ListBox.dashList ListBoxItem:pointerover /template/ ContentPresenter">
+ <Setter Property="Background" Value="Transparent" />
+ </Style>
+ </UserControl.Styles>
+
+ <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+ <StackPanel Margin="22,18,22,26" Spacing="17">
+ <!-- Titre et fraîcheur d'un relevé agrégé à partir de modèles locaux déjà vivants. -->
+ <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+ <StackPanel Grid.Column="0" Spacing="5">
+ <StackPanel Orientation="Horizontal" Spacing="9">
+ <PathIcon Data="{StaticResource IconHome}" Width="22" Height="22"
+ Foreground="{DynamicResource AccentBrightBrush}" VerticalAlignment="Center" />
+ <TextBlock Text="Tableau de bord" FontSize="23" FontWeight="Bold"
+ Foreground="{StaticResource TextPrimaryBrush}" />
+ </StackPanel>
+ <TextBlock Text="Vos sessions, vos superviseurs et ce qui demande votre attention."
+ Classes="caption" FontSize="12.5" TextWrapping="Wrap" />
+ </StackPanel>
+ <!-- Le bouton « Actualiser » manuel a été retiré (C33) : le relevé se rafraîchit seul ; RefreshSnapshotCommand reste sur la VM. -->
+ <!-- Lancement en un clic : comptes activés non lancés, connectés directement en jeu, script démarré à l'arrivée (confirmation d'abord). -->
+ <Button Grid.Column="1" Classes="accent" Height="38" VerticalAlignment="Center" Command="{Binding LaunchAllBotsCommand}"
+ ToolTip.Tip="Connecte en jeu tous les comptes activés non lancés et démarre leur script dès l'arrivée. Une confirmation est demandée."
+ AutomationProperties.Name="Lancer tous les bots activés avec leur script">
+ <StackPanel Orientation="Horizontal" Spacing="7">
+ <PathIcon Data="{StaticResource IconPlay}" Width="13" Height="13" />
+ <TextBlock Text="{Binding LaunchableCount, StringFormat='Lancer les {0} bots'}" VerticalAlignment="Center" />
+ </StackPanel>
+ </Button>
+ </Grid>
+
+ <!-- Les quatre valeurs sont des décomptes exacts d'états actuellement exposés.
+      « En jeu » exclut explicitement Connexion, Mort et Déconnecté. -->
+ <WrapPanel Orientation="Horizontal">
+ <Border Classes="card" Width="232" MinHeight="110" Margin="0,0,12,10" Padding="18,15"
+ Background="{StaticResource Surface1Brush}">
+ <StackPanel Spacing="6">
+ <TextBlock Text="Sessions suivies" Classes="caption" FontSize="12" />
+ <TextBlock Text="{Binding SessionCount}" FontSize="30" FontWeight="Bold"
+ Foreground="{StaticResource TextPrimaryBrush}" />
+ <TextBlock Text="Toutes les sessions suivies" FontSize="11.5" Foreground="{StaticResource TextMutedBrush}" />
+ </StackPanel>
+ </Border>
+ <Border Classes="card" Width="232" MinHeight="110" Margin="0,0,12,10" Padding="18,15"
+ Background="{StaticResource Surface1Brush}">
+ <StackPanel Spacing="6">
+ <TextBlock Text="En jeu" Classes="caption" FontSize="12" />
+ <TextBlock Text="{Binding InGameCount}" FontSize="30" FontWeight="Bold"
+ Foreground="{DynamicResource AccentBrightBrush}" />
+ <TextBlock Text="Sessions réellement actives" FontSize="11.5" TextWrapping="Wrap"
+ Foreground="{StaticResource TextMutedBrush}" />
+ </StackPanel>
+ </Border>
+ <Border Classes="card" Width="232" MinHeight="110" Margin="0,0,12,10" Padding="18,15"
+ Background="{StaticResource Surface1Brush}">
+ <StackPanel Spacing="6">
+ <TextBlock Text="Signaux à vérifier" Classes="caption" FontSize="12" />
+ <TextBlock Text="{Binding ProblemCount}" FontSize="30" FontWeight="Bold"
+ Foreground="{StaticResource AmberBrush}" />
+ <TextBlock Text="Alertes et anomalies à consulter" FontSize="11.5"
+ TextWrapping="Wrap" Foreground="{StaticResource TextMutedBrush}" />
+ </StackPanel>
+ </Border>
+ <Border Classes="card" Width="232" MinHeight="110" Margin="0,0,12,10" Padding="18,15"
+ Background="{StaticResource Surface1Brush}">
+ <StackPanel Spacing="6">
+ <TextBlock Text="Abonnement" Classes="caption" FontSize="12" />
+ <TextBlock Text="{Binding SubscriptionHeadline}" FontSize="26" FontWeight="Bold"
+ Foreground="{DynamicResource AccentBrightBrush}" Classes.urgent="{Binding SubscriptionUrgent}" TextWrapping="Wrap" />
+ <TextBlock Text="{Binding SubscriptionDetail}" FontSize="11.5" TextWrapping="Wrap"
+ Foreground="{StaticResource TextMutedBrush}" />
+ </StackPanel>
+ </Border>
+ </WrapPanel>
+
+ <!-- Compact KPI Header showing Kamas/hour, XP/hour, Fight Win Rate, and Pods Occupancy per bot -->
+ <TextBlock Text="Performance KPI en direct" Classes="section" Margin="0,4,0,2" />
+ <WrapPanel Orientation="Horizontal">
+ <Border Classes="card" Width="232" MinHeight="100" Margin="0,0,12,10" Padding="18,14"
+ Background="{StaticResource Surface1Brush}">
+ <StackPanel Spacing="5">
+ <TextBlock Text="Kamas / heure" Classes="caption" FontSize="12" />
+ <TextBlock Text="{Binding KamasPerHourText}" FontSize="26" FontWeight="Bold"
+ Foreground="{StaticResource AmberBrush}" />
+ <StackPanel Orientation="Horizontal" Spacing="5">
+ <PathIcon Data="{StaticResource IconChevronRight}" Width="10" Height="10" Foreground="{StaticResource SuccessBrush}" VerticalAlignment="Center" />
+ <TextBlock Text="{Binding KamasPerHourTrend}" FontSize="11" Foreground="{StaticResource SuccessBrush}" VerticalAlignment="Center" />
+ </StackPanel>
+ </StackPanel>
+ </Border>
+ <Border Classes="card" Width="232" MinHeight="100" Margin="0,0,12,10" Padding="18,14"
+ Background="{StaticResource Surface1Brush}">
+ <StackPanel Spacing="5">
+ <TextBlock Text="XP / heure" Classes="caption" FontSize="12" />
+ <TextBlock Text="{Binding XpPerHourText}" FontSize="26" FontWeight="Bold"
+ Foreground="{DynamicResource AccentBrightBrush}" />
+ <StackPanel Orientation="Horizontal" Spacing="5">
+ <PathIcon Data="{StaticResource IconChevronRight}" Width="10" Height="10" Foreground="{StaticResource SuccessBrush}" VerticalAlignment="Center" />
+ <TextBlock Text="{Binding XpPerHourTrend}" FontSize="11" Foreground="{StaticResource SuccessBrush}" VerticalAlignment="Center" />
+ </StackPanel>
+ </StackPanel>
+ </Border>
+ <Border Classes="card" Width="232" MinHeight="100" Margin="0,0,12,10" Padding="18,14"
+ Background="{StaticResource Surface1Brush}">
+ <StackPanel Spacing="5">
+ <TextBlock Text="Taux de victoire" Classes="caption" FontSize="12" />
+ <TextBlock Text="{Binding WinRateText}" FontSize="26" FontWeight="Bold"
+ Foreground="{StaticResource SuccessBrush}" />
+ <StackPanel Orientation="Horizontal" Spacing="5">
+ <Ellipse Width="7" Height="7" Fill="{StaticResource SuccessBrush}" VerticalAlignment="Center" />
+ <TextBlock Text="{Binding WinRateTrend}" FontSize="11" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
+ </StackPanel>
+ </StackPanel>
+ </Border>
+ <Border Classes="card" Width="232" MinHeight="100" Margin="0,0,12,10" Padding="18,14"
+ Background="{StaticResource Surface1Brush}">
+ <StackPanel Spacing="5">
+ <TextBlock Text="Occupation pods" Classes="caption" FontSize="12" />
+ <TextBlock Text="{Binding PodsOccupancyText}" FontSize="26" FontWeight="Bold"
+ Foreground="{StaticResource TextPrimaryBrush}" Classes.urgent="{Binding PodsOccupancyUrgent}" />
+ <StackPanel Orientation="Horizontal" Spacing="5">
+ <Ellipse Width="7" Height="7" Fill="{StaticResource AmberBrush}" VerticalAlignment="Center" />
+ <TextBlock Text="{Binding PodsOccupancyTrend}" FontSize="11" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
+ </StackPanel>
+ </StackPanel>
+ </Border>
+ </WrapPanel>
+
+ <!-- Indicateurs en direct : kamas des inventaires relevés, issues de combat et récoltes depuis le démarrage de l'application. -->
+ <WrapPanel Orientation="Horizontal" Margin="0,-7,0,0">
+ <Border Classes="card" Width="232" MinHeight="96" Margin="0,0,12,10" Padding="18,13"
+ Background="{StaticResource Surface2Brush}" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1">
+ <StackPanel Spacing="5">
+ <StackPanel Orientation="Horizontal" Spacing="7">
+ <Image Source="avares://GivreClone/Assets/stats/kamas.png" Width="15" Height="15" VerticalAlignment="Center" />
+ <TextBlock Text="Kamas totaux" Classes="caption" FontSize="12" VerticalAlignment="Center" />
+ </StackPanel>
+ <TextBlock Text="{Binding TotalKamasText}" FontSize="24" FontWeight="Bold" Foreground="{StaticResource AmberBrush}" />
+ <TextBlock Text="{Binding TotalKamasDetail}" FontSize="11.5" TextWrapping="Wrap" Foreground="{StaticResource TextMutedBrush}" />
+ </StackPanel>
+ </Border>
+ <Border Classes="card" Width="232" MinHeight="96" Margin="0,0,12,10" Padding="18,13"
+ Background="{StaticResource Surface2Brush}" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1">
+ <StackPanel Spacing="5">
+ <TextBlock Text="Combats gagnés / perdus" Classes="caption" FontSize="12" />
+ <StackPanel Orientation="Horizontal" Spacing="6">
+ <TextBlock Text="{Binding FightsWon}" FontSize="24" FontWeight="Bold" Foreground="{StaticResource SuccessBrush}" />
+ <TextBlock Text="/" FontSize="24" Foreground="{StaticResource TextMutedBrush}" />
+ <TextBlock Text="{Binding FightsLost}" FontSize="24" FontWeight="Bold" Foreground="{StaticResource DangerBrush}" />
+ </StackPanel>
+ <TextBlock Text="{Binding FightsDetail}" FontSize="11.5" TextWrapping="Wrap" Foreground="{StaticResource TextMutedBrush}" />
+ </StackPanel>
+ </Border>
+ <Border Classes="card" Width="232" MinHeight="96" Margin="0,0,12,10" Padding="18,13"
+ Background="{StaticResource Surface2Brush}" BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="1">
+ <StackPanel Spacing="5">
+ <TextBlock Text="Ressources récoltées" Classes="caption" FontSize="12" />
+ <TextBlock Text="{Binding HarvestedCount, StringFormat='{}{0:N0}'}" FontSize="24" FontWeight="Bold"
+ Foreground="{DynamicResource AccentBrightBrush}" />
+ <TextBlock Text="Unités récoltées (bonus inclus) depuis le démarrage" FontSize="11.5" TextWrapping="Wrap"
+ Foreground="{StaticResource TextMutedBrush}" />
+ </StackPanel>
+ </Border>
+ </WrapPanel>
+
+ <Grid ColumnDefinitions="*,*" ColumnSpacing="14">
+ <!-- Toutes les sessions enregistrées dans BotsVM restent visibles, même déconnectées. -->
+ <Border Grid.Column="0" Classes="card" Padding="14" MinHeight="230" VerticalAlignment="Top">
+ <StackPanel Spacing="12">
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Spacing="3">
+ <TextBlock Text="Sessions" Classes="section" />
+ <TextBlock Classes="caption" Text="Sélectionner une session pour ouvrir sa fiche"
+ TextWrapping="Wrap" />
+ </StackPanel>
+ <Border Grid.Column="1" Classes="badge" VerticalAlignment="Top">
+ <TextBlock Text="{Binding SessionCount}" />
+ </Border>
+ </Grid>
+ <StackPanel Spacing="5" IsVisible="{Binding !HasBots}" Margin="2,18,2,18">
+ <PathIcon Data="{StaticResource IconRobot}" Width="24" Height="24"
+ Foreground="{StaticResource TextMutedBrush}" HorizontalAlignment="Center" />
+ <TextBlock Text="Aucune session suivie" FontWeight="SemiBold" HorizontalAlignment="Center" />
+ <TextBlock Text="Les sessions détectées dans l'onglet Bots apparaîtront ici."
+ TextAlignment="Center" TextWrapping="Wrap" Foreground="{StaticResource TextMutedBrush}" />
+ </StackPanel>
+ <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8" IsVisible="{Binding HasBots}">
+ <ComboBox SelectedIndex="{Binding BotFilter}" MinWidth="120" AutomationProperties.Name="Filtrer les sessions">
+ <ComboBoxItem Content="Toutes" />
+ <ComboBoxItem Content="En jeu" />
+ <ComboBoxItem Content="À vérifier" />
+ </ComboBox>
+ <TextBox Grid.Column="1" Text="{Binding BotSearch}" PlaceholderText="Rechercher (nom, serveur, zone)"
+ AutomationProperties.Name="Rechercher une session" />
+ </Grid>
+ <ListBox Classes="dashList" ItemsSource="{Binding VisibleBots}" MaxHeight="330"
+ IsVisible="{Binding HasBots}" SelectionMode="Single"
+ ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+ ScrollViewer.VerticalScrollBarVisibility="Auto"
+ AutomationProperties.Name="Sessions observées">
+ <ListBox.ItemTemplate>
+ <DataTemplate x:DataType="vm:BotRowViewModel">
+ <Button Classes="dashRow" Command="{Binding $parent[UserControl].((vm:DashboardViewModel)DataContext).OpenBotCommand}"
+ CommandParameter="{Binding}" AutomationProperties.Name="Ouvrir la fiche de cette session">
+ <StackPanel Spacing="8">
+ <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="9">
+ <Border Grid.Column="0" Width="34" Height="34" CornerRadius="9"
+ Background="{StaticResource Surface1Brush}" VerticalAlignment="Center">
+ <PathIcon Data="{StaticResource IconRobot}" Width="17" Height="17"
+ Foreground="{DynamicResource AccentBrightBrush}" />
+ </Border>
+ <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+ <TextBlock Text="{Binding Row.Character}" Classes="pii" FontWeight="SemiBold"
+ TextTrimming="CharacterEllipsis" />
+ <StackPanel Orientation="Horizontal" Spacing="6">
+ <Ellipse Fill="{Binding Row.ActivityBrush}" Width="7" Height="7"
+ VerticalAlignment="Center" />
+ <TextBlock Text="{Binding Row.ActivityText}" FontSize="11.5"
+ Foreground="{StaticResource TextSecondaryBrush}" TextTrimming="CharacterEllipsis" />
+ </StackPanel>
+ </StackPanel>
+ <StackPanel Grid.Column="2" Spacing="4" VerticalAlignment="Center">
+ <TextBlock Text="{Binding Row.MapCoords, TargetNullValue='Position inconnue'}"
+ FontSize="11.5" Foreground="{StaticResource TextSecondaryBrush}" HorizontalAlignment="Right" />
+ <TextBlock Text="{Binding Row.Server}" Classes="pii" FontSize="10.5"
+ Foreground="{StaticResource TextMutedBrush}" HorizontalAlignment="Right" />
+ </StackPanel>
+ </Grid>
+ <!-- Vue d'ensemble : zone, PV, pods et kamas d'un coup d'œil -->
+ <Grid ColumnDefinitions="*,*,Auto" ColumnSpacing="10" IsVisible="{Binding HasCharStats}">
+ <StackPanel Spacing="2"><Grid ColumnDefinitions="*,Auto"><TextBlock Text="PV" FontSize="10" Foreground="{StaticResource TextMutedBrush}" /><TextBlock Grid.Column="1" Text="{Binding LifeText}" FontSize="10" Foreground="#FF6B7A" /></Grid>
+ <ProgressBar Height="4" CornerRadius="2" Minimum="0" Maximum="{Binding CharMaxLife, FallbackValue=1}" Value="{Binding CharLife, FallbackValue=0}" Foreground="#FF6B7A" /></StackPanel>
+ <StackPanel Grid.Column="1" Spacing="2" IsVisible="{Binding HasPods}"><Grid ColumnDefinitions="*,Auto"><TextBlock Text="Pods" FontSize="10" Foreground="{StaticResource TextMutedBrush}" /><TextBlock Grid.Column="1" Text="{Binding Pods}" FontSize="10" Foreground="{StaticResource TextSecondaryBrush}" /></Grid>
+ <ProgressBar Height="4" CornerRadius="2" Minimum="0" Maximum="100" Value="{Binding PodsPercent}" Foreground="{Binding PodsBrush}" /></StackPanel>
+ <TextBlock Grid.Column="2" Text="{Binding InfoKamasText}" FontSize="11" Foreground="#E6B450" VerticalAlignment="Bottom" />
+ </Grid>
+ <TextBlock Text="{Binding ZoneText}" FontSize="10.5" Foreground="{StaticResource TextMutedBrush}" TextTrimming="CharacterEllipsis"
+ IsVisible="{Binding ZoneText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+ <TextBlock Text="{Binding DayRatesText}" FontSize="10.5" Foreground="{DynamicResource AccentBrightBrush}" TextTrimming="CharacterEllipsis"
+ IsVisible="{Binding DayRatesText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+ </StackPanel>
+ </Button>
+ </DataTemplate>
+ </ListBox.ItemTemplate>
+ </ListBox>
+ </StackPanel>
+ </Border>
+
+ <Border Grid.Column="1" Classes="card" Padding="14" MinHeight="230" VerticalAlignment="Top">
+ <StackPanel Spacing="12">
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Spacing="3">
+ <TextBlock Text="Superviseurs" Classes="section" />
+ <TextBlock Text="Sessions supervisées et état actuel" Classes="caption" TextWrapping="Wrap" />
+ </StackPanel>
+ <Border Grid.Column="1" Classes="badge" VerticalAlignment="Top">
+ <TextBlock Text="{Binding RunningSupervisorCount, StringFormat='{}{0} actif(s)'}" />
+ </Border>
+ </Grid>
+ <StackPanel Spacing="6" IsVisible="{Binding !HasSupervisors}" Margin="2,18,2,18">
+ <PathIcon Data="{StaticResource IconGroup}" Width="24" Height="24"
+ Foreground="{StaticResource TextMutedBrush}" HorizontalAlignment="Center" />
+ <TextBlock Text="Aucun superviseur configuré" FontWeight="SemiBold"
+ HorizontalAlignment="Center" TextWrapping="Wrap" />
+ <TextBlock Text="Les superviseurs existants apparaîtront ici."
+ TextAlignment="Center" TextWrapping="Wrap" Foreground="{StaticResource TextMutedBrush}" />
+ </StackPanel>
+ <ListBox Classes="dashList" ItemsSource="{Binding Supervisors}" MaxHeight="330"
+ IsVisible="{Binding HasSupervisors}"
+ ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+ ScrollViewer.VerticalScrollBarVisibility="Auto"
+ AutomationProperties.Name="Superviseurs observés">
+ <ListBox.ItemTemplate>
+ <DataTemplate x:DataType="vm:SupervisorViewModel">
+ <Button Classes="dashRow" Command="{Binding $parent[UserControl].((vm:DashboardViewModel)DataContext).OpenSupervisorCommand}"
+ CommandParameter="{Binding}" AutomationProperties.Name="Consulter ce superviseur">
+ <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+ <StackPanel Spacing="4">
+ <TextBlock Text="{Binding Name}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+ <TextBlock Text="{Binding BotsOverview}" Classes="caption" FontSize="11"
+ TextTrimming="CharacterEllipsis" />
+ <TextBlock Text="{Binding ProblemText}" FontSize="11" TextWrapping="Wrap"
+ Foreground="{StaticResource AmberBrush}" IsVisible="{Binding HasProblem}" />
+ </StackPanel>
+ <TextBlock Grid.Column="1" Text="{Binding StatusText}" FontSize="11"
+ Foreground="{Binding StatusBrush}" VerticalAlignment="Center" />
+ </Grid>
+ </Button>
+ </DataTemplate>
+ </ListBox.ItemTemplate>
+ </ListBox>
+ </StackPanel>
+ </Border>
+ </Grid>
+
+ <Border Classes="card" Padding="15">
+ <StackPanel Spacing="12">
+ <Grid ColumnDefinitions="*,Auto">
+ <StackPanel Spacing="4">
+ <StackPanel Orientation="Horizontal" Spacing="8">
+ <PathIcon Data="{StaticResource IconInfo}" Width="17" Height="17"
+ Foreground="{StaticResource AmberBrush}" VerticalAlignment="Center" />
+ <TextBlock Text="Points d'attention" Classes="section" />
+ </StackPanel>
+ <TextBlock Text="Les éléments importants à examiner"
+ Classes="caption" TextWrapping="Wrap" />
+ </StackPanel>
+ <Button Grid.Column="1" Classes="ghost" Command="{Binding ShowNotificationsCommand}"
+ MinHeight="30" AutomationProperties.Name="Ouvrir le centre de notifications">
+ <StackPanel Orientation="Horizontal" Spacing="6">
+ <PathIcon Data="{StaticResource IconBell}" Width="13" Height="13" />
+ <TextBlock Text="{Binding UnreadNotificationCount, StringFormat='Notifications ({0})'}" />
+ </StackPanel>
+ </Button>
+ </Grid>
+ <TextBlock IsVisible="{Binding !HasAlerts}" Text="Aucun signal nécessitant une vérification dans les sources disponibles."
+ Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap" />
+ <ItemsControl ItemsSource="{Binding Alerts}" IsVisible="{Binding HasAlerts}">
+ <ItemsControl.ItemTemplate>
+ <DataTemplate x:DataType="vm:DashboardAlertRow">
+ <Button Classes="dashRow" Command="{Binding $parent[UserControl].((vm:DashboardViewModel)DataContext).OpenAlertCommand}"
+ CommandParameter="{Binding}" AutomationProperties.Name="Consulter ce point d'attention">
+ <Grid ColumnDefinitions="130,*,Auto" ColumnSpacing="10">
+ <TextBlock Grid.Column="0" Text="{Binding Category}" FontSize="11"
+ FontWeight="SemiBold" Foreground="{StaticResource AmberBrush}" VerticalAlignment="Center" />
+ <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
+ <TextBlock Text="{Binding Title}" Classes="pii" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+ <TextBlock Text="{Binding Detail}" Classes="pii" Foreground="{StaticResource TextSecondaryBrush}"
+ FontSize="11.5" TextTrimming="CharacterEllipsis" />
+ </StackPanel>
+ <PathIcon Grid.Column="2" Data="{StaticResource IconChevronRight}" Width="12" Height="12"
+ Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center" />
+ </Grid>
+ </Button>
+ </DataTemplate>
+ </ItemsControl.ItemTemplate>
+ </ItemsControl>
+ <TextBlock Text="Les alertes affichées sont limitées aux 12 premiers signaux ; le compteur indique toutes les sources vérifiées."
+ FontSize="10.5" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap"
+ IsVisible="{Binding HasOverflowAlerts}" />
+ <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+ <Button Classes="ghost" Command="{Binding ExportIncidentCommand}" MinHeight="30"
+ ToolTip.Tip="Crée un zip sur le Bureau avec les journaux récents (secrets masqués) et l'état des sessions. Rien n'est envoyé."
+ AutomationProperties.Name="Créer un rapport d'incident">
+ <TextBlock Text="Rapport d'incident" />
+ </Button>
+ <TextBlock Grid.Column="1" Text="{Binding IncidentText}" FontSize="11" TextWrapping="Wrap" VerticalAlignment="Center"
+ Foreground="{StaticResource TextSecondaryBrush}" />
+ </Grid>
+ </StackPanel>
+ </Border>
+
+ </StackPanel>
+ </ScrollViewer>
+</UserControl>

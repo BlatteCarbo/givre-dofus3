@@ -1,0 +1,229 @@
+{
+  "schema": "givre-n02-incidents-1",
+  "scan_counts": {
+    "files_seen": 3348,
+    "files_containing_prudent": 411,
+    "files_containing_companion": 37,
+    "files_containing_buff": 1101,
+    "files_containing_walk": 1869
+  },
+  "cases": {
+    "prudent_companion_no_cast": {
+      "source_sha256": "c855496fbf462fd2d219ecc4993c0fdf45b12071a11a1932c72d6259c5eefc70",
+      "source_date_only": "2026-11-04",
+      "prudent_mentioned_in_fight": true,
+      "companion_turn_started_line": 83,
+      "start_t_sec": 7.734,
+      "observed_end_t_sec": 7.871,
+      "cast_report_count_in_segment": 0,
+      "move_report_count_in_segment": 3,
+      "resource_mentions": [],
+      "event_outline": [
+        {
+          "line": 83,
+          "t_sec": 7.734,
+          "kinds": [
+            "companion_turn",
+            "turn_any"
+          ]
+        },
+        {
+          "line": 84,
+          "t_sec": 7.734,
+          "kinds": []
+        },
+        {
+          "line": 85,
+          "t_sec": 7.734,
+          "kinds": []
+        },
+        {
+          "line": 86,
+          "t_sec": 7.734,
+          "kinds": []
+        },
+        {
+          "line": 87,
+          "t_sec": 7.734,
+          "kinds": []
+        },
+        {
+          "line": 88,
+          "t_sec": 7.76,
+          "kinds": []
+        },
+        {
+          "line": 89,
+          "t_sec": 7.76,
+          "kinds": []
+        },
+        {
+          "line": 90,
+          "t_sec": 7.785,
+          "kinds": [
+            "movement_report"
+          ]
+        },
+        {
+          "line": 91,
+          "t_sec": 7.785,
+          "kinds": []
+        },
+        {
+          "line": 92,
+          "t_sec": 7.785,
+          "kinds": []
+        },
+        {
+          "line": 93,
+          "t_sec": 7.785,
+          "kinds": []
+        },
+        {
+          "line": 94,
+          "t_sec": 7.786,
+          "kinds": []
+        },
+        {
+          "line": 95,
+          "t_sec": 7.808,
+          "kinds": []
+        },
+        {
+          "line": 96,
+          "t_sec": 7.808,
+          "kinds": []
+        },
+        {
+          "line": 97,
+          "t_sec": 7.842,
+          "kinds": [
+            "movement_report"
+          ]
+        },
+        {
+          "line": 98,
+          "t_sec": 7.871,
+          "kinds": [
+            "movement_report"
+          ]
+        }
+      ],
+      "server_command_receipt": "unknown: summary not packet sequence",
+      "next_fighter_state": "unknown unless explicit subsequent event"
+    },
+    "consecutive_companion_movements": {
+      "source_sha256": "c855496fbf462fd2d219ecc4993c0fdf45b12071a11a1932c72d6259c5eefc70",
+      "source_date_only": "2026-11-04",
+      "prudent_mentioned_in_fight": true,
+      "companion_turn_started_line": 83,
+      "start_t_sec": 7.734,
+      "observed_end_t_sec": 7.871,
+      "cast_report_count_in_segment": 0,
+      "move_report_count_in_segment": 3,
+      "resource_mentions": [],
+      "event_outline": [
+        {
+          "line": 83,
+          "t_sec": 7.734,
+          "kinds": [
+            "companion_turn",
+            "turn_any"
+          ]
+        },
+        {
+          "line": 84,
+          "t_sec": 7.734,
+          "kinds": []
+        },
+        {
+          "line": 85,
+          "t_sec": 7.734,
+          "kinds": []
+        },
+        {
+          "line": 86,
+          "t_sec": 7.734,
+          "kinds": []
+        },
+        {
+          "line": 87,
+          "t_sec": 7.734,
+          "kinds": []
+        },
+        {
+          "line": 88,
+          "t_sec": 7.76,
+          "kinds": []
+        },
+        {
+          "line": 89,
+          "t_sec": 7.76,
+          "kinds": []
+        },
+        {
+          "line": 90,
+          "t_sec": 7.785,
+          "kinds": [
+            "movement_report"
+          ]
+        },
+        {
+          "line": 91,
+          "t_sec": 7.785,
+          "kinds": []
+        },
+        {
+          "line": 92,
+          "t_sec": 7.785,
+          "kinds": []
+        },
+        {
+          "line": 93,
+          "t_sec": 7.785,
+          "kinds": []
+        },
+        {
+          "line": 94,
+          "t_sec": 7.786,
+          "kinds": []
+        },
+        {
+          "line": 95,
+          "t_sec": 7.808,
+          "kinds": []
+        },
+        {
+          "line": 96,
+          "t_sec": 7.808,
+          "kinds": []
+        },
+        {
+          "line": 97,
+          "t_sec": 7.842,
+          "kinds": [
+            "movement_report"
+          ]
+        },
+        {
+          "line": 98,
+          "t_sec": 7.871,
+          "kinds": [
+            "movement_report"
+          ]
+        }
+      ],
+      "server_command_receipt": "unknown: summary not packet sequence",
+      "next_fighter_state": "unknown unless explicit subsequent event"
+    },
+    "buff_mentioned_during_companion_turn": null
+  },
+  "unproven": [
+    "11PA_6PM_exact_at_companion_turn_if_no_explicit_resource_line",
+    "planner_decision_if_not_logged",
+    "command_receipt_vs_server_effect",
+    "target_benefit_for_buff_without_simulation",
+    "single_MP_per_movement_without_resource_deltas",
+    "companion_owner_and_account_identity"
+  ]
+}

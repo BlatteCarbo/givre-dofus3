@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <AssemblyName>GivreLauncher.WebAuth.Recovered</AssemblyName>
+    <!-- SOURCE-ONLY RECOMPILATION of genuine user-provided managed IL.
+         The native bootstrapper and licensing are NOT reconstructed. -->
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../offline-evidence/v131-app/decompiled-WebAuth-IL/GivreLauncher.WebAuth/*.cs" />
+    <Compile Include="../../offline-evidence/v131-app/decompiled-WebAuth-IL/Properties/AssemblyInfo.cs" />
+    <Reference Include="Microsoft.Web.WebView2.Core">
+      <HintPath>../../vendor/GivreWebAuth131/Microsoft.Web.WebView2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.WinForms">
+      <HintPath>../../vendor/GivreWebAuth131/Microsoft.Web.WebView2.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf">
+      <HintPath>../../vendor/GivreWebAuth131/Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

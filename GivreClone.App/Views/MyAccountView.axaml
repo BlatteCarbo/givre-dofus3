@@ -1,0 +1,98 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GivreClone.App.ViewModels"
+             x:Class="GivreClone.App.Views.MyAccountView"
+             x:DataType="vm:MyAccountViewModel"
+             Classes="page">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="30,26" Spacing="20" MaxWidth="920" HorizontalAlignment="Center">
+
+            <StackPanel Spacing="4">
+                <TextBlock Classes="h1" Text="{DynamicResource L.Account.Title}" />
+                <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Account.Subtitle}" />
+            </StackPanel>
+
+            <!-- Pas de session : rien à afficher -->
+            <Border Classes="card" IsVisible="{Binding !Connected}">
+                <StackPanel Spacing="8" Margin="4">
+                    <TextBlock Classes="section" Text="{DynamicResource L.Account.NotConnectedTitle}" />
+                    <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Account.NotConnected}" />
+                </StackPanel>
+            </Border>
+
+            <!-- Récapitulatif de la licence -->
+            <Border Classes="card" IsVisible="{Binding Connected}">
+                <StackPanel Spacing="14">
+                    <TextBlock Classes="section" Text="{DynamicResource L.Account.LicenseTitle}" />
+                    <Grid ColumnDefinitions="170,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="10">
+                        <TextBlock Grid.Row="0" Grid.Column="0" Classes="label" Text="{DynamicResource L.Account.Package}" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding PackageName}" Foreground="{StaticResource TextPrimaryBrush}" FontWeight="SemiBold" />
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Classes="label" Text="{DynamicResource L.Account.Status}" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding StatusLabel}" Foreground="{StaticResource TextPrimaryBrush}" />
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Classes="label" Text="{DynamicResource L.Account.Remaining}" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding RemainingLabel}" Foreground="{DynamicResource AccentBrightBrush}" FontWeight="SemiBold" />
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Classes="label" Text="{DynamicResource L.Account.Expiration}" />
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ExpirationLabel}" Foreground="{StaticResource TextPrimaryBrush}" />
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Classes="label" Text="{DynamicResource L.Account.LastAuth}" />
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding LastAuthLabel}" Foreground="{StaticResource TextPrimaryBrush}" />
+                    </Grid>
+
+                    <Border BorderBrush="{StaticResource StrokeSoftBrush}" BorderThickness="0,1,0,0" Padding="0,12,0,0">
+                        <StackPanel Spacing="6">
+                            <TextBlock Classes="label" Text="{DynamicResource L.Account.Hwid}" />
+                            <SelectableTextBlock Text="{Binding HardwareId}" Classes="pii" FontFamily="Cascadia Code,Consolas,monospace"
+                                                 FontSize="11.5" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap" />
+                            <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Account.HwidHint}" />
+                            <TextBlock Classes="label" Margin="0,8,0,0" Text="{DynamicResource L.Account.KeyPrint}" />
+                            <SelectableTextBlock Text="{Binding ClientKeyFingerprint}" Classes="pii" FontFamily="Cascadia Code,Consolas,monospace"
+                                                 FontSize="11.5" Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap" />
+                            <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Account.KeyPrintHint}" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Droits (permissions serveur) -->
+            <Border Classes="card" IsVisible="{Binding Connected}">
+                <StackPanel Spacing="10">
+                    <TextBlock Classes="section" Text="{DynamicResource L.Account.PermissionsTitle}" />
+                    <TextBlock Classes="caption" TextWrapping="Wrap" Text="{DynamicResource L.Account.PermissionsHint}" />
+
+                    <ItemsControl ItemsSource="{Binding Permissions}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:PermissionRowVM">
+                                <Border Classes="listItem" Margin="0,0,0,8" Padding="14,12">
+                                    <Grid ColumnDefinitions="Auto,*,Auto">
+                                        <Panel Grid.Column="0" Margin="0,0,14,0" VerticalAlignment="Center">
+                                            <PathIcon Data="{StaticResource IconShield}" Width="19" Height="19"
+                                                      Foreground="{DynamicResource AccentBrightBrush}" IsVisible="{Binding Active}" />
+                                            <PathIcon Data="{StaticResource IconInfo}" Width="19" Height="19"
+                                                      Foreground="{StaticResource TextMutedBrush}" IsVisible="{Binding !Active}" />
+                                        </Panel>
+                                        <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding DisplayName}" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" />
+                                            <TextBlock Text="{Binding ExpiryLabel}" Classes="caption" />
+                                        </StackPanel>
+                                        <Border Grid.Column="2" Classes="badge" VerticalAlignment="Center" IsVisible="{Binding Active}">
+                                            <TextBlock Text="{DynamicResource L.Account.Active}" FontSize="10.5" FontWeight="SemiBold"
+                                                       Foreground="{DynamicResource AccentBrightBrush}" />
+                                        </Border>
+                                        <Border Grid.Column="2" Classes="badge" VerticalAlignment="Center" IsVisible="{Binding !Active}">
+                                            <TextBlock Text="{DynamicResource L.Account.Inactive}" FontSize="10.5" FontWeight="SemiBold"
+                                                       Foreground="{StaticResource TextMutedBrush}" />
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

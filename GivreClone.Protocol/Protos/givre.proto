@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+option csharp_namespace = "GivreClone.Protocol.Generated";
+
+package givre;
+
+// ============================================================================
+// MIGRATION PROTOBUF - classes GENEREES type-safe.
+// Noms CLAIRS + numeros de champ WIRE du patch ACTUEL (verifies sur trames reelles).
+// ATTENTION : les numeros DERIVENT au patch. Le .proto beta disait Request=5/content=2/uid=3 ;
+// la trame reelle (WhoAmI 2812260A...FFFF01) prouve Request=#2, content=#1, uid=#2, uid=int64.
+// -> on FIXE les numeros ici (jamais les defauts du proto beta).
+// Genere avec protoc (pré-généré, pas de Grpc.Tools) -> Generated/Givre.cs.
+// ============================================================================
+
+// google.protobuf.Any "maison" : type_url = "type.ankama.com/<code obfusque>", value = message serialise.
+message Any {
+  string type_url = 1;
+  bytes  value    = 2;
+}
+
+// Request cote CLIENT -> serveur.
+message ClientRequest {
+  Any   content = 1;
+  int64 uid     = 2;   // -1 (int64 sign-extended) pour une requete forgee sans correlation
+}
+
+// Enveloppe. Cote client on ne remplit QUE request (#2). Les variantes serveur (Event/Response) ont
+// d'autres numeros, non requis ici : le parsing entrant passe par le scan d'Any existant (RawProtobuf).
+message GameMessage {
+  ClientRequest request = 2;
+}
+
+// ---- Messages de jeu : noms clairs, numeros wire actuels (verifies live) ----
+
+// jrw (C->S) : demande de deplacement.
+message MapMovementRequest {
+  int64          map_id    = 1;
+  repeated int32 key_cells = 2;   // packed (defaut proto3) - keyMovement = cell | (dir<<12)
+  bool           cautious  = 3;
+}
+
+// jqi (C->S) : confirmation d'arrivee (trame VIDE sur le patch actuel).
+message MapMovementConfirmRequest {
+}
+
+// lqb (C->S) : WhoAmIRequest -> reponse WhoIsEvent (porte le serverId).
+message WhoAmIRequest {
+  bool verbose = 1;
+}
+
+// jsj (S->C) : diffusion d'un deplacement (parsing type-safe).
+message MapMovementEvent {
+  repeated int32 cells     = 1;   // packed keyMovements
+  int32          direction = 2;
+  int64          actor_id  = 5;
+  bool           cautious  = 6;
+}
+
+// jqt (S->C) : refus de deplacement (position REELLE en point-carte).
+message MapMovementRefusedEvent {
+  int32 cell_x = 1;
+  int32 cell_y = 2;
+}
+
+// jqk (C->S) : changement de carte. map_id de la carte cible. ATTENTION numero WIRE = #2 (le proto clair dit #1,
+// mais la trame reelle capturee est "#2 int <mapId>" - tags derives). auto_pilot non capte -> omis.
+message MapChangeRequest {
+  int32 map_id = 2;
+}

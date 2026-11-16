@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <AssemblyName>MZP18IsolatedWebAuth</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- User-authorized managed source recovered from an isolated copy; immutable source files. -->
+    <Compile Include="../../offline-evidence/v131-app/decompiled-WebAuth-IL/GivreLauncher.WebAuth/*.cs"
+             Exclude="../../offline-evidence/v131-app/decompiled-WebAuth-IL/GivreLauncher.WebAuth/Program.cs;../../offline-evidence/v131-app/decompiled-WebAuth-IL/GivreLauncher.WebAuth/BrowserSetup.cs" />
+    <Compile Include="Program.Isolated.cs" />
+    <Compile Include="BrowserSetup.Isolated.cs" />
+    <Compile Include="../../offline-evidence/v131-app/decompiled-WebAuth-IL/Properties/AssemblyInfo.cs" />
+    <Reference Include="Microsoft.Web.WebView2.Core"><HintPath>../../vendor/GivreWebAuth131/Microsoft.Web.WebView2.Core.dll</HintPath></Reference>
+    <Reference Include="Microsoft.Web.WebView2.WinForms"><HintPath>../../vendor/GivreWebAuth131/Microsoft.Web.WebView2.WinForms.dll</HintPath></Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf"><HintPath>../../vendor/GivreWebAuth131/Microsoft.Web.WebView2.Wpf.dll</HintPath></Reference>
+    <None Include="../../vendor/GivreWebAuth131/runtimes/win-x64/native/WebView2Loader.dll" Link="WebView2Loader.dll" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
